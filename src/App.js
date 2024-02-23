@@ -1,8 +1,13 @@
+import Header from './components/Header';
+import Navbar from './components/Navbar';
 import logo from './logo.svg';
 
 function App() {
   return (
-    <div></div>
+    <div className=''>
+      <Navbar/>
+      <Header/>
+    </div>
   );
 }
 
