@@ -1,13 +1,13 @@
-import Header from './components/Header';
-import Navbar from './components/Navbar';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className=''>
-      <Navbar/>
-      <Header/>
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<Home/>} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 
