@@ -6,12 +6,13 @@ const Navbar = () => {
     <nav className="bg-transparent absolute border-b-2 border-black w-full border-opacity-30 font-quicksand mt-56 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
             <div className=" items-center justify-between h-24">
-                <div className="flex-row flex items-center justify-center text-black">
-                    <img className="h-auto w-24 mr-2" src="hilton-logo.png" alt="Logo" />
-                    <Link to="/phone" className="ml-20 text-xl hover:scale-105 duration-300 ease-in-out">Events and Conferences</Link>
-                    <Link to="/email" className=" ml-20 text-xl hover:scale-105 duration-300 ease-in-out">Check-In, Check-Out</Link>
-                    <Link to="/email" className="ml-20 text-xl hover:scale-105 duration-300 ease-in-out">Amenities</Link>
-                    <Link to="/email" className="ml-20 text-xl hover:scale-105 duration-300 ease-in-out">Hotel Map</Link>
+              {/* <p className='absolute mt-7 text-xl font-quicksand'>Alfond Inn</p> */}
+                <div className="flex-row flex items-center justify-center text-black text-2xl">
+                    <Link to="/" className="hover:scale-105 duration-300 ease-in-out"><img className="h-auto w-20 mr-2" src="https://thealfondinn.com/media/29890/alfond-inn-favicon.svg?quality=30" alt="Logo" /></Link>
+                    <Link to="/events_info" className="ml-20 hover:scale-105 duration-300 ease-in-out">Events and Conferences</Link>
+                    <Link to="/checkInOut" className=" ml-20 hover:scale-105 duration-300 ease-in-out">Check-In, Check-Out</Link>
+                    <Link to="/amenities" className="ml-20 hover:scale-105 duration-300 ease-in-out">Amenities</Link>
+                    <Link to="/property_map" className="ml-20 hover:scale-105 duration-300 ease-in-out">Hotel Map</Link>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ const BottomBanner = () => {
   }, [currentImageIndex]);
 
   return (
-    <div className="absolute bottom-[-416px] w-full h-48 font-quicksand border-t-2 border-black">
+    <div className="absolute bottom-0 w-full h-48 font-quicksand border-t-2 border-black">
       {/* Slides */}
       {images.map((image, index) => (
         <div
