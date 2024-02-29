@@ -37,7 +37,7 @@ const Form = () => {
 
     if(!showSubOptions) {
       return currentActivities.map((activity, index) => (
-        <button key={index} className="rounded-md bg-slate-50 shadow-blue-300 text-black shadow-lg px-16 py-20 m-4 hover:scale-105 duration-300 ease-in-out text-2xl" onClick={() => handleActivityClick(activity)}>
+        <button key={index} className="rounded-md bg-slate-50 shadow-blue-300 text-black shadow-lg px-16 py-20 m-4 hover:scale-105 duration-300 ease-in-out flex text-xl justify-center items-center" onClick={() => handleActivityClick(activity)}>
           {activity}
         </button>
       ));
@@ -52,7 +52,7 @@ const Form = () => {
       const subOptions = subActivities[activity];
       if (!subOptions || !showSubOptions) return null;
       return subOptions.map((subOption, index) => (
-        <button key={index} className="rounded-md bg-slate-50 shadow-blue-300 text-black shadow-lg px-16 py-20 m-2 hover:scale-105 duration-300 ease-in-out text-2xl" onClick={() => handleActivityClick(subOption)}>
+        <button key={index} className="rounded-md bg-slate-50 shadow-blue-300 text-black shadow-lg px-16 py-20 m-2 hover:scale-105 duration-300 ease-in-out flex text-xl justify-center items-center" onClick={() => handleActivityClick(subOption)}>
           {subOption}
         </button>
       ));

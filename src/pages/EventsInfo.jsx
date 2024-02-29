@@ -15,13 +15,13 @@ function EventsInfo() {
     }, []);
 
     return (
-        <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div>
             <Navbar />
             <img className='w-36 absolute h-[90%] mt-56 right-0' src='wave-side.png' alt='wave'/>
             <img className='w-36 absolute h-[90%] mt-56 left-0' src='wave-transparent-left.png' alt='wave'/>
             <TopBanner />
             <BottomBanner/>
-            <div className='w-full h-screen flex justify-center items-center flex-col'>
+            <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <img className='flex w-[90%] mx-auto' src='MapofAlfondInnProperty.png' alt='hotel-map'/>
             </div>
         </div>

@@ -23,11 +23,11 @@ function Header() {
 
   return (
     //bg-[url(/public/bgpattern.png)]
-    <div className="w-full h-[75%] flex justify-center items-center flex-col absolute ">
+    <div className="w-full h-full flex justify-center items-center flex-col absolute">
         <div className='z-40 text-center mx-20'>
-            <p className="font-quicksand text text-6xl text-black my-4">Discover Winter Park, Florida</p>
+            <p className="font-quicksand text text-4xl text-gray-400 my-4">Discover Winter Park, Florida</p>
             
-            <h1 className=" font-quicksand text-7xl  text-black flex flex-col text-wrap">Let AI-Concierge find the   
+            <h1 className=" font-quicksand text-6xl  text-black flex flex-col text-wrap">Let AI-Concierge find the   
             <span style={{ color: '#0066FF', marginLeft: '6px'}}>
             <Typewriter
                 options={{

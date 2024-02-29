@@ -57,3 +57,7 @@ def OPAIEndpointCreate(request):
     )
     print(response.choices[0].message.content)
     return JsonResponse({'response-payload': response.choices[0].message.content})
+
+@api_view(['POST'])
+def queryBusinessData(request):
+    return JsonResponse({'response-payload': 'test'})
