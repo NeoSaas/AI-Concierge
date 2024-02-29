@@ -38,7 +38,7 @@ function Header() {
                 }}
                 />
               </span>for you</h1>
-            <div className='mt-16'>
+            <div className='mt-16 flex'>
               <Form />
             </div>
             

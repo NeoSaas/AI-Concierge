@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .checkbox-label:has(input:checked) {
+      @apply border-blue-400 bg-[#0066FF] border-2  text-white;
+    }
+  }
