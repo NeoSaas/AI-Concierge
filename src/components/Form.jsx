@@ -9,11 +9,11 @@ const Form = () => {
   const totalPages = Math.ceil(activities.length / itemsPerPage);
 
   const handlePrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    setCurrentPage((prevPage) => (prevPage === 0 ? totalPages - 1 : prevPage - 1));
   };
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    setCurrentPage((prevPage) => (prevPage === totalPages - 1 ? 0 : prevPage + 1));
   };
 
   const renderButtons = () => {
@@ -33,7 +33,6 @@ const Form = () => {
       <div className="flex justify-center">
         <button
           className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-100 text-black p-2 m-2 hover:scale-105 duration-300 ease-in-out"
-          disabled={currentPage === 0}
           onClick={handlePrevPage}
         >
           <ChevronLeftIcon className="h-6 w-6" />
@@ -41,7 +40,6 @@ const Form = () => {
         <div className="grid grid-cols-4 gap-4">{renderButtons()}</div>
         <button
           className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-100 text-black p-2 m-2 hover:scale-105 duration-300 ease-in-out"
-          disabled={currentPage === totalPages - 1}
           onClick={handleNextPage}
         >
           <ChevronRightIcon className="h-6 w-6" />
