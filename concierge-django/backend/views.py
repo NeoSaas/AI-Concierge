@@ -13,7 +13,6 @@ import json
 import sys, os, base64, datetime, hashlib, hmac 
 from .models import Business, Hotel
 from .serializers import BusinessSerializer, HotelSerializer
-
 from openai import OpenAI
 
 def index(request):
@@ -63,6 +62,7 @@ def getBusinessDataGoogle(request):
         }
 
         response = requests.get(places_api_endpoint, params=params)
+        print(response)
         if response.status_code == 200:
             results = response.json().get('results')
             if results:
@@ -93,9 +93,9 @@ def OPAIEndpointCreate(request):
     client = OpenAI(organization='org-2oZsacQ1Ji3Xr0uveLpwg50m', api_key=settings.OPEN_AI_KEY)
     
     response = client.chat.completions.create(
-        model="ft:gpt-3.5-turbo-1106:personal::8Lj9L3WV",
+        model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "You are a helpful assistant. "},
             {"role": "user", "content": f"{request.data.get('query')}"}
         ]
     )
@@ -103,5 +103,11 @@ def OPAIEndpointCreate(request):
     return JsonResponse({'response-payload': response.choices[0].message.content})
 
 @api_view(['POST'])
-def queryBusinessData(request):
-    return JsonResponse({'response-payload': 'test'})
+def querySpecifcBusinessData(request):
+    businessesList = []
+    for business in request.data.get('business'):
+        # businessesList.append(Business.objects.filter(business_name=business))
+        print(business);
+        serializer = BusinessSerializer(Business.objects.filter(business_name=business), many=True)
+        businessesList.append(serializer.data)
+    return JsonResponse(businessesList, safe=False)

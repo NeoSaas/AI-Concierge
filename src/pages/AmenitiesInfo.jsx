@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar';
+import TopBanner from '../components/TopBanner';
+import BottomBanner from '../components/BottomBanner';
 
 function AmenitiesInfo() {
     const [isLoaded, setIsLoaded] = useState(false);

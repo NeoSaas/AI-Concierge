@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 const TopBanner = () => {
   // currently hardcoded, but will be fetched from django api
   const images = [
-    { src: 'pic1.jpg', text: 'Text for Image 1' },
-    { src: 'pool.jpg', text: 'Text for Image 2' },
-    { src: 'event.png', text: 'Text for Image 3' },
+    { src: 'indian-cuisine-restaurant-ad-design-template-cfbbc420f22edf7deec675ab2b82af7a_screen.jpg', text: 'Text for Image 1' },
+    { src: 'Restaurant_Banners.png', text: 'Text for Image 2' },
+    { src: 'spa-banner-prev.jpg', text: 'Text for Image 3' },
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -42,10 +42,10 @@ const TopBanner = () => {
           <img
             src={image.src}
             alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
           />
           <div className="absolute bottom-16 left-20 right-0 p-6 text-white bg-black bg-opacity-0">
-            <p className="text-lg font-semibold">{image.text}</p>
+            {/* <p className="text-lg font-semibold">{image.text}</p> */}
           </div>
         </div>
       ))}

@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 const BottomBanner = () => {
   // currently hardcoded, but will be fetched from django api
   const images = [
-    { src: 'pic1.jpg', text: 'Text for Image 1' },
-    { src: 'pool.jpg', text: 'Text for Image 2' },
+    { src: 'hoteladbanner.jpg', text: 'Text for Image 1' },
+    { src: 'hotelluxurybanner.jpg', text: 'Text for Image 2' },
     { src: 'event.png', text: 'Text for Image 3' },
   ];
 
@@ -30,7 +30,7 @@ const BottomBanner = () => {
   }, [currentImageIndex]);
 
   return (
-    <div className="absolute bottom-0 w-full h-48 font-quicksand border-t-2 border-black">
+    <div className="absolute bottom-[-43px] w-full h-56 font-quicksand border-t-2 border-black">
       {/* Slides */}
       {images.map((image, index) => (
         <div
@@ -45,7 +45,7 @@ const BottomBanner = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute bottom-16 left-20 right-0 p-6 text-white bg-black bg-opacity-0">
-            <p className="text-lg font-semibold">{image.text}</p>
+            {/* <p className="text-lg font-semibold">{image.text}</p> */}
           </div>
         </div>
       ))}

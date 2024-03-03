@@ -27,3 +27,6 @@ yarn-error.log*
 
 # local files
 /concierge-django/concierge/settings.py
+/concierge-django/concierge/concierge/__pycache__
+/concierge-django/concierge/backend/migrations
+/concierge-django/concierge/backend/__pycache__
