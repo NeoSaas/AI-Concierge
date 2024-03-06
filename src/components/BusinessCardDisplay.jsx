@@ -1,4 +1,5 @@
 import { React } from 'react'
+
 import Rating from '@mui/material/Rating';
 
 function BusinessCardDisplay({ business }) {
