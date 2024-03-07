@@ -33,8 +33,6 @@ def getBusinessData(request):
 
 @api_view(['POST'])
 def addBusinessData(request):
-    
-    
     new_business_data = {
         'business_name': request.data.get('business_name'),
         'business_pictures': request.data.get('business_pictures')
@@ -117,24 +115,27 @@ def querySpecifcBusinessData(request):
     location = "Winter Park, Florida"
     # print('bidness data')
     print(request.data)
-    # Base URL
-    # base_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
-    # api_key = settings.GOOGLE_API_KEY
+    
     for business in request.data.get('business'):
         try:
             busQuery = business + 'in' + location
-            # location_name = 'Lanxess Arena Köln'
             response = map_client.places(query=busQuery)
             results = response.get('results')[0]
+
             bus_name = results['name']
             bus_address = results['formatted_address']
             bus_place_id = results['place_id']
             bus_rating = results['rating']
             bus_photos = results['photos']
-            # print(results)
-            # print("****** INFO FOR "+bus_name+" ******")
-            # print(bus_name,'|', bus_address,'|', bus_place_id,'|', bus_rating,'|',bus_photos)
-            # print("************************")
+            
+            print(results)
+            print("****** INFO FOR "+bus_name+" ******")
+            print(bus_name,'|', bus_address,'|', bus_place_id,'|', bus_rating,'|',bus_photos)
+            print("************************")
+            #inserting data into db if field is empty
+            business_db_object = Business.objects.filter(business_name=business)
+            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photos)
+            
         except Exception as e:
             print('ERROR IN PLACES')
             print(e)

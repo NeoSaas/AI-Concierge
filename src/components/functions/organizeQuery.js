@@ -24,7 +24,7 @@ export default async function organizeQuery(selectedActivities) {
         Query: Please recommend businesses that offer ${userSelectedCategories}. 
         The businesses should closely match the user's preferences. 
         Consider the tags associated with each business.
-        In your recommendation only include the business name and nothing else no extra text simply the name of the business format your response everytime as "Recommendation: <business name>, <business name> , ....", id also like you to provide the busines names in a comma separated list. 
+        In your recommendation only include the business name and nothing else no extra text simply the name of the business format your response STRICTLY as "Recommendation: <business name>, <business name> , ....", id also like you to provide the busines names in a comma separated list. 
         Ideally, the recommended businesses should offer services or products aligned with the user's selection. 
         Thank you!\n
     `;

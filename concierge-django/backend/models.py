@@ -6,6 +6,8 @@ class Business(models.Model):
     business_tags = models.JSONField(default=dict)
     business_rating = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     # business_reviews = models.JSONField(default=dict)
+    business_place_id = models.CharField(max_length=100, default='')
+    business_address = models.CharField(max_length=100, default='')
     business_pictures = models.ImageField(upload_to='business_pictures', default='')
     def __str__(self):
         return self.business_name  
