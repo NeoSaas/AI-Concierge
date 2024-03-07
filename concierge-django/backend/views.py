@@ -14,6 +14,7 @@ import sys, os, base64, datetime, hashlib, hmac
 from .models import Business, Hotel
 from .serializers import BusinessSerializer, HotelSerializer
 from openai import OpenAI
+import googlemaps
 
 def index(request):
     tag_to_monitor = 'your_tag_name'
@@ -24,12 +25,16 @@ def index(request):
 
 @api_view(['GET'])
 def getBusinessData(request):
+    print('GET BUSINESS DATA')
     businesses = Business.objects.all()
+    print(businesses)
     serializer = BusinessSerializer(businesses, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 @api_view(['POST'])
 def addBusinessData(request):
+    
+    
     new_business_data = {
         'business_name': request.data.get('business_name'),
         'business_pictures': request.data.get('business_pictures')
@@ -46,6 +51,7 @@ def addBusinessData(request):
 @csrf_exempt
 @api_view(['GET'])
 def getBusinessDataGoogle(request):
+    
     data = json.loads(request.body)
     selected_businesses = data.get('businesses', [])
 
@@ -58,11 +64,11 @@ def getBusinessDataGoogle(request):
         params = {
             'key': api_key,
             'query': business_name,
-            'fields': 'name,rating,formatted_address,formatted_phone_number,reviews',
+            'fields': 'name,rating,formatted_address,formatted_phone_number,reviews,photo',
         }
 
         response = requests.get(places_api_endpoint, params=params)
-        print(response)
+        # print(response)
         if response.status_code == 200:
             results = response.json().get('results')
             if results:
@@ -72,9 +78,10 @@ def getBusinessDataGoogle(request):
                 details_params = {
                     'key': api_key,
                     'place_id': place_id,
-                    'fields': 'name,rating,formatted_address,formatted_phone_number,reviews',
+                    'fields': 'name,rating,formatted_address,formatted_phone_number,reviews, photo',
                 }
                 details_response = requests.get('https://maps.googleapis.com/maps/api/place/details/json', params=details_params)
+                
                 if details_response.status_code == 200:
                     business_data = details_response.json().get('result')
                     business_details[business_name] = business_data
@@ -105,9 +112,35 @@ def OPAIEndpointCreate(request):
 @api_view(['POST'])
 def querySpecifcBusinessData(request):
     businessesList = []
+    api_key = settings.GOOGLE_API_KEY
+    map_client = googlemaps.Client(api_key)
+    location = "Winter Park, Florida"
+    # print('bidness data')
+    print(request.data)
+    # Base URL
+    # base_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
+    # api_key = settings.GOOGLE_API_KEY
     for business in request.data.get('business'):
+        try:
+            busQuery = business + 'in' + location
+            # location_name = 'Lanxess Arena Köln'
+            response = map_client.places(query=busQuery)
+            results = response.get('results')[0]
+            bus_name = results['name']
+            bus_address = results['formatted_address']
+            bus_place_id = results['place_id']
+            bus_rating = results['rating']
+            bus_photos = results['photos']
+            # print(results)
+            # print("****** INFO FOR "+bus_name+" ******")
+            # print(bus_name,'|', bus_address,'|', bus_place_id,'|', bus_rating,'|',bus_photos)
+            # print("************************")
+        except Exception as e:
+            print('ERROR IN PLACES')
+            print(e)
+            return None
         # businessesList.append(Business.objects.filter(business_name=business))
-        print(business);
+        
         serializer = BusinessSerializer(Business.objects.filter(business_name=business), many=True)
         businessesList.append(serializer.data)
     return JsonResponse(businessesList, safe=False)
