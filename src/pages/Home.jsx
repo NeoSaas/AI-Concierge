@@ -24,11 +24,10 @@ const Home = () => {
         <>
             {/* w-full h-screen bg-[url(/public/bgpattern.png)] bg-auto md:bg-cover bg-center*/}
             <div className={`h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} >
-                <img className='w-36 absolute h-[90%] mt-56 right-0' src='wave-side.png' alt='wave'/>
-                <img className='w-36 absolute h-[90%] mt-56 left-0' src='wave-transparent-left.png' alt='wave'/>
+                <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
+                <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/>
                 {/* <img className='w-60 absolute h-auto bottom-12 right-[-150px]' src='poly.png' alt='wave'/>
                 <img className='w-60 absolute h-auto bottom-12 left-[-120px]' src='poly.png' alt='wave'/> */}
-                <TopBanner />
                 <Navbar />
                 <Header />
                 <BottomBanner/>

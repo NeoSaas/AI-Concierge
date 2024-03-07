@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="bg-transparent absolute border-b-2 border-black w-full border-opacity-30 font-quicksand mt-56 z-50">
+    <nav className="bg-transparent absolute border-b-2 border-t-2 border-black w-full border-opacity-30 font-quicksand mt-32 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
             <div className=" items-center justify-between h-24">
               {/* <p className='absolute mt-7 text-xl font-quicksand'>Alfond Inn</p> */}
