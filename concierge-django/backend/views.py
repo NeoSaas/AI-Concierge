@@ -112,29 +112,40 @@ def querySpecifcBusinessData(request):
     businessesList = []
     api_key = settings.GOOGLE_API_KEY
     map_client = googlemaps.Client(api_key)
-    location = "Winter Park, Florida"
-    # print('bidness data')
-    print(request.data)
+    location = "Winter Park, Florida United States"
+    
+    
     
     for business in request.data.get('business'):
         try:
             busQuery = business + 'in' + location
             response = map_client.places(query=busQuery)
             results = response.get('results')[0]
+            
+            
 
             bus_name = results['name']
             bus_address = results['formatted_address']
             bus_place_id = results['place_id']
             bus_rating = results['rating']
             bus_photos = results['photos']
+            bus_lat_long = results['geometry']
+            wRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="walking",units="imperial",
+            departure_time='now',
+            traffic_model="optimistic",)
+            dRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="driving",units="imperial",
+            departure_time='now',
+            traffic_model="optimistic",)
+            tRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="transit",units="imperial",
+            departure_time='now',
+            traffic_model="optimistic",)
+            walk_time = wRequest['rows'][0]['elements'][0]['duration']['text']
+            drive_time = dRequest['rows'][0]['elements'][0]['duration']['text']
+            transit_time = tRequest['rows'][0]['elements'][0]['duration']['text']
             
-            print(results)
-            print("****** INFO FOR "+bus_name+" ******")
-            print(bus_name,'|', bus_address,'|', bus_place_id,'|', bus_rating,'|',bus_photos)
-            print("************************")
-            #inserting data into db if field is empty
+            
             business_db_object = Business.objects.filter(business_name=business)
-            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photos)
+            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photos, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time)
             
         except Exception as e:
             print('ERROR IN PLACES')
