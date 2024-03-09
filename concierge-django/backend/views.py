@@ -127,6 +127,13 @@ def querySpecifcBusinessData(request):
             bus_rating = results['rating']
             bus_photos = results['photos']
             bus_lat_long = results['geometry']
+            bus_photo_urls = []
+
+            # Get photo URLs
+            for photo in bus_photos:
+                photo_reference = photo['photo_reference']
+                photo_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_reference}&key={api_key}"
+                bus_photo_urls.append(photo_url)
 
             # Build the directions URL
             destination = bus_name.replace(' ', '+') + '+' + bus_address.replace(' ', '+') + '+' + 'Winter+Park%2c+Florida+United+States'
@@ -140,7 +147,7 @@ def querySpecifcBusinessData(request):
             transit_time = tRequest['rows'][0]['elements'][0]['duration']['text']
 
             business_db_object = Business.objects.filter(business_name=business)
-            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photos, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time, directions_url=directions_url)
+            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photo_urls, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time, directions_url=directions_url)
             
         except Exception as e:
             print('ERROR IN PLACES')

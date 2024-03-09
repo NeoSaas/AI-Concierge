@@ -4,9 +4,13 @@ import Navbar from '../components/Navbar';
 import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
+import MyDialog from '../components/QrDialog';
 
 function CheckInInfo() {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [qrOpen, setQrOpen] = useState(false);
+    const qrCodes = [`https://thealfondinn.com/the-hotel/rooms-suites#/booking/step-1?data=('hBhd!'alfond-inn'~ae706dt716fs.~rBat!2~cn!0~cg.~al9po5gp5rn.)Ary5rk5re.~rr*)Aax!0~cy5ds!('pe5ls5as5st*)~my9se5ce5ne*)*!null.8%5D5*~6%2F2024'~7!'03%2F18!%5B9!false~A%5D~Bs8('%01BA98765.*_`, 'https://thealfondinn.com/the-hotel/rooms-suites'];
+    const [qrCode, setQrCode] = useState(null);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -18,42 +22,55 @@ function CheckInInfo() {
         return () => clearTimeout(timeout);
     }, []);
 
+    const handleCheckIn = () => {
+        setQrCode(qrCodes[0]);
+        setQrOpen(true);
+    }
+
+    const handleCheckOut = () => {
+        setQrCode(qrCodes[1]);
+        setQrOpen(true);
+    }
+
     return (
         <div>
             <Navbar />
             <WeatherWidget/>
-            <img className='w-36 absolute h-[90%] mt-56 right-0' src='wave-side.png' alt='wave'/>
-            <img className='w-36 absolute h-[90%] mt-56 left-0' src='wave-transparent-left.png' alt='wave'/>
+            <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
+            <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
+            <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/>
             <BottomBanner/>
             <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <div className="bg-gray-100 min-h-screen py-8">
+                <div className="py-8 ">
                     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
                         <h1 className="text-3xl font-bold mb-6">Check-in & Check-out Information</h1>
 
                         <div className="mb-8">
-                        <h2 className="text-2xl font-bold mb-4">Check-in</h2>
-                        <p className="mb-4">
-                            Check-in time starts at 3:00 PM. Early check-in may be available upon request and subject to availability.
-                        </p>
-                        <p className="mb-4">
-                            Upon arrival, please have your valid photo ID and booking confirmation ready to present at the front desk.
-                        </p>
-                        <p>
-                            If you need any special assistance or have specific requirements, please let us know in advance so we can make the necessary arrangements.
-                        </p>
+                            <h2 className="text-2xl font-bold mb-4">Check-in</h2>
+                            <p className="mb-8 text-xl">
+                                Check-in time starts at 3:00 PM. Early check-in may be available upon request and subject to availability.
+                            </p>
+                            <p className="mb-8 text-xl">
+                                Upon arrival, please have your valid photo ID and booking confirmation ready to present at the front desk.
+                            </p>
+                            <p className="mb-1 text-xl" >
+                                If you need any special assistance or have specific requirements, please let us know in advance so we can make the necessary arrangements.
+                            </p>
+                            <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-10' onClick={() => handleCheckIn()}>Check In Qr Code</button>
                         </div>
 
                         <div>
-                        <h2 className="text-2xl font-bold mb-4">Check-out</h2>
-                        <p className="mb-4">
-                            Check-out time is at 11:00 AM. Late check-out may be available upon request and subject to availability and additional charges.
-                        </p>
-                        <p className="mb-4">
-                            Please ensure that all room keys are returned to the front desk upon check-out. Any outstanding charges or incidentals will need to be settled at this time.
-                        </p>
-                        <p>
-                            If you need any assistance with transportation or have any other requests, our staff will be happy to assist you.
-                        </p>
+                            <h2 className="text-2xl font-bold mb-4">Check-out</h2>
+                            <p className="mb-8 text-xl">
+                                Check-out time is at 11:00 AM. Late check-out may be available upon request and subject to availability and additional charges.
+                            </p>
+                            <p className="mb-8 text-xl">
+                                Please ensure that all room keys are returned to the front desk upon check-out. Any outstanding charges or incidentals will need to be settled at this time.
+                            </p>
+                            <p className="mb-1 text-xl">
+                                If you need any assistance with transportation or have any other requests, our staff will be happy to assist you.
+                            </p>
+                            <button className='  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-10' onClick={() => handleCheckOut()}>Check Out Qr Code</button>
                         </div>
                     </div>
                 </div>

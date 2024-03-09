@@ -8,7 +8,7 @@ class Business(models.Model):
     # business_reviews = models.JSONField(default=dict)
     business_place_id = models.CharField(max_length=100, default='')
     business_address = models.CharField(max_length=100, default='')
-    business_pictures = models.ImageField(upload_to='business_pictures', default='')
+    business_pictures = models.JSONField(default=dict)
     walk_time = models.CharField(max_length=100, default='')
     drive_time = models.CharField(max_length=100, default='')
     transit_time = models.CharField(max_length=100, default='')
