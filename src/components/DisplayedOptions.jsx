@@ -5,7 +5,7 @@ function DisplayedOptions({ businesses, isOpen, setIsOpen, setRestaurantLink }) 
   console.log(businesses, "BUSINESSES")
 
   return (
-    <div className="grid grid-cols-1 gap-4 w-screen">
+    <div className="grid grid-cols-1 gap-4 w-screen overflow-auto max-h-max overflow-x-hidden">
       {businesses.map((business, index) => (
         <BusinessCardDisplay key={index} business={business} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink}/>
       ))}
