@@ -26,7 +26,7 @@ function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink}) {
         </div>
 
       </div>
-      <img src={business[0].business_pictures} alt={business[0].name} className="w-40  rounded-lg mx-auto mt-12" />
+      <img src={business[0].business_pictures} alt={business[0].name} className="w-max h-60 rounded-lg mx-auto mt-12" />
       <div className='inline-block mt-4'>
         <Rating name="half-rating-read" defaultValue={business[0].business_rating} precision={0.1} readOnly />
         <p>{business[0].business_rating} stars </p>
