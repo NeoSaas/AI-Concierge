@@ -1,6 +1,8 @@
 import React from 'react';
 
-const ConferenceItem = ({ eventName, description, imageUrl, date, time }) => {
+const ConferenceItem = ({ eventName, description, imageUrl, date, time, handleButton, index }) => {
+ 
+
   return (
     <div className="flex items-center justify-center my-12">
       <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden mx-16 ">
@@ -13,7 +15,7 @@ const ConferenceItem = ({ eventName, description, imageUrl, date, time }) => {
             <p className="mt-2 text-gray-600">{description}</p>
             <p className="mt-2 text-black">{date}</p>
             <p className="mt-2 text-gray-800">{time}</p>
-            <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-10'>Check In</button>
+            <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-10' onClick={() => handleButton(index)}>Get Qr Code</button>
           </div>
         </div>
       </div>

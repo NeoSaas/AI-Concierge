@@ -7,6 +7,7 @@ const WeatherWidget = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       const apiKey = 'f90fd93e842f4f408cb2c83c5c10ddcd'; // Replace with your actual API key
+      setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
 
       const apiUrl = `https://api.weatherbit.io/v2.0/current?key=${apiKey}&lat=28.6000&lon=-81.3392&units=I`;
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
+import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 
 function AmenitiesInfo() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -20,6 +21,7 @@ function AmenitiesInfo() {
     return (
         <div>
             <Navbar />
+            <WeatherWidget/>
             <img className='w-36 absolute h-[90%] mt-56 right-0' src='wave-side.png' alt='wave'/>
             <img className='w-36 absolute h-[90%] mt-56 left-0' src='wave-transparent-left.png' alt='wave'/>
             <TopBanner />
