@@ -9,6 +9,9 @@ class Business(models.Model):
     business_place_id = models.CharField(max_length=100, default='')
     business_address = models.CharField(max_length=100, default='')
     business_pictures = models.ImageField(upload_to='business_pictures', default='')
+    walk_time = models.CharField(max_length=100, default='')
+    drive_time = models.CharField(max_length=100, default='')
+    transit_time = models.CharField(max_length=100, default='')
     def __str__(self):
         return self.business_name  
     
