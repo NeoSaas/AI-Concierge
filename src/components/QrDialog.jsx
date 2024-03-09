@@ -1,7 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import ReactDOM from "react-dom";
+import QRCode from "react-qr-code";
 
-export default function MyDialog({isOpen, setIsOpen, qrCode}) {
+export default function MyDialog({isOpen, setIsOpen, qrCode, restaurantLink}) {
 
   function closeModal() {
     setIsOpen(false)
@@ -39,15 +41,16 @@ export default function MyDialog({isOpen, setIsOpen, qrCode}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Scan the Qr Code to Check in!
+                    {qrCode == null ? "Scan the QR code to view the restaurant!" : "Scan the Qr Code to Check in!"}
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <img src={qrCode} alt='qrCode' className=''/>
+                  <div className="mt-2 flex-col justify-center items-center text-center">
+                    {qrCode == null ? <QRCode value={restaurantLink} className='m-auto'/> : <img src={qrCode} alt='qrCode' className=''/>}
+                    
                   </div>
 
                   <div className="mt-4">

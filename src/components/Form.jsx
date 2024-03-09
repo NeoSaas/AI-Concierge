@@ -15,7 +15,7 @@ const subActivities = {
   // Define sub-activities for other main activities
 };
 
-const Form = () => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -126,8 +126,10 @@ const Form = () => {
               </div>
               :
               <div>
-                <p className='text-xl text-black mx-auto text-center mb-12'>Here are the best options for you!</p>
-                <DisplayedOptions businesses={displayBusinesses} />
+                <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/'>Back to Start</a>
+                <p className='text-xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
+                
+                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink}/>
               </div>
             }
           </>

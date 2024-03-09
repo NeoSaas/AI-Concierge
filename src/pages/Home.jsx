@@ -5,9 +5,12 @@ import Header from '../components/Header';
 import BottomBanner from '../components/BottomBanner';
 import Form from '../components/Form';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
+import MyDialog from '../components/QrDialog';
 
 const Home = () => {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [restaurantLink, setRestaurantLink] = useState(null);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -25,10 +28,11 @@ const Home = () => {
                 <div>
                     <WeatherWidget/>
                 </div>
+                <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} restaurantLink={restaurantLink}/>
                 <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
                 <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/>
                 <Navbar />
-                <Header />
+                <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink}/>
                 <BottomBanner/>
             </div>
         </>

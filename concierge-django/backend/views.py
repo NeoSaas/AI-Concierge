@@ -121,31 +121,26 @@ def querySpecifcBusinessData(request):
             busQuery = business + 'in' + location
             response = map_client.places(query=busQuery)
             results = response.get('results')[0]
-            
-            
-
             bus_name = results['name']
             bus_address = results['formatted_address']
             bus_place_id = results['place_id']
             bus_rating = results['rating']
             bus_photos = results['photos']
             bus_lat_long = results['geometry']
-            wRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="walking",units="imperial",
-            departure_time='now',
-            traffic_model="optimistic",)
-            dRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="driving",units="imperial",
-            departure_time='now',
-            traffic_model="optimistic",)
-            tRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="transit",units="imperial",
-            departure_time='now',
-            traffic_model="optimistic",)
+
+            # Build the directions URL
+            destination = bus_name.replace(' ', '+') + '+' + bus_address.replace(' ', '+') + '+' + 'Winter+Park%2c+Florida+United+States'
+            directions_url = f"https://www.google.com/maps/dir/?api=1&destination={destination}&dir_action=navigate"
+
+            wRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="walking", units="imperial", departure_time='now', traffic_model="optimistic")
+            dRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="driving", units="imperial", departure_time='now', traffic_model="optimistic")
+            tRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="transit", units="imperial", departure_time='now', traffic_model="optimistic")
             walk_time = wRequest['rows'][0]['elements'][0]['duration']['text']
             drive_time = dRequest['rows'][0]['elements'][0]['duration']['text']
             transit_time = tRequest['rows'][0]['elements'][0]['duration']['text']
-            
-            
+
             business_db_object = Business.objects.filter(business_name=business)
-            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photos, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time)
+            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photos, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time, directions_url=directions_url)
             
         except Exception as e:
             print('ERROR IN PLACES')
