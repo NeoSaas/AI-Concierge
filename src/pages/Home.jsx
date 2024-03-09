@@ -28,7 +28,7 @@ const Home = () => {
                 <div>
                     <WeatherWidget/>
                 </div>
-                <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} restaurantLink={restaurantLink}/>
+                <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink}/>
                 <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
                 <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/>
                 <Navbar />
