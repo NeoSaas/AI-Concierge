@@ -4,23 +4,23 @@
 
 @layer components {
     .checkbox-label:has(input:checked) {
-      @apply border-blue-400 bg-[#0066FF] border-2  text-white;
+      @apply border-blue-400 bg-[#0066FF] border-2  text-white; 
     }
   }
 
   .gradient-top {
-    background: linear-gradient(to top, rgb(0, 0, 0), rgba(255, 255, 255, 0));
+    background: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0));
   }
   
   .gradient-bottom {
-    background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0));
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
   }
   
   .gradient-left {
-    background: linear-gradient(to left, rgb(0, 0, 0), rgba(255, 255, 255, 0));
+    background: linear-gradient(to left, rgb(255, 255, 255), rgba(255, 255, 255, 0));
   }
   
   .gradient-right {
-    background: linear-gradient(to right, rgb(0, 0, 0), rgba(255, 255, 255, 0));
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));
   }
   

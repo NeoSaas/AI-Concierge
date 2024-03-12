@@ -15,7 +15,7 @@ const ActivityCard = (props) => {
         </label> */}
         <label
         htmlFor={props.id}
-        className={`checkbox-label rounded-md bg-slate-50 shadow-blue-300 text-black shadow-lg w-[220px] h-[200px] m-4 hover:scale-105 duration-300 ease-in-out flex text-3xl justify-center items-center ${
+        className={`checkbox-label rounded-md bg-slate-50 shadow-blue-400 text-black shadow-lg w-[220px] h-[200px] m-4 hover:scale-105 duration-300 ease-in-out flex text-3xl justify-center items-center ${
           props.isSelected ? 'bg-blue-200' : ''
         }`}
       >

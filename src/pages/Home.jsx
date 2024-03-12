@@ -24,13 +24,15 @@ const Home = () => {
 
     return (
         <>
-            <div className={`h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} >
-                <div>
+            <div className={`h-screen transition-opacity duration-1000 bg-[url(https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80)] bg-cover ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} >
+                <div className=''>
                     <WeatherWidget/>
                 </div>
+                <div className='absolute gradient-top h-full w-full'></div>
+                <div className='absolute gradient-bottom h-full w-full'></div>
                 <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink}/>
-                <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
-                <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/>
+                {/* <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
+                <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/> */}
                 <Navbar />
                 <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink}/>
                 <BottomBanner/>

@@ -159,7 +159,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
           :
           <>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-100 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-500 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={currentPage === 0}
               onClick={handlePrevPage}
             >
@@ -210,7 +210,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
               }
             </div>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-100 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-500 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={showSubOptions ? currentPage === subTotalPages - 1 : currentPage === totalPages - 1}
               onClick={handleNextPage}
             >
