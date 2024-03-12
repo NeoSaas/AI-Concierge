@@ -6,21 +6,27 @@
     .checkbox-label:has(input:checked) {
       @apply border-blue-400 bg-[#0066FF] border-2  text-white; 
     }
-  }
+}
 
-  .gradient-top {
-    background: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0));
-  }
-  
-  .gradient-bottom {
-    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
-  }
-  
-  .gradient-left {
-    background: linear-gradient(to left, rgb(255, 255, 255), rgba(255, 255, 255, 0));
-  }
-  
-  .gradient-right {
-    background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));
-  }
+@font-face{
+  font-family: 'Poppins';
+  src: url('../public/WeddingdayPersonalUseRegular-1Gvo0.ttf');
+
+}
+
+.gradient-top {
+  background: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+
+.gradient-bottom {
+  background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+
+.gradient-left {
+  background: linear-gradient(to left, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+
+.gradient-right {
+  background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
   

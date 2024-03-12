@@ -29,6 +29,7 @@ function HotelMap() {
             <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/> */}
             <BottomBanner/>
             <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <button className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl'><a href="/home">Back To Home</a></button>
                 <img className='flex w-[90%] mx-auto' src='MapofAlfondInnProperty.png' alt='hotel-map'/>
             </div>
         </div>
