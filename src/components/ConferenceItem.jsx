@@ -8,7 +8,7 @@ const ConferenceItem = ({ eventName, description, imageUrl, date, time, handleBu
       <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden mx-16 ">
         <div className="md:flex">
           <div className="md:flex-shrink-0">
-            <img className="w-full h-48 object-cover md:w-48 my-4 mx-2" src={imageUrl} alt="Event" />
+            <img className="w-full h-48 object-cover md:w-48 mx-2 rounded-lg my-16" src={imageUrl} alt="Event" />
           </div>
           <div className="p-8">
             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{eventName}</div>

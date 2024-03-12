@@ -41,7 +41,8 @@ function CheckInInfo() {
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>
             <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <div className="py-8 ">
+                <button className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl'><a href="/home">Back To Home</a></button>
+                <div className="py-8">
                     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
                         <h1 className="text-3xl font-bold mb-6">Check-in & Check-out Information</h1>
 

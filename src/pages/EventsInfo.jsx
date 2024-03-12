@@ -41,6 +41,7 @@ function EventsInfo() {
             <BottomBanner/>
             
             <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <button className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl'><a href="/home">Back To Home</a></button>
                 <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={qrCode}/>
                 <ConferenceItem
                     eventName="EASTER BRUNCH & EGG HUNT AT THE ALFOND INN"
