@@ -8,11 +8,12 @@ class Business(models.Model):
     # business_reviews = models.JSONField(default=dict)
     business_place_id = models.CharField(max_length=100, default='')
     business_address = models.CharField(max_length=100, default='')
-    business_pictures = models.JSONField(default=dict)
+    business_pictures = models.JSONField(default=dict, blank=True, null=True)
     walk_time = models.CharField(max_length=100, default='')
     drive_time = models.CharField(max_length=100, default='')
     transit_time = models.CharField(max_length=100, default='')
     directions_url = models.CharField(max_length=100, default='')
+    hours_of_operation = models.JSONField(default=dict, blank=True, null=True)
     def __str__(self):
         return self.business_name  
     

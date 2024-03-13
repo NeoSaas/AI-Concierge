@@ -41,7 +41,7 @@ function AmenitiesInfo() {
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >
-                <button className='py-2 px-6 mb-3 bg-blue-500 rounded-lg text-white font-quicksand text-xl'><a href="/home">Back To Home</a></button>
+                <a className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl mb-2' href="/home">Back To Home</a>
                 <div className="py-8 font-quicksand flex-col overflow-auto bg-white p-8 rounded-lg shadow-md"> 
                     <div className="max-w-4xl mx-auto max-h-[78.5rem]">
                         <p className="text-4xl text-center mb-2">THE SPA AT THE ALFOND INN</p>
@@ -226,21 +226,10 @@ function AmenitiesInfo() {
                                 </div>
                                 
                                 <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6" data-aos="fade-left">
-                                    <div className="md:pl-4 lg:pl-12 xl:pl-16">
+                                    <div className="md:pl-4 lg:pl-12 xl:pl-16 mb-6">
                                         <h3 className="text-2xl mb-3">More Amenities</h3>
                                         <p className="text-xl text-black mb-3">A library lounge located between the front desk and the bar offers comfortable soft seating for informal meetings or quiet relaxation. Two workstations provide flexible business services for traveling guests and a hi-tech virtual concierge allows visitors to connect with Winter Park attractions and up to date flight information.</p>
                                         <button className='text-2xl mx-20 bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out' onClick={() => handleButton(10)} >Inquire Now</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="md:grid md:grid-cols-12 md:gap-6 justify-center items-center">
-                                
-                                <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-12 lg:col-span-12" data-aos="fade-left">
-                                    <div className="md:pl-4 lg:pl-1 xl:pl-16 text-center">
-                                        <h3 className="text-2xl mb-3">Hours Of Operation</h3>
-                                        <p className="text-xl text-black mb-4">{"Monday - Sunday:  10:00 am - 6:00 pm"}</p>
-                                        <p className="text-xl text-black mb-4">{"FITNESS CENTER HOURS: Monday - Sunday: 6:00 am - 10:00 pm"}</p>
                                     </div>
                                 </div>
                             </div>

@@ -149,7 +149,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
               </div>
               :
               <div>
-                <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/'>Back to Start</a>
+                <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                 <p className='text-xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
                 
                 <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink}/>
@@ -222,7 +222,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
       </div>
       <div className='flex flex-row justify-between mx-20'>
 
-        {displayOptions ? (<></>) : (showSubOptions ? <><button className='my-auto py-11 px-4 text-2xl font-medium' onClick={() => setShowSubOptions(false)}>Back</button> <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out ' onClick={() => handleToOptions()}>Get Recommendations</button></> : <><button className='my-auto py-11 px-4 text-2xl font-medium' onClick={() => setShowSubOptions(false)}>Back</button>  <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out ' onClick={() => handleToSub()}>Next</button></>)}
+        {displayOptions ? (<></>) : (showSubOptions ? <><button className='my-auto py-11 px-4 text-2xl font-medium' onClick={() => setShowSubOptions(false)}>Back</button> <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out ' onClick={() => handleToOptions()}>Get Recommendations</button></> : <><button className='my-auto py-11 px-4 text-2xl font-medium' onClick={() => setShowSubOptions(false)}>Back</button>  <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out ' onClick={() => handleToSub()}>Select</button></>)}
 
       </div>
     </div>

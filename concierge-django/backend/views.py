@@ -121,6 +121,7 @@ def querySpecifcBusinessData(request):
             busQuery = business + 'in' + location
             response = map_client.places(query=busQuery)
             results = response.get('results')[0]
+            print(results)
             bus_name = results['name']
             bus_address = results['formatted_address']
             bus_place_id = results['place_id']
