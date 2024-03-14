@@ -3,12 +3,12 @@ import { React } from 'react'
 import Rating from '@mui/material/Rating';
 import { FaWalking, FaCar, FaBus } from "react-icons/fa";
 
-function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink}) {
+function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink }) {
   console.log("BUSINESS DISPLAY", business)
 
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-[80%] mx-auto hover:scale-105 duration-300 ease-in-out h-[30rem]" onClick={() => {setRestaurantLink(business[0].directions_url); setIsOpen(true);}} >
+    <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto hover:scale-105 hover:rounded-xl duration-300 ease-in-out h-[30rem]" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); }} >
       <h3 className="text-2xl font-semibold mb-2">{business[0].business_name}</h3>
       <p className="text-gray-600 mb-2 text-xl font-semibold">{business[0].business_address}</p>
       <div className='flex flex-row justify-center'>

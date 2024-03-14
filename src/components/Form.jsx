@@ -38,7 +38,7 @@ const subActivities = {
   // Define sub-activities for other main activities
 };
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -77,7 +77,13 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
       ? selectedIds.filter((id) => id !== activity)
       : [...selectedIds, activity];
 
+    // Limit to three options at most
+    if (updatedIds.length > 3) {
+      return; // Do not update state if more than three activities are selected
+    }
+
     // Update the state with the selected ids
+    // console.log(selectedActivityIds.length, "REEE")
     setSelectedIds(updatedIds);
 
     // Update the state with the selected and unselected names
@@ -93,6 +99,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
   const handleToSub = async () => {
     var temp = []
     setShowSubOptions(true)
+
     for (let k in subActivities) {
       temp.push(subActivities[k])
       // console.log(subActivities[k]);
@@ -151,8 +158,8 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink}) => {
               <div>
                 <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                 <p className='text-xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
-                
-                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink}/>
+
+                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} />
               </div>
             }
           </>
