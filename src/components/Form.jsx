@@ -109,6 +109,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
     // Update the state with the selected and unselected names
     if (isSelected) {
       setUnselectedNames((prevNames) => prevNames.filter((name) => name !== activity));
+
     } else {
       setSelectedNames((prevNames) => [...prevNames, activity]);
     }
