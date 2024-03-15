@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const AddBusinessPage = () => {
   const handleSubmit = (values) => {
-    axios.post('http://127.0.0.1:8000/api/addBusiness/', values) // Adjust the endpoint URL as per your API
+    axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/', values) // Adjust the endpoint URL as per your API
       .then(response => {
         console.log('Business added successfully:', response.data);
         // Handle success, e.g., show a success message or redirect

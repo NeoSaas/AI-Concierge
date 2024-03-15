@@ -146,17 +146,17 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
     setDisplayOptions(true);
     setLoading(true);
     const prompt = await organizeQuery(selectedActivityIds);
-    const response = await axios.post('http://127.0.0.1:8000/api/OPAICreateConvo/', { query: prompt });
+    const response = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/OPAICreateConvo/', { query: prompt });
     const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
 
     var multiBusinessResponse = businessesFromResponse.split(', ');
     var businessDataResponse;
     if (multiBusinessResponse.length > 1) {
 
-      businessDataResponse = await axios.post('http://127.0.0.1:8000/api/queryBusinessData/', { business: multiBusinessResponse });
+      businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/queryBusinessData/', { business: multiBusinessResponse });
     }
     else {
-      businessDataResponse = await axios.post('http://127.0.0.1:8000/api/queryBusinessData/', { business: businessesFromResponse });
+      businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/queryBusinessData/', { business: businessesFromResponse });
     }
     setDisplayBusinesses(businessDataResponse.data);
     setTimeout(() => setLoading(false), 5000);
