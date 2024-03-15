@@ -54,6 +54,8 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   const [loading, setLoading] = useState(false);
   const [displayOptions, setDisplayOptions] = useState(false);
   const [displayBusinesses, setDisplayBusinesses] = useState([]);
+  const [selectedCountes, setSelectedCounts] = useState({});
+
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -89,6 +91,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
     // Update the state with the selected and unselected names
     if (isSelected) {
       setUnselectedNames((prevNames) => prevNames.filter((name) => name !== activity));
+
     } else {
       setSelectedNames((prevNames) => [...prevNames, activity]);
     }
