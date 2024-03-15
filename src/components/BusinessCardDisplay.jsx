@@ -4,17 +4,20 @@ import Rating from '@mui/material/Rating';
 import { FaWalking, FaCar, FaBus } from "react-icons/fa";
 
 function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink, setIsRestaurant}) {
-  console.log("BUSINESS DISPLAY", business)
+
+  const weekday = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  const d = new Date();
+  let day = weekday[d.getDay()];
 
   if(business[0].business_tags.includes('Restaurant')){
     setIsRestaurant(true)
   }
-
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto hover:scale-105 hover:rounded-xl duration-300 ease-in-out h-[30rem]" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); }} >
       <h3 className="text-2xl font-semibold mb-2">{business[0].business_name}</h3>
       <p className="text-gray-600 mb-2 text-xl font-semibold">{business[0].business_address}</p>
-      <div className='flex flex-row justify-center'>
+      <div className='font-semibold'>{(business[0].hours_of_operation[day]).replace('-', ' - ')}</div>
+      <div className='flex flex-row justify-center  mt-2'>
         <div className='flex flex-row items-center mx-3'>
           <FaWalking className='mx-2' />
           {business[0].walk_time}
@@ -29,9 +32,9 @@ function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink, setIsRest
         </div>
 
       </div>
-      <img src={business[0].business_pictures} alt={business[0].name} className="w-max h-60 rounded-lg mx-auto mt-12" />
-      <div className='inline-block mt-4'>
-        <Rating name="half-rating-read" defaultValue={business[0].business_rating} precision={0.1} readOnly />
+      <img src={business[0].business_pictures} alt={business[0].name} className="w-max h-60 rounded-lg mx-auto mt-6" />
+      <div className='mt-4 flex flex-row justify-center'>
+        <Rating name="half-rating-read" className="mx-2" defaultValue={parseInt(business[0].business_rating)} precision={0.1} readOnly />
         <p>{business[0].business_rating} stars </p>
       </div>
     </div>

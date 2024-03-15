@@ -38,6 +38,8 @@ const subActivities = {
   // Define sub-activities for other main activities
 };
 
+const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
+
 const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
@@ -46,7 +48,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   const endIndex = startIndex + itemsPerPage;
   const currentActivities = activities.slice(startIndex, endIndex);
   const totalPages = Math.ceil(activities.length / itemsPerPage);
-  const [selectedActivities, setSelectedActivities] = useState([]);
   const [selectedActivityIds, setSelectedActivityIds] = useState([]);
   const [selectedActivityNames, setSelectedActivityNames] = useState([]);
   const [unselectedActivityNames, setUnselectedActivityNames] = useState([]);
@@ -54,6 +55,8 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   const [loading, setLoading] = useState(false);
   const [displayOptions, setDisplayOptions] = useState(false);
   const [displayBusinesses, setDisplayBusinesses] = useState([]);
+  const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
+  const [formPage, setFormPage] = useState('main');
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -77,13 +80,30 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
       ? selectedIds.filter((id) => id !== activity)
       : [...selectedIds, activity];
 
-    // Limit to three options at most
-    if (updatedIds.length > 3) {
-      return; // Do not update state if more than three activities are selected
+      
+     // Check if the maximum limit is reached
+  if ((formPage === 'main' && selectedDict.main > 2)) {
+    // If the maximum limit is reached and the activity is already selected, allow deselecting it
+    if (isSelected) {
+      setSelectedIds(updatedIds);
+      setUnselectedNames((prevNames) => [...prevNames, activity]);
     }
+    return;
+  }
+
+  if ((formPage === 'sub' && selectedDict.sub > 2)) {
+
+    if (isSelected) {
+      setSelectedIds(updatedIds);
+      setUnselectedNames((prevNames) => [...prevNames, activity]);
+    }
+    return;
+  }
+
+  
 
     // Update the state with the selected ids
-    // console.log(selectedActivityIds.length, "REEE")
+
     setSelectedIds(updatedIds);
 
     // Update the state with the selected and unselected names
@@ -94,45 +114,52 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
     }
 
   };
-  console.log(selectedActivityIds);
 
   const handleToSub = async () => {
+
+    var count = 0;
+    selectedActivityIds.forEach(activity => {
+      if (noSubActivities.includes(activity)){
+        count++;
+      }
+    });
+
+    if(selectedActivityIds.length == count) {
+      handleToOptions();
+    }
     var temp = []
     setShowSubOptions(true)
+    setFormPage('sub')
 
-    for (let k in subActivities) {
-      temp.push(subActivities[k])
-      // console.log(subActivities[k]);
+    for (let activity in selectedActivityIds) {
+      temp.push(subActivities[selectedActivityIds[activity]])
     }
 
-
     var merged = [].concat.apply([], temp);
-    console.log(merged, "HERE");
     setSubOptionConcat(merged);
     setCurrentPage(0);
-    // console.log(businessTags, "BUSINESS TAGS")
   };
 
   const handleToOptions = async () => {
-    const prompt = await organizeQuery(selectedActivityIds);
+    setShowSubOptions(false);
+    setDisplayOptions(true);
     setLoading(true);
+    const prompt = await organizeQuery(selectedActivityIds);
     const response = await axios.post('http://127.0.0.1:8000/api/OPAICreateConvo/', { query: prompt });
     const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
-    console.log(businessesFromResponse);
+
     var multiBusinessResponse = businessesFromResponse.split(', ');
     var businessDataResponse;
     if (multiBusinessResponse.length > 1) {
-      console.log(multiBusinessResponse, "MULTI")
+
       businessDataResponse = await axios.post('http://127.0.0.1:8000/api/queryBusinessData/', { business: multiBusinessResponse });
     }
     else {
       businessDataResponse = await axios.post('http://127.0.0.1:8000/api/queryBusinessData/', { business: businessesFromResponse });
     }
-    setShowSubOptions(false);
     setDisplayBusinesses(businessDataResponse.data);
-    setDisplayOptions(true);
     setTimeout(() => setLoading(false), 5000);
-    console.log("THIS", businessDataResponse);
+
   }
 
   // setTimeout(() => {
@@ -140,6 +167,11 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   //   setDisplayOptions(false);
   //   setShowSubOptions(false);
   // }, 1000000);
+
+  function handleBackButton() {
+    setShowSubOptions(false)
+    setFormPage('main')
+  }
 
   const subTotalPages = Math.ceil(subOptionConcat.length / itemsPerPage);
 
@@ -191,6 +223,9 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
                         setUnselectedActivityNames
                       )
                     }
+                    setSelectedDict={setSelectedDict}
+                    showSubOptions={showSubOptions}
+                    selectedDict = {selectedDict}
                   />
                 ))
               ) : (
@@ -211,6 +246,9 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
                         setUnselectedActivityNames
                       )
                     }
+                    setSelectedDict={setSelectedDict}
+                    showSubOptions={showSubOptions}
+                    selectedDict = {selectedDict}
                   />
                 ))
               )
@@ -229,7 +267,17 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
       </div>
       <div className='flex flex-row justify-between mx-20'>
 
-        {displayOptions ? (<></>) : (showSubOptions ? <><button className='my-auto py-11 px-4 text-2xl font-medium' onClick={() => setShowSubOptions(false)}>Back</button> <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out ' onClick={() => handleToOptions()}>Get Recommendations</button></> : <><button className='my-auto py-11 px-4 text-2xl font-medium' onClick={() => setShowSubOptions(false)}>Back</button>  <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out ' onClick={() => handleToSub()}>Select</button></>)}
+        {displayOptions ? (<></>) : (showSubOptions ? 
+        <>
+          <button className=' border-[3px] border-[#0066FF] text-[#0066FF] disabled:text-gray-400 rounded-md my-auto py-1 px-5 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          <button className='my-auto border-[3px] border-[#0066FF] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#0066FF] px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
+        </> 
+        : 
+        <>
+          <button className=' border-[3px] border-[#0066FF] text-[#0066FF] disabled:border-gray-400 disabled:text-gray-400 rounded-md my-auto px-5 py-1 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          <button className='my-auto border-[3px] border-[#0066FF] text-2xl bg-[#0066FF] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
+        </>
+        )}
 
       </div>
     </div>

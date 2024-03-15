@@ -11,7 +11,7 @@ import ProtectedRoute from './components/protectected route/ProtectedRoute';
 import AdminPortal from './components/admin portal/AdminPortal';
 
 function App() {
-  const [isAuthenticated, setState] = React.useState(false);
+  const [isAuthenticated, setState] = React.useState(true);
   const login = () => {
     setState(true);
   };
@@ -29,10 +29,7 @@ function App() {
           <Route path="/events_info" element={<EventsInfo/>} />
           <Route path="/checkInOut" element={<CheckInInfo/>} />
           <Route path="/amenities" element={<AmenitiesInfo/>} />
-          <Route
-            path="/login"
-            render={(props) => <LoginPage {...props} login={login()} />}
-          />
+          <Route path="/login" element={<LoginPage setState={setState} />}/>
           {isAuthenticated ? (
             <Route path="/admin_portal" element={<AdminPortal/>} />
           ) : null}

@@ -42,9 +42,7 @@ def logout_view(request):
 
 @api_view(['GET'])
 def getBusinessData(request):
-    print('GET BUSINESS DATA')
     businesses = Business.objects.all()
-    print(businesses)
     serializer = BusinessSerializer(businesses, many=True)
     return JsonResponse(serializer.data, safe=False)
 
@@ -53,11 +51,26 @@ def addBusinessData(request):
     new_business_data = {
         'business_name': request.data.get('business_name'),
         'business_rating': request.data.get('business_rating'),
-        'business_tags': request.data.get('business_tags'),
-        'business_address': request.data.get('business_adress'),
+        'business_tags': request.data.get('business_tags').split(','),
+        'business_address': request.data.get('business_address'),
         'business_barcode': request.data.get('business_barcode'),
-        'hours_of_operation': request.data.get('hours_of_operation'),
+        'm_hours_of_operation': request.data.get('m_hours_of_operation'),
+        'tu_hours_of_operation': request.data.get('tu_hours_of_operation'),
+        'w_hours_of_operation': request.data.get('w_hours_of_operation'),
+        'th_hours_of_operation': request.data.get('th_hours_of_operation'),
+        'f_hours_of_operation': request.data.get('f_hours_of_operation'),
+        'sa_hours_of_operation': request.data.get('sa_hours_of_operation'),
+        'su_hours_of_operation': request.data.get('su_hours_of_operation'),
     }
+    hours_dict = {
+        "monday": new_business_data['m_hours_of_operation'],
+        "tuesday": new_business_data['tu_hours_of_operation'],
+        "wednesday": new_business_data['w_hours_of_operation'],
+        "thursday": new_business_data['th_hours_of_operation'],
+        "friday": new_business_data['f_hours_of_operation'],
+        "satuday": new_business_data['sa_hours_of_operation'],
+        "sunday": new_business_data['su_hours_of_operation'],
+        }
     new_business = Business(
         business_name=new_business_data['business_name'],
         business_rating=new_business_data['business_rating'],
@@ -68,7 +81,7 @@ def addBusinessData(request):
         drive_time=0,
         walk_time=0,
         transit_time=0,
-        hours_of_operation=new_business_data['hours_of_operation'],
+        hours_of_operation=hours_dict,
         business_pictures=[],
     )
     
@@ -96,7 +109,7 @@ def getBusinessDataGoogle(request):
         }
 
         response = requests.get(places_api_endpoint, params=params)
-        # print(response)
+
         if response.status_code == 200:
             results = response.json().get('results')
             if results:
@@ -134,7 +147,6 @@ def OPAIEndpointCreate(request):
             {"role": "user", "content": f"{request.data.get('query')}"}
         ]
     )
-    print(response.choices[0].message.content)
     return JsonResponse({'response-payload': response.choices[0].message.content})
 
 @api_view(['POST'])
@@ -151,7 +163,6 @@ def querySpecifcBusinessData(request):
             busQuery = business + 'in' + location
             response = map_client.places(query=busQuery)
             results = response.get('results')[0]
-            print(results)
             bus_name = results['name']
             bus_address = results['formatted_address']
             bus_place_id = results['place_id']
@@ -181,7 +192,6 @@ def querySpecifcBusinessData(request):
             business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photo_urls, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time, directions_url=directions_url)
             
         except Exception as e:
-            print('ERROR IN PLACES')
             print(e)
             return None
         # businessesList.append(Business.objects.filter(business_name=business))
