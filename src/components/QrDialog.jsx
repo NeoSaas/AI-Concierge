@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
 
-export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, }) {
+export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestaurant }) {
 
   function closeModal() {
     setIsOpen(false)
@@ -50,7 +50,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, }) {
                   </Dialog.Title>
                   <div className="mt-2 flex-col justify-center items-center text-center">
                     {qrCode == null ? <QRCode value={otherLink} className='m-auto'/> : <img src={qrCode} alt='qrCode' className=''/>}
-                    
+                    {isRestaurant ? <> <p className='mt-4'>Take a picture of this Barcode and Present at the restaurant for a discount</p> <img className='mt-2' alt='barcode' src='barcode.gif'></img> </> : null}
                   </div>
 
                   <div className="mt-4">

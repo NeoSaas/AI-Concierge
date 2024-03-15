@@ -2,7 +2,7 @@ import React from 'react'
 import Form from './Form';
 import Typewriter from 'typewriter-effect';
 
-function Header({ isOpen, setIsOpen, setRestaurantLink}) {
+function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant}) {
   const words = ['Bars and Nightlife',
   'Local Restaurants',
   'Local Attractions',
@@ -39,7 +39,7 @@ function Header({ isOpen, setIsOpen, setRestaurantLink}) {
                 />
               </span>for you</h1>
             <div className='mt-16 flex'>
-              <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink}/>
+              <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant}/>
             </div>
             
         </div>

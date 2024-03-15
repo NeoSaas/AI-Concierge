@@ -7,5 +7,7 @@ urlpatterns = [
     path('getBusiness/', views.getBusinessData, name='get business query'),
     path('getBusinessDataGoogle/', views.getBusinessDataGoogle, name='get business query google'),
     path('queryBusinessData/', views.querySpecifcBusinessData, name='get business query specific'),
-    # path('addBusiness/', views.addBusinessData, name='add business query'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('addBusiness/', views.addBusinessData, name='add business query'),
 ]

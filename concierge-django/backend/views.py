@@ -22,6 +22,23 @@ def index(request):
     
     return JsonResponse({'conversations': 'test'})
 
+@api_view(['POST'])
+def login_view(request):
+    #login 
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return JsonResponse({'message': 'Login successful'})
+    else:
+        return JsonResponse({'message': 'Login failed'}, status=401)
+
+@api_view(['POST'])
+def logout_view(request):
+    #logout
+    logout(request)
+    return JsonResponse({'message': 'Logout successful'})
 
 @api_view(['GET'])
 def getBusinessData(request):
@@ -35,11 +52,24 @@ def getBusinessData(request):
 def addBusinessData(request):
     new_business_data = {
         'business_name': request.data.get('business_name'),
-        'business_pictures': request.data.get('business_pictures')
+        'business_rating': request.data.get('business_rating'),
+        'business_tags': request.data.get('business_tags'),
+        'business_address': request.data.get('business_adress'),
+        'business_barcode': request.data.get('business_barcode'),
+        'hours_of_operation': request.data.get('hours_of_operation'),
     }
     new_business = Business(
         business_name=new_business_data['business_name'],
-        business_pictures=new_business_data['business_pictures']
+        business_rating=new_business_data['business_rating'],
+        business_tags=new_business_data['business_tags'],
+        business_address=new_business_data['business_address'],
+        business_barcode=new_business_data['business_barcode'],
+        business_place_id='NULL',
+        drive_time=0,
+        walk_time=0,
+        transit_time=0,
+        hours_of_operation=new_business_data['hours_of_operation'],
+        business_pictures=[],
     )
     
     new_business.save()
