@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const LoginPage = ({ setState }) => {
+const LoginPage = ({ login }) => {
     const nav = useNavigate();
     const initialValues = {
         username: '',
@@ -17,10 +17,11 @@ const LoginPage = ({ setState }) => {
     });
 
     const handleSubmit = async (values) => {
-        await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/login/', values)
+        await axios.post('http://127.0.0.1:8000/api/login/', values)
             .then(response => {
-                setState(true); 
+                login();
                 // Redirect to business creation page on successful login
+                
                 nav('/admin_portal');
             })
             .catch(error => {
@@ -42,7 +43,7 @@ const LoginPage = ({ setState }) => {
                                 <label htmlFor="username" className="sr-only">Username</label>
                                 <Field id="username" name="username" type="text" autoComplete="username" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username"/>
                             </div>
-                            <div>
+                            <div className=''>
                                 <label htmlFor="password" className="sr-only">Password</label>
                                 <Field id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
                             </div>

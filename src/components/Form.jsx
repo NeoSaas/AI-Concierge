@@ -159,7 +159,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
       businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/', { business: businessesFromResponse });
     }
     setDisplayBusinesses(businessDataResponse.data);
-    setTimeout(() => setLoading(false), 5000);
+    // setTimeout(() => setLoading(false), 5000);
 
   }
 
