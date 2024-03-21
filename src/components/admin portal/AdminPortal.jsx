@@ -65,7 +65,7 @@ const AddBusinessPage = () => {
                             transit_time: '',
                             directions_url: '',
                             hours_of_operation: '',
-                            business_barcode: null
+                            business_barcode: ''
                         }}
                         onSubmit={handleSubmit}
                         >
@@ -131,7 +131,7 @@ const AddBusinessPage = () => {
                                 </div>
                                 <div>
                                     <label htmlFor="business_barcode" className="">Business Barcode</label>
-                                    <input type="text" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
+                                    <Field type="text" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
                                 </div>
                             </div>
 
@@ -155,15 +155,15 @@ const AddBusinessPage = () => {
                         Bars and Nightlife, Local Restaurants, Transportation Services, Local Attractions, Cultural Experiences, Shopping Districts, Day Tours, Spa and Wellness Centers, Outdoor Activities, Fitness Centers, Golf Courses, Wine Tastings and Tours, Art Galleries, Specialty Food Shops, Boat Rentals or Cruises, Bicycle Rentals, Cooking Classes, Photography Services, Hair and Beauty Salons, Local Markets, Event Ticketing, Childcare Services, Pet Services, Language Classes or Translator, Medical Clinics or Pharmacies
                         </p>
                     </div>
-                    <div className='h-20 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
+                    <div className='h-24 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
                         <p className='text-xl font-semibold'>Rating</p>
                         <p>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</p>
                     </div>
-                    <div className='h-20 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
+                    <div className='h-32 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
                         <p className='text-xl font-semibold'>Business Hours</p>
-                        <p>For the business hours please follow the format shown in the placeholder text of the field. In other words you should enter it as "8am-10pm" as an example</p>
+                        <p>For the business hours please follow the format shown in the placeholder text of the field. In other words you should enter it as "8am-10pm" as an example if closed on a specific day just type the word closed.</p>
                     </div>
-                    <div className='h-20 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
+                    <div className='h-40 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
                         <p className='text-xl font-semibold'>Barcode</p>
                         <p>For the barcode please input the text youd like to appear to let your employees know what barcode the customer provided. For Example if youd like to provide a 10% off coupon to customers with the barcode, you should enter: "This code from the alfond inn AI-concierge represents 10% off the total"</p>
                     </div>
