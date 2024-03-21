@@ -170,7 +170,7 @@ def querySpecifcBusinessData(request):
             bus_photos = results['photos']
             bus_lat_long = results['geometry']
             bus_photo_urls = []
-
+            
             # Get photo URLs
             for photo in bus_photos:
                 photo_reference = photo['photo_reference']

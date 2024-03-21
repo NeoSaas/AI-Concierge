@@ -14,7 +14,7 @@ class Business(models.Model):
     transit_time = models.CharField(max_length=100, default='')
     directions_url = models.CharField(max_length=100, default='')
     hours_of_operation = models.JSONField(default=dict, blank=True, null=True)
-    business_barcode = models.ImageField(upload_to='business_barcodes', blank=True, null=True)
+    business_barcode = models.CharField(max_length=100, default='')
     def __str__(self):
         return self.business_name  
     

@@ -48,7 +48,7 @@ const AddBusinessPage = () => {
                         <button onClick={handleCloseModal} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Close</button>
                     </div>
             </Modal>
-            <div className='grid grid-cols-2 gap-16'>
+            <div className='grid grid-cols-2'>
                 
                 <div className="max-w-md w-full space-y-8 grid-flow-col">
                     
@@ -131,7 +131,7 @@ const AddBusinessPage = () => {
                                 </div>
                                 <div>
                                     <label htmlFor="business_barcode" className="">Business Barcode</label>
-                                    <input type="file" name="business_barcode" id="business_barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
+                                    <input type="text" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
                                 </div>
                             </div>
 
@@ -145,25 +145,27 @@ const AddBusinessPage = () => {
                 </div>
                 <div className='grid-flow-col'>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 flex justify-center items-center">How to Fill out the fields</h2>
-                    <div className='h-28 w-full text-center mt-6 bg-white rounded-xl flex-col justify-center items-center border-2 border-black shadow-sm'>
+                    <div className='h-16 w-full text-center mt-6 bg-white rounded-xl flex-col justify-center items-center border-2 border-black shadow-sm'>
                         <p className='text-xl font-semibold'>Business Name</p>
-                        <p>Enter the name of your business</p>
+                        <p>Simply enter the name of your business in the field</p>
                     </div>
-                    <div className='h-32 w-full text-center mt-6 bg-white rounded-xl flex-col justify-center items-center border-2 border-black shadow-sm'>
+                    <div className='h-72 w-full text-center mt-6 bg-white rounded-xl flex-col justify-center items-center border-2 border-black shadow-sm'>
                         <p className='text-xl font-semibold'>Business Tags</p>
-                        <p>Enter the name of your business</p>
+                        <p>Enter some tags that associate with your business, please choose from the following list:
+                        Bars and Nightlife, Local Restaurants, Transportation Services, Local Attractions, Cultural Experiences, Shopping Districts, Day Tours, Spa and Wellness Centers, Outdoor Activities, Fitness Centers, Golf Courses, Wine Tastings and Tours, Art Galleries, Specialty Food Shops, Boat Rentals or Cruises, Bicycle Rentals, Cooking Classes, Photography Services, Hair and Beauty Salons, Local Markets, Event Ticketing, Childcare Services, Pet Services, Language Classes or Translator, Medical Clinics or Pharmacies
+                        </p>
                     </div>
                     <div className='h-20 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
                         <p className='text-xl font-semibold'>Rating</p>
-                        <p>Enter the name of your business</p>
+                        <p>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</p>
                     </div>
                     <div className='h-20 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
                         <p className='text-xl font-semibold'>Business Hours</p>
-                        <p>Enter the name of your business</p>
+                        <p>For the business hours please follow the format shown in the placeholder text of the field. In other words you should enter it as "8am-10pm" as an example</p>
                     </div>
                     <div className='h-20 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
                         <p className='text-xl font-semibold'>Barcode</p>
-                        <p>Enter the name of your business</p>
+                        <p>For the barcode please input the text youd like to appear to let your employees know what barcode the customer provided. For Example if youd like to provide a 10% off coupon to customers with the barcode, you should enter: "This code from the alfond inn AI-concierge represents 10% off the total"</p>
                     </div>
                 </div>
             </div>
