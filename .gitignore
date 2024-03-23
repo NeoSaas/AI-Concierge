@@ -31,3 +31,4 @@ yarn-error.log*
 /concierge-django/concierge/backend/migrations
 /concierge-django/concierge/backend/__pycache__
 /concierge-django/db.sqlite3
+
