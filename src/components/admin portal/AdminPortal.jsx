@@ -2,6 +2,8 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import Modal from 'react-modal';
+import Tooltip from '@mui/material/Tooltip';
+import { FaInfoCircle } from "react-icons/fa";
 
 const AddBusinessPage = () => {
 
@@ -48,7 +50,7 @@ const AddBusinessPage = () => {
                         <button onClick={handleCloseModal} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Close</button>
                     </div>
             </Modal>
-            <div className='grid grid-cols-2'>
+            <div className=''>
                 
                 <div className="max-w-md w-full space-y-8 grid-flow-col">
                     
@@ -75,7 +77,11 @@ const AddBusinessPage = () => {
                                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Add Your Business</h2>
                                 </div>
                                 <div className=''>
-                                    <label htmlFor="business_name" className="">Business Name</label>
+                                
+                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Simply enter the name of your business in the field</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_name" className="flex flex-row items-center">Business Name<FaInfoCircle className='mx-2' />
+                                        </label>
+                                    </Tooltip>
                                     <Field type="text" name="business_name" id="business_name" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Name" />
                                 </div>
                                 <div>
@@ -83,18 +89,28 @@ const AddBusinessPage = () => {
                                     <Field type="text" name="business_tags" id="business_tags" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" />
                                 </div>
                                 <div className=''>
-                                    <label htmlFor="business_rating" className="">Business Rating</label>
+                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_rating" className="flex flex-row items-center">Business Rating<FaInfoCircle className='mx-2' />
+                                        </label>
+                                    </Tooltip>
+                                    
                                     <Field type="number" name="business_rating" id="business_rating" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Rating" />
                                 </div>
                                 <div>
-                                    <label htmlFor="business_address" className="">Business Address</label>
+                                    <label htmlFor="business_address" className="">Business Address
+                                    </label>
                                     <Field type="text" name="business_address" id="business_address" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Address" />
                                 </div>
                                 <div >
                                     <label htmlFor="business_pictures" className="">Business Picture (comma-separated)</label>
                                     <Field type="file" name="business_pictures" id="business_pictures" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Pictures (comma-separated)" />
                                 </div>
-                                <label htmlFor="business_pictures" className="">Business Hours (please enter 'closed' if closed)</label>
+                                <div>
+                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Use format shown in the placeholder text of the field. I.e enter it as '8am-10pm', if closed on a specific day just type the word 'closed'.</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_pictures" className="flex flex-row items-center">Business Hours<FaInfoCircle className='mx-2' />
+                                        </label>
+                                    </Tooltip>
+                               </div>
                                 <div className='flex flex-row justify-between'>
                                     <div>
                                         <div>
@@ -130,7 +146,10 @@ const AddBusinessPage = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="business_barcode" className="">Business Barcode</label>
+                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>For Example if youd like to provide a 10% off coupon to customers with the barcode, you should enter: 'This code from the alfond inn AI-concierge represents 10% off the total'</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_barcode" className="flex flex-row items-center">Business Barcode<FaInfoCircle className='mx-2' />
+                                        </label>
+                                    </Tooltip>
                                     <Field type="text" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
                                 </div>
                             </div>
@@ -143,31 +162,7 @@ const AddBusinessPage = () => {
                         </Form>
                     </Formik>
                 </div>
-                <div className='grid-flow-col'>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 flex justify-center items-center">How to Fill out the fields</h2>
-                    <div className='h-16 w-full text-center mt-6 bg-white rounded-xl flex-col justify-center items-center border-2 border-black shadow-sm'>
-                        <p className='text-xl font-semibold'>Business Name</p>
-                        <p>Simply enter the name of your business in the field</p>
-                    </div>
-                    <div className='h-72 w-full text-center mt-6 bg-white rounded-xl flex-col justify-center items-center border-2 border-black shadow-sm'>
-                        <p className='text-xl font-semibold'>Business Tags</p>
-                        <p>Enter some tags that associate with your business, please choose from the following list:
-                        Bars and Nightlife, Local Restaurants, Transportation Services, Local Attractions, Cultural Experiences, Shopping Districts, Day Tours, Spa and Wellness Centers, Outdoor Activities, Fitness Centers, Golf Courses, Wine Tastings and Tours, Art Galleries, Specialty Food Shops, Boat Rentals or Cruises, Bicycle Rentals, Cooking Classes, Photography Services, Hair and Beauty Salons, Local Markets, Event Ticketing, Childcare Services, Pet Services, Language Classes or Translator, Medical Clinics or Pharmacies
-                        </p>
-                    </div>
-                    <div className='h-24 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
-                        <p className='text-xl font-semibold'>Rating</p>
-                        <p>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</p>
-                    </div>
-                    <div className='h-32 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
-                        <p className='text-xl font-semibold'>Business Hours</p>
-                        <p>For the business hours please follow the format shown in the placeholder text of the field. In other words you should enter it as "8am-10pm" as an example if closed on a specific day just type the word closed.</p>
-                    </div>
-                    <div className='h-40 w-full text-center mt-6 bg-white rounded-xl flex-col border-2 border-black justify-center items-center shadow-sm'>
-                        <p className='text-xl font-semibold'>Barcode</p>
-                        <p>For the barcode please input the text youd like to appear to let your employees know what barcode the customer provided. For Example if youd like to provide a 10% off coupon to customers with the barcode, you should enter: "This code from the alfond inn AI-concierge represents 10% off the total"</p>
-                    </div>
-                </div>
+                
             </div>
         </div>
     );
