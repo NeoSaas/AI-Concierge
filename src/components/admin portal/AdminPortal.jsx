@@ -85,8 +85,15 @@ const AddBusinessPage = () => {
                                     <Field type="text" name="business_name" id="business_name" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Name" />
                                 </div>
                                 <div>
-                                    <label htmlFor="business_tags" className="">Business Tags (comma-separated)</label>
-                                    <Field type="text" name="business_tags" id="business_tags" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" />
+                                    <Tooltip title={<h1 style={{fontSize: '0.75rem'}}>Enter three tags that fit your business, please choose one from the following list: Bars and Nightlife, Local Restaurants, Transportation Services, Local Attractions, Cultural Experiences, Shopping Districts, Day Tours, Spa and Wellness Centers, Outdoor Activities, Fitness Centers, Golf Courses, Wine Tastings and Tours, Art Galleries, Specialty Food Shops, Boat Rentals or Cruises, Bicycle Rentals, Cooking Classes, Photography Services, Hair and Beauty Salons, Local Markets, Event Ticketing, Childcare Services, Pet Services, Language Classes or Translators, Medical Clinics or Pharmacies and at least 2 from this list: Clubs, Dive Bars, Piano Bars, Karaoke Bars, Sports Bars, Wine Bar,Italian, Mexican, Chinese, Indian, Thai, American, Fancy,Airport Shuttles, Taxi Services, Ride-sharing Services, Car Rentals, Public Transportation, Private ChartersMuseums, Historical Sites, Amusement Parks, Zoos, Gardens, Landmarks,Traditional Performances, Art Exhibitions, Food Tours, Language Classes, Cooking Classes, Cultural Festivals,Boutiques, Malls, Flea Markets, Antique Shops, Local Crafts, Souvenir Stores,City Tours, Nature Tours, Food Tours, Adventure Tours, Historical Tours, Group Tours,Massage Services, Facials, Body Treatments, Yoga Studios, Fitness Classes, Alternative Therapies,Hiking Trails, Camping Sites, Water Sports, Cycling Paths, Rock Climbing, Fishing Spots,Gyms, Yoga Studios, Pilates Studios, Personal Trainers, Group Classes, Sports Facilities,Public Courses, Private Clubs, Driving Ranges, Golf Lessons, Pro Shops, Mini-golf,Vineyards, Wineries, Wine Bars, Wine Festivals, Wine Courses, Wine-themed Tours,Contemporary Art, Traditional Art, Photography Exhibits, Sculpture Gardens, Art Classes, Artist Studios,Bakeries, Delis, Cheese Shops, Chocolate Shops, Farmers Markets, Gourmet Groceries,Sailboat Rentals, Kayak Rentals, Yacht Charters, Sightseeing Cruises, Fishing Charters, River Cruises,City Bike Rentals, Mountain Bike Rentals, Tandem Bike Rentals, Electric Bike Rentals, Bike Tours, Bike Repair Shops,International Cuisines, Baking Classes, Vegetarian Cooking, Molecular Gastronomy, Wine Pairing, Kids Cooking Classes,Portrait Studios, Wedding Photography, Event Photography, Landscape Photography, Photography Tours, Photo Printing Services,Hair Salons, Barber Shops, Nail Salons, Makeup Services, Waxing Services, Tanning Salons,Farmers Markets, Flea Markets, Night Markets, Artisan Markets, Street Food Markets, Antique Markets,Concert Tickets, Theater Tickets, Sporting Events, Festivals, Comedy Shows, Exhibitions,Daycare Centers, Nanny Services, Babysitting Services, Kids Activities, Tutoring Services, Summer Camps,Veterinary Clinics, Pet Grooming, Pet Boarding, Pet Supplies, Dog Walking, Pet Training, Classes, Spanish Classes, French Classes, Mandarin Classes, Sign Language Classes, Translation Services,General Practitioners, Dentists, Optometrists, Pharmacies, Urgent Care Clinics, Specialty Clinics</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_tags" className="flex flex-row items-center">Business Tags <FaInfoCircle className='mx-2' /></label>
+                                        <Field type="text" name="business_tags" id="business_tags" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" />
+                                    </Tooltip>
+                                </div>
+                                <div>
+                                    <label htmlFor="business_phone_number" className="">Business Phone Number</label>
+                                    <Field type="text" name="business_phone_number" id="business_phone_number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Phone Number" />
+                                    
                                 </div>
                                 <div className=''>
                                     <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</h1>} placement="top-start" arrow>
@@ -101,13 +108,23 @@ const AddBusinessPage = () => {
                                     </label>
                                     <Field type="text" name="business_address" id="business_address" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Address" />
                                 </div>
+                                <div className=''>
+                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, doesnt have to be too long.</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' />
+                                        </label>
+                                    </Tooltip>
+                                    
+                                    <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" />
+                                </div>
                                 <div >
-                                    <label htmlFor="business_pictures" className="">Business Picture (comma-separated)</label>
-                                    <Field type="file" name="business_pictures" id="business_pictures" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Pictures (comma-separated)" />
+                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
+                                        <label htmlFor="business_pictures" className="flex flex-row items-center">Business Pictures and Videos <FaInfoCircle className='mx-2' /></label>
+                                        <Field type="file" multiple name="business_pictures" id="business_pictures" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Pictures (comma-separated)" />
+                                    </Tooltip>
                                 </div>
                                 <div>
                                     <Tooltip title={<h1 style={{fontSize: '1rem'}}>Use format shown in the placeholder text of the field. I.e enter it as '8am-10pm', if closed on a specific day just type the word 'closed'.</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_pictures" className="flex flex-row items-center">Business Hours<FaInfoCircle className='mx-2' />
+                                        <label htmlFor="business_hours" className="flex flex-row items-center">Business Hours<FaInfoCircle className='mx-2' />
                                         </label>
                                     </Tooltip>
                                </div>
@@ -147,7 +164,7 @@ const AddBusinessPage = () => {
                                 </div>
                                 <div>
                                     <Tooltip title={<h1 style={{fontSize: '1rem'}}>For Example if youd like to provide a 10% off coupon to customers with the barcode, you should enter: 'This code from the alfond inn AI-concierge represents 10% off the total'</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_barcode" className="flex flex-row items-center">Business Barcode<FaInfoCircle className='mx-2' />
+                                        <label htmlFor="business_barcode" className="flex flex-row items-center">Business Barcode<FaInfoCircle className='mx-2'/>
                                         </label>
                                     </Tooltip>
                                     <Field type="text" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />

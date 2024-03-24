@@ -11,7 +11,6 @@ import AmenitiesEventSpace from './pages/amenities sub pages/AmenitiesEventSpace
 import AmenitiesRooms from './pages/amenities sub pages/AmenitiesRooms';
 import Landing from './pages/Landing';
 import LoginPage from './components/admin portal/LoginPage';
-import ProtectedRoute from './components/protectected route/ProtectedRoute';
 import AdminPortal from './components/admin portal/AdminPortal';
 
 function App() {

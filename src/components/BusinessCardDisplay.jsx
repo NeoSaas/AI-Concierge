@@ -3,7 +3,7 @@ import { React } from 'react'
 import Rating from '@mui/material/Rating';
 import { FaWalking, FaCar, FaBus } from "react-icons/fa";
 
-function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink, setIsRestaurant}) {
+function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness}) {
 
   const weekday = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
   const d = new Date();
@@ -13,7 +13,7 @@ function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink, setIsRest
     setIsRestaurant(true)
   }
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto h-[30rem] grid grid-cols-2 gap-10" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); }} >
+    <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto h-[30rem] grid grid-cols-2 gap-10" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business[0]); }} >
       <div className='w-full h-full flex justify-center items-center'>
         <img src={business[0].business_pictures} alt={business[0].name} className="w-max h-auto max-h-96 rounded-lg mx-auto mt-6" />
       </div>

@@ -15,6 +15,8 @@ class Business(models.Model):
     directions_url = models.CharField(max_length=100, default='')
     hours_of_operation = models.JSONField(default=dict, blank=True, null=True)
     business_barcode = models.CharField(max_length=100, default='')
+    business_description = models.TextField(default='', null=True, blank=True)
+    business_phone_number = models.CharField(max_length=100, default='', null=True, blank=True)
     def __str__(self):
         return self.business_name  
     
@@ -24,3 +26,7 @@ class Hotel(models.Model):
     hotel_map = models.ImageField(upload_to='hotel_maps')
     def __str__(self):
         return self.hotel_name
+    
+class Image(models.Model):
+    business = models.ForeignKey(Business, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='business_images/')

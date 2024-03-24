@@ -40,7 +40,7 @@ const subActivities = {
 
 const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -192,7 +192,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
                 <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                 <p className='text-xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
 
-                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} />
+                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
               </div>
             }
           </>

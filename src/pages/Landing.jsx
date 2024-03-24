@@ -4,13 +4,30 @@ import Navbar from './../components/Navbar'
 import BottomBanner from '../components/BottomBanner'
 
 function Landing() {
+
+  const bgImages = ["https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80","https://cdn.asdfinc.io/media/32232/alfond-inn-ii4g3a3394-1.jpg?center=0.31645569620253167,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133433202890000000&quality=60", "https://cdn.asdfinc.io/media/34742/classic_queen_balcony_1_2023.jpg?crop=0.0000000000000002526374171591,0.01666666666666667,0,0.13958333333333317&cropmode=percentage&width=1920&height=1080&rnd=133554224810000000&quality=80", "https://cdn.asdfinc.io/media/29746/alfond-137.jpg?anchor=center&mode=crop&width=1920&height=1080&rnd=133289820150000000&quality=80"]
+
+  const [fetchedUrl, setFetchedUrl] = React.useState(bgImages[0])
+
+  const updatePhoto = () => {
+    let randomIndex = Math.floor(Math.random() * bgImages.length)
+    setFetchedUrl(bgImages[randomIndex])
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      updatePhoto();
+    }, 20000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [fetchedUrl]);
+
   return (
     <div>
       <div className='relative top-[-127px]'>
       <Navbar/>
       </div>
       <BottomBanner/>
-      <div className='h-screen w-full bg-[url(https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80)] bg-cover flex justify-center items-center'>
+      <div style={{'--image-url': `url(${fetchedUrl})`}} className='h-screen w-full bg-[image:var(--image-url)] bg-cover flex justify-center items-center transition-all ease-in-out'>
           <div className='flex justify-center items-center'>
               <div className='absolute h-[30%] w-[60%] mx-auto rounded-xl bg-gradient-to-b from-black to-transparent'></div>
               <div className='absolute h-[30%] w-[60%] mx-auto rounded-xl bg-gradient-to-t from-black via-transparent to-transparent'></div>
