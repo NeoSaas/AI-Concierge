@@ -20,7 +20,8 @@ function App() {
 
   useEffect(() => {
     const session_key = localStorage.getItem('session_key');
-    if (session_key && rememberMe) {
+    console.log(rememberMe)
+    if (session_key) {
       setState(true);
     }
   }, [isAuthenticated]);
@@ -45,7 +46,7 @@ function App() {
           <Route path="/dining" element={<AmenitiesDining/>} />
           <Route path="/event_spaces" element={<AmenitiesEventSpace/>} />
           <Route path="/rooms" element={<AmenitiesRooms/>} />
-          <Route path="/login" element={<LoginPage login={login} />}/>
+          <Route path="/login" element={<LoginPage login={login} setRememberMe={setRememberMe}/>}/>
           <Route path="/signup" element={<Signup/>} />
           {isAuthenticated ? (
             <Route path="/admin_portal" element={<AdminPortal/>} />

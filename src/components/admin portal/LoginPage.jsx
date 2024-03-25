@@ -19,9 +19,12 @@ const LoginPage = ({ login, setRememberMe }) => {
     const handleSubmit = async (values) => {
         const response = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/login/', values)
         await login();
-        console.log(values)
         const { session_key } = response.data;
         localStorage.setItem('session_key', session_key);
+        console.log(values['remember-me'])
+        if(values.rememberMe){
+            setRememberMe(true);
+        }
         // Redirect to business creation page on successful login
         nav('/admin_portal');
     }
@@ -47,7 +50,7 @@ const LoginPage = ({ login, setRememberMe }) => {
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                                <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
+                                <Field id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
                                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                                     Remember me
                                 </label>
