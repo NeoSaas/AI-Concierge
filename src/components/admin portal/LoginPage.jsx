@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const LoginPage = ({ login }) => {
+const LoginPage = ({ login, setRememberMe }) => {
     const nav = useNavigate();
     const initialValues = {
         username: '',
@@ -17,15 +17,13 @@ const LoginPage = ({ login }) => {
     });
 
     const handleSubmit = async (values) => {
-        await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/login/', values)
-            .then(response => {
-                login();
-                // Redirect to business creation page on successful login
-                nav('/admin_portal');
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        const response = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/login/', values)
+        await login();
+        console.log(values)
+        const { session_key } = response.data;
+        localStorage.setItem('session_key', session_key);
+        // Redirect to business creation page on successful login
+        nav('/admin_portal');
     }
 
 

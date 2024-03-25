@@ -5,9 +5,12 @@ import QRCode from "react-qr-code";
 import Barcode from 'react-barcode';
 import { Slide } from 'react-slideshow-image';
 import Rating from '@mui/material/Rating';
+import 'react-slideshow-image/dist/styles.css';
 
 
 export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestaurant, clickedBusiness}) {
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(1);
 
   function closeModal() {
     setIsOpen(false)
@@ -16,7 +19,6 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
   function openModal() {
     setIsOpen(true)
   }
-  console.log(clickedBusiness)
 
   return (
     <>
@@ -72,11 +74,25 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                   <>
                     <div className='grid grid-cols-2 w-[90%] h-auto gap-8 mx-auto'>
                       <img src={clickedBusiness.business_pictures[0]} alt='first-pic' className='max-h-[36rem]'/>
-                      <div className='grid grid-cols-2 grid-rows-2 gap-3 w-[90%]'>
-                        <img src={clickedBusiness.business_pictures[0]} alt='second-pic'/>
-                        <img src={clickedBusiness.business_pictures[0]} alt='third-pic'/>
-                        <img src={clickedBusiness.business_pictures[0]} alt='second-pic'/>
-                        <img src={clickedBusiness.business_pictures[0]} alt='third-pic'/>
+                      <div className='w-[90%]'>
+                        <Slide>
+                          <div className=' each-slide-effect flex justify-center items-center'> 
+                            <img src={clickedBusiness.business_pictures[1]} alt='second-pic' className=''/>
+                          </div>
+                          <div className=' each-slide-effect '>
+                            <img src={clickedBusiness.business_pictures[2]} alt='third-pic' className=''/>
+                          </div>
+                          <div className=' each-slide-effect '>
+                            <img src={clickedBusiness.business_pictures[3]} alt='second-pic' className=''/>
+                          </div>
+                          <div className=' each-slide-effect '>
+                            <img src={clickedBusiness.business_pictures[4]} alt='third-pic' className=''/>
+                          </div>
+                        </Slide>
+                        {/* <img src={clickedBusiness.business_pictures[1]} alt='second-pic' className=' h-full'/>
+                        <img src={clickedBusiness.business_pictures[2]} alt='third-pic' className=' h-full '/>
+                        <img src={clickedBusiness.business_pictures[3]} alt='second-pic' className=' h-full '/>
+                        <img src={clickedBusiness.business_pictures[4]} alt='third-pic' className=' h-full '/> */}
                       </div>
                     </div>
                     <div className='grid grid-cols-[60%_40%] max-w-full gap-20'>

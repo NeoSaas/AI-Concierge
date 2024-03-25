@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HotelMap from './pages/HotelMap';
 import EventsInfo from './pages/EventsInfo';
 import CheckInInfo from './pages/CheckInInfo';
@@ -12,9 +12,19 @@ import AmenitiesRooms from './pages/amenities sub pages/AmenitiesRooms';
 import Landing from './pages/Landing';
 import LoginPage from './components/admin portal/LoginPage';
 import AdminPortal from './components/admin portal/AdminPortal';
+import Signup from './components/admin portal/Signup';
 
 function App() {
   const [isAuthenticated, setState] = React.useState(false);
+  const [rememberMe, setRememberMe] = React.useState(false);
+
+  useEffect(() => {
+    const session_key = localStorage.getItem('session_key');
+    if (session_key && rememberMe) {
+      setState(true);
+    }
+  }, [isAuthenticated]);
+
   const login = () => {
     setState(true);
   };
@@ -36,6 +46,7 @@ function App() {
           <Route path="/event_spaces" element={<AmenitiesEventSpace/>} />
           <Route path="/rooms" element={<AmenitiesRooms/>} />
           <Route path="/login" element={<LoginPage login={login} />}/>
+          <Route path="/signup" element={<Signup/>} />
           {isAuthenticated ? (
             <Route path="/admin_portal" element={<AdminPortal/>} />
           ) : <Route path="/login" element={<LoginPage login={login} />}/>}
