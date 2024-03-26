@@ -40,7 +40,7 @@ function EventsInfo() {
             {/* <p className='text-4xl font-bold text-center mt-[35rem] mx-auto w-screen absolute'>Events</p> */}
             <BottomBanner/>
             
-            <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`w-full h-[90vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <a className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl' href="/home">Back To Home</a>
                 <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={qrCode}/>
                 <ConferenceItem

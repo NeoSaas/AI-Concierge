@@ -10,7 +10,14 @@ const AddBusinessPage = () => {
     const [success, setSuccess] = React.useState(false);
 
     const handleSubmit = (values) => {
-        axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/', values) // Adjust the endpoint URL as per your API
+        axios({
+            method: 'POST',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/',
+            data: values,
+            headers: {
+                'content-Type': 'multipart/form-data',
+            }
+        }) // Adjust the endpoint URL as per your API
         .then(response => {
             console.log('Business added successfully:', response.data);
             setSuccess(true);
@@ -21,6 +28,7 @@ const AddBusinessPage = () => {
             // Handle error, e.g., show an error message
         });
     };
+
 
     const handleCloseModal = () => {
         setSuccess(false);
@@ -71,7 +79,7 @@ const AddBusinessPage = () => {
                         }}
                         onSubmit={handleSubmit}
                         >
-                        <Form className="mt-8 space-y-6">
+                        <Form className="mt-8 space-y-6" encType='multipart/form-data'>
                             <div className="rounded-md shadow-sm -space-y-px">
                                 <div>
                                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Add Your Business</h2>
@@ -119,7 +127,61 @@ const AddBusinessPage = () => {
                                 <div >
                                     <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
                                         <label htmlFor="business_pictures" className="flex flex-row items-center">Business Pictures and Videos <FaInfoCircle className='mx-2' /></label>
-                                        <Field type="file" multiple name="business_pictures" id="business_pictures" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Pictures (comma-separated)" />
+                                        <Field type="file" name="business_picture1" id="business_picture1"  placeholder="Business Pictures (comma-separated)" >
+                                            {({ field, form }) => (
+                                                <input
+                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                type="file"
+                                                onChange={(event) => {
+                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                }}
+                                                />
+                                            )}
+                                        </Field>
+                                        <Field type="file" name="business_picture2" id="business_picture2"  placeholder="Business Pictures (comma-separated)" >
+                                            {({ field, form }) => (
+                                                <input
+                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                type="file"
+                                                onChange={(event) => {
+                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                }}
+                                                />
+                                            )}
+                                        </Field>
+                                        <Field type="file" name="business_picture3" id="business_picture3"  placeholder="Business Pictures (comma-separated)" >
+                                            {({ field, form }) => (
+                                                <input
+                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                type="file"
+                                                onChange={(event) => {
+                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                }}
+                                                />
+                                            )}
+                                        </Field>
+                                        <Field type="file" name="business_picture4" id="business_picture4" placeholder="Business Pictures (comma-separated)" >
+                                            {({ field, form }) => (
+                                                <input
+                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                type="file"
+                                                onChange={(event) => {
+                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                }}
+                                                />
+                                            )}
+                                        </Field>
+                                        <Field type="file" name="business_video1" id="business_video1" placeholder="Business Pictures (comma-separated)" >
+                                            {({ field, form }) => (
+                                                <input
+                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                type="file"
+                                                onChange={(event) => {
+                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                }}
+                                                />
+                                            )}
+                                        </Field>
                                     </Tooltip>
                                 </div>
                                 <div>

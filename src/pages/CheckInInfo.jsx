@@ -40,7 +40,7 @@ function CheckInInfo() {
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>
-            <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`w-full h-[93vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <a className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl' href="/home">Back To Home</a>
                 <div className="py-8">
                     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">

@@ -13,7 +13,7 @@ const Home = () => {
     const [restaurantLink, setRestaurantLink] = useState(null);
     const [isRestaurant, setIsRestaurant] = useState(false);
     const [clickedBusiness, setClickedBusiness] = useState([]);
-    const [cardId, setCardId] = useState(null);
+    
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)

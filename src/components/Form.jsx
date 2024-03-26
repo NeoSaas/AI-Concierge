@@ -40,7 +40,7 @@ const subActivities = {
 
 const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness }) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -146,20 +146,35 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
     setDisplayOptions(true);
     setLoading(true);
     const prompt = await organizeQuery(selectedActivityIds);
-    const response = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/', { query: prompt });
+    const response = await axios({
+      method: 'post',
+      url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
+      data: { query: prompt },
+    });
     const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
 
     var multiBusinessResponse = businessesFromResponse.split(', ');
     var businessDataResponse;
     if (multiBusinessResponse.length > 1) {
 
-      businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/', { business: multiBusinessResponse });
+      businessDataResponse = await axios({
+        method: 'post',
+        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+        data: { business: multiBusinessResponse },
+        config: { headers: { 'content-Type': 'application/json' } },
+      });
     }
     else {
-      businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/', { business: businessesFromResponse });
+      businessDataResponse = await axios({
+        method: 'post',
+        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+        data: { business: businessesFromResponse },
+        config: { headers: { 'content-Type': 'application/json' } },
+      });
     }
     setDisplayBusinesses(businessDataResponse.data);
     setLoading(false);
+    setSuggestedDisplayed(true);
 
   }
 
@@ -190,7 +205,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
               :
               <div>
                 <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
-                <p className='text-xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
+                <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
 
                 <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
               </div>

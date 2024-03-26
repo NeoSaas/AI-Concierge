@@ -5,7 +5,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('OPAICreateConvo/', views.OPAIEndpointCreate, name='OPAI-create'),
     path('getBusiness/', views.getBusinessData, name='get business query'),
-    path('getBusinessDataGoogle/', views.getBusinessDataGoogle, name='get business query google'),
     path('queryBusinessData/', views.querySpecifcBusinessData, name='get business query specific'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),

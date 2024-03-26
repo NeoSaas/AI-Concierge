@@ -5,7 +5,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 
 const Navbar = () => {
   return (
-    <nav className="bg-transparent absolute border-b-2 border-t-2 border-black w-full border-opacity-30 font-quicksand mt-32 z-50">
+    <nav className="bg-white bg-opacity-60 absolute border-b-2 border-t-2 border-black w-full border-opacity-30 font-quicksand mt-32 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
             <div className=" items-center justify-between h-24">
               {/* <p className='absolute mt-16 text-xl font-quicksand left-5'>Alfond Inn</p> */}
