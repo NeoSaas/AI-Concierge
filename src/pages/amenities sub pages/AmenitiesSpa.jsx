@@ -33,15 +33,15 @@ function AmenitiesSpa() {
             <Navbar />
             <WeatherWidget />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
-            <div className='absolute gradient-top h-full w-full'></div>
-            <div className='absolute gradient-bottom h-full w-full'></div>
+            {/* <div className='absolute gradient-top h-full w-full'></div>
+            <div className='absolute gradient-bottom h-full w-full'></div> */}
             <BottomBanner />
             <div
                 className={`w-full h-[95vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >
-                <a className='py-2 px-6 bg-blue-500 rounded-lg text-white font-quicksand text-xl mb-2' href="/home">Back To Home</a>
+                <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl mb-2' href="/home">Back To Home</a>
                 <div className="py-8 font-quicksand flex-col overflow-auto bg-white p-8 rounded-lg shadow-md"> 
                     <div className="max-w-4xl mx-auto max-h-[70rem]">
                         <p className="text-4xl text-center mb-2">THE SPA AT THE ALFOND INN</p>
@@ -61,7 +61,7 @@ function AmenitiesSpa() {
                                             Elevated Elegance
                                         </h3>
                                         <p className="text-xl font-quicksand text-black">Enhance beauty and elevate wellness at The Spa at The Alfond Inn, Winter Park’s newest sought-after spa destination. Free yourself from the stressors of daily life, clear your headspace, or recapture your vitality in exclusive style.</p>
-                                        <button className='text-2xl mx-20 bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-2' onClick={() => handleButton(0)} >More Info</button>
+                                        <button className='text-2xl mx-20 bg-[#5C0601] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-2' onClick={() => handleButton(0)} >More Info</button>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@ function AmenitiesSpa() {
                                     <div className="md:pl-4 lg:pl-12 xl:pl-16">
                                         <h3 className="text-2xl mb-3">Spa Menu</h3>
                                         <p className="text-xl text-black mb-3">Our treatments at The Spa at The Alfond Inn offer a luxurious escape into relaxation and rejuvenation. Inspired by Winter Park's rich heritage and natural beauty, our world-class therapies incorporate local elements like temple oranges and botanical gardens to enhance the sensory experience. </p>
-                                        <button className='text-2xl mx-20 bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out' onClick={() => handleButton(1)} >More Info</button>
+                                        <button className='text-2xl mx-20 bg-[#5C0601] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out' onClick={() => handleButton(1)} >More Info</button>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ function AmenitiesSpa() {
                                     <div className="md:pl-4 lg:pl-1 xl:pl-16">
                                         <h3 className="text-2xl mb-3">Spa Menu</h3>
                                         <p className="text-xl text-black mb-3">Our treatments at The Spa at The Alfond Inn offer a luxurious escape into relaxation and rejuvenation. Inspired by Winter Park's rich heritage and natural beauty, our world-class therapies incorporate local elements like temple oranges and botanical gardens to enhance the sensory experience. </p>
-                                        <button className='text-2xl mx-20 bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out' onClick={() => handleButton(2)} >More Info</button>
+                                        <button className='text-2xl mx-20 bg-[#5C0601] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out' onClick={() => handleButton(2)} >More Info</button>
                                     </div>
                                 </div>
                             </div>

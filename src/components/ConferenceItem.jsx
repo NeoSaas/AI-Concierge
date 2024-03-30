@@ -11,11 +11,11 @@ const ConferenceItem = ({ eventName, description, imageUrl, date, time, handleBu
             <img className="w-full h-48 object-cover md:w-48 mx-2 rounded-lg my-16" src={imageUrl} alt="Event" />
           </div>
           <div className="p-8">
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{eventName}</div>
+            <div className="uppercase tracking-wide text-sm text-[#5C0601] font-semibold">{eventName}</div>
             <p className="mt-2 text-gray-600">{description}</p>
             <p className="mt-2 text-black">{date}</p>
             <p className="mt-2 text-gray-800">{time}</p>
-            <button className='my-auto  text-2xl bg-[#0066FF] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-10' onClick={() => handleButton(index)}>Get Qr Code</button>
+            <button className='my-auto  text-2xl bg-[#5C0601] px-6 py-2 text-white font-medium rounded-md transition duration-300 ease-in-out mt-10' onClick={() => handleButton(index)}>Get Qr Code</button>
           </div>
         </div>
       </div>

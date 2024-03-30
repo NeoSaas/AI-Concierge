@@ -188,7 +188,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
 
   return (
     <div>
-      {showSubOptions ? (<p className='font-quicksand text-2xl mb-10'>What kind of {selectedActivityIds.length > 2 ? "specific activities" : selectedActivityIds.join(', and ')} are you looking for?</p>) : (<></>)}
+      {showSubOptions ? (<p className='font-quicksand text-2xl mb-10'>What specifically are you looking for?</p>) : (<></>)}
       <div className="flex justify-center font-quicksand">
         {displayOptions ?
           <>
@@ -202,11 +202,11 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                 {displayBusinesses.length == 0 ? 
                 <>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
-                  <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                 </>
                 : 
                 <>
-                  <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
 
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
@@ -290,13 +290,13 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
 
         {displayOptions ? (<></>) : (showSubOptions ? 
         <>
-          <button className=' border-[3px] border-[#0066FF] text-[#0066FF] disabled:text-gray-400 rounded-md my-auto py-1 px-5 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#0066FF] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#0066FF] px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:text-gray-400 rounded-md my-auto py-1 px-5 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          <button className='my-auto border-[3px] border-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#5C0601] px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
         </> 
         : 
         <>
-          <button className=' border-[3px] border-[#0066FF] text-[#0066FF] disabled:border-gray-400 disabled:text-gray-400 rounded-md my-auto px-5 py-1 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#0066FF] text-2xl bg-[#0066FF] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:border-gray-400 disabled:text-gray-400 rounded-md my-auto px-5 py-1 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          <button className='my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
         </>
         )}
 
