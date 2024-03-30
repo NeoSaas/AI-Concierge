@@ -1,9 +1,11 @@
 import React from 'react'
 import Form from './Form';
 import Typewriter from 'typewriter-effect';
+import HotelForm from './hotel specific/HotelForm';
 
 function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId}) {
   const [suggestedDisplayed, setSuggestedDisplayed] = React.useState(false);
+  const [hotel, setHotel] = React.useState(false);
 
   const words = ['Bars and Nightlife',
   'Local Restaurants',
@@ -41,9 +43,13 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
                   }}
                   />
                 </span>for you</h1>
+              <div className='w-full h-auto flex flex-row justify-between'>
+                <button onClick={() => setHotel(true)} className="bg-[#0066FF] text-white font-medium py-2 px-4 rounded-lg mt-10 text-xl mx-5">Alfond Inn</button>
+                <button onClick={() => setHotel(false)} className="bg-[#0066FF] text-white font-medium py-2 px-4 rounded-lg mt-10 text-xl mx-5">Local Businesses</button>
+              </div>
               </> : null}
-            <div className={suggestedDisplayed ? ` mt-[-10rem] flex` : `mt-16 flex`}>
-              <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed}/>
+            <div className={suggestedDisplayed ? `flex` : `mt-12 flex`}>
+              {hotel ? <HotelForm/> : <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed}/>}
             </div>
             
         </div>

@@ -99,13 +99,8 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
     }
     return;
   }
-
-  
-
     // Update the state with the selected ids
-
     setSelectedIds(updatedIds);
-
     // Update the state with the selected and unselected names
     if (isSelected) {
       setUnselectedNames((prevNames) => prevNames.filter((name) => name !== activity));
@@ -204,10 +199,20 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
               </div>
               :
               <div>
-                <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
-                <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
+                {displayBusinesses.length == 0 ? 
+                <>
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
+                  <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                </>
+                : 
+                <>
+                  <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
 
-                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
+                  <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
+                </>
+                }
+                
               </div>
             }
           </>

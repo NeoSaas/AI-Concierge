@@ -17,7 +17,16 @@ const LoginPage = ({ login, setRememberMe }) => {
     });
 
     const handleSubmit = async (values) => {
-        const response = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/login/', values)
+        const response = await axios({
+            method: 'post',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/login/',
+            data: values,
+            config: {
+                headers: {
+                    'content-Type': 'multipart/json'
+                }
+            }
+        })
         await login();
         const { session_key } = response.data;
         localStorage.setItem('session_key', session_key);

@@ -126,7 +126,7 @@ const AddBusinessPage = () => {
                                 </div>
                                 <div >
                                     <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_pictures" className="flex flex-row items-center">Business Pictures and Videos <FaInfoCircle className='mx-2' /></label>
+                                        <label htmlFor="business_pictures" className="flex flex-row items-center">Main Picture <FaInfoCircle className='mx-2' /></label>
                                         <Field type="file" name="business_picture1" id="business_picture1"  placeholder="Business Pictures (comma-separated)" >
                                             {({ field, form }) => (
                                                 <input
@@ -138,6 +138,7 @@ const AddBusinessPage = () => {
                                                 />
                                             )}
                                         </Field>
+                                        <label htmlFor="business_pictures" className="flex flex-row items-center">4 Pictures for Slide Show</label>
                                         <Field type="file" name="business_picture2" id="business_picture2"  placeholder="Business Pictures (comma-separated)" >
                                             {({ field, form }) => (
                                                 <input

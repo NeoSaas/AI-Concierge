@@ -25,12 +25,12 @@ const BottomBanner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change 5000 to the desired interval in milliseconds
+    }, 4000); // Change 5000 to the desired interval in milliseconds
     return () => clearInterval(interval);
   }, [currentImageIndex]);
 
   return (
-    <div className="absolute bottom-[0px] w-full h-[28rem] font-quicksand border-t-2 border-black">
+    <div className="absolute bottom-[0px] w-full h-[380px] font-quicksand border-t-2 border-black">
       {/* Slides */}
       {images.map((image, index) => (
         <div

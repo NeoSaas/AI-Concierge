@@ -26,6 +26,7 @@ def index(request):
     return JsonResponse({'conversations': 'test'})
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def signup(request):
     if request.method == 'POST':
         username = request.data.get('username')
@@ -41,6 +42,7 @@ def signup(request):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def login_view(request):
     #login 
     username = request.data.get('username')
@@ -53,12 +55,14 @@ def login_view(request):
         return JsonResponse({'message': 'Login failed'}, status=401)
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def logout_view(request):
     #logout
     logout(request)
     return JsonResponse({'message': 'Logout successful'})
 
 @api_view(['GET'])
+@parser_classes([JSONParser])
 def getBusinessData(request):
     businesses = Business.objects.all()
     serializer = BusinessSerializer(businesses, many=True)
@@ -118,6 +122,7 @@ def addBusinessData(request):
         walk_time=0,
         transit_time=0,
         hours_of_operation=hours_dict,
+        author=request.user
     )
     
     new_business.save()

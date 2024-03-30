@@ -31,8 +31,8 @@ const Home = () => {
                 <div className=''>
                     <WeatherWidget/>
                 </div>
-                <div className='absolute gradient-top h-full w-full'></div>
-                <div className='absolute gradient-bottom h-full w-full'></div>
+                <div className='absolute gradient-top h-full w-full opacity-70'></div>
+                <div className='absolute gradient-bottom h-full w-full opacity-70'></div>
                 <div className={`h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                     {isOpen ? <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness}/> : null}
                     {/* <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness}/> */}
