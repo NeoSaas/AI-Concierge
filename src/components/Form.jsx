@@ -156,7 +156,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
         method: 'post',
         url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
         data: { business: multiBusinessResponse },
-        config: { headers: { 'content-Type': 'application/json' } },
       });
     }
     else {
@@ -164,7 +163,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
         method: 'post',
         url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
         data: { business: businessesFromResponse },
-        config: { headers: { 'content-Type': 'application/json' } },
       });
     }
     setDisplayBusinesses(businessDataResponse.data);
@@ -195,7 +193,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
             {loading ?
               <div className='flex items-center justify-center w-screen flex-col mb-12'>
                 <p className='text-2xl text-black mx-auto text-center'>Finding the best options for you...</p>
-                <Circles color="#0066FF" height={90} width={90} />
+                <Circles color="#5C0601" height={90} width={90}/>
               </div>
               :
               <div>
@@ -219,7 +217,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
           :
           <>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-500 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={currentPage === 0}
               onClick={handlePrevPage}
             >
@@ -276,7 +274,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
               }
             </div>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-500 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={showSubOptions ? currentPage === subTotalPages - 1 : currentPage === totalPages - 1}
               onClick={handleNextPage}
             >

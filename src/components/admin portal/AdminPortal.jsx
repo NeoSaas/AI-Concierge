@@ -4,12 +4,286 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import Tooltip from '@mui/material/Tooltip';
 import { FaInfoCircle } from "react-icons/fa";
+import { render } from '@testing-library/react';
+import PreviewPage from './PreviewPage';
+import 'react-loader-spinner';
+import { Circles } from 'react-loader-spinner';
 
 const AddBusinessPage = () => {
 
+    const [formData, setFormData] = React.useState({});
     const [success, setSuccess] = React.useState(false);
+    const [fail, setFail] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+
+    const handleFormChange = (values) => {
+        console.log('Form values:', values);
+        setFormData(values); // Update formData state with form values
+    };
+
+    const dates = ['3/0', '3/1', '3/2', '3/3', '3/4', '3/5', '3/6', '3/7', '3/8', '3/9', '3/10', '3/11', '3/12', '3/13', '3/14', '3/15', '3/16', '3/17', '3/18', '3/19', '3/20', '3/21', '3/22', '3/23', '3/24', '3/25', '3/26', '3/27', '3/28', '3/29', '3/30', '4/1', '4/1', '4/2', '4/3', '4/4', '4/5', '4/6', '4/7', '4/8', '4/9', '4/10', '4/11', '4/12', '4/13', '4/14', '4/15', '4/16', '4/17', '4/18', '4/19', '4/20', '4/21', '4/22', '4/23', '4/24', '4/25', '4/26', '4/27', '4/28', '4/29', '4/30'];
+
+    const d = new Date();
+    // React.useEffect(() => {
+    //     for (let i = 0; i < 60; i++) {
+    //         let day = d.getDay() + i;
+    //         let month = d.getMonth() + 1;
+    //         let dateString = '';
+    //         if(day >= 31){
+    //             day = day - 31;
+    //             if(day === 0){
+    //                 day = day + 1;
+    //             }
+    //             month = month + 1;
+    //             dateString = `${month}/${day}`  
+    //         }
+    //         else if(day < 31){
+    //             dateString = `${month}/${day}`
+    //         }
+    //         dates.push(dateString);
+    //     }
+    // }, [dates]);
+
+    const options = [
+        { value: 'Bars and Nightlife', label: 'Bars and Nightlife' },
+        { value: 'Local Restaurants', label: 'Local Restaurants' },
+        { value: 'Transportation Services', label: 'Transportation Services' },
+        { value: 'Local Attractions', label: 'Local Attractions' },
+        { value: 'Cultural Experiences', label: 'Cultural Experiences' },
+        { value: 'Shopping Districts', label: 'Shopping Districts' },
+        { value: 'Day Tours', label: 'Day Tours' },
+        { value: 'Spa and Wellness Centers', label: 'Spa and Wellness Centers' },
+        { value: 'Outdoor Activities', label: 'Outdoor Activities' },
+        { value: 'Fitness Centers', label: 'Fitness Centers' },
+        { value: 'Golf Courses', label: 'Golf Courses' },
+        { value: 'Wine Tastings and Tours', label: 'Wine Tastings and Tours' },
+        { value: 'Art Galleries', label: 'Art Galleries' },
+        { value: 'Specialty Food Shops', label: 'Specialty Food Shops' },
+        { value: 'Boat Rentals or Cruises', label: 'Boat Rentals or Cruises' },
+        { value: 'Bicycle Rentals', label: 'Bicycle Rentals' },
+        { value: 'Cooking Classes', label: 'Cooking Classes' },
+        { value: 'Photography Services', label: 'Photography Services' },
+        { value: 'Hair and Beauty Salons', label: 'Hair and Beauty Salons' },
+        { value: 'Local Markets', label: 'Local Markets' },
+        { value: 'Event Ticketing', label: 'Event Ticketing' },
+        { value: 'Childcare Services', label: 'Childcare Services' },
+        { value: 'Pet Services', label: 'Pet Services' },
+        { value: 'Language Classes or Translators', label: 'Language Classes or Translators' },
+        { value: 'Medical Clinics or Pharmacies', label: 'Medical Clinics or Pharmacies' }
+    ];
+
+    const subOptions = [
+        { value: 'Clubs', label: 'Clubs' },
+        { value: 'Dive Bars', label: 'Dive Bars' },
+        { value: 'Piano Bars', label: 'Piano Bars' },
+        { value: 'Karaoke Bars', label: 'Karaoke Bars' },
+        { value: 'Sports Bars', label: 'Sports Bars' },
+        { value: 'Wine Bar', label: 'Wine Bar' },
+        { value: 'American', label: 'American' },
+        { value: 'Argentinean', label: 'Argentinean' },
+        { value: 'Australian', label: 'Australian' },
+        { value: 'Belgian', label: 'Belgian' },
+        { value: 'Brazilian', label: 'Brazilian' },
+        { value: 'British', label: 'British' },
+        { value: 'Cajun/Creole', label: 'Cajun/Creole' },
+        { value: 'Caribbean', label: 'Caribbean' },
+        { value: 'Chinese', label: 'Chinese' },
+        { value: 'Cuban', label: 'Cuban' },
+        { value: 'Ethiopian', label: 'Ethiopian' },
+        { value: 'Filipino', label: 'Filipino' },
+        { value: 'French', label: 'French' },
+        { value: 'German', label: 'German' },
+        { value: 'Greek', label: 'Greek' },
+        { value: 'Hawaiian', label: 'Hawaiian' },
+        { value: 'Hungarian', label: 'Hungarian' },
+        { value: 'Indian', label: 'Indian' },
+        { value: 'Irish', label: 'Irish' },
+        { value: 'Israeli', label: 'Israeli' },
+        { value: 'Italian', label: 'Italian' },
+        { value: 'Jamaican', label: 'Jamaican' },
+        { value: 'Japanese', label: 'Japanese' },
+        { value: 'Korean', label: 'Korean' },
+        { value: 'Lebanese', label: 'Lebanese' },
+        { value: 'Malaysian', label: 'Malaysian' },
+        { value: 'Mediterranean', label: 'Mediterranean' },
+        { value: 'Mexican', label: 'Mexican' },
+        { value: 'Moroccan', label: 'Moroccan' },
+        { value: 'New Zealand', label: 'New Zealand' },
+        { value: 'Nigerian', label: 'Nigerian' },
+        { value: 'Persian', label: 'Persian' },
+        { value: 'Peruvian', label: 'Peruvian' },
+        { value: 'Portuguese', label: 'Portuguese' },
+        { value: 'Russian', label: 'Russian' },
+        { value: 'Scandinavian', label: 'Scandinavian' },
+        { value: 'Spanish', label: 'Spanish' },
+        { value: 'Swiss', label: 'Swiss' },
+        { value: 'Thai', label: 'Thai' },
+        { value: 'Turkish', label: 'Turkish' },
+        { value: 'Vietnamese', label: 'Vietnamese' },
+        { value: 'Fancy', label: 'Fancy' },
+        { value: 'Airport Shuttles', label: 'Airport Shuttles' },
+        { value: 'Taxi Services', label: 'Taxi Services' },
+        { value: 'Ride-sharing Services', label: 'Ride-sharing Services' },
+        { value: 'Car Rentals', label: 'Car Rentals' },
+        { value: 'Public Transportation', label: 'Public Transportation' },
+        { value: 'Private Charters', label: 'Private Charters' },
+        { value: 'Museums', label: 'Museums' },
+        { value: 'Historical Sites', label: 'Historical Sites' },
+        { value: 'Amusement Parks', label: 'Amusement Parks' },
+        { value: 'Zoos', label: 'Zoos' },
+        { value: 'Gardens', label: 'Gardens' },
+        { value: 'Landmarks', label: 'Landmarks' },
+        { value: 'Traditional Performances', label: 'Traditional Performances' },
+        { value: 'Art Exhibitions', label: 'Art Exhibitions' },
+        { value: 'Food Tours', label: 'Food Tours' },
+        { value: 'Language Classes', label: 'Language Classes' },
+        { value: 'Cooking Classes', label: 'Cooking Classes' },
+        { value: 'Cultural Festivals', label: 'Cultural Festivals' },
+        { value: 'Boutiques', label: 'Boutiques' },
+        { value: 'Malls', label: 'Malls' },
+        { value: 'Flea Markets', label: 'Flea Markets' },
+        { value: 'Antique Shops', label: 'Antique Shops' },
+        { value: 'Local Crafts', label: 'Local Crafts' },
+        { value: 'Souvenir Stores', label: 'Souvenir Stores' },
+        { value: 'City Tours', label: 'City Tours' },
+        { value: 'Nature Tours', label: 'Nature Tours' },
+        { value: 'Food Tours', label: 'Food Tours' },
+        { value: 'Adventure Tours', label: 'Adventure Tours' },
+        { value: 'Historical Tours', label: 'Historical Tours' },
+        { value: 'Group Tours', label: 'Group Tours' },
+        { value: 'Massage Services', label: 'Massage Services' },
+        { value: 'Facials', label: 'Facials' },
+        { value: 'Body Treatments', label: 'Body Treatments' },
+        { value: 'Yoga Studios', label: 'Yoga Studios' },
+        { value: 'Fitness Classes', label: 'Fitness Classes' },
+        { value: 'Alternative Therapies', label: 'Alternative Therapies' },
+        { value: 'Hiking Trails', label: 'Hiking Trails' },
+        { value: 'Camping Sites', label: 'Camping Sites' },
+        { value: 'Water Sports', label: 'Water Sports' },
+        { value: 'Cycling Paths', label: 'Cycling Paths' },
+        { value: 'Rock Climbing', label: 'Rock Climbing' },
+        { value: 'Fishing Spots', label: 'Fishing Spots' },
+        { value: 'Gyms', label: 'Gyms' },
+        { value: 'Yoga Studios', label: 'Yoga Studios' },
+        { value: 'Pilates Studios', label: 'Pilates Studios' },
+        { value: 'Personal Trainers', label: 'Personal Trainers' },
+        { value: 'Group Classes', label: 'Group Classes' },
+        { value: 'Sports Facilities', label: 'Sports Facilities' },
+        { value: 'Public Courses', label: 'Public Courses' },
+        { value: 'Private Clubs', label: 'Private Clubs' },
+        { value: 'Driving Ranges', label: 'Driving Ranges' },
+        { value: 'Golf Lessons', label: 'Golf Lessons' },
+        { value: 'Pro Shops', label: 'Pro Shops' },
+        { value: 'Mini-golf', label: 'Mini-golf' },
+        { value: 'Vineyards', label: 'Vineyards' },
+        { value: 'Wineries', label: 'Wineries' },
+        { value: 'Wine Bars', label: 'Wine Bars' },
+        { value: 'Wine Festivals', label: 'Wine Festivals' },
+        { value: 'Wine Courses', label: 'Wine Courses' },
+        { value: 'Wine-themed Tours', label: 'Wine-themed Tours' },
+        { value: 'Contemporary Art', label: 'Contemporary Art' },
+        { value: 'Traditional Art', label: 'Traditional Art' },
+        { value: 'Photography Exhibits', label: 'Photography Exhibits' },
+        { value: 'Sculpture Gardens', label: 'Sculpture Gardens' },
+        { value: 'Art Classes', label: 'Art Classes' },
+        { value: 'Artist Studios', label: 'Artist Studios' },
+        { value: 'Bakeries', label: 'Bakeries' },
+        { value: 'Delis', label: 'Delis' },
+        { value: 'Cheese Shops', label: 'Cheese Shops' },
+        { value: 'Chocolate Shops', label: 'Chocolate Shops' },
+        { value: 'Farmers Markets', label: 'Farmers Markets' },
+        { value: 'Gourmet Groceries', label: 'Gourmet Groceries' },
+        { value: 'Sailboat Rentals', label: 'Sailboat Rentals' },
+        { value: 'Kayak Rentals', label: 'Kayak Rentals' },
+        { value: 'Yacht Charters', label: 'Yacht Charters' },
+        { value: 'Sightseeing Cruises', label: 'Sightseeing Cruises' },
+        { value: 'Fishing Charters', label: 'Fishing Charters' },
+        { value: 'River Cruises', label: 'River Cruises' },
+        { value: 'City Bike Rentals', label: 'City Bike Rentals'},
+        { value: 'City Bike Rentals', label: 'City Bike Rentals' },
+        { value: 'Mountain Bike Rentals', label: 'Mountain Bike Rentals' },
+        { value: 'Tandem Bike Rentals', label: 'Tandem Bike Rentals' },
+        { value: 'Electric Bike Rentals', label: 'Electric Bike Rentals' },
+        { value: 'Bike Tours', label: 'Bike Tours' },
+        { value: 'Bike Repair Shops', label: 'Bike Repair Shops' },
+        { value: 'International Cuisines', label: 'International Cuisines' },
+        { value: 'Baking Classes', label: 'Baking Classes' },
+        { value: 'Vegetarian Cooking', label: 'Vegetarian Cooking' },
+        { value: 'Molecular Gastronomy', label: 'Molecular Gastronomy' },
+        { value: 'Wine Pairing', label: 'Wine Pairing' },
+        { value: 'Kids Cooking Classes', label: 'Kids Cooking Classes' },
+        { value: 'Portrait Studios', label: 'Portrait Studios' },
+        { value: 'Wedding Photography', label: 'Wedding Photography' },
+        { value: 'Event Photography', label: 'Event Photography' },
+        { value: 'Landscape Photography', label: 'Landscape Photography' },
+        { value: 'Photography Tours', label: 'Photography Tours' },
+        { value: 'Photo Printing Services', label: 'Photo Printing Services' },
+        { value: 'Hair Salons', label: 'Hair Salons' },
+        { value: 'Barber Shops', label: 'Barber Shops' },
+        { value: 'Nail Salons', label: 'Nail Salons' },
+        { value: 'Makeup Services', label: 'Makeup Services' },
+        { value: 'Waxing Services', label: 'Waxing Services' },
+        { value: 'Tanning Salons', label: 'Tanning Salons' },
+        { value: 'Farmers Markets', label: 'Farmers Markets' },
+        { value: 'Flea Markets', label: 'Flea Markets' },
+        { value: 'Night Markets', label: 'Night Markets' },
+        { value: 'Artisan Markets', label: 'Artisan Markets' },
+        { value: 'Street Food Markets', label: 'Street Food Markets' },
+        { value: 'Antique Markets', label: 'Antique Markets' },
+        { value: 'Concert Tickets', label: 'Concert Tickets' },
+        { value: 'Theater Tickets', label: 'Theater Tickets' },
+        { value: 'Sporting Events', label: 'Sporting Events' },
+        { value: 'Festivals', label: 'Festivals' },
+        { value: 'Comedy Shows', label: 'Comedy Shows' },
+        { value: 'Exhibitions', label: 'Exhibitions' },
+        { value: 'Daycare Centers', label: 'Daycare Centers' },
+        { value: 'Nanny Services', label: 'Nanny Services' },
+        { value: 'Babysitting Services', label: 'Babysitting Services' },
+        { value: 'Kids Activities', label: 'Kids Activities' },
+        { value: 'Tutoring Services', label: 'Tutoring Services' },
+        { value: 'Summer Camps', label: 'Summer Camps' },
+        { value: 'Veterinary Clinics', label: 'Veterinary Clinics' },
+        { value: 'Pet Grooming', label: 'Pet Grooming' },
+        { value: 'Pet Boarding', label: 'Pet Boarding' },
+        { value: 'Pet Supplies', label: 'Pet Supplies' },
+        { value: 'Dog Walking', label: 'Dog Walking' },
+        { value: 'Pet Training', label: 'Pet Training' },
+        { value: 'English Classes', label: 'English Classes' },
+        { value: 'Spanish Classes', label: 'Spanish Classes' },
+        { value: 'French Classes', label: 'French Classes' },
+        { value: 'Mandarin Classes', label: 'Mandarin Classes' },
+        { value: 'Sign Language Classes', label: 'Sign Language Classes' },
+        { value: 'Translation Services', label: 'Translation Services' },
+        { value: 'General Practitioners', label: 'General Practitioners' },
+        { value: 'Dentists', label: 'Dentists' },
+        { value: 'Optometrists', label: 'Optometrists' },
+        { value: 'Pharmacies', label: 'Pharmacies' },
+        { value: 'Urgent Care Clinics', label: 'Urgent Care Clinics' },
+        { value: 'Specialty Clinics', label: 'Specialty Clinics' }
+    ];
+
+    const promoOptions =[
+        { value: '20PERCENTOFF', label: '20% Off Your Entire Purchase (20PERCENTOFF)' },
+        { value: 'BOGO', label: 'Buy One, Get One Free (BOGO)' },
+        { value: '10OFF50', label: '$10 Off a Purchase of $50 or More (10OFF50)' },
+        { value: 'FREEGIFT', label: 'Free Gift with Purchase (FREEGIFT)' },
+        { value: 'EARLYBIRD', label: 'Early Bird Discount (EARLYBIRD)' },
+        { value: 'LASTMINUTE', label: 'Last-Minute Deal (LASTMINUTE)' },
+        { value: 'SEASONAL', label: 'Seasonal Offer (SEASONAL)' },
+        { value: 'NEWCUSTOMER', label: 'First-Time Customer Discount (NEWCUSTOMER)' },
+        { value: 'DISCOUNTGROUP', label: 'Special Discount for Students, Military, or Seniors (DISCOUNTGROUP)' },
+        { value: 'CASHBACK', label: 'Cashback Offer (CASHBACK)' },
+        { value: 'MINPURCHASE', label: 'Minimum Purchase Discount (MINPURCHASE)' },
+        { value: 'FLASHSALE', label: 'Flash Sale (FLASHSALE)' },
+        { value: 'SUBSCRIPTION', label: 'Subscription Discount (SUBSCRIPTION)' },
+        { value: 'EVENTOFFER', label: 'Event or Launch Offer (EVENTOFFER)' },
+        { value: '2FOR1', label: '2 for 1 Special (2FOR1)' }
+    ];
 
     const handleSubmit = (values) => {
+        setLoading(true);
+        values.business_tags = values.business_tags + ', ' + values.sub_business_tags + ', ' + values.sub_business_tags2;
+        console.log('Form values:', values);
         axios({
             method: 'POST',
             url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/',
@@ -20,18 +294,21 @@ const AddBusinessPage = () => {
         }) // Adjust the endpoint URL as per your API
         .then(response => {
             console.log('Business added successfully:', response.data);
+            setLoading(false);
             setSuccess(true);
             // Handle success, e.g., show a success message or redirect
         })
         .catch(error => {
             console.error('Error adding business:', error);
-            // Handle error, e.g., show an error message
+            setFail(true);
         });
     };
 
 
     const handleCloseModal = () => {
+        setLoading(false);
         setSuccess(false);
+        setFail(false);
     };
 
     const customStyles = {
@@ -46,204 +323,280 @@ const AddBusinessPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <Modal
-                isOpen={success}
-                onRequestClose={handleCloseModal}
-                style={customStyles}
-                contentLabel="Success"
-            >
-                    <div className="flex flex-col items-center justify-center h-40 w-80 text-center">
-                        <h2 className="text-3xl font-extrabold text-gray-900">Business added successfully!</h2>
-                        <button onClick={handleCloseModal} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Close</button>
-                    </div>
-            </Modal>
-            <div className=''>
-                
-                <div className="max-w-md w-full space-y-8 grid-flow-col">
+        <div className='grid grid-cols-2 bg-gray-50' >
+            <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+                <Modal
+                    isOpen={loading}
+                    onRequestClose={handleCloseModal}
+                    style={customStyles}
+                    contentLabel="loading"
+                >
+                        <div className="flex flex-col items-center justify-center h-40 w-80 text-center">
+                            <p>Adding Business....</p>
+                            <Circles color="#0066FF" height={90} width={90} />
+                        </div>
+                </Modal>
+                <Modal
+                    isOpen={success}
+                    onRequestClose={handleCloseModal}
+                    style={customStyles}
+                    contentLabel="Success"
+                >
+                        <div className="flex flex-col items-center justify-center h-40 w-80 text-center">
+                            <h2 className="text-3xl font-extrabold text-gray-900">Business added successfully!</h2>
+                            <button onClick={handleCloseModal} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Close</button>
+                        </div>
+                </Modal>
+                <Modal
+                    isOpen={fail}
+                    onRequestClose={handleCloseModal}
+                    style={customStyles}
+                    contentLabel="Failure"
+                >
+                        <div className="flex flex-col items-center justify-center h-40 w-80 text-center">
+                            <h2 className="text-3xl font-extrabold text-gray-900">Failed to add business</h2>
+                            <button onClick={handleCloseModal} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Close</button>
+                        </div>
+                </Modal>
+                <div className=''>
                     
-                    <Formik
-                        initialValues={{
-                            business_name: '',
-                            business_tags: '',
-                            business_rating: 0.00,
-                            business_place_id: '',
-                            business_address: '',
-                            business_pictures: '',
-                            walk_time: '',
-                            drive_time: '',
-                            transit_time: '',
-                            directions_url: '',
-                            hours_of_operation: '',
-                            business_barcode: ''
-                        }}
-                        onSubmit={handleSubmit}
-                        >
-                        <Form className="mt-8 space-y-6" encType='multipart/form-data'>
-                            <div className="rounded-md shadow-sm -space-y-px">
-                                <div>
-                                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Add Your Business</h2>
-                                </div>
-                                <div className=''>
-                                
-                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Simply enter the name of your business in the field</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_name" className="flex flex-row items-center">Business Name<FaInfoCircle className='mx-2' />
-                                        </label>
-                                    </Tooltip>
-                                    <Field type="text" name="business_name" id="business_name" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Name" />
-                                </div>
-                                <div>
-                                    <Tooltip title={<h1 style={{fontSize: '0.75rem'}}>Enter three tags that fit your business, please choose one from the following list: Bars and Nightlife, Local Restaurants, Transportation Services, Local Attractions, Cultural Experiences, Shopping Districts, Day Tours, Spa and Wellness Centers, Outdoor Activities, Fitness Centers, Golf Courses, Wine Tastings and Tours, Art Galleries, Specialty Food Shops, Boat Rentals or Cruises, Bicycle Rentals, Cooking Classes, Photography Services, Hair and Beauty Salons, Local Markets, Event Ticketing, Childcare Services, Pet Services, Language Classes or Translators, Medical Clinics or Pharmacies and at least 2 from this list: Clubs, Dive Bars, Piano Bars, Karaoke Bars, Sports Bars, Wine Bar,Italian, Mexican, Chinese, Indian, Thai, American, Fancy,Airport Shuttles, Taxi Services, Ride-sharing Services, Car Rentals, Public Transportation, Private ChartersMuseums, Historical Sites, Amusement Parks, Zoos, Gardens, Landmarks,Traditional Performances, Art Exhibitions, Food Tours, Language Classes, Cooking Classes, Cultural Festivals,Boutiques, Malls, Flea Markets, Antique Shops, Local Crafts, Souvenir Stores,City Tours, Nature Tours, Food Tours, Adventure Tours, Historical Tours, Group Tours,Massage Services, Facials, Body Treatments, Yoga Studios, Fitness Classes, Alternative Therapies,Hiking Trails, Camping Sites, Water Sports, Cycling Paths, Rock Climbing, Fishing Spots,Gyms, Yoga Studios, Pilates Studios, Personal Trainers, Group Classes, Sports Facilities,Public Courses, Private Clubs, Driving Ranges, Golf Lessons, Pro Shops, Mini-golf,Vineyards, Wineries, Wine Bars, Wine Festivals, Wine Courses, Wine-themed Tours,Contemporary Art, Traditional Art, Photography Exhibits, Sculpture Gardens, Art Classes, Artist Studios,Bakeries, Delis, Cheese Shops, Chocolate Shops, Farmers Markets, Gourmet Groceries,Sailboat Rentals, Kayak Rentals, Yacht Charters, Sightseeing Cruises, Fishing Charters, River Cruises,City Bike Rentals, Mountain Bike Rentals, Tandem Bike Rentals, Electric Bike Rentals, Bike Tours, Bike Repair Shops,International Cuisines, Baking Classes, Vegetarian Cooking, Molecular Gastronomy, Wine Pairing, Kids Cooking Classes,Portrait Studios, Wedding Photography, Event Photography, Landscape Photography, Photography Tours, Photo Printing Services,Hair Salons, Barber Shops, Nail Salons, Makeup Services, Waxing Services, Tanning Salons,Farmers Markets, Flea Markets, Night Markets, Artisan Markets, Street Food Markets, Antique Markets,Concert Tickets, Theater Tickets, Sporting Events, Festivals, Comedy Shows, Exhibitions,Daycare Centers, Nanny Services, Babysitting Services, Kids Activities, Tutoring Services, Summer Camps,Veterinary Clinics, Pet Grooming, Pet Boarding, Pet Supplies, Dog Walking, Pet Training, Classes, Spanish Classes, French Classes, Mandarin Classes, Sign Language Classes, Translation Services,General Practitioners, Dentists, Optometrists, Pharmacies, Urgent Care Clinics, Specialty Clinics</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_tags" className="flex flex-row items-center">Business Tags <FaInfoCircle className='mx-2' /></label>
-                                        <Field type="text" name="business_tags" id="business_tags" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" />
-                                    </Tooltip>
-                                </div>
-                                <div>
-                                    <label htmlFor="business_phone_number" className="">Business Phone Number</label>
-                                    <Field type="text" name="business_phone_number" id="business_phone_number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Phone Number" />
-                                    
-                                </div>
-                                <div className=''>
-                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_rating" className="flex flex-row items-center">Business Rating<FaInfoCircle className='mx-2' />
-                                        </label>
-                                    </Tooltip>
-                                    
-                                    <Field type="number" name="business_rating" id="business_rating" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Rating" />
-                                </div>
-                                <div>
-                                    <label htmlFor="business_address" className="">Business Address
-                                    </label>
-                                    <Field type="text" name="business_address" id="business_address" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Address" />
-                                </div>
-                                <div className=''>
-                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, doesnt have to be too long.</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' />
-                                        </label>
-                                    </Tooltip>
-                                    
-                                    <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" />
-                                </div>
-                                <div >
-                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_pictures" className="flex flex-row items-center">Main Picture <FaInfoCircle className='mx-2' /></label>
-                                        <Field type="file" name="business_picture1" id="business_picture1"  placeholder="Business Pictures (comma-separated)" >
-                                            {({ field, form }) => (
-                                                <input
-                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                type="file"
-                                                onChange={(event) => {
-                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
-                                                }}
-                                                />
-                                            )}
-                                        </Field>
-                                        <label htmlFor="business_pictures" className="flex flex-row items-center">4 Pictures for Slide Show</label>
-                                        <Field type="file" name="business_picture2" id="business_picture2"  placeholder="Business Pictures (comma-separated)" >
-                                            {({ field, form }) => (
-                                                <input
-                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                type="file"
-                                                onChange={(event) => {
-                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
-                                                }}
-                                                />
-                                            )}
-                                        </Field>
-                                        <Field type="file" name="business_picture3" id="business_picture3"  placeholder="Business Pictures (comma-separated)" >
-                                            {({ field, form }) => (
-                                                <input
-                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                type="file"
-                                                onChange={(event) => {
-                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
-                                                }}
-                                                />
-                                            )}
-                                        </Field>
-                                        <Field type="file" name="business_picture4" id="business_picture4" placeholder="Business Pictures (comma-separated)" >
-                                            {({ field, form }) => (
-                                                <input
-                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                type="file"
-                                                onChange={(event) => {
-                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
-                                                }}
-                                                />
-                                            )}
-                                        </Field>
-                                        <Field type="file" name="business_video1" id="business_video1" placeholder="Business Pictures (comma-separated)" >
-                                            {({ field, form }) => (
-                                                <input
-                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                type="file"
-                                                onChange={(event) => {
-                                                    form.setFieldValue(field.name, event.currentTarget.files[0]);
-                                                }}
-                                                />
-                                            )}
-                                        </Field>
-                                    </Tooltip>
-                                </div>
-                                <div>
-                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>Use format shown in the placeholder text of the field. I.e enter it as '8am-10pm', if closed on a specific day just type the word 'closed'.</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_hours" className="flex flex-row items-center">Business Hours<FaInfoCircle className='mx-2' />
-                                        </label>
-                                    </Tooltip>
-                               </div>
-                                <div className='flex flex-row justify-between'>
+                    <div className="max-w-md w-full space-y-8 grid-flow-col">
+                        
+                        <Formik
+                            initialValues={{
+                                business_name: '',
+                                business_tags: '',
+                                business_rating: 0.00,
+                                business_place_id: '',
+                                business_address: '',
+                                business_pictures: '',
+                                walk_time: '',
+                                drive_time: '',
+                                transit_time: '',
+                                directions_url: '',
+                                hours_of_operation: '',
+                                business_barcode: ''
+                            }}
+                            onSubmit={handleSubmit}
+                            >
+                            {({ values }) => (
+                            <Form className="mt-8 space-y-6" encType='multipart/form-data' onChange={() => handleFormChange(values)}>
+                                <div className="rounded-md shadow-sm -space-y-px">
                                     <div>
+                                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Add Your Business</h2>
+                                    </div>
+                                    <div className=''>
+                                    
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Simply enter the name of your business in the field</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_name" className="flex flex-row items-center">Business Name<FaInfoCircle className='mx-2' />
+                                            </label>
+                                        </Tooltip>
+                                        <Field type="text" name="business_name" id="business_name" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Name" />
+                                    </div>
+                                    <div className='flex-1'>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter three tags that fit your business, please choose one for the first one that generally describes your business, then for the Sub tags please choose two more specific tags from the dropdowns</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_tags" className="flex flex-row items-center">Business Tag <FaInfoCircle className='mx-2' /></label>
+                                            <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                <option value="">Select...</option>
+                                                {options.map(option => (
+                                                <option key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                                ))}
+                                            </Field>
+                                            <label htmlFor="business_tags" className="flex flex-row items-center">Sub Business Tags</label>
+                                            <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                <option value="">Select...</option>
+                                                {subOptions.map(option => (
+                                                <option key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                                ))}
+                                            </Field>
+                                            <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none mt-2 relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                <option value="">Select...</option>
+                                                {subOptions.map(option => (
+                                                <option key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                                ))}
+                                            </Field>
+                                        </Tooltip>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="business_phone_number" className="">Business Phone Number</label>
+                                        <Field type="text" name="business_phone_number" id="business_phone_number" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Phone Number" />
+                                        
+                                    </div>
+                                    <div className=''>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter the star rating for your business. For example you would want to enter 4.25. It must be 2 decimal places</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_rating" className="flex flex-row items-center">Business Rating<FaInfoCircle className='mx-2' />
+                                            </label>
+                                        </Tooltip>
+                                        
+                                        <Field type="number" name="business_rating" id="business_rating" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Rating" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="business_address" className="">Business Address
+                                        </label>
+                                        <Field type="text" name="business_address" id="business_address" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Address" />
+                                    </div>
+                                    <div className=''>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, doesnt have to be too long.</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' />
+                                            </label>
+                                        </Tooltip>
+                                        
+                                        <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" />
+                                    </div>
+                                    <div >
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_pictures" className="flex flex-row items-center">Main Picture <FaInfoCircle className='mx-2' /></label>
+                                            <Field type="file" name="business_picture1" id="business_picture1"  placeholder="Business Pictures (comma-separated)" >
+                                                {({ field, form }) => (
+                                                    <input
+                                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    type="file"
+                                                    onChange={(event) => {
+                                                        form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                    }}
+                                                    />
+                                                )}
+                                            </Field>
+                                            <label htmlFor="business_pictures" className="flex flex-row items-center">4 Pictures for Slide Show</label>
+                                            <Field type="file" name="business_picture2" id="business_picture2"  placeholder="Business Pictures (comma-separated)" >
+                                                {({ field, form }) => (
+                                                    <input
+                                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    type="file"
+                                                    onChange={(event) => {
+                                                        form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                    }}
+                                                    />
+                                                )}
+                                            </Field>
+                                            <Field type="file" name="business_picture3" id="business_picture3"  placeholder="Business Pictures (comma-separated)" >
+                                                {({ field, form }) => (
+                                                    <input
+                                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    type="file"
+                                                    onChange={(event) => {
+                                                        form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                    }}
+                                                    />
+                                                )}
+                                            </Field>
+                                            <Field type="file" name="business_picture4" id="business_picture4" placeholder="Business Pictures (comma-separated)" >
+                                                {({ field, form }) => (
+                                                    <input
+                                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    type="file"
+                                                    onChange={(event) => {
+                                                        form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                    }}
+                                                    />
+                                                )}
+                                            </Field>
+                                            <Field type="file" name="business_video1" id="business_video1" placeholder="Business Pictures (comma-separated)" >
+                                                {({ field, form }) => (
+                                                    <input
+                                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                    type="file"
+                                                    onChange={(event) => {
+                                                        form.setFieldValue(field.name, event.currentTarget.files[0]);
+                                                    }}
+                                                    />
+                                                )}
+                                            </Field>
+                                        </Tooltip>
+                                    </div>
+                                    <div>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Use format shown in the placeholder text of the field. I.e enter it as '8am-10pm', if closed on a specific day just type the word 'closed'.</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_hours" className="flex flex-row items-center">Business Hours<FaInfoCircle className='mx-2' />
+                                            </label>
+                                        </Tooltip>
+                                </div>
+                                    <div className='flex flex-row justify-between'>
                                         <div>
-                                            <label htmlFor="hours_of_operation" className="">Monday</label>
-                                            <Field type="text" name="m_hours_of_operation" id="m_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Monday</label>
+                                                <Field type="text" name="m_hours_of_operation" id="m_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Tuesday</label>
+                                                <Field type="text" name="tu_hours_of_operation" id="tu_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Wednesday</label>
+                                                <Field type="text" name="w_hours_of_operation" id="w_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Thursday</label>
+                                                <Field type="text" name="th_hours_of_operation" id="th_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
                                         </div>
                                         <div>
-                                            <label htmlFor="hours_of_operation" className="">Tuesday</label>
-                                            <Field type="text" name="tu_hours_of_operation" id="tu_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="hours_of_operation" className="">Wednesday</label>
-                                            <Field type="text" name="w_hours_of_operation" id="w_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="hours_of_operation" className="">Thursday</label>
-                                            <Field type="text" name="th_hours_of_operation" id="th_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Friday</label>
+                                                <Field type="text" name="f_hours_of_operation" id="f_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Saturday</label>
+                                                <Field type="text" name="sa_hours_of_operation" id="sa_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="hours_of_operation" className="">Sunday</label>
+                                                <Field type="text" name="su_hours_of_operation" id="su_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
+                                            </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div>
-                                            <label htmlFor="hours_of_operation" className="">Friday</label>
-                                            <Field type="text" name="f_hours_of_operation" id="f_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="hours_of_operation" className="">Saturday</label>
-                                            <Field type="text" name="sa_hours_of_operation" id="sa_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="hours_of_operation" className="">Sunday</label>
-                                            <Field type="text" name="su_hours_of_operation" id="su_hours_of_operation" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Format 12am-12pm" />
-                                        </div>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Choose from the list of promo-codes to provide for a user of the concierge</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_barcode" className="flex flex-row items-center">Business Barcode<FaInfoCircle className='mx-2'/>
+                                            </label>
+                                        </Tooltip>
+                                        <Field as="select" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
+                                            <option value="">Select...</option>
+                                            {promoOptions.map(option => (
+                                            <option key={option.value} value={option.label}>
+                                                {option.label}
+                                            </option>
+                                            ))}
+                                        </Field>
+                                    </div>
+                                    <div>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Please select a date that the barcode becomes invalid</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_barcode" className="flex flex-row items-center">Date that the barcode is valid until<FaInfoCircle className='mx-2'/>
+                                            </label>
+                                        </Tooltip>
+                                        <Field as="select" name="business_barcode_date" id="business_barcode_date" placeholder="date for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
+                                            <option value="">Select...</option>
+                                            {dates.map(date => (
+                                            <option key={date} value={date}>
+                                                {date}
+                                            </option>
+                                            ))}
+                                        </Field>
                                     </div>
                                 </div>
-                                <div>
-                                    <Tooltip title={<h1 style={{fontSize: '1rem'}}>For Example if youd like to provide a 10% off coupon to customers with the barcode, you should enter: 'This code from the alfond inn AI-concierge represents 10% off the total'</h1>} placement="top-start" arrow>
-                                        <label htmlFor="business_barcode" className="flex flex-row items-center">Business Barcode<FaInfoCircle className='mx-2'/>
-                                        </label>
-                                    </Tooltip>
-                                    <Field type="text" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
-                                </div>
-                            </div>
 
-                            <div>
-                                <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Add Business
-                                </button>
-                            </div>
-                        </Form>
-                    </Formik>
+                                <div>
+                                    <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Add Business
+                                    </button>
+                                </div>
+                            </Form>
+                            )}
+                        </Formik>
+                    </div>
+                    
                 </div>
-                
             </div>
+            <div className='flex flex-col justify-center max-w-full'>
+                <h2 className="mt-6 text-center pr-36 text-3xl font-extrabold text-gray-900">Page Preview</h2>
+                <PreviewPage values={formData}/>
+            </div>
+            
         </div>
     );
 };

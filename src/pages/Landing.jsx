@@ -37,7 +37,7 @@ function Landing() {
                   <h1 className='text-white font-quicksand z-10 text-7xl mb-10'>Explore</h1>
                   <h1 className='text-white font-cursive z-10 text-9xl flex flex-row'> Winter Park</h1>
                   <h2 className='text-white font-quicksand z-10 text-3xl'>Find great places to eat, drink, shop and discover</h2>
-                  <a className='z-10 bg-white text-black font-quicksand text-2xl px-8 py-4 rounded-full mt-5 hover:scale-105 hover:bg-blue-500 duration-300 ease-in-out' href='/home'>Explore</a>
+                  <a className='z-10 bg-white text-black font-quicksand text-2xl px-8 py-4 rounded-full mt-5 hover:scale-105 hover:bg-[#5C0601] hover:text-white duration-300 ease-in-out' href='/home'>Explore</a>
               </div> 
           </div>
       </div>

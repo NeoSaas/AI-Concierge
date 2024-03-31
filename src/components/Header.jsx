@@ -29,13 +29,13 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
 
   return (
     //bg-[url(/public/bgpattern.png)]
-    <div className="py-20 flex justify-center items-center flex-col bg-white rounded-xl absolute">
+    <div className="py-20 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute">
         <div className='z-40 text-center mx-20'>                                                                   
           {!suggestedDisplayed ? 
             <>
               <p className="font-cursive font-thin text-5xl text-black my-4">Discover Winter Park, Florida</p>
               <h1 className=" font-quicksand text-6xl font-thin text-black flex flex-col text-wrap">Let AI-Concierge find the   
-              <span style={{ color: '#5C0601', marginLeft: '6px'}}>
+              <span style={{ color: '#B60C03', marginLeft: '6px'}}>
               <Typewriter
                   options={{
                     typeSpeed: 90,

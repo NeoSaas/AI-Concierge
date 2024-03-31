@@ -10,6 +10,11 @@ import 'react-slideshow-image/dist/styles.css';
 
 export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestaurant, clickedBusiness}) {
 
+  let d = new Date();
+  let day = d.getDay();
+  let month = d.getMonth();
+  let dateString = `${month}/${day}`;
+
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
 
   function closeModal() {
@@ -29,7 +34,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="ease-in duration-200"
+          leave="ease-in duration-300"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
@@ -43,7 +48,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
+              leave="ease-in duration-300"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
@@ -72,49 +77,31 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
         
                   {isRestaurant ? 
                   <>
-                    <div className='grid grid-cols-2 w-[70%] h-auto gap-8 mx-auto'>
+                    <div className='grid grid-cols-2 w-[100%] h-auto mx-auto'>
                       <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='max-h-[36rem] rounded-lg'/>
-                      <div className='w-[90%]'>
-                        <Slide>
-                          <div className=' each-slide-effect flex justify-center items-center'> 
-                          <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='rounded-lg'/> 
-                            {/* <img src={clickedBusiness.business_pictures[1]} alt='second-pic' className=''/> */}
-                          </div>
-                          <div className=' each-slide-effect '>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='rounded-lg'/>
-                          </div>
-                          <div className=' each-slide-effect '>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='rounded-lg'/>
-                          </div>
-                          <div className=' each-slide-effect '>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='rounded-lg'/>
-                          </div>
-                        </Slide>
-                        {/* <img src={clickedBusiness.business_pictures[1]} alt='second-pic' className=' h-full'/>
-                        <img src={clickedBusiness.business_pictures[2]} alt='third-pic' className=' h-full '/>
-                        <img src={clickedBusiness.business_pictures[3]} alt='second-pic' className=' h-full '/>
-                        <img src={clickedBusiness.business_pictures[4]} alt='third-pic' className=' h-full '/> */}
+                      <div className='w-[130%] pr-40'>
+                        <div>
+                          <p className='mt-4 text-2xl font-semibold'>Description</p>
+                          <p className='text-lg'>{clickedBusiness[0].business_description}</p>
+                        </div>
+                        
                       </div>
                     </div>
-                    <div className='grid grid-cols-[60%_40%] max-w-full gap-20'>
-                      <div>
-                        <p className='mt-4 text-2xl font-semibold'>Description</p>
-                        <p className='text-lg'>{clickedBusiness[0].business_description}</p>
-                      </div>
+                    <div className='grid grid-cols-[40%_60%] max-w-full mt-12'>
                       <div>
                         <div className='text-left'>
                           <p className='text-2xl font-semibold mt-4'>Type:</p>
                           <div className='flex flex-row'>
                             {clickedBusiness[0].business_tags.map((tag) => {
-                              return <p className='text-xl '>{tag + ","}</p>
+                              return <p className='text-xl text-center'>{tag + ","}</p>
                             })}
                           </div>
                         </div>
                         <div className='text-left flex flex-col'>
-                          <p className='text-2xl font-semibold mt-4'>Rating</p>
+                          <p className='text-2xl font-semibold mt-4'>Rating:</p>
                           <div className='flex flex-row'>
                             <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
-                            <p className='text-xl ml-10'>{clickedBusiness[0].business_rating} stars </p>
+                            <p className='text-xl ml-3'>{clickedBusiness[0].business_rating} stars </p>
                           </div>
                         </div>
                         <div className='h-auto w-max shadow-md px-5 rounded-xl right-0'>
@@ -126,6 +113,20 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           </div>
                         </div>
                       </div>
+                      <Slide>
+                          <div className=' each-slide-effect flex justify-center items-center'> 
+                          <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='rounded-lg h-full'/> 
+                          </div>
+                          <div className=' each-slide-effect flex justify-center items-center'>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='rounded-lg'/>
+                          </div>
+                          <div className=' each-slide-effect flex justify-center items-center'>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='rounded-lg'/>
+                          </div>
+                          <div className=' each-slide-effect flex justify-center items-center'>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='rounded-lg'/>
+                          </div>
+                        </Slide>
                     </div>
                     <div className='mt-20 flex-row flex justify-center items-center rounded-md p-3'>
                       <div className='flex flex-col '>
@@ -134,7 +135,15 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                       </div>
                       <div className='flex flex-col items-center justify-center'>
                         <p className='mb-5 text-xl'>Take a picture of the barcode and present it at the restaurant for Perks!</p>
-                        <Barcode value={clickedBusiness[0].business_barcode} width={1.4}/>
+                        {parseInt(clickedBusiness[0]?.business_barcode_date.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_date.split('/')[1]) <= parseInt(dateString.split('/')[1]) ?
+                        <>
+                        <p className='mb-5 text-xl'>{clickedBusiness[0].business_barcode}</p>
+                        <p className='mb-5 text-xl'>{"Promo code valid until: " + clickedBusiness[0].business_barcode_date}</p>
+                        </>
+                        :
+                        <p className='mb-5 text-xl'>No Promo Code available</p>
+                        }
+                        
                       </div>
                     </div>
                   </> : <QRCode value={otherLink} className='m-auto'/>}
@@ -143,7 +152,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                 <div className="mt-4 w-full flex items-center justify-center">
                   <button
                     type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 duration-300 ease-in-out"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-[#5C0601] px-4 py-2 text-sm font-medium text-white hover:bg-[#863633] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 duration-300 ease-in-out"
                     onClick={closeModal}
                   >
                     Close Me

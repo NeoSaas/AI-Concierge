@@ -93,6 +93,7 @@ def addBusinessData(request):
         'f_hours_of_operation': request.data.get('f_hours_of_operation'),
         'sa_hours_of_operation': request.data.get('sa_hours_of_operation'),
         'su_hours_of_operation': request.data.get('su_hours_of_operation'),
+        'business_barcode_date': request.data.get('business_barcode_date')
     }
     
     hours_dict = {
@@ -122,6 +123,7 @@ def addBusinessData(request):
         walk_time=0,
         transit_time=0,
         hours_of_operation=hours_dict,
+        business_barcode_date=new_business_data['business_barcode_date'],
         author=request.user
     )
     
@@ -130,6 +132,11 @@ def addBusinessData(request):
     serializer = BusinessSerializer(new_business)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
+def updateBusinessData(request):
+    business = Business.objects.filter(author=request.user)
+    serializer = BusinessSerializer(new_business)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
