@@ -40,7 +40,7 @@ const subActivities = {
 
 const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed }) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -140,6 +140,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
     setShowSubOptions(false);
     setDisplayOptions(true);
     setLoading(true);
+    setLoadingOptions(true);
     const prompt = await organizeQuery(selectedActivityIds);
     const response = await axios({
       method: 'post',
