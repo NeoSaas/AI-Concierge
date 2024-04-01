@@ -7,6 +7,8 @@ module.exports = {
   theme: {
     fontFamily: {
       'quicksand': ['Quicksand', 'sans-serif'],
+      'cursive': ['Style Script', 'sans-serif'],
+      'wedding': ['WeddingdayPersonalUseRegular', 'sans-serif'],
     },
     extend: {
 

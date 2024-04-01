@@ -4,18 +4,17 @@ import axios from "axios";
 export default async function organizeQuery(selectedActivities) {
     const userSelectedCategories = selectedActivities.join(', ');
 
-    const response = await axios.get('http://127.0.0.1:8000/api/getBusiness/');
+    const response = await axios.get('https://rr3l1d2s-8000.use.devtunnels.ms/api/getBusiness/');
     const businessTagsArray = response.data;
-    console.log(businessTagsArray, "BUSINESS TAGS")
+
     // Construct the list of businesses with their tags 
     let businessesList = '';
     for (let i = 0; i < businessTagsArray.length; i++) {
         const business = businessTagsArray[i];
         businessesList += `${business.business_name} [Tags: ${business.business_tags.join(', ')}]\n`;
-        console.log(businessesList);
+
     }
 
-    console.log(userSelectedCategories)
 
     // Construct the prompt template
     const promptTemplate = `

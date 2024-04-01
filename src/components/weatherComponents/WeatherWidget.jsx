@@ -6,7 +6,7 @@ const WeatherWidget = () => {
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = 'f90fd93e842f4f408cb2c83c5c10ddcd'; // Replace with your actual API key
+      const apiKey = '826bf9a7af34448fa62ce92e8ce71ae1'; // Replace with your actual API key
       setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
 
       const apiUrl = `https://api.weatherbit.io/v2.0/current?key=${apiKey}&lat=28.6000&lon=-81.3392&units=I`;
@@ -20,6 +20,7 @@ const WeatherWidget = () => {
           setWeather({
             temperature: weatherData.temp,
             condition: weatherData.weather.code,
+            description: weatherData.weather.description,
             conditionIcon: `https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`,
             locationName: weatherData.city_name,
             date: weatherData.ob_time,
@@ -41,7 +42,7 @@ const WeatherWidget = () => {
     return <div>Loading...</div>;
   }
 
-  const { temperature, condition, conditionIcon, locationName, date} = weather;
+  const { temperature, condition, conditionIcon, locationName, date, description} = weather;
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     weekday: 'long',
@@ -50,8 +51,9 @@ const WeatherWidget = () => {
   });
 
   return (
-    <div className="bg-white text-black flex items-center justify-between px-16 py-2 h-32 absolute w-full">
+    <div className="bg-white text-black flex items-center justify-between px-10 py-2 h-32 absolute w-full z-10">
       <div className="flex items-center">
+        <p className='font-quicksand text-2xl'>{description}</p>
         <img src={conditionIcon} alt="Weather Icon" className="h-20 w-20 mr-5" />
         <div>
           <div className="text-3xl font-bold">{locationName}</div>
