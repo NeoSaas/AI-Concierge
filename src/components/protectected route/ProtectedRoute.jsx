@@ -1,21 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import LoginPage from '../admin portal/LoginPage';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <div>
-          <p>You need to log in to view this page.</p>
-          <LoginPage/>
-        </div>
-      )
-    }
-  />
-);
+const ProtectedRoute = ({ user, children, redirect }) => {
+  const authenticate = localStorage.getItem('session_key') ? true : false;
+  const location = useLocation();
+  return authenticate ? (
+    children
+  ) : (
+    <Navigate
+      to={`/login?redirect=${encodeURIComponent(redirect || location.pathname)}`}
+    />
+  );
+};
 
 export default ProtectedRoute;
