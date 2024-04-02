@@ -57,6 +57,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   const [displayBusinesses, setDisplayBusinesses] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
+  const [failed, setFailed] = useState(false);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -137,38 +138,47 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   };
 
   const handleToOptions = async () => {
-    setShowSubOptions(false);
-    setDisplayOptions(true);
-    setLoading(true);
-    setLoadingOptions(true);
-    const prompt = await organizeQuery(selectedActivityIds);
-    const response = await axios({
-      method: 'post',
-      url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
-      data: { query: prompt },
-    });
-    const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
-
-    var multiBusinessResponse = businessesFromResponse.split(', ');
-    var businessDataResponse;
-    if (multiBusinessResponse.length > 1) {
-
-      businessDataResponse = await axios({
+    try {
+      setShowSubOptions(false);
+      setDisplayOptions(true);
+      setLoading(true);
+      setLoadingOptions(true);
+      const prompt = await organizeQuery(selectedActivityIds);
+      const response = await axios({
         method: 'post',
-        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
-        data: { business: multiBusinessResponse },
+        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
+        data: { query: prompt },
       });
+      const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
+
+      var multiBusinessResponse = businessesFromResponse.split(', ');
+      var businessDataResponse;
+      if (multiBusinessResponse.length > 1) {
+
+        businessDataResponse = await axios({
+          method: 'post',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+          data: { business: multiBusinessResponse },
+        });
+      }
+      else {
+        businessDataResponse = await axios({
+          method: 'post',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+          data: { business: businessesFromResponse },
+        });
+      }
+      setDisplayBusinesses(businessDataResponse.data);
+      setLoading(false);
+      setSuggestedDisplayed(true);
+    } catch (error) {
+      console.log(error);
+      setFailed(true);
+      setLoading(false);
+      setDisplayOptions(true);
+      setShowSubOptions(false);
     }
-    else {
-      businessDataResponse = await axios({
-        method: 'post',
-        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
-        data: { business: businessesFromResponse },
-      });
-    }
-    setDisplayBusinesses(businessDataResponse.data);
-    setLoading(false);
-    setSuggestedDisplayed(true);
+    
 
   }
 
@@ -198,7 +208,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
               </div>
               :
               <div>
-                {displayBusinesses.length == 0 ? 
+                {failed ? 
                 <>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
                   <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
