@@ -5,7 +5,7 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 // Individual amenity components
-const CafeContent = ({ morningMenuLink, eveningMenuLink }) => (
+const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE CAFÉ AT THE ALFOND INN</h1>
     <div className='w-[35rem] h-72'>
@@ -33,21 +33,21 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink }) => (
     <div className="mb-6 mt-12 text-2xl">
       <h2 className="text-2xl font-semibold text-gray-800 mb-2">Morning Menu Daily:</h2>
       <p className="text-gray-600 mb-4 text-xl ">6:00 AM to 2:00 PM</p>
-      <a href={morningMenuLink} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem]">
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(morningMenuLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem]">
         Café Morning Menu
-      </a>
+      </button>
     </div>
     <div className="mb-6 text-2xl">
       <h2 className="text-2xl  font-semibold text-gray-800 mb-2">Evening Menu Daily:</h2>
       <p className="text-gray-600 mb-4 ">3:00 PM to 11:00 PM</p>
-      <a href={eveningMenuLink} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem]">
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(eveningMenuLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem]">
         Café Evening Menu
-      </a>
+      </button>
     </div>
   </>
 );
 
-const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink }) => (
+const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
     <div className='w-[35rem] h-72 mx-auto'>
@@ -80,9 +80,9 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink }) => (
       <h3 className="text-md font-semibold text-gray-800 mb-2">BREAKFAST & LUNCH</h3>
       <p className="text-gray-600 mb-4 ">Monday - Friday: 7:00 AM to 2:00 PM</p>
       <p className="text-gray-600 mb-4 ">Saturday - Sunday: 8:00 AM to 2:00 PM</p>
-      <a href={brunchMenuLink} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem]">
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(brunchMenuLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem]">
         Brunch Menu
-      </a>
+      </button>
     </div>
     <div className="mb-6 text-2xl">
       <h3 className="text-2xl font-semibold text-gray-800 mb-2">HAPPY HOUR</h3>
@@ -92,9 +92,9 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink }) => (
     <div className="pt-4 border-t border-gray-200 text-xl">
       <h3 className="text-2xl font-semibold text-gray-800 mb-2">DINNER</h3>
       <p className="text-gray-600 mb-4">Daily: 5:00 PM to 9:00 PM</p>
-      <a href={dinnerMenuLink} className="bg-[#5C0601] text-white text-2xl font-bold py-2 px-4 rounded-[1.5rem]">
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(dinnerMenuLink)}} className="bg-[#5C0601] text-white text-2xl font-bold py-2 px-4 rounded-[1.5rem]">
         Dinner Menu
-      </a>
+      </button>
     </div>
   </>
 );
@@ -129,7 +129,7 @@ const LoungeContent = () => (
   </>
 );
 
-const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink }) => (
+const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <div className='max-w-[50rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE SPA AT THE ALFOND INN</h1>
     <div className='w-[35rem] h-72 mx-auto'>
@@ -152,16 +152,16 @@ const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink }) => (
     <p className="text-gray-600 mb-4">
       Enhance beauty and elevate wellness at The Spa at The Alfond Inn, Winter Park’s newest sought-after spa destination.
     </p>
-    <div className="mb-6 text-2xl">
-      <a href={spaMenuLink} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem] block text-center mb-2">
+    <div className="mb-6 text-2xl w-full flex flex-col justify-center ">
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(spaMenuLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem] text-center mb-2">
         Spa Menu
-      </a>
-      <a href={bookTreatmentLink} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem] block text-center mb-2">
+      </button>
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(bookTreatmentLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem] text-center mb-2">
         Book Treatment
-      </a>
-      <a href={buyGiftCardLink} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem] block text-center">
+      </button>
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(buyGiftCardLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 rounded-[1.5rem] text-center">
         Buy Gift Card
-      </a>
+      </button>
     </div>
     <div className="pt-4 border-t border-gray-200 text-2xl">
       <h3 className="text-md font-semibold text-gray-800 mb-2">Spa Hours:</h3>
@@ -256,12 +256,12 @@ const FitnessCenterContent = () => (
   </>
 );
 
-const renderSwitch = (param) => {
-  switch (param) {
+const renderSwitch = (selectedActivityId, setRestaurantLink, isOpen, setIsOpen) => {
+  switch (selectedActivityId) {
     case 'The Cafe':
-      return <CafeContent morningMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu' eveningMenuLink="https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu" />;
+      return <CafeContent setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} morningMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu' eveningMenuLink="https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu" />;
     case 'Hamiltons Kitchen':
-      return <HamiltonsKitchenContent brunchMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu' dinnerMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu' />;
+      return <HamiltonsKitchenContent setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} brunchMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu' dinnerMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu' />;
     case 'The Lounge':
       return <LoungeContent />;
     case 'The Spa':
@@ -269,6 +269,7 @@ const renderSwitch = (param) => {
                 spaMenuLink="'https://na.spatime.com/tai32789/5228842/home'" 
                 bookTreatmentLink='https://qrco.de/bebESs'
                 buyGiftCardLink='https://tai32789.na.book4time.com/spagift/' 
+                setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} 
                 />;
     case 'The Pool':
       return <PoolContent />;
@@ -280,11 +281,11 @@ const renderSwitch = (param) => {
   }
 };
 
-const HotelAmenityDisplay = ({ selectedActivityId }) => {
+const HotelAmenityDisplay = ({ selectedActivityId, setRestaurantLink, isOpen, setIsOpen}) => {
   console.log(selectedActivityId[0]);
   return (
     <div className="bg-white rounded-lg p-6 mt-12 font-quicksand">
-      {renderSwitch(selectedActivityId[0])}
+      {renderSwitch(selectedActivityId[0], setRestaurantLink, isOpen, setIsOpen)}
     </div>
   );
 };

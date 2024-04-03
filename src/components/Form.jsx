@@ -140,6 +140,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   const handleToOptions = async () => {
     try {
       setShowSubOptions(false);
+      setSuggestedDisplayed(true);
       setDisplayOptions(true);
       setLoading(true);
       setLoadingOptions(true);
@@ -202,9 +203,9 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
         {displayOptions ?
           <>
             {loading ?
-              <div className='flex items-center justify-center w-[34vh] flex-col mb-12'>
+              <div className='flex items-center justify-center w-[24vh] flex-col mb-4'>
                 <p className='text-2xl text-black mx-auto text-center'>Finding the best options for you...</p>
-                <Circles color="#5C0601" height={90} width={90}/>
+                <Circles color="#5C0601" height={120} width={120}/>
               </div>
               :
               <div>

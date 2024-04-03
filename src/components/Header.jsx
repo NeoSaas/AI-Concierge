@@ -3,9 +3,8 @@ import Form from './Form';
 import Typewriter from 'typewriter-effect';
 import HotelForm from './hotel specific/HotelForm';
 
-function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId}) {
+function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId, setIsHotelSpecific, isHotelSpecific}) {
   const [suggestedDisplayed, setSuggestedDisplayed] = React.useState(false);
-  const [hotel, setHotel] = React.useState(true);
   const [loadingOptions, setLoadingOptions] = React.useState(false);
 
   const words = [
@@ -45,15 +44,19 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
                     loop: true,
                   }}
                   />
-                </span>for you</h1>
-              <div className='w-full h-auto flex flex-row justify-between'>
-                {loadingOptions ? null : <><button onClick={() => setHotel(true)} className="bg-[#5C0601] text-white font-medium py-2 px-4 rounded-lg mt-10 text-xl mx-5">Alfond Inn Amenities</button>
-                <button onClick={() => setHotel(false)} className="bg-[#5C0601] text-white font-medium py-2 px-4 rounded-lg mt-10 text-xl mx-5">Local Businesses</button></>}
-              </div>
-              </> : null}
+              </span>for you</h1>
+            </> : null}
             <div className={suggestedDisplayed ? `flex` : `mt-12 flex`}>
-              {hotel ? <HotelForm setSuggestedDisplayed={setSuggestedDisplayed}/> : <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions}/>}
+              {isHotelSpecific ? <div className='flex flex-col'><p className=' text-2xl font-quicksand font-semibold'>{suggestedDisplayed ? "": "Hotel Amenities"}</p> <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed}/> </div> : <div className='flex flex-col'><p className=' text-2xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Local Businesses"}</p> <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions}/></div>}
             </div>
+            {!suggestedDisplayed ? 
+              <div className={isHotelSpecific? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[20px]' }>
+                {loadingOptions ? null : <><button onClick={isHotelSpecific ? (() => setIsHotelSpecific(false)) :(() => setIsHotelSpecific(true))} className={isHotelSpecific ? " bg-[#5C0601] relative left-44 text-white font-medium py-1 border-[3px] border-[#5C0601] px-4 rounded-lg mt-10 text-2xl mx-5" : " bg-[#5C0601] text-white font-medium py-1 border-[3px] border-[#5C0601] px-4 rounded-lg mt-0 text-2xl mx-"}>{isHotelSpecific ? "Local Businesses" : "Alfond Inn Amenities"}</button></>}
+              </div> 
+              : 
+              null
+            }
+            
             
         </div>
     </div>

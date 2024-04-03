@@ -33,8 +33,8 @@ function AmenitiesDining() {
             <Navbar />
             <WeatherWidget />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
-            {/* <div className='absolute gradient-top h-full w-full'></div>
-            <div className='absolute gradient-bottom h-full w-full'></div> */}
+            <div className='absolute gradient-top h-full w-full'></div>
+            <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner />
             <div
                 className={`w-full h-[95vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
