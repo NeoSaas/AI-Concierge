@@ -40,7 +40,7 @@ const subActivities = {
 
 const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -57,6 +57,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   const [displayBusinesses, setDisplayBusinesses] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
+  const [failed, setFailed] = useState(false);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -99,13 +100,8 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
     }
     return;
   }
-
-  
-
     // Update the state with the selected ids
-
     setSelectedIds(updatedIds);
-
     // Update the state with the selected and unselected names
     if (isSelected) {
       setUnselectedNames((prevNames) => prevNames.filter((name) => name !== activity));
@@ -142,24 +138,48 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
   };
 
   const handleToOptions = async () => {
-    setShowSubOptions(false);
-    setDisplayOptions(true);
-    setLoading(true);
-    const prompt = await organizeQuery(selectedActivityIds);
-    const response = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/', { query: prompt });
-    const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
+    try {
+      setShowSubOptions(false);
+      setSuggestedDisplayed(true);
+      setDisplayOptions(true);
+      setLoading(true);
+      setLoadingOptions(true);
+      const prompt = await organizeQuery(selectedActivityIds);
+      const response = await axios({
+        method: 'post',
+        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
+        data: { query: prompt },
+      });
+      const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
 
-    var multiBusinessResponse = businessesFromResponse.split(', ');
-    var businessDataResponse;
-    if (multiBusinessResponse.length > 1) {
+      var multiBusinessResponse = businessesFromResponse.split(', ');
+      var businessDataResponse;
+      if (multiBusinessResponse.length > 1) {
 
-      businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/', { business: multiBusinessResponse });
+        businessDataResponse = await axios({
+          method: 'post',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+          data: { business: multiBusinessResponse },
+        });
+      }
+      else {
+        businessDataResponse = await axios({
+          method: 'post',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+          data: { business: businessesFromResponse },
+        });
+      }
+      setDisplayBusinesses(businessDataResponse.data);
+      setLoading(false);
+      setSuggestedDisplayed(true);
+    } catch (error) {
+      console.log(error);
+      setFailed(true);
+      setLoading(false);
+      setDisplayOptions(true);
+      setShowSubOptions(false);
     }
-    else {
-      businessDataResponse = await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/', { business: businessesFromResponse });
-    }
-    setDisplayBusinesses(businessDataResponse.data);
-    setLoading(false);
+    
 
   }
 
@@ -178,28 +198,38 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
 
   return (
     <div>
-      {showSubOptions ? (<p className='font-quicksand text-2xl mb-10'>What kind of {selectedActivityIds.length > 2 ? "specific activities" : selectedActivityIds.join(', and ')} are you looking for?</p>) : (<></>)}
+      {showSubOptions ? (<p className='font-quicksand text-2xl mb-10'>What specifically are you looking for?</p>) : (<></>)}
       <div className="flex justify-center font-quicksand">
         {displayOptions ?
           <>
             {loading ?
-              <div className='flex items-center justify-center w-screen flex-col mb-12'>
+              <div className='flex items-center justify-center w-[24vh] flex-col mb-4'>
                 <p className='text-2xl text-black mx-auto text-center'>Finding the best options for you...</p>
-                <Circles color="#0066FF" height={90} width={90} />
+                <Circles color="#5C0601" height={120} width={120}/>
               </div>
               :
               <div>
-                <a className=' bg-[#0066FF] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
-                <p className='text-xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
+                {failed ? 
+                <>
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
+                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                </>
+                : 
+                <>
+                  <a className=' bg-[#5C0601] py-4 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
 
-                <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} />
+                  <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
+                </>
+                }
+                
               </div>
             }
           </>
           :
           <>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-500 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-md shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={currentPage === 0}
               onClick={handlePrevPage}
             >
@@ -256,7 +286,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
               }
             </div>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-blue-500 text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-md shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={showSubOptions ? currentPage === subTotalPages - 1 : currentPage === totalPages - 1}
               onClick={handleNextPage}
             >
@@ -270,13 +300,13 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant }) => {
 
         {displayOptions ? (<></>) : (showSubOptions ? 
         <>
-          <button className=' border-[3px] border-[#0066FF] text-[#0066FF] disabled:text-gray-400 rounded-md my-auto py-1 px-5 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#0066FF] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#0066FF] px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:text-gray-400 rounded-md my-auto py-1 px-5 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          <button className='my-auto border-[3px] border-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#5C0601] px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
         </> 
         : 
         <>
-          <button className=' border-[3px] border-[#0066FF] text-[#0066FF] disabled:border-gray-400 disabled:text-gray-400 rounded-md my-auto px-5 py-1 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#0066FF] text-2xl bg-[#0066FF] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:border-gray-400 disabled:text-gray-400 rounded-md my-auto px-5 py-1 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          <button className='my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
         </>
         )}
 

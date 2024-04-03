@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -11,10 +12,12 @@ from django.core.management import call_command
 import requests
 import json
 import sys, os, base64, datetime, hashlib, hmac 
-from .models import Business, Hotel
-from .serializers import BusinessSerializer, HotelSerializer
+from .models import Business, Hotel, Image
+from .serializers import BusinessSerializer, HotelSerializer, ImageSerializer
 from openai import OpenAI
 import googlemaps
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from rest_framework.decorators import parser_classes
 
 def index(request):
     tag_to_monitor = 'your_tag_name'
@@ -23,6 +26,23 @@ def index(request):
     return JsonResponse({'conversations': 'test'})
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
+def signup(request):
+    if request.method == 'POST':
+        username = request.data.get('username')
+        email = request.data.get('email')
+        password = request.data.get('password')
+        business = request.data.get('business')
+        if not (username and email and password):
+            return Response({'error': 'Please provide username, email, and password.'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            user = User.objects.create_user(username=username, email=email, password=password, business=business)
+            return Response({'success': 'User created successfully.'}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@parser_classes([JSONParser])
 def login_view(request):
     #login 
     username = request.data.get('username')
@@ -30,30 +50,42 @@ def login_view(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return JsonResponse({'message': 'Login successful'})
+        return JsonResponse({'session_key': request.session.session_key})
     else:
         return JsonResponse({'message': 'Login failed'}, status=401)
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def logout_view(request):
     #logout
     logout(request)
     return JsonResponse({'message': 'Logout successful'})
 
 @api_view(['GET'])
+@parser_classes([JSONParser])
 def getBusinessData(request):
     businesses = Business.objects.all()
     serializer = BusinessSerializer(businesses, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 @api_view(['POST'])
+@parser_classes([MultiPartParser])
 def addBusinessData(request):
+    parser_classes = (MultiPartParser,FormParser,JSONParser)
+    print(request.FILES)
+
     new_business_data = {
         'business_name': request.data.get('business_name'),
         'business_rating': request.data.get('business_rating'),
         'business_tags': request.data.get('business_tags').split(','),
         'business_address': request.data.get('business_address'),
         'business_barcode': request.data.get('business_barcode'),
+        'business_image_1': request.FILES['business_picture1'],
+        'business_image_2': request.FILES['business_picture2'],
+        'business_image_3': request.FILES['business_picture3'],
+        'business_image_4': request.FILES['business_picture4'],
+        'business_video_1': request.FILES['business_video1'],
+        'business_description': request.data.get('business_description'),
         'm_hours_of_operation': request.data.get('m_hours_of_operation'),
         'tu_hours_of_operation': request.data.get('tu_hours_of_operation'),
         'w_hours_of_operation': request.data.get('w_hours_of_operation'),
@@ -61,82 +93,53 @@ def addBusinessData(request):
         'f_hours_of_operation': request.data.get('f_hours_of_operation'),
         'sa_hours_of_operation': request.data.get('sa_hours_of_operation'),
         'su_hours_of_operation': request.data.get('su_hours_of_operation'),
+        'business_barcode_date': request.data.get('business_barcode_date')
     }
+    
     hours_dict = {
-        "monday": new_business_data['m_hours_of_operation'],
-        "tuesday": new_business_data['tu_hours_of_operation'],
-        "wednesday": new_business_data['w_hours_of_operation'],
-        "thursday": new_business_data['th_hours_of_operation'],
-        "friday": new_business_data['f_hours_of_operation'],
-        "satuday": new_business_data['sa_hours_of_operation'],
-        "sunday": new_business_data['su_hours_of_operation'],
-        }
+        "Monday": new_business_data['m_hours_of_operation'],
+        "Tuesday": new_business_data['tu_hours_of_operation'],
+        "Wednesday": new_business_data['w_hours_of_operation'],
+        "Thursday": new_business_data['th_hours_of_operation'],
+        "Friday": new_business_data['f_hours_of_operation'],
+        "Satuday": new_business_data['sa_hours_of_operation'],
+        "Sunday": new_business_data['su_hours_of_operation'],
+    }
+    
     new_business = Business(
         business_name=new_business_data['business_name'],
         business_rating=new_business_data['business_rating'],
         business_tags=new_business_data['business_tags'],
         business_address=new_business_data['business_address'],
         business_barcode=new_business_data['business_barcode'],
+        business_description=new_business_data['business_description'],
+        business_image_1=new_business_data['business_image_1'],
+        business_image_2=new_business_data['business_image_2'],
+        business_image_3=new_business_data['business_image_3'],
+        business_image_4=new_business_data['business_image_4'],
+        business_video_1=new_business_data['business_video_1'],
         business_place_id='NULL',
         drive_time=0,
         walk_time=0,
         transit_time=0,
         hours_of_operation=hours_dict,
-        business_pictures=[],
+        business_barcode_date=new_business_data['business_barcode_date'],
+        author=request.user
     )
     
     new_business.save()
+        
     serializer = BusinessSerializer(new_business)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@csrf_exempt
-@api_view(['GET'])
-def getBusinessDataGoogle(request):
-    
-    data = json.loads(request.body)
-    selected_businesses = data.get('businesses', [])
 
-    places_api_endpoint = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
-    api_key = settings.GOOGLE_API_KEY
-
-    business_details = {}
-
-    for business_name in selected_businesses:
-        params = {
-            'key': api_key,
-            'query': business_name,
-            'fields': 'name,rating,formatted_address,formatted_phone_number,reviews,photo',
-        }
-
-        response = requests.get(places_api_endpoint, params=params)
-
-        if response.status_code == 200:
-            results = response.json().get('results')
-            if results:
-                # Assuming the first result is the most relevant
-                place_id = results[0]['place_id']
-                # Now we fetch details for the specific place using its place_id
-                details_params = {
-                    'key': api_key,
-                    'place_id': place_id,
-                    'fields': 'name,rating,formatted_address,formatted_phone_number,reviews, photo',
-                }
-                details_response = requests.get('https://maps.googleapis.com/maps/api/place/details/json', params=details_params)
-                
-                if details_response.status_code == 200:
-                    business_data = details_response.json().get('result')
-                    business_details[business_name] = business_data
-                else:
-                    print(f"Error fetching details for {business_name}")
-            else:
-                print(f"No results found for {business_name}")
-        else:
-            print(f"Error fetching data for {business_name}")
-
-    return JsonResponse(business_details)
-
+def updateBusinessData(request):
+    business = Business.objects.filter(author=request.user)
+    serializer = BusinessSerializer(new_business)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def OPAIEndpointCreate(request):
     client = OpenAI(organization='org-2oZsacQ1Ji3Xr0uveLpwg50m', api_key=settings.OPEN_AI_KEY)
     
@@ -150,13 +153,12 @@ def OPAIEndpointCreate(request):
     return JsonResponse({'response-payload': response.choices[0].message.content})
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def querySpecifcBusinessData(request):
     businessesList = []
     api_key = settings.GOOGLE_API_KEY
     map_client = googlemaps.Client(api_key)
     location = "Winter Park, Florida United States"
-    
-    
     
     for business in request.data.get('business'):
         try:
@@ -170,12 +172,7 @@ def querySpecifcBusinessData(request):
             bus_photos = results['photos']
             bus_lat_long = results['geometry']
             bus_photo_urls = []
-            
-            # Get photo URLs
-            for photo in bus_photos:
-                photo_reference = photo['photo_reference']
-                photo_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_reference}&key={api_key}"
-                bus_photo_urls.append(photo_url)
+            # business = Business.objects.filter(business_name=business)
 
             # Build the directions URL
             destination = bus_name.replace(' ', '+') + '+' + bus_address.replace(' ', '+') + '+' + 'Winter+Park%2c+Florida+United+States'
@@ -189,7 +186,13 @@ def querySpecifcBusinessData(request):
             transit_time = tRequest['rows'][0]['elements'][0]['duration']['text']
 
             business_db_object = Business.objects.filter(business_name=business)
-            business_db_object.update(business_name=bus_name, business_address=bus_address, business_place_id=bus_place_id, business_rating=bus_rating, business_pictures=bus_photo_urls, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time, directions_url=directions_url)
+            
+            # # Get photo URLs
+            # images = Image.objects.filter(business=business_db_object)
+            # image_urls = [image.image.url for image in images]
+            # print(image_urls)
+            
+            business_db_object.update(business_place_id=bus_place_id, walk_time=walk_time, drive_time=drive_time, transit_time=transit_time, directions_url=directions_url)
             
         except Exception as e:
             print(e)
@@ -197,5 +200,7 @@ def querySpecifcBusinessData(request):
         # businessesList.append(Business.objects.filter(business_name=business))
         
         serializer = BusinessSerializer(Business.objects.filter(business_name=business), many=True)
+        # data = serializer.data
+        # data['business_pictures'] = image_urls
         businessesList.append(serializer.data)
     return JsonResponse(businessesList, safe=False)

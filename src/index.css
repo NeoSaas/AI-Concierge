@@ -4,7 +4,7 @@
 
 @layer components {
     .checkbox-label:has(input:checked) {
-      @apply border-blue-400 bg-[#0066FF] border-2  text-white; 
+      @apply border-[#5C0601] bg-[#5C0601] border-2  text-white; 
     }
 }
 

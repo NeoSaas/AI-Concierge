@@ -6,12 +6,16 @@ import BottomBanner from '../components/BottomBanner';
 import Form from '../components/Form';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import MyDialog from '../components/QrDialog';
+import HotelQrDialog from '../components/hotel specific/HotelQrDialog';
 
 const Home = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [restaurantLink, setRestaurantLink] = useState(null);
-    const [isRestaurant, setIsRestaurant] = useState(false);
+    const [isRestaurant, setIsRestaurant] = useState(true);
+    const [clickedBusiness, setClickedBusiness] = useState([]);
+    const [isHotelSpecific, setIsHotelSpecific] = useState(true);
+    
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -29,14 +33,25 @@ const Home = () => {
                 <div className=''>
                     <WeatherWidget/>
                 </div>
-                <div className='absolute gradient-top h-full w-full'></div>
-                <div className='absolute gradient-bottom h-full w-full'></div>
+                {/* <div className='absolute gradient-top h-full w-full opacity-70'></div>
+                <div className='absolute gradient-bottom h-full w-full opacity-70'></div> */}
                 <div className={`h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant}/>
+                    {isOpen ? 
+                        isHotelSpecific ?
+                        <HotelQrDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} />
+                        :
+                        <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness}/> 
+                    : null}
+                    {/* <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness}/> */}
                     {/* <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
                     <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/> */}
                     <Navbar />
-                    <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant}/>
+                    
+                    <div className='w-full h-[92%] flex justify-center items-center'>
+                        <a href="/" className='absolute top-72 mx-auto px-5 py-1 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-lg'>Back to Home</a>
+                        <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
+                    </div>
+                    
                     <BottomBanner/>
                 </div>
             </div>

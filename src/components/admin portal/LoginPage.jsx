@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const LoginPage = ({ login }) => {
+const LoginPage = ({ login, setRememberMe }) => {
     const nav = useNavigate();
     const initialValues = {
         username: '',
@@ -17,15 +17,25 @@ const LoginPage = ({ login }) => {
     });
 
     const handleSubmit = async (values) => {
-        await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/login/', values)
-            .then(response => {
-                login();
-                // Redirect to business creation page on successful login
-                nav('/admin_portal');
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        const response = await axios({
+            method: 'post',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/login/',
+            data: values,
+            config: {
+                headers: {
+                    'content-Type': 'multipart/json'
+                }
+            }
+        })
+        await login();
+        const { session_key } = response.data;
+        localStorage.setItem('session_key', session_key);
+        console.log(values['remember-me'])
+        if(values.rememberMe){
+            setRememberMe(true);
+        }
+        // Redirect to business creation page on successful login
+        nav('/admin_portal');
     }
 
 
@@ -49,7 +59,7 @@ const LoginPage = ({ login }) => {
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                                <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
+                                <Field id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
                                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                                     Remember me
                                 </label>

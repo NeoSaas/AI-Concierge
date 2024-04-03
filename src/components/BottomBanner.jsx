@@ -25,12 +25,12 @@ const BottomBanner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change 5000 to the desired interval in milliseconds
+    }, 4000); // Change 5000 to the desired interval in milliseconds
     return () => clearInterval(interval);
   }, [currentImageIndex]);
 
   return (
-    <div className="absolute bottom-[-100px] w-full h-96 font-quicksand border-t-2 border-black">
+    <div className="absolute bottom-[0px] w-full h-[450px] font-quicksand border-t-2 border-black">
       {/* Slides */}
       {images.map((image, index) => (
         <div
@@ -44,9 +44,6 @@ const BottomBanner = () => {
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-16 left-20 right-0 p-6 text-white bg-black bg-opacity-0">
-            {/* <p className="text-lg font-semibold">{image.text}</p> */}
-          </div>
         </div>
       ))}
       {/* Navigation Buttons */}

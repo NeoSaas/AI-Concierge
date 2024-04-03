@@ -3,25 +3,25 @@ import { React } from 'react'
 import Rating from '@mui/material/Rating';
 import { FaWalking, FaCar, FaBus } from "react-icons/fa";
 
-function BusinessCardDisplay({ business, setIsOpen, setRestaurantLink, setIsRestaurant}) {
+function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness}) {
 
   const weekday = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
   const d = new Date();
   let day = weekday[d.getDay()];
-
   if(business[0].business_tags.includes('Restaurant')){
     setIsRestaurant(true)
   }
+  console.log(business[0].hours_of_operation['saturday']);
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto h-[30rem] grid grid-cols-2 gap-10" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); }} >
+    <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto h-[30rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business); }} >
       <div className='w-full h-full flex justify-center items-center'>
-        <img src={business[0].business_pictures} alt={business[0].name} className="w-max h-auto max-h-96 rounded-lg mx-auto mt-6" />
+        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${business[0].business_image_1}`} alt={business[0].name} className="w-max h-auto max-h-96 rounded-lg mx-auto mt-6" />
       </div>
       <div className='w-full h-auto flex justify-center items-center flex-col pr-10'>
         <h3 className="text-2xl font-semibold mb-2">{business[0].business_name}</h3>
         <p className="text-gray-600 mb-2 text-xl font-semibold">{business[0].business_address}</p>
         <p className='mt-2 font-semibold'>Todays Hours of Operation:</p>
-        <div className='font-semibold'>{(business[0].hours_of_operation[day]).replace('-', ' - ')}</div>
+        <div className='font-semibold'>{(business[0].hours_of_operation[day])}</div>
         <div className='flex flex-row justify-center  mt-2'>
           <div className='flex flex-row items-center mx-3'>
             <FaWalking className='mx-2' />
