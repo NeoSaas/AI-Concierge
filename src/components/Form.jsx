@@ -215,7 +215,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                 </>
                 : 
                 <>
-                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <a className=' bg-[#5C0601] py-4 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
 
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
@@ -228,7 +228,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
           :
           <>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-md shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={currentPage === 0}
               onClick={handlePrevPage}
             >
@@ -285,7 +285,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
               }
             </div>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-md shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={showSubOptions ? currentPage === subTotalPages - 1 : currentPage === totalPages - 1}
               onClick={handleNextPage}
             >

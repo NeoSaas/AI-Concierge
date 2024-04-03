@@ -44,9 +44,6 @@ const BottomBanner = () => {
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-16 left-20 right-0 p-6 text-white bg-black bg-opacity-0">
-            {/* <p className="text-lg font-semibold">{image.text}</p> */}
-          </div>
         </div>
       ))}
       {/* Navigation Buttons */}
