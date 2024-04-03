@@ -202,7 +202,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
         {displayOptions ?
           <>
             {loading ?
-              <div className='flex items-center justify-center w-[40vh] flex-col mb-12'>
+              <div className='flex items-center justify-center w-[34vh] flex-col mb-12'>
                 <p className='text-2xl text-black mx-auto text-center'>Finding the best options for you...</p>
                 <Circles color="#5C0601" height={90} width={90}/>
               </div>
