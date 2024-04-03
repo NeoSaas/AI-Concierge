@@ -46,7 +46,9 @@ const Home = () => {
                     {/* <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
                     <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/> */}
                     <Navbar />
+                    
                     <div className='w-full h-[92%] flex justify-center items-center'>
+                        <a href="/" className='absolute top-72 mx-auto px-5 py-1 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-lg'>Back to Home</a>
                         <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
                     </div>
                     
