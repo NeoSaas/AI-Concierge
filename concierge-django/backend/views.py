@@ -68,11 +68,13 @@ def getBusinessData(request):
     serializer = BusinessSerializer(businesses, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+@csrf_exempt
 @api_view(['POST'])
 @parser_classes([MultiPartParser])
 def addBusinessData(request):
     parser_classes = (MultiPartParser,FormParser,JSONParser)
     print(request.FILES)
+    print(request.user.id)
 
     new_business_data = {
         'business_name': request.data.get('business_name'),
@@ -123,8 +125,8 @@ def addBusinessData(request):
         walk_time=0,
         transit_time=0,
         hours_of_operation=hours_dict,
-        business_barcode_date=new_business_data['business_barcode_date'],
-        author=request.user
+        business_barcode_dates=new_business_data['business_barcode_date'],
+        # author=request.user
     )
     
     new_business.save()

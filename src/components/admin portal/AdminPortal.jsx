@@ -11,6 +11,8 @@ import { Circles } from 'react-loader-spinner';
 
 const AddBusinessPage = () => {
 
+    axios.defaults.withCredentials = true;
+
     const [formData, setFormData] = React.useState({});
     const [success, setSuccess] = React.useState(false);
     const [fail, setFail] = React.useState(false);
@@ -290,7 +292,8 @@ const AddBusinessPage = () => {
             data: values,
             headers: {
                 'content-Type': 'multipart/form-data',
-            }
+            },
+            withCredentials: true,
         }) // Adjust the endpoint URL as per your API
         .then(response => {
             console.log('Business added successfully:', response.data);
@@ -565,8 +568,8 @@ const AddBusinessPage = () => {
                                         </Field>
                                     </div>
                                     <div>
-                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Please select a date that the barcode becomes invalid</h1>} placement="top-start" arrow>
-                                            <label htmlFor="business_barcode" className="flex flex-row items-center">Date that the barcode is valid until<FaInfoCircle className='mx-2'/>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Please select a date that the promo code becomes invalid</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_barcode" className="flex flex-row items-center">Date that the promo code is valid until<FaInfoCircle className='mx-2'/>
                                             </label>
                                         </Tooltip>
                                         <Field as="select" name="business_barcode_date" id="business_barcode_date" placeholder="date for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
