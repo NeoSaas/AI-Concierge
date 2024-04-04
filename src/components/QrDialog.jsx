@@ -56,7 +56,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[110rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[113rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
@@ -83,7 +83,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                   <>
                     <div className='grid grid-cols-2 w-[100%] h-auto mx-auto'>
                       <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='max-h-[32rem] rounded-lg'/>
-                      <div className='w-[130%] pr-40'>
+                      <div className='w-[130%] pr-[11rem]'>
                         <div>
                           <p className='mt-4 text-2xl font-semibold'>Description</p>
                           <p className='text-lg'>{clickedBusiness[0].business_description}</p>
@@ -91,13 +91,13 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         
                       </div>
                     </div>
-                    <div className='grid grid-cols-[40%_60%] max-w-full mt-12'>
+                    <div className='grid grid-cols-[40%_60%] max-w-full mt-5 gap-8'>
                       <div>
                         <div className='text-left'>
                           <p className='text-2xl font-semibold mt-4'>Type:</p>
                           <div className='flex flex-row'>
                             {clickedBusiness[0].business_tags.map((tag) => {
-                              return <p className='text-xl text-center'>{tag + ","}</p>
+                              return <p className='text-xl text-center'>{tag}, &nbsp;</p>
                             })}
                           </div>
                         </div>
@@ -112,13 +112,13 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <p className='text-2xl font-semibold mt-12 text-left'>Hours of Operation:</p>
                           <div className='flex flex-col'>
                             {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
-                              return <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>{key + ":"}</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
+                              return <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
                             })}
                           </div>
                         </div>
                       </div>
-                      <div className='ml-[7.5rem] mt-9'>
-                        <Carousel width={430} autoPlay={true} interval={4000}>
+                      <div className='w-full flex justify-center mt-9'>
+                        <Carousel width={380} autoPlay={true} interval={10000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
                           <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='rounded-lg'/> 
                           </div>
@@ -134,7 +134,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </Carousel>
                       </div>
                     </div>
-                    <div className='mt-8 flex-row flex justify-center items-center rounded-md p-3'>
+                    <div className='flex-row flex justify-center items-center rounded-md p-3'>
                       <div className='flex flex-col '>
                         <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         <QRCode value={otherLink} className='m-auto'/>
@@ -144,6 +144,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ?
                         <>
                         <p className='mb-5 text-xl'>{clickedBusiness[0].business_barcode}</p>
+                        <p className='mb-5 text-xl'>{clickedBusiness[0].busness_name}</p>
                         <p className='mb-5 text-xl'>{"Promo code valid until: " + clickedBusiness[0].business_barcode_date}</p>
                         </>
                         :
@@ -158,7 +159,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                 <div className="mt-4 w-full flex items-center justify-center">
                   <button
                     type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-[#5C0601] px-4 py-2 text-sm font-medium text-white hover:bg-[#863633] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 duration-300 ease-in-out"
+                    className="inline-flex justify-center rounded-full border border-transparent w-full bg-[#5C0601] px-4 py-3 text-2xl font-medium text-white hover:bg-[#863633] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 duration-300 ease-in-out"
                     onClick={closeModal}
                   >
                     Close Me

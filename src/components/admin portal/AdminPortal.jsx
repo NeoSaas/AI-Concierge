@@ -8,6 +8,8 @@ import { render } from '@testing-library/react';
 import PreviewPage from './PreviewPage';
 import 'react-loader-spinner';
 import { Circles } from 'react-loader-spinner';
+import AdminPortalNav from './AdminPortalNav';
+import * as Yup from 'yup';
 
 const AddBusinessPage = () => {
 
@@ -17,14 +19,8 @@ const AddBusinessPage = () => {
     const [success, setSuccess] = React.useState(false);
     const [fail, setFail] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
-
-    const handleFormChange = (values) => {
-        console.log('Form values:', values);
-        setFormData(values); // Update formData state with form values
-    };
-
-    const dates = ['3/0', '3/1', '3/2', '3/3', '3/4', '3/5', '3/6', '3/7', '3/8', '3/9', '3/10', '3/11', '3/12', '3/13', '3/14', '3/15', '3/16', '3/17', '3/18', '3/19', '3/20', '3/21', '3/22', '3/23', '3/24', '3/25', '3/26', '3/27', '3/28', '3/29', '3/30', '4/1', '4/1', '4/2', '4/3', '4/4', '4/5', '4/6', '4/7', '4/8', '4/9', '4/10', '4/11', '4/12', '4/13', '4/14', '4/15', '4/16', '4/17', '4/18', '4/19', '4/20', '4/21', '4/22', '4/23', '4/24', '4/25', '4/26', '4/27', '4/28', '4/29', '4/30'];
-
+    const [editPage, setEditPage] = React.useState(false);
+    const dates = ['3/1/24', '3/2/24', '3/3/24', '3/4/24', '3/5/24', '3/6/24', '3/7/24', '3/8/24', '3/9/24', '3/10/24', '3/11/24', '3/12/24', '3/13/24', '3/14/24', '3/15/24', '3/16/24', '3/17/24', '3/18/24', '3/19/24', '3/20/24', '3/21/24', '3/22/24', '3/23/24', '3/24/24', '3/25/24', '3/26/24', '3/27/24', '3/28/24', '3/29/24', '3/30/24', '4/1/24', '4/1/24', '4/2/24', '4/3/24', '4/4/24', '4/5/24', '4/6/24', '4/7/24', '4/8/24', '4/9/24', '4/10/24', '4/11/24', '4/12/24', '4/13/24', '4/14/24', '4/15/24', '4/16/24', '4/17/24', '4/18/24', '4/19/24', '4/20/24', '4/21/24', '4/22/24', '4/23/24', '4/24/24', '4/25/24', '4/26/24', '4/27/24', '4/28/24', '4/29/24', '4/30/24'];
     const d = new Date();
     // React.useEffect(() => {
     //     for (let i = 0; i < 60; i++) {
@@ -73,7 +69,6 @@ const AddBusinessPage = () => {
         { value: 'Language Classes or Translators', label: 'Language Classes or Translators' },
         { value: 'Medical Clinics or Pharmacies', label: 'Medical Clinics or Pharmacies' }
     ];
-
     const subOptions = [
         { value: 'Clubs', label: 'Clubs' },
         { value: 'Dive Bars', label: 'Dive Bars' },
@@ -81,6 +76,7 @@ const AddBusinessPage = () => {
         { value: 'Karaoke Bars', label: 'Karaoke Bars' },
         { value: 'Sports Bars', label: 'Sports Bars' },
         { value: 'Wine Bar', label: 'Wine Bar' },
+        { value: 'Up Scale Bar', label: 'Up Scale Bar' },
         { value: 'American', label: 'American' },
         { value: 'Argentinean', label: 'Argentinean' },
         { value: 'Australian', label: 'Australian' },
@@ -120,6 +116,7 @@ const AddBusinessPage = () => {
         { value: 'Spanish', label: 'Spanish' },
         { value: 'Swiss', label: 'Swiss' },
         { value: 'Thai', label: 'Thai' },
+        { value: 'Michelin Restaurant', label: 'Michelin Restaurant' },
         { value: 'Turkish', label: 'Turkish' },
         { value: 'Vietnamese', label: 'Vietnamese' },
         { value: 'Fancy', label: 'Fancy' },
@@ -263,11 +260,17 @@ const AddBusinessPage = () => {
         { value: 'Urgent Care Clinics', label: 'Urgent Care Clinics' },
         { value: 'Specialty Clinics', label: 'Specialty Clinics' }
     ];
-
     const promoOptions =[
+        { value: '10PERCENTOFF', label: '10% Off Your Entire Purchase (10PERCENTOFF)' },
         { value: '20PERCENTOFF', label: '20% Off Your Entire Purchase (20PERCENTOFF)' },
+        { value: '30PERCENTOFF', label: '40% Off Your Entire Purchase (30PERCENTOFF)' },
+        { value: '50PERCENTOFF', label: '50% Off Your Entire Purchase (40PERCENTOFF)' },
         { value: 'BOGO', label: 'Buy One, Get One Free (BOGO)' },
         { value: '10OFF50', label: '$10 Off a Purchase of $50 or More (10OFF50)' },
+        { value: '20OFF50', label: '$20 Off a Purchase of $100 or More (20OFF100)' },
+        { value: '30OFF50', label: '$30 Off a Purchase of $150 or More (30OFF150)' },
+        { value: '40OFF50', label: '$40 Off a Purchase of $200 or More (40OFF200)' },
+        { value: '50OFF50', label: '$50 Off a Purchase of $250 or More (50OFF250)' },
         { value: 'FREEGIFT', label: 'Free Gift with Purchase (FREEGIFT)' },
         { value: 'EARLYBIRD', label: 'Early Bird Discount (EARLYBIRD)' },
         { value: 'LASTMINUTE', label: 'Last-Minute Deal (LASTMINUTE)' },
@@ -279,8 +282,24 @@ const AddBusinessPage = () => {
         { value: 'FLASHSALE', label: 'Flash Sale (FLASHSALE)' },
         { value: 'SUBSCRIPTION', label: 'Subscription Discount (SUBSCRIPTION)' },
         { value: 'EVENTOFFER', label: 'Event or Launch Offer (EVENTOFFER)' },
-        { value: '2FOR1', label: '2 for 1 Special (2FOR1)' }
+        { value: '2FOR1', label: '2 for 1 Special (2FOR1)' },
+        { value: '3FOR1', label: '3 for 1 Special (3FOR1)' }
     ];
+
+    const validationSchema = Yup.object().shape({
+        business_name: Yup.string().required('Business name is required'),
+        business_rating: Yup.number().required('Business rating is required'),
+        business_address: Yup.string().required('Business address is required'),
+        business_description: Yup.string()
+        .min(50, 'Description must be at least 50 characters long')
+        .max(300, 'Description must be less than 300 characters long')
+        .required('Business description is required'),
+    });
+
+    const handleFormChange = (values) => {
+        console.log('Form values:', values);
+        setFormData(values); // Update formData state with form values
+    };
 
     const handleSubmit = (values) => {
         setLoading(true);
@@ -299,6 +318,7 @@ const AddBusinessPage = () => {
             console.log('Business added successfully:', response.data);
             setLoading(false);
             setSuccess(true);
+            values.business_tags = '';
             // Handle success, e.g., show a success message or redirect
         })
         .catch(error => {
@@ -326,7 +346,11 @@ const AddBusinessPage = () => {
     };
 
     return (
+        <>
+        <AdminPortalNav/>
+        {!editPage ?  
         <div className='grid grid-cols-2 bg-gray-50' >
+            
             <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
                 <Modal
                     isOpen={loading}
@@ -381,6 +405,7 @@ const AddBusinessPage = () => {
                                 business_barcode: ''
                             }}
                             onSubmit={handleSubmit}
+                            validationSchema={validationSchema}
                             >
                             {({ values }) => (
                             <Form className="mt-8 space-y-6" encType='multipart/form-data' onChange={() => handleFormChange(values)}>
@@ -555,7 +580,7 @@ const AddBusinessPage = () => {
                                     </div>
                                     <div>
                                         <Tooltip title={<h1 style={{fontSize: '1rem'}}>Choose from the list of promo-codes to provide for a user of the concierge</h1>} placement="top-start" arrow>
-                                            <label htmlFor="business_barcode" className="flex flex-row items-center">Business Barcode<FaInfoCircle className='mx-2'/>
+                                            <label htmlFor="business_barcode" className="flex flex-row items-center">Business Promo Code<FaInfoCircle className='mx-2'/>
                                             </label>
                                         </Tooltip>
                                         <Field as="select" name="business_barcode" id="business_barcode" placeholder="Text for barcode" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" >
@@ -601,6 +626,9 @@ const AddBusinessPage = () => {
             </div>
             
         </div>
+        : null}
+        
+        </>
     );
 };
 

@@ -8,13 +8,13 @@ import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import MyDialog from '../components/QrDialog';
 import HotelQrDialog from '../components/hotel specific/HotelQrDialog';
 
-const Home = () => {
+const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [restaurantLink, setRestaurantLink] = useState(null);
     const [isRestaurant, setIsRestaurant] = useState(true);
     const [clickedBusiness, setClickedBusiness] = useState([]);
-    const [isHotelSpecific, setIsHotelSpecific] = useState(true);
+    
     
 
     useEffect(() => {
@@ -47,8 +47,8 @@ const Home = () => {
                     <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/> */}
                     <Navbar />
                     
-                    <div className='w-full h-[92%] flex justify-center items-center'>
-                        <a href="/" className='absolute top-72 mx-auto px-5 py-1 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-lg'>Back to Home</a>
+                    <div className='w-full h-[88%] flex justify-center items-center'>
+                        
                         <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
                     </div>
                     

@@ -29,11 +29,11 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
 
   return (
     //bg-[url(/public/bgpattern.png)]
-    <div className="py-20 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute">
+    <div className="py-10 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute">
         <div className='z-40 text-center mx-16'>                                                                   
           {!suggestedDisplayed ? 
             <>
-              <p className="font-cursive font-thin text-5xl text-black my-4">Discover Winter Park, Florida</p>
+              <p className="font-cursive font-thin text-5xl text-black my-1">Discover Winter Park, Florida</p>
               <h1 className=" font-quicksand text-6xl font-thin text-black flex flex-col text-wrap">Let AI-Concierge find the   
               <span style={{ color: '#B60C03', marginLeft: '6px'}}>
               <Typewriter
@@ -46,12 +46,12 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
                   />
               </span>for you</h1>
             </> : null}
-            <div className={suggestedDisplayed ? `flex` : `mt-12 flex`}>
-              {isHotelSpecific ? <div className='flex flex-col'><p className=' text-2xl font-quicksand font-semibold'>{suggestedDisplayed ? "": "Hotel Amenities"}</p> <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed}/> </div> : <div className='flex flex-col'><p className=' text-2xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Local Businesses"}</p> <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions}/></div>}
+            <div className={suggestedDisplayed ? `flex` : `mt-6 flex`}>
+              {isHotelSpecific ? <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "": "Hotel Amenities"}</p> <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed}/> </div> : <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Winter Park"}</p> <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions}/></div>}
             </div>
             {!suggestedDisplayed ? 
-              <div className={isHotelSpecific? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[20px]' }>
-                {loadingOptions ? null : <><button onClick={isHotelSpecific ? (() => setIsHotelSpecific(false)) :(() => setIsHotelSpecific(true))} className={isHotelSpecific ? " bg-[#5C0601] relative left-44 text-white font-medium py-1 border-[3px] border-[#5C0601] px-4 rounded-lg mt-10 text-2xl mx-5" : " bg-[#5C0601] text-white font-medium py-1 border-[3px] border-[#5C0601] px-4 rounded-lg mt-0 text-2xl mx-"}>{isHotelSpecific ? "Local Businesses" : "Alfond Inn Amenities"}</button></>}
+              <div className={isHotelSpecific? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[9px]' }>
+                {loadingOptions ? null : <div className='w-full flex flex-row justify-between mx-4 pt-[1.6rem]'><a href="/" className={isHotelSpecific ? 'relative px-7 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white font-semibold rounded-full' : 'relative font-semibold px-16 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-full' }>Back to Home</a><button onClick={isHotelSpecific ? (() => setIsHotelSpecific(false)) :(() => setIsHotelSpecific(true))} className={isHotelSpecific ? " bg-[#5C0601] relative text-white font-semibold px-10 py-3 border-[3px] border-[#5C0601] rounded-full text-2xl" : " bg-[#5C0601] text-white font-semibold border-[3px] border-[#5C0601] px-8 py-1 rounded-full mt-0 text-2xl mx-"}>{isHotelSpecific ? "Winter Park" : "Alfond Inn Amenities"}</button></div>}
               </div> 
               : 
               null

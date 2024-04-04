@@ -18,6 +18,7 @@ import { redirect } from 'react-router-dom';
 function App() {
   const [isAuthenticated, setState] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [isHotelSpecific, setIsHotelSpecific] = React.useState(true);
 
   const wrapPrivateRoute = (element, user, redirect) => {
     return (
@@ -50,8 +51,8 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<Landing/>} />
-          <Route path="/home" exact element={<Home/>} />
+          <Route path="/" exact element={<Landing setIsHotelSpecific={setIsHotelSpecific} />} />
+          <Route path="/home" exact element={<Home setIsHotelSpecific={setIsHotelSpecific} isHotelSpecific={isHotelSpecific}/>} />
           <Route path="/property_map" element={<HotelMap/>} />
           <Route path="/events_info" element={<EventsInfo/>} />
           <Route path="/checkInOut" element={<CheckInInfo/>} />
