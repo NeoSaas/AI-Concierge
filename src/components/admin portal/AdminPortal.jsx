@@ -20,6 +20,7 @@ const AddBusinessPage = () => {
     const [fail, setFail] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [editPage, setEditPage] = React.useState(false);
+    const [count, setCount] = React.useState(0);
     const dates = ['3/1/24', '3/2/24', '3/3/24', '3/4/24', '3/5/24', '3/6/24', '3/7/24', '3/8/24', '3/9/24', '3/10/24', '3/11/24', '3/12/24', '3/13/24', '3/14/24', '3/15/24', '3/16/24', '3/17/24', '3/18/24', '3/19/24', '3/20/24', '3/21/24', '3/22/24', '3/23/24', '3/24/24', '3/25/24', '3/26/24', '3/27/24', '3/28/24', '3/29/24', '3/30/24', '4/1/24', '4/1/24', '4/2/24', '4/3/24', '4/4/24', '4/5/24', '4/6/24', '4/7/24', '4/8/24', '4/9/24', '4/10/24', '4/11/24', '4/12/24', '4/13/24', '4/14/24', '4/15/24', '4/16/24', '4/17/24', '4/18/24', '4/19/24', '4/20/24', '4/21/24', '4/22/24', '4/23/24', '4/24/24', '4/25/24', '4/26/24', '4/27/24', '4/28/24', '4/29/24', '4/30/24'];
     const d = new Date();
     // React.useEffect(() => {
@@ -292,7 +293,7 @@ const AddBusinessPage = () => {
         business_address: Yup.string().required('Business address is required'),
         business_description: Yup.string()
         .min(50, 'Description must be at least 50 characters long')
-        .max(300, 'Description must be less than 300 characters long')
+        .max(500, 'Description must be less than 300 characters long')
         .required('Business description is required'),
     });
 
@@ -470,12 +471,12 @@ const AddBusinessPage = () => {
                                         <Field type="text" name="business_address" id="business_address" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Address" />
                                     </div>
                                     <div className=''>
-                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, doesnt have to be too long.</h1>} placement="top-start" arrow>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, Max number of characters is 500</h1>} placement="top-start" arrow>
                                             <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' />
                                             </label>
                                         </Tooltip>
-                                        
-                                        <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" />
+                                        <p>Characters left: {500 - count}</p>
+                                        <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" onChange={e => setCount(e.target.value.length)} />
                                     </div>
                                     <div >
                                         <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
