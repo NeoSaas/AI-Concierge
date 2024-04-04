@@ -23,7 +23,7 @@ function AmenitiesInfo() {
     }, []);
 
     const handleButton = (index) => {
-        console.log(index);
+        // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }

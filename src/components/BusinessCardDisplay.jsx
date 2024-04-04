@@ -11,7 +11,7 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
   if(business[0].business_tags.includes('Restaurant')){
     setIsRestaurant(true)
   }
-  console.log(business[0].walk_time);
+  // console.log(business[0].walk_time);
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto h-[30rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business); }} >
       <div className='w-full h-full flex justify-center items-center'>

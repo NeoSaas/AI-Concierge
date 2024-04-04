@@ -30,7 +30,6 @@ function App() {
 
   useEffect(() => {
     const session_key = localStorage.getItem('session_key');
-    console.log(rememberMe)
     if (session_key) {
       setState(true);
     }

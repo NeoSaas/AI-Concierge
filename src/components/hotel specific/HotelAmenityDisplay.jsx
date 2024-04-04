@@ -282,7 +282,7 @@ const renderSwitch = (selectedActivityId, setRestaurantLink, isOpen, setIsOpen) 
 };
 
 const HotelAmenityDisplay = ({ selectedActivityId, setRestaurantLink, isOpen, setIsOpen}) => {
-  console.log(selectedActivityId[0]);
+  // console.log(selectedActivityId[0]);
   return (
     <div className="bg-white rounded-lg py-4 mb-10 font-quicksand">
       {renderSwitch(selectedActivityId[0], setRestaurantLink, isOpen, setIsOpen)}

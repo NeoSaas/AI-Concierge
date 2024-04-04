@@ -3,8 +3,8 @@ import { Slide } from 'react-slideshow-image';
 import Rating from '@mui/material/Rating';
 
 const PreviewPage = ({values}) => {
-    values.business_tags && console.log(values.business_tags.split(','));
-    console.log(values)
+    // values.business_tags && console.log(values.business_tags.split(','));
+    // console.log(values)
   return (
     <div className='bg-white w-[770px] ml-[-90px] h-auto rounded-xl p-3'>
         <div

@@ -298,14 +298,14 @@ const AddBusinessPage = () => {
     });
 
     const handleFormChange = (values) => {
-        console.log('Form values:', values);
+        // console.log('Form values:', values);
         setFormData(values); // Update formData state with form values
     };
 
     const handleSubmit = (values) => {
         setLoading(true);
         values.business_tags = values.business_tags + ', ' + values.sub_business_tags + ', ' + values.sub_business_tags2;
-        console.log('Form values:', values);
+        // console.log('Form values:', values);
         axios({
             method: 'POST',
             url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/',
@@ -316,7 +316,7 @@ const AddBusinessPage = () => {
             withCredentials: true,
         }) // Adjust the endpoint URL as per your API
         .then(response => {
-            console.log('Business added successfully:', response.data);
+            // console.log('Business added successfully:', response.data);
             setLoading(false);
             setSuccess(true);
             values.business_tags = '';

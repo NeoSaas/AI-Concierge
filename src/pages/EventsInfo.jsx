@@ -14,7 +14,7 @@ function EventsInfo() {
     const [qrCode, setQrCode] = useState(null);
 
     const handleButton = (index) => {
-        console.log(index);
+        // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }

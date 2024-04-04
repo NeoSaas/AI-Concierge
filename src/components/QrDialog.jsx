@@ -17,7 +17,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
   let day = d.getDay();
   let month = d.getMonth();
   let dateString = `${month}/${day}`;
-  console.log(clickedBusiness)
+  // console.log(clickedBusiness)
 
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
 
