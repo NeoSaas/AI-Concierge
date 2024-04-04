@@ -472,10 +472,10 @@ const AddBusinessPage = () => {
                                     </div>
                                     <div className=''>
                                         <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, Max number of characters is 500</h1>} placement="top-start" arrow>
-                                            <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' />
+                                            <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' /><p className='ml-20'>Characters left: {500 - count}</p>
                                             </label>
                                         </Tooltip>
-                                        <p>Characters left: {500 - count}</p>
+                                        
                                         <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" onChange={e => setCount(e.target.value.length)} />
                                     </div>
                                     <div >
