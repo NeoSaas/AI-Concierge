@@ -56,7 +56,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[113rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[162rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
@@ -81,17 +81,17 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
         
                   {isRestaurant ? 
                   <>
-                    <div className='grid grid-cols-2 w-[100%] h-auto mx-auto'>
-                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='max-h-[32rem] rounded-lg'/>
-                      <div className='w-[130%] pr-[11rem]'>
+                    <div className='grid grid-cols-2 w-[98%] h-auto mx-auto'>
+                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[840px] h-[840px] max-h-[54rem] rounded-lg'/>
+                      <div className='w-[130%] ml-5 pr-[12rem]'>
                         <div>
-                          <p className='mt-4 text-2xl font-semibold'>Description</p>
-                          <p className='text-lg'>{clickedBusiness[0].business_description}</p>
+                          <p className='mt-4 text-3xl font-semibold'>Description</p>
+                          <p className='text-xl'>{clickedBusiness[0].business_description}</p>
                         </div>
                         
                       </div>
                     </div>
-                    <div className='grid grid-cols-[40%_60%] max-w-full mt-5 gap-8'>
+                    <div className='grid grid-cols-[35%_65%] max-w-full mt-5 gap-0'>
                       <div>
                         <div className='text-left'>
                           <p className='text-2xl font-semibold mt-4'>Type:</p>
@@ -112,33 +112,37 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <p className='text-2xl font-semibold mt-12 text-left'>Hours of Operation:</p>
                           <div className='flex flex-col'>
                             {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
-                              return <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
+                              return <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-6'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-6 mb-3'>{value}</p></div>
                             })}
                           </div>
                         </div>
+                        <div className='flex flex-col text-left pr-32 mt-4'>
+                          <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
+                          <QRCode value={otherLink} className='m-auto'/>
+                        </div>
                       </div>
                       <div className='w-full flex justify-center mt-9'>
-                        <Carousel width={380} autoPlay={true} interval={10000} infiniteLoop={true}>
+                        <Carousel width={800} autoPlay={true} interval={10000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
-                          <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='rounded-lg'/> 
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[950px] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-auto w-[950px] rounded-lg'/>
                           </div>
                           <div className=' flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[950px] rounded-lg'/>
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[950px] rounded-lg'/>
                           </div>
                         </Carousel>
                       </div>
                     </div>
-                    <div className='flex-row flex justify-center items-center rounded-md p-3'>
-                      <div className='flex flex-col '>
+                    <div className='flex-row flex justify-center items-center rounded-md p-3 pt-32'>
+                      {/* <div className='flex flex-col '>
                         <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         <QRCode value={otherLink} className='m-auto'/>
-                      </div>
+                      </div> */}
                       <div className='flex flex-col items-center justify-center'>
                         <p className='mb-5 text-xl'>Take a picture of the barcode and present it at the restaurant for Perks!</p>
                         {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ?

@@ -223,12 +223,13 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                   <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
                 </>
                 : 
-                <>
+                <div className='flex flex-col'>
                   
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-1'>Here are the best options for you!</p>
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
                   <a className=' bg-[#5C0601] py-4 px-72 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/home'>Back to Start</a>
-                </>
+                  <a className=' bg-[#5C0601] py-4 px-72 mt-4 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/'>Back to Home</a>
+                </div>
                 }
                 
               </div>
@@ -308,18 +309,20 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
 
         {displayOptions ? (<></>) : (showSubOptions ? 
         <>
-          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:text-gray-400 rounded-full my-auto px-[4.6rem] py-3 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#5C0601] px-[4.7rem] py-3 text-white font-medium rounded-full transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:text-gray-400 rounded-full my-auto px-[4.6rem] py-3 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button>
+          {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold justify-center items-center'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null} 
+          <button className='my-auto border-[3px] border-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#5C0601] px-[4.7rem] py-0 text-white font-medium rounded-full transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
         </> 
         : 
         <>
           <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:border-gray-400 disabled:text-gray-400 rounded-full my-auto px-[4.6rem] py-3 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold justify-center items-center'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null}
           <button className='my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[4.7rem] py-3 text-white font-medium rounded-full transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
         </>
         )}
         
       </div>
-      {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold mt-5 justify-center align-top'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null}
+      {/* {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold mt-5 justify-center align-top'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null} */}
       
     </div>
   );

@@ -51,7 +51,13 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
             </div>
             {!suggestedDisplayed ? 
               <div className={isHotelSpecific? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[9px]' }>
-                {loadingOptions ? null : <div className='w-full flex flex-row justify-between mx-4 pt-[1.6rem]'><a href="/" className={isHotelSpecific ? 'relative px-7 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white font-semibold rounded-full' : 'relative font-semibold px-16 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-full' }>Back to Home</a><button onClick={isHotelSpecific ? (() => setIsHotelSpecific(false)) :(() => setIsHotelSpecific(true))} className={isHotelSpecific ? " bg-[#5C0601] relative text-white font-semibold px-10 py-3 border-[3px] border-[#5C0601] rounded-full text-2xl" : " bg-[#5C0601] text-white font-semibold border-[3px] border-[#5C0601] px-8 py-1 rounded-full mt-0 text-2xl mx-"}>{isHotelSpecific ? "Winter Park" : "Alfond Inn Amenities"}</button></div>}
+                {loadingOptions ? null 
+                : 
+                <div className='w-full flex flex-row justify-between mx-4 pt-[1.6rem]'>
+                  <a href="/" className={isHotelSpecific ? 'relative px-7 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white font-semibold rounded-full' : 'relative font-semibold px-16 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-full' }>Back to Home</a>
+                  <button onClick={isHotelSpecific ? (() => setIsHotelSpecific(false)) :(() => setIsHotelSpecific(true))} className={isHotelSpecific ? " bg-[#5C0601] relative text-white font-semibold px-10 py-3 border-[3px] border-[#5C0601] rounded-full text-2xl" : " bg-[#5C0601] text-white font-semibold border-[3px] border-[#5C0601] px-8 py-1 rounded-full mt-0 text-2xl mx-"}>{isHotelSpecific ? "Winter Park" : "Alfond Inn Amenities"}</button>
+                </div>
+                }
               </div> 
               : 
               null
