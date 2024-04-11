@@ -28,7 +28,7 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
   ];
 
   return (
-    //bg-[url(/public/bgpattern.png)]
+    
     <div className="py-10 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute">
         <div className='z-40 text-center mx-16'>                                                                   
           {!suggestedDisplayed ? 

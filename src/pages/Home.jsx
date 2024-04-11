@@ -29,7 +29,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
 
     return (
         <>
-            <div className={`h-screen bg-[url(https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80)] bg-cover`} >
+            <div className={`h-[85vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Main%20Image%201.png)] bg-cover`} >
                 <div className=''>
                     <WeatherWidget/>
                 </div>
@@ -52,8 +52,9 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
                         <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
                     </div>
                     
-                    <BottomBanner/>
+                    
                 </div>
+                <BottomBanner/>
             </div>
         </>
   );

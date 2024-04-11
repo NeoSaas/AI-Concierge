@@ -84,11 +84,12 @@ const PricingContent = () => {
             Event Spaces
           </a>
         </h3>
-        <h3 className="font-semibold">
+        {/*<h3 className="font-semibold">
           <a href="/rooms" className="block hover:underline">
             Rooms
           </a>
         </h3>
+        */}
       </div>
     </div>
   );

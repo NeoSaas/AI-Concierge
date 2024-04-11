@@ -3,9 +3,20 @@ import React, { useState, useEffect } from 'react';
 const BottomBanner = () => {
   // currently hardcoded, but will be fetched from django api
   const images = [
-    { src: 'hoteladbanner.jpg', text: 'Text for Image 1' },
-    { src: 'hotelluxurybanner.jpg', text: 'Text for Image 2' },
-    { src: 'event.png', text: 'Text for Image 3' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/Banner7-gigapixel-standard-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerDomu-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKabooki-Sushi-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKai-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerMead%20Botanical%20Garden-gigapixel-standard-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerOttos-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerTommy%20Bahama%20Marlin%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerCasa%20Feliz-gigapixel-standard-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerFlutes%20Champagne%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKadence-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerMaxines-Banners-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: "https://aiconcierge.b-cdn.net/Banners/BannerMorse%20Museum-gigapixel-standard-6x.png", text: 'Text for Image 1' },
+    { src: "https://aiconcierge.b-cdn.net/Banners/BannerRuth's%20Chris-gigapixel-standard-6x.png", text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/Peterbrook%20BannerPeterbrooke%20Banner-gigapixel-compression-6x.png', text: 'Text for Image 1' },
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
