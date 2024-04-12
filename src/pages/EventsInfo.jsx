@@ -30,7 +30,7 @@ function EventsInfo() {
     }, []);
 
     return (
-        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Main%20Image%201.png)] bg-cover'>
+        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover'>
             <Navbar />
             <div>
                 <WeatherWidget/>

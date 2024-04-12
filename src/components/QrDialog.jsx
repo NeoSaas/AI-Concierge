@@ -122,7 +122,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </div>
                       </div>
                       <div className='w-full flex justify-center mt-9'>
-                        <Carousel width={800} autoPlay={true} interval={10000} infiniteLoop={true}>
+                        <Carousel width={800} autoPlay={true} interval={5000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
                             <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[950px] rounded-lg'/> 
                           </div>

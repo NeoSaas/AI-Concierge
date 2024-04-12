@@ -53,22 +53,22 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
     <div className='w-[54rem] h-[54rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/Banner6-gigapixel-standard%20v2-6x.png' alt="pic1" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamiltom-Kitchen-1-Chef.png' alt="pic1" className='h-[864px] w-[864px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/Banner1%20(1)-gigapixel-standard%20v2-6x.png' alt="pic2" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kichen-Food-2.png' alt="pic2" className='h-[864px] w-[864px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/Banner4-gigapixel-standard%20v2-6x.png' alt="pic3" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-1-9-x-9-inch.png' alt="pic3" className='h-[864px] w-[864px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/BannerBannerHamilton%20Kitchen-gigapixel-cgi-6x-gigapixel-cgi-4x.jpeg' alt="pic4" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-1.png' alt="pic4" className='h-[864px] w-[864px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/Banner2-gigapixel-standard%20v2-6x.png' alt="pic5" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-4.png' alt="pic5" className='h-[864px] w-[864px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/BannerHamiltons%20Kitchen%206x6in%20Pictures%20(1)-gigapixel-standard%20v2-6x.png' alt="pic6" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamiton-Kichen-Food-3.png' alt="pic6" className='h-[864px] w-[864px]'/>
         </div>
       </Slide>
     </div>
