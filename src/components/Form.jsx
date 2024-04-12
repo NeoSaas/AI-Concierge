@@ -202,6 +202,14 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
     
   }
 
+  const handleBackToForm = () => {
+    setDisplayOptions(false);
+    setShowSubOptions(true);
+    setSuggestedDisplayed(false);
+    setFailed(false);
+    setLoadingOptions(false);
+  }
+
   const subTotalPages = Math.ceil(subOptionConcat.length / itemsPerPage);
 
   return (
@@ -220,14 +228,14 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                 {failed ? 
                 <>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
-                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <button className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' onClick={handleBackToForm}>Back to Form</button>
                 </>
                 : 
                 <div className='flex flex-col'>
                   
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-1'>Here are the best options for you!</p>
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
-                  <a className=' bg-[#5C0601] py-4 px-72 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/home'>Back to Start</a>
+                  <button className=' bg-[#5C0601] py-4 px-72 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' onClick={handleBackToForm}>Back to Form</button>
                   <a className=' bg-[#5C0601] py-4 px-72 mt-4 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/'>Back to Home</a>
                 </div>
                 }
