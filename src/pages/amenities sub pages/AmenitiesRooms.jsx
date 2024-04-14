@@ -7,6 +7,7 @@ import WeatherWidget from '../../components/weatherComponents/WeatherWidget';
 import MyDialog from '../../components/QrDialog';
 
 function AmenitiesRooms() {
+    //THIS PAGE IS NOT CURRENTLY COMMENTED OUT
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = ['https://na.spatime.com/tai32789/5228842/home', 'https://qrco.de/bebESs', 'https://tai32789.na.book4time.com/spagift/', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form'];
