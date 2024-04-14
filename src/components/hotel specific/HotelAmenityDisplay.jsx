@@ -89,7 +89,7 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
     <div className="pt-4 border-t border-gray-200 text-3xl">
       <h3 className="text-3xl font-semibold text-gray-800 mb-2">DINNER</h3>
       <p className="text-gray-600 mb-4">Daily: 5:00 PM to 9:00 PM</p>
-      <button onClick={() => {setIsOpen(true); setRestaurantLink(dinnerMenuLink)}} className="bg-[#5C0601] text-white text-2xl font-bold py-2 px-4 w-[70%] rounded-[1.5rem]">
+      <button onClick={() => {setIsOpen(true); setRestaurantLink(dinnerMenuLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 w-[70%] rounded-[1.5rem]">
         Dinner Menu
       </button>
     </div>
