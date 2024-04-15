@@ -68,11 +68,13 @@ def getBusinessData(request):
     serializer = BusinessSerializer(businesses, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+@csrf_exempt
 @api_view(['POST'])
 @parser_classes([MultiPartParser])
 def addBusinessData(request):
     parser_classes = (MultiPartParser,FormParser,JSONParser)
     print(request.FILES)
+    print(request.user.id)
 
     new_business_data = {
         'business_name': request.data.get('business_name'),
@@ -123,8 +125,8 @@ def addBusinessData(request):
         walk_time=0,
         transit_time=0,
         hours_of_operation=hours_dict,
-        business_barcode_date=new_business_data['business_barcode_date'],
-        author=request.user
+        business_barcode_dates=new_business_data['business_barcode_date'],
+        # author=request.user
     )
     
     new_business.save()
@@ -133,10 +135,10 @@ def addBusinessData(request):
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-def updateBusinessData(request):
-    business = Business.objects.filter(author=request.user)
-    serializer = BusinessSerializer(new_business)
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
+# def updateBusinessData(request):
+#     business = Business.objects.filter(author=request.user)
+#     serializer = BusinessSerializer(new_business)
+#     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
@@ -158,7 +160,8 @@ def querySpecifcBusinessData(request):
     businessesList = []
     api_key = settings.GOOGLE_API_KEY
     map_client = googlemaps.Client(api_key)
-    location = "Winter Park, Florida United States"
+    hotel_location = "300 E New England Ave, Winter Park, FL 32789"
+    location = "Winter Park, Florida, United States"
     
     for business in request.data.get('business'):
         try:
@@ -176,11 +179,11 @@ def querySpecifcBusinessData(request):
 
             # Build the directions URL
             destination = bus_name.replace(' ', '+') + '+' + bus_address.replace(' ', '+') + '+' + 'Winter+Park%2c+Florida+United+States'
-            directions_url = f"https://www.google.com/maps/dir/?api=1&destination={destination}&dir_action=navigate"
+            directions_url = f"https://www.google.com/maps/dir/?api=1&destination={destination}&dir_action=navigate&origin=300+E+New+England+Ave%2c+Winter+Park%2c+FL+32789"
 
-            wRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="walking", units="imperial", departure_time='now', traffic_model="optimistic")
-            dRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="driving", units="imperial", departure_time='now', traffic_model="optimistic")
-            tRequest = map_client.distance_matrix(location, bus_lat_long['location'], mode="transit", units="imperial", departure_time='now', traffic_model="optimistic")
+            wRequest = map_client.distance_matrix(hotel_location, bus_lat_long['location'], mode="walking", units="imperial", departure_time='now', traffic_model="optimistic")
+            dRequest = map_client.distance_matrix(hotel_location, bus_lat_long['location'], mode="driving", units="imperial", departure_time='now', traffic_model="optimistic")
+            tRequest = map_client.distance_matrix(hotel_location, bus_lat_long['location'], mode="transit", units="imperial", departure_time='now', traffic_model="optimistic")
             walk_time = wRequest['rows'][0]['elements'][0]['duration']['text']
             drive_time = dRequest['rows'][0]['elements'][0]['duration']['text']
             transit_time = tRequest['rows'][0]['elements'][0]['duration']['text']

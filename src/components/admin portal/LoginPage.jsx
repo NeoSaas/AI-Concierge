@@ -30,7 +30,7 @@ const LoginPage = ({ login, setRememberMe }) => {
         await login();
         const { session_key } = response.data;
         localStorage.setItem('session_key', session_key);
-        console.log(values['remember-me'])
+        // console.log(values['remember-me'])
         if(values.rememberMe){
             setRememberMe(true);
         }

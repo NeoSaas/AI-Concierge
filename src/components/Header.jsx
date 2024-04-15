@@ -3,9 +3,9 @@ import Form from './Form';
 import Typewriter from 'typewriter-effect';
 import HotelForm from './hotel specific/HotelForm';
 
-function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId}) {
+function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId, setIsHotelSpecific, isHotelSpecific}) {
   const [suggestedDisplayed, setSuggestedDisplayed] = React.useState(false);
-  const [hotel, setHotel] = React.useState(true);
+  const [loadingOptions, setLoadingOptions] = React.useState(false);
 
   const words = [
     'Bars and Nightlife',
@@ -28,12 +28,12 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
   ];
 
   return (
-    //bg-[url(/public/bgpattern.png)]
-    <div className="py-20 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute">
-        <div className='z-40 text-center mx-20'>                                                                   
+    
+    <div className="py-10 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute">
+        <div className='z-40 text-center mx-16'>                                                                   
           {!suggestedDisplayed ? 
             <>
-              <p className="font-cursive font-thin text-5xl text-black my-4">Discover Winter Park, Florida</p>
+              <p className="font-cursive font-thin text-5xl text-black my-1">Discover Winter Park, Florida</p>
               <h1 className=" font-quicksand text-6xl font-thin text-black flex flex-col text-wrap">Let AI-Concierge find the   
               <span style={{ color: '#B60C03', marginLeft: '6px'}}>
               <Typewriter
@@ -44,15 +44,25 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
                     loop: true,
                   }}
                   />
-                </span>for you</h1>
-              <div className='w-full h-auto flex flex-row justify-between'>
-                <button onClick={() => setHotel(true)} className="bg-[#5C0601] text-white font-medium py-2 px-4 rounded-lg mt-10 text-xl mx-5">Alfond Inn Amenities</button>
-                <button onClick={() => setHotel(false)} className="bg-[#5C0601] text-white font-medium py-2 px-4 rounded-lg mt-10 text-xl mx-5">Local Businesses</button>
-              </div>
-              </> : null}
-            <div className={suggestedDisplayed ? `flex` : `mt-12 flex`}>
-              {hotel ? <HotelForm setSuggestedDisplayed={setSuggestedDisplayed}/> : <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed}/>}
+              </span>for you</h1>
+            </> : null}
+            <div className={suggestedDisplayed ? `flex` : `mt-6 flex`}>
+              {isHotelSpecific ? <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "": "Hotel Amenities"}</p> <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed}/> </div> : <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Winter Park"}</p> <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions}/></div>}
             </div>
+            {!suggestedDisplayed ? 
+              <div className={isHotelSpecific? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[9px]' }>
+                {loadingOptions ? null 
+                : 
+                <div className='w-full flex flex-row justify-between mx-4 pt-[1.6rem]'>
+                  <a href="/" className={isHotelSpecific ? 'relative px-7 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white font-semibold rounded-full' : 'relative font-semibold px-16 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-full' }>Back to Home</a>
+                  <button onClick={isHotelSpecific ? (() => setIsHotelSpecific(false)) :(() => setIsHotelSpecific(true))} className={isHotelSpecific ? " bg-[#5C0601] relative text-white font-semibold px-10 py-3 border-[3px] border-[#5C0601] rounded-full text-2xl" : " bg-[#5C0601] text-white font-semibold border-[3px] border-[#5C0601] px-8 py-1 rounded-full mt-0 text-2xl mx-"}>{isHotelSpecific ? "Winter Park" : "Alfond Inn Amenities"}</button>
+                </div>
+                }
+              </div> 
+              : 
+              null
+            }
+            
             
         </div>
     </div>

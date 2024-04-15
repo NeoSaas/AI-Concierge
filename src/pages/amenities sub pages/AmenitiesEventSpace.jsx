@@ -23,13 +23,13 @@ function AmenitiesEventSpace() {
     }, []);
 
     const handleButton = (index) => {
-        console.log(index);
+        // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }
 
     return (
-        <div className='bg-[url(https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80)] bg-cover'>
+        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover'>
             <Navbar />
             <WeatherWidget />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>

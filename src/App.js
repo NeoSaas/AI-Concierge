@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import HotelMap from './pages/HotelMap';
 import EventsInfo from './pages/EventsInfo';
 import CheckInInfo from './pages/CheckInInfo';
-
+import ProtectedRoute from './components/protectected route/ProtectedRoute';
 import AmenitiesSpa from './pages/amenities sub pages/AmenitiesSpa';
 import AmenitiesDining from './pages/amenities sub pages/AmenitiesDining';
 import AmenitiesEventSpace from './pages/amenities sub pages/AmenitiesEventSpace';
@@ -13,16 +13,29 @@ import Landing from './pages/Landing';
 import LoginPage from './components/admin portal/LoginPage';
 import AdminPortal from './components/admin portal/AdminPortal';
 import Signup from './components/admin portal/Signup';
+import { redirect } from 'react-router-dom';
 
 function App() {
   const [isAuthenticated, setState] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [isHotelSpecific, setIsHotelSpecific] = React.useState(true);
+
+  const wrapPrivateRoute = (element, user, redirect) => {
+    return (
+      <ProtectedRoute user={user} redirect={redirect}>
+        {element}
+      </ProtectedRoute>
+    );
+  };
 
   useEffect(() => {
     const session_key = localStorage.getItem('session_key');
-    console.log(rememberMe)
     if (session_key) {
       setState(true);
+    }
+    else {
+      setState(false);
+      redirect('/login');
     }
   }, [isAuthenticated]);
 
@@ -37,8 +50,8 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<Landing/>} />
-          <Route path="/home" exact element={<Home/>} />
+          <Route path="/" exact element={<Landing setIsHotelSpecific={setIsHotelSpecific} />} />
+          <Route path="/home" exact element={<Home setIsHotelSpecific={setIsHotelSpecific} isHotelSpecific={isHotelSpecific}/>} />
           <Route path="/property_map" element={<HotelMap/>} />
           <Route path="/events_info" element={<EventsInfo/>} />
           <Route path="/checkInOut" element={<CheckInInfo/>} />
@@ -48,9 +61,7 @@ function App() {
           <Route path="/rooms" element={<AmenitiesRooms/>} />
           <Route path="/login" element={<LoginPage login={login} setRememberMe={setRememberMe}/>}/>
           <Route path="/signup" element={<Signup/>} />
-          {isAuthenticated ? (
-            <Route path="/admin_portal" element={<AdminPortal/>} />
-          ) : <Route path="/login" element={<LoginPage login={login} />}/>}
+          <Route path="/admin_portal" element={wrapPrivateRoute(<AdminPortal/>, isAuthenticated, '/admin_portal')} />
         </Routes>
     </BrowserRouter>
   );

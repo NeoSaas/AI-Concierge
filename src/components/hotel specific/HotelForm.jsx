@@ -5,7 +5,7 @@ import HotelAmenityDisplay from './HotelAmenityDisplay';
 
 const activities = ['Hamiltons Kitchen', 'The Lounge', 'The Spa', 'The Cafe', 'The Pool', 'Fitness Center'];
 
-const HotelForm = ({ setSuggestedDisplayed }) => {
+const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen, setHotel }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -59,10 +59,10 @@ const HotelForm = ({ setSuggestedDisplayed }) => {
   return (
     <div>
       {toPage ? (
-        <>
-          <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
-          <HotelAmenityDisplay selectedActivityId={selectedActivityIds} />
-        </>
+        <div className='flex flex-col justify-center w-full'>
+          <HotelAmenityDisplay selectedActivityId={selectedActivityIds} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
+          <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold' href='/home'>Back to Start</a>
+        </div>
       ) : 
       <>
         <div className="flex justify-center font-quicksand">
@@ -94,7 +94,7 @@ const HotelForm = ({ setSuggestedDisplayed }) => {
         </div>
       </div>
       <div className='flex flex-row justify-center items-center mx-20'>
-        <button className='my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToPage()}>Select</button>
+        <button className='mt-16 border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-16 py-3 text-white font-medium rounded-full transition duration-300 ease-in-out z-10' disabled={selectedActivityIds.length == 0} onClick={() => handleToPage()}>Select</button>
       </div>
     </>
     }

@@ -14,7 +14,7 @@ function EventsInfo() {
     const [qrCode, setQrCode] = useState(null);
 
     const handleButton = (index) => {
-        console.log(index);
+        // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }
@@ -30,12 +30,14 @@ function EventsInfo() {
     }, []);
 
     return (
-        <div className='bg-[url(https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80)] bg-cover'>
+        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover'>
             <Navbar />
             <div>
                 <WeatherWidget/>
             </div>
             {/* <p className='text-4xl font-bold text-center mt-[35rem] mx-auto w-screen absolute'>Events</p> */}
+            <div className='absolute gradient-top h-full w-full'></div>
+            <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>
             
             <div className={`w-full h-[90vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

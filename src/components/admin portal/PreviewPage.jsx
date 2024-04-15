@@ -3,8 +3,8 @@ import { Slide } from 'react-slideshow-image';
 import Rating from '@mui/material/Rating';
 
 const PreviewPage = ({values}) => {
-    values.business_tags && console.log(values.business_tags.split(','));
-    console.log(values)
+    // values.business_tags && console.log(values.business_tags.split(','));
+    // console.log(values)
   return (
     <div className='bg-white w-[770px] ml-[-90px] h-auto rounded-xl p-3'>
         <div
@@ -107,6 +107,7 @@ const PreviewPage = ({values}) => {
                 </div>
                 <div className='flex flex-col items-center justify-center'>
                     <p className='mb-5 text-xl'>Take a picture of the promo-code and present it at the restaurant for Perks!</p>
+                    <p className='mb-5 text-xl'>{values?.business_name}</p>
                     <p className='mb-5 text-xl'>{values?.business_barcode}</p>
                     <p className='mb-5 text-xl'>{"Promo code valid until: " + values?.business_barcode_date}</p>
                 </div>

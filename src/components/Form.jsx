@@ -7,23 +7,20 @@ import DisplayedOptions from './DisplayedOptions';
 import 'react-loader-spinner';
 import { Circles } from 'react-loader-spinner';
 
-const activities = ['Bars and Nightlife', 'Local Restaurants', 'Transportation Services', 'Local Attractions', 'Cultural Experiences', 'Shopping Districts', 'Day Tours', 'Spa and Wellness Centers', 'Outdoor Activities', 'Fitness Centers', 'Golf Courses', 'Wine Tastings and Tours', 'Art Galleries', 'Specialty Food Shops', 'Boat Rentals or Cruises', 'Bicycle Rentals', 'Cooking Classes', 'Photography Services', 'Hair and Beauty Salons', 'Local Markets', 'Event Ticketing', 'Childcare Services', 'Pet Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies'];
+const activities = ['Bars and Nightlife', 'Local Restaurants', 'Local Attractions', 'Shopping Districts', 'Specialty Food Shops', 'Art Galleries', 'Day Tours', 'Spa and Wellness Centers', 'Outdoor Activities', 'Fitness Centers', 'Golf Courses', 'Wine Tastings and Tours',  'Boat Rentals or Cruises', 'Cultural Experiences', 'Bicycle Rentals', 'Cooking Classes', 'Photography Services', 'Hair and Beauty Salons', 'Local Markets', 'Event Ticketing', 'Childcare Services', 'Pet Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies', 'Transportation Services'];
 
 const subActivities = {
-  'Bars and Nightlife': ['Clubs', 'Dive Bars', 'Piano Bars', 'Karaoke Bars', 'Sports Bars', 'Wine Bar'],
-  'Local Restaurants': ['Italian', 'Mexican', 'Chinese', 'Indian', 'Thai', 'American', 'Fancy'],
-  'Transportation Services': ['Airport Shuttles', 'Taxi Services', 'Ride-sharing Services', 'Car Rentals', 'Public Transportation', 'Private Charters'],
+  'Bars and Nightlife': ['Clubs', 'Dive Bars', 'Piano Bars', 'Karaoke Bars', 'Sports Bars', 'Wine Bar', 'Up Scale Bar'],
+  'Local Restaurants': ['Michelin Restaurants','Italian', 'Mexican', 'Chinese', 'Indian', 'Thai', 'Fancy', 'American' ,'Argentinean','Australian','Belgian','Brazilian','British', 'Cajun/Creole','Caribbean', 'Chinese','Cuban','Ethiopian', 'Filipino', 'French', 'German', 'Greek', 'Hawaiian', 'Hungarian','Indian', 'Irish', 'Israeli','Italian','Jamaican','Japanese', 'Korean','Lebanese','Malaysian','Mediterranean','Mexican','Moroccan','New Zealand','Nigerian','Persian','Peruvian','Portuguese','Russian','Scandinavian','Spanish','Swiss','Thai','Turkish','Turkish','Vietnamese'],
   'Local Attractions': ['Museums', 'Historical Sites', 'Amusement Parks', 'Zoos', 'Gardens', 'Landmarks'],
-  'Cultural Experiences': ['Traditional Performances', 'Art Exhibitions', 'Food Tours', 'Language Classes', 'Cooking Classes', 'Cultural Festivals'],
+  'Specialty Food Shops': ['Bakeries', 'Delis', 'Cheese Shops', 'Chocolate Shops', 'Farmers Markets', 'Gourmet Groceries'],
+  'Wine Tastings and Tours': ['Vineyards', 'Wineries', 'Wine Bars', 'Wine Festivals', 'Wine Courses', 'Wine-themed Tours'],
   'Shopping Districts': ['Boutiques', 'Malls', 'Flea Markets', 'Antique Shops', 'Local Crafts', 'Souvenir Stores'],
-  'Day Tours': ['City Tours', 'Nature Tours', 'Food Tours', 'Adventure Tours', 'Historical Tours', 'Group Tours'],
+  'Art Galleries': ['Contemporary Art', 'Traditional Art', 'Photography Exhibits', 'Sculpture Gardens', 'Art Classes', 'Artist Studios'],
   'Spa and Wellness Centers': ['Massage Services', 'Facials', 'Body Treatments', 'Yoga Studios', 'Fitness Classes', 'Alternative Therapies'],
   'Outdoor Activities': ['Hiking Trails', 'Camping Sites', 'Water Sports', 'Cycling Paths', 'Rock Climbing', 'Fishing Spots'],
   'Fitness Centers': ['Gyms', 'Yoga Studios', 'Pilates Studios', 'Personal Trainers', 'Group Classes', 'Sports Facilities'],
   'Golf Courses': ['Public Courses', 'Private Clubs', 'Driving Ranges', 'Golf Lessons', 'Pro Shops', 'Mini-golf'],
-  'Wine Tastings and Tours': ['Vineyards', 'Wineries', 'Wine Bars', 'Wine Festivals', 'Wine Courses', 'Wine-themed Tours'],
-  'Art Galleries': ['Contemporary Art', 'Traditional Art', 'Photography Exhibits', 'Sculpture Gardens', 'Art Classes', 'Artist Studios'],
-  'Specialty Food Shops': ['Bakeries', 'Delis', 'Cheese Shops', 'Chocolate Shops', 'Farmers Markets', 'Gourmet Groceries'],
   'Boat Rentals or Cruises': ['Sailboat Rentals', 'Kayak Rentals', 'Yacht Charters', 'Sightseeing Cruises', 'Fishing Charters', 'River Cruises'],
   'Bicycle Rentals': ['City Bike Rentals', 'Mountain Bike Rentals', 'Tandem Bike Rentals', 'Electric Bike Rentals', 'Bike Tours', 'Bike Repair Shops'],
   'Cooking Classes': ['International Cuisines', 'Baking Classes', 'Vegetarian Cooking', 'Molecular Gastronomy', 'Wine Pairing', 'Kids Cooking Classes'],
@@ -34,13 +31,16 @@ const subActivities = {
   'Childcare Services': ['Daycare Centers', 'Nanny Services', 'Babysitting Services', 'Kids Activities', 'Tutoring Services', 'Summer Camps'],
   'Pet Services': ['Veterinary Clinics', 'Pet Grooming', 'Pet Boarding', 'Pet Supplies', 'Dog Walking', 'Pet Training'],
   'Language Classes or Translators': ['English Classes', 'Spanish Classes', 'French Classes', 'Mandarin Classes', 'Sign Language Classes', 'Translation Services'],
-  'Medical Clinics or Pharmacies': ['General Practitioners', 'Dentists', 'Optometrists', 'Pharmacies', 'Urgent Care Clinics', 'Specialty Clinics']
+  'Medical Clinics or Pharmacies': ['General Practitioners', 'Dentists', 'Optometrists', 'Pharmacies', 'Urgent Care Clinics', 'Specialty Clinics'],
+  'Transportation Services': ['Airport Shuttles', 'Taxi Services', 'Ride-sharing Services', 'Car Rentals', 'Public Transportation', 'Private Charters'],
+  'Cultural Experiences': ['Traditional Performances', 'Art Exhibitions', 'Food Tours', 'Language Classes', 'Cooking Classes', 'Cultural Festivals'],
+  'Day Tours': ['City Tours', 'Nature Tours', 'Food Tours', 'Adventure Tours', 'Historical Tours', 'Group Tours'],
   // Define sub-activities for other main activities
 };
 
 const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed }) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -57,9 +57,11 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   const [displayBusinesses, setDisplayBusinesses] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
+  const [failed, setFailed] = useState(false);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
+    
   };
 
   const handleNextPage = () => {
@@ -137,37 +139,48 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   };
 
   const handleToOptions = async () => {
-    setShowSubOptions(false);
-    setDisplayOptions(true);
-    setLoading(true);
-    const prompt = await organizeQuery(selectedActivityIds);
-    const response = await axios({
-      method: 'post',
-      url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
-      data: { query: prompt },
-    });
-    const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
-
-    var multiBusinessResponse = businessesFromResponse.split(', ');
-    var businessDataResponse;
-    if (multiBusinessResponse.length > 1) {
-
-      businessDataResponse = await axios({
+    try {
+      setShowSubOptions(false);
+      setSuggestedDisplayed(true);
+      setDisplayOptions(true);
+      setLoading(true);
+      setLoadingOptions(true);
+      const prompt = await organizeQuery(selectedActivityIds);
+      const response = await axios({
         method: 'post',
-        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
-        data: { business: multiBusinessResponse },
+        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
+        data: { query: prompt },
       });
+      const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
+
+      var multiBusinessResponse = businessesFromResponse.split(', ');
+      var businessDataResponse;
+      if (multiBusinessResponse.length > 1) {
+
+        businessDataResponse = await axios({
+          method: 'post',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+          data: { business: multiBusinessResponse },
+        });
+      }
+      else {
+        businessDataResponse = await axios({
+          method: 'post',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
+          data: { business: businessesFromResponse },
+        });
+      }
+      setDisplayBusinesses(businessDataResponse.data);
+      setLoading(false);
+      setSuggestedDisplayed(true);
+    } catch (error) {
+      console.log(error);
+      setFailed(true);
+      setLoading(false);
+      setDisplayOptions(true);
+      setShowSubOptions(false);
     }
-    else {
-      businessDataResponse = await axios({
-        method: 'post',
-        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
-        data: { business: businessesFromResponse },
-      });
-    }
-    setDisplayBusinesses(businessDataResponse.data);
-    setLoading(false);
-    setSuggestedDisplayed(true);
+    
 
   }
 
@@ -180,35 +193,51 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   function handleBackButton() {
     setShowSubOptions(false)
     setFormPage('main')
+    if(selectedDict.sub > 0 && selectedDict.main > 0) {
+      for (let i = selectedDict.sub + selectedDict.main; i >= selectedDict.main; i--) {
+        delete selectedActivityIds[i];
+      }
+      selectedDict.sub = 0;
+    }
+    
+  }
+
+  const handleBackToForm = () => {
+    setDisplayOptions(false);
+    setShowSubOptions(true);
+    setSuggestedDisplayed(false);
+    setFailed(false);
+    setLoadingOptions(false);
   }
 
   const subTotalPages = Math.ceil(subOptionConcat.length / itemsPerPage);
 
   return (
     <div>
-      {showSubOptions ? (<p className='font-quicksand text-2xl mb-10'>What specifically are you looking for?</p>) : (<></>)}
+      {showSubOptions ? (<div className='mt-2 flex-wrap max-w-[55rem]'><p className='font-quicksand text-2xl mb-1'>What specifically are you looking for?</p><div className='flex flex-row flex-wrap w-full justify-center'><p className='font-quicksand text-2xl mb-1 text-wrap '>Selected Items: &nbsp;</p>{selectedActivityIds?.map((activityId) => {return <p className='font-quicksand text-2xl mb-1'>{activityId + ","}&nbsp;</p>})}</div></div>) : !loading && !displayOptions ? (<div className='flex flex-row w-full justify-center mt-2 mx-auto flex-wrap'><p className='font-quicksand text-2xl mb-1'>Selected Items: &nbsp;</p>{selectedActivityIds?.map((activityId) => {return <p className='font-quicksand text-2xl mb-1'>{" " + activityId + ','}&nbsp;</p>})}  </div>): null}
       <div className="flex justify-center font-quicksand">
         {displayOptions ?
           <>
             {loading ?
-              <div className='flex items-center justify-center w-screen flex-col mb-12'>
+              <div className='flex items-center justify-center w-[24vh] flex-col mb-4'>
                 <p className='text-2xl text-black mx-auto text-center'>Finding the best options for you...</p>
-                <Circles color="#5C0601" height={90} width={90}/>
+                <Circles color="#5C0601" height={120} width={120}/>
               </div>
               :
               <div>
-                {displayBusinesses.length == 0 ? 
+                {failed ? 
                 <>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
-                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
+                  <button className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' onClick={handleBackToForm}>Back to Form</button>
                 </>
                 : 
-                <>
-                  <a className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' href='/home'>Back to Start</a>
-                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Here are the best options for you!</p>
-
+                <div className='flex flex-col'>
+                  
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-1'>Here are the best options for you!</p>
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
-                </>
+                  <button className=' bg-[#5C0601] py-4 px-72 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' onClick={handleBackToForm}>Back to Form</button>
+                  <a className=' bg-[#5C0601] py-4 px-72 mt-4 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/'>Back to Home</a>
+                </div>
                 }
                 
               </div>
@@ -217,7 +246,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
           :
           <>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-md shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={currentPage === 0}
               onClick={handlePrevPage}
             >
@@ -274,7 +303,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
               }
             </div>
             <button
-              className="rounded-full bg-slate-50 border-2 shadow-sm shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
+              className="rounded-full bg-slate-50 border-2 shadow-md shadow-[#5C0601] text-black h-[500px] p-1 m-2 hover:scale-105 duration-300 ease-in-out"
               disabled={showSubOptions ? currentPage === subTotalPages - 1 : currentPage === totalPages - 1}
               onClick={handleNextPage}
             >
@@ -284,21 +313,25 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
         }
 
       </div>
-      <div className='flex flex-row justify-between mx-20'>
+      <div className='flex flex-row justify-between mx-20 mt-2'>
 
         {displayOptions ? (<></>) : (showSubOptions ? 
         <>
-          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:text-gray-400 rounded-md my-auto py-1 px-5 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#5C0601] px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:text-gray-400 rounded-full my-auto px-[4.6rem] py-3 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button>
+          {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold justify-center items-center'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null} 
+          <button className='my-auto border-[3px] border-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 text-2xl bg-[#5C0601] px-[4.7rem] py-0 text-white font-medium rounded-full transition duration-300 ease-in-out ' disabled={selectedDict.sub == 0} onClick={() => handleToOptions()}>Get Recommendations</button>
         </> 
         : 
         <>
-          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:border-gray-400 disabled:text-gray-400 rounded-md my-auto px-5 py-1 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
-          <button className='my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-5 py-1 text-white font-medium rounded-md transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
+          <button className=' border-[3px] border-[#5C0601] text-[#5C0601] disabled:border-gray-400 disabled:text-gray-400 rounded-full my-auto px-[4.6rem] py-3 text-2xl font-medium ' disabled={formPage == 'main'} onClick={() => handleBackButton()}>Back</button> 
+          {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold justify-center items-center'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null}
+          <button className='my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[4.7rem] py-3 text-white font-medium rounded-full transition duration-300 ease-in-out' disabled={selectedActivityIds.length == 0} onClick={() => handleToSub()}>Select</button>
         </>
         )}
-
+        
       </div>
+      {/* {!loading && !displayOptions ? <p className='w-full flex text-lg font-quicksand font-bold mt-5 justify-center align-top'>{showSubOptions ? `Page ${currentPage + 1} out of ${subTotalPages}` : `Page ${currentPage + 1} out of ${totalPages}`}</p> : null} */}
+      
     </div>
   );
 };

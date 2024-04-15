@@ -23,18 +23,18 @@ function AmenitiesDining() {
     }, []);
 
     const handleButton = (index) => {
-        console.log(index);
+        // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }
 
     return (
-        <div className='bg-[url(https://cdn.asdfinc.io/media/33665/alfond-inndji_0710-1-copy.jpg?center=0.27848101265822783,0.48739495798319327&mode=crop&width=1920&height=1080&rnd=133510848810000000&quality=80)] bg-cover'>
+        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover'>
             <Navbar />
             <WeatherWidget />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
-            {/* <div className='absolute gradient-top h-full w-full'></div>
-            <div className='absolute gradient-bottom h-full w-full'></div> */}
+            <div className='absolute gradient-top h-full w-full'></div>
+            <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner />
             <div
                 className={`w-full h-[95vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
@@ -69,7 +69,7 @@ function AmenitiesDining() {
                             <div className="md:grid md:grid-cols-12 md:gap-6 items-center">
                                 {/* Image */}
                                 <div className="max-w-sm md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 rtl" data-aos="fade-up">
-                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://cdn.asdfinc.io/media/30315/d46a0135.jpg?center=0.5,0.5&mode=crop&width=700&quality=45' width={460} height={405} alt="Features 02" />
+                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-4.png' width={460} height={405} alt="Features 02" />
                                 </div>
                                 {/* Content */}
                                 <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6" data-aos="fade-left">
@@ -99,7 +99,7 @@ function AmenitiesDining() {
                             <div className="md:grid md:grid-cols-12 md:gap-6 items-center">
                                 {/* Image */}
                                 <div className="max-w-sm md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 rtl" data-aos="fade-up">
-                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://cdn.asdfinc.io/media/30383/img_0758.jpg?anchor=center&mode=crop&width=1200&height=1600&rnd=133264796180000000&quality=80' width={460} height={405} alt="Features 02" />
+                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamiltom-Kitchen-1-Chef.png' width={460} height={405} alt="Features 02" />
                                 </div>
                                 {/* Content */}
                                 <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6" data-aos="fade-left">
