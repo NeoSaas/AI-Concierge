@@ -29,7 +29,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
 
     return (
         <>
-            <div className={`h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%201.png)] bg-cover`} >
+            <div className={`h-[105vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover`} >
                 <div className=''>
                     <WeatherWidget/>
                 </div>

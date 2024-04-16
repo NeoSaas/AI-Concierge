@@ -20,7 +20,7 @@ function HotelMap() {
     }, []);
 
     return (
-        <div className="bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover">
+        <div className="h-[105vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover">
             <Navbar />
             <WeatherWidget/>
             <div className='absolute gradient-top h-full w-full'></div>

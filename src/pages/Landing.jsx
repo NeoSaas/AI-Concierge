@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Landing({ setIsHotelSpecific }) {
 
-  const bgImages = ["https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%201.png"]
+  const bgImages = ["https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png"]
 
   const [fetchedUrl, setFetchedUrl] = React.useState(bgImages[0])
   const nav = useNavigate();
@@ -31,7 +31,7 @@ function Landing({ setIsHotelSpecific }) {
       </div>
       <WeatherWidget />
       <BottomBanner/>
-      <div style={{'--image-url': `url(${fetchedUrl})`}} className='h-[100vh] w-full bg-[image:var(--image-url)] bg-cover flex justify-center items-center transition-all ease-in-out duration-500'>
+      <div style={{'--image-url': `url(${fetchedUrl})`}} className='h-[105vh] w-full bg-[image:var(--image-url)] bg-cover flex justify-center items-center transition-all ease-in-out duration-500'>
           <div className='flex justify-center items-center'>
               <div className='absolute h-[35%] w-[70%] mx-auto rounded-xl bg-gradient-to-b from-black to-transparent'></div>
               <div className='absolute h-[35%] w-[70%] mx-auto rounded-xl bg-gradient-to-t from-black via-transparent to-transparent'></div>
