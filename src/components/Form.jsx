@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import ActivityCard from './ActivityCard';
 import axios from 'axios';
-import organizeQuery from './functions/organizeQuery';
+import organizeQuery from './general functions/organizeQuery';
 import DisplayedOptions from './DisplayedOptions';
 import 'react-loader-spinner';
 import { Circles } from 'react-loader-spinner';
