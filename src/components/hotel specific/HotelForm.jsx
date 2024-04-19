@@ -5,7 +5,7 @@ import HotelAmenityDisplay from './HotelAmenityDisplay';
 
 const activities = ['Hamiltons Kitchen', 'The Lounge', 'The Spa', 'The Cafe', 'The Pool', 'Fitness Center'];
 
-const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen, setHotel }) => {
+const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen, setHotel, toPage, setToPage }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -17,7 +17,7 @@ const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen
   const [unselectedActivityNames, setUnselectedActivityNames] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
-  const [toPage , setToPage] = useState(false);
+  
 
   const handleActivitySelect = (
     activity,

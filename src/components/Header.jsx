@@ -6,6 +6,8 @@ import HotelForm from './hotel specific/HotelForm';
 function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId, setIsHotelSpecific, isHotelSpecific}) {
   const [suggestedDisplayed, setSuggestedDisplayed] = React.useState(false);
   const [loadingOptions, setLoadingOptions] = React.useState(false);
+  const [toPage , setToPage] = React.useState(false);
+  const [displayOptions, setDisplayOptions] = React.useState(false);
 
   const words = [
     'Bars and Nightlife',
@@ -29,7 +31,7 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
 
   return (
     
-    <div className="py-10 flex justify-center mb-[384px] items-center flex-col bg-white rounded-[2.5rem] absolute">
+    <div className={toPage || displayOptions ? "py-10 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute" : "py-10 flex justify-center mb-[384px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
         <div className='z-40 text-center mx-16'>                                                                   
           {!suggestedDisplayed ? 
             <>
@@ -47,7 +49,7 @@ function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClic
               </span>for you</h1>
             </> : null}
             <div className={suggestedDisplayed ? `flex` : `mt-6 flex`}>
-              {isHotelSpecific ? <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "": "Hotel Amenities"}</p> <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed}/> </div> : <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Winter Park"}</p> <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions}/></div>}
+              {isHotelSpecific ? <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "": "Hotel Amenities"}</p> <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed} setToPage={setToPage} toPage={toPage}/> </div> : <div className='flex flex-col'><p className=' text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Winter Park"}</p> <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions} displayOptions={displayOptions} setDisplayOptions={setDisplayOptions}/></div>}
             </div>
             {!suggestedDisplayed ? 
               <div className={isHotelSpecific? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[9px]' }>

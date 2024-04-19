@@ -40,7 +40,7 @@ const subActivities = {
 
 const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals']
 
-const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions }) => {
+const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions, displayOptions, setDisplayOptions }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -53,7 +53,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
   const [unselectedActivityNames, setUnselectedActivityNames] = useState([]);
   const [subOptionConcat, setSubOptionConcat] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [displayOptions, setDisplayOptions] = useState(false);
   const [displayBusinesses, setDisplayBusinesses] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
