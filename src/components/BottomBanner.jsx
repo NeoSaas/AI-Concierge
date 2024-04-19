@@ -48,7 +48,7 @@ const BottomBanner = () => {
           key={index}
           className={`absolute top-0 left-0 w-full h-full ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-          } transition-opacity duration-500`}
+          } transition-opacity duration-700`}
         >
           <img
             src={image.src}
