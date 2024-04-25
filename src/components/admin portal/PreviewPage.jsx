@@ -44,15 +44,15 @@ const PreviewPage = ({values}) => {
                 <div>
                 <div className='text-left'>
                     <p className='text-2xl font-semibold mt-4'>Type:</p>
-                    <div className='flex flex-row w-96'>
-                    {/* {values.business_tags && values.business_tags.split(',').length > 1 && 
+                    <div className='flex flex-row w-[36rem]'>
+                    {values.business_tags && values.business_tags.split(',').length > 1 && 
                         values.business_tags.split(',').map((tag) => {
-                            return <p className='text-xl text-center'>{tag + ","}</p>
+                            return <p className='text-xl text-center'>{tag + ","}&nbsp;</p>
                         })
-                    } */}
-                    <p className='text-xl text-center'>{values.business_tags + " , "}</p>
+                    }
+                    {/* <p className='text-xl text-center'>{values.business_tags + " , "}</p>
                     <p className='text-xl text-center'>{values.sub_business_tags + " ,"}</p>
-                    <p className='text-xl text-center'>{values.sub_business_tags2}</p>
+                    <p className='text-xl text-center'>{values.sub_business_tags2}</p> */}
                     
                     </div>
                 </div>

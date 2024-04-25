@@ -28,12 +28,17 @@ const AddBusinessPage = () => {
     const handleFormChange = (values) => {
         // console.log('Form values:', values);
         setFormData(values); // Update formData state with form values
+        values?.business_type_tag == "Restaurant" ? (values.business_tags = values.business_type_tag + ', ' + values.business_restaurant_sub_tag1 + ', ' + values.business_restaurant_sub_tag2 + ', ' + values.business_restaurant_sub_tag3 + ', ' + values.business_restaurant_sub_tag4 + ', ' + values.business_restaurant_sub_tag5 + ', ' + values.business_restaurant_sub_tag6 + ', ' + values.business_restaurant_sub_tag7 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2) 
+        : (values.business_tags = values.business_type_tag + ', ' + values.sub_business_tags + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
         // setSelectedOption(values.business_type_tag); // Update selected option state with selected business type
     };
 
     const handleSubmit = (values) => {
+        console.log('Form values:', values);
         setLoading(true);
-        values.business_tags = values.business_type_tag + ', ' + values.sub_business_tags + ', ' + values.sub_business_tags2;
+        values?.business_type_tag == "Restaurant" ? (values.business_tags = formData.business_type_tag + ', ' + formData.business_restaurant_sub_tag1 + ', ' + formData.business_restaurant_sub_tag2 + ', ' + formData.business_restaurant_sub_tag3 + ', ' + formData.business_restaurant_sub_tag4 + ', ' + formData.business_restaurant_sub_tag5 + ', ' + formData.business_restaurant_sub_tag6 + ', ' + formData.business_restaurant_sub_tag7 + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2) 
+        : (values.business_tags = formData.business_type_tag + ', ' + formData.sub_business_tags + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2)
+        // values.business_tags = values.business_type_tag + ', ' + values.sub_business_tags + ', ' + values.sub_business_tags2;
         // console.log('Form values:', values);
         axios({
             method: 'POST',
@@ -146,7 +151,7 @@ const AddBusinessPage = () => {
                                 business_barcode: ''
                             }}
                             onSubmit={handleSubmit}
-                            validationSchema={validationSchema}
+                            validator={() => ({})}
                             >
                             {({ values }) => (
                             <Form className="mt-8 space-y-6" encType='multipart/form-data' onChange={() => handleFormChange(values)}>
@@ -163,7 +168,8 @@ const AddBusinessPage = () => {
                                         <Field type="text" name="business_name" id="business_name" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Name" />
                                     </div>
                                     <div className='flex-1'>
-                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter three tags that fit your business, please choose one for the first one that generally describes your business, then for the Sub tags please choose two more specific tags from the dropdowns</h1>} placement="top-start" arrow>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Please select a tag that defines your business as closely as possible, then upon the appearence of a second drop down please select a sub tag that even more closely matches your business</h1>} placement="top-start" arrow>
+                                      
                                             <label htmlFor="business_tags" className="flex flex-row items-center">Business Type <FaInfoCircle className='mx-2' /></label>
                                             <Field as="select" name="business_type_tag" id="business_type_tag" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                 <option value="">Select...</option>
@@ -178,8 +184,8 @@ const AddBusinessPage = () => {
                                                     case 'Restaurant':
                                                         return (
                                                             <div>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag1" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag1" id="business_restaurant_sub_tag1" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {subTypeOptions[values.business_type_tag].map(option => (
                                                                     <option key={option} value={option}>
@@ -187,8 +193,8 @@ const AddBusinessPage = () => {
                                                                     </option>
                                                                     ))}
                                                                 </Field>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Dietary Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag2" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Dietary Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag2" id="business_restaurant_sub_tag2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {dietaryOptions.map(option => (
                                                                     <option key={option.label} value={option.value}>
@@ -196,8 +202,8 @@ const AddBusinessPage = () => {
                                                                     </option>
                                                                     ))}
                                                                 </Field>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Atmosphere Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag3" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Atmosphere Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag3" id="business_restaurant_sub_tag3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {atmosphereOptions.map(option => (
                                                                     <option key={option.label} value={option.value}>
@@ -205,8 +211,8 @@ const AddBusinessPage = () => {
                                                                     </option>
                                                                     ))}
                                                                 </Field>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Special Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag4" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Special Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag4" id="business_restaurant_sub_tag4" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {specialOptions.map(option => (
                                                                     <option key={option.label} value={option.value}>
@@ -214,8 +220,8 @@ const AddBusinessPage = () => {
                                                                     </option>
                                                                     ))}
                                                                 </Field>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Award Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag5" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Award Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag5" id="business_restaurant_sub_tag5" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {awardOptions.map(option => (
                                                                     <option key={option.label} value={option.value}>
@@ -223,8 +229,8 @@ const AddBusinessPage = () => {
                                                                     </option>
                                                                     ))}
                                                                 </Field>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Type Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag6" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Type Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag6" id="business_restaurant_sub_tag6" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {restaurantTypeOptions.map(option => (
                                                                     <option key={option.label} value={option.value}>
@@ -232,8 +238,8 @@ const AddBusinessPage = () => {
                                                                     </option>
                                                                     ))}
                                                                 </Field>
-                                                                <label htmlFor="business_tags" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Type Tags <FaInfoCircle className='mx-2' /></label>
-                                                                <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                                                <label htmlFor="business_restaurant_sub_tag7" className="flex flex-row items-center">{values.business_type_tag}&nbsp;Type Tags <FaInfoCircle className='mx-2' /></label>
+                                                                <Field as="select" name="business_restaurant_sub_tag7" id="business_restaurant_sub_tag7" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                                     <option value="">Select...</option>
                                                                     {restaurantTypeOptions.map(option => (
                                                                     <option key={option.label} value={option.value}>
@@ -486,8 +492,10 @@ const AddBusinessPage = () => {
                                                         return null; // Render nothing if no option is selected or unknown option
                                                 }
                                             })()}
-                                            <label htmlFor="business_tags" className="flex flex-row items-center">Budget Tag <FaInfoCircle className='mx-2' /></label>
-                                            <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                        </Tooltip>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Please select one of the budgetary accomodation options that most closely fits your prices</h1>} placement="top-start" arrow>
+                                            <label htmlFor="sub_business_tags1" className="flex flex-row items-center">Budget Tag <FaInfoCircle className='mx-2' /></label>
+                                            <Field as="select" name="sub_business_tags1" id="sub_business_tags1" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                 <option value="">Select...</option>
                                                 {budgetOptions.map(option => (
                                                 <option key={option.value} value={option.value}>
@@ -495,8 +503,10 @@ const AddBusinessPage = () => {
                                                 </option>
                                                 ))}
                                             </Field>
-                                            <label htmlFor="business_tags" className="flex flex-row items-center">Group Size that can be Accomodated<FaInfoCircle className='mx-2' /></label>
-                                            <Field as="select" name="business_tags" id="business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                        </Tooltip>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Please choose an option that most closely matches the largest group you can accomodate</h1>} placement="top-start" arrow>
+                                            <label htmlFor="sub_business_tags2" className="flex flex-row items-center">Group Size that can be Accomodated<FaInfoCircle className='mx-2' /></label>
+                                            <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                                 <option value="">Select...</option>
                                                 {groupSizeOptions.map(option => (
                                                 <option key={option.value} value={option.value}>
@@ -504,7 +514,6 @@ const AddBusinessPage = () => {
                                                 </option>
                                                 ))}
                                             </Field>
-                                            
                                         </Tooltip>
                                     </div>
                                     <div>
@@ -670,7 +679,7 @@ const AddBusinessPage = () => {
                                     </button>
                                 </div>
                             </Form>
-                            )}
+                        )}
                         </Formik>
                     </div>
                     
