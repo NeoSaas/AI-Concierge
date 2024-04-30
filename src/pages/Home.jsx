@@ -20,7 +20,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsTimerComplete(true);
-        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+        }, 2 * 60 * 1000); // 4 minutes in milliseconds
 
         return () => clearTimeout(timer);
     }, []);

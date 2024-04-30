@@ -4,11 +4,11 @@ import Modal from 'react-modal';
 
 const TimeoutRedirect = ({ timeoutPeriod = 60000 }) => {
   const [isActive, setIsActive] = useState(true);
-  const [countdown, setCountdown] = useState(timeoutPeriod / 1000);
+  const [countdown, setCountdown] = useState(60000 / 1000);
   const nav = useNavigate();
 
   useEffect(() => {
-    Modal.setAppElement('body');
+    Modal.setAppElement('div');
     const interval = setInterval(() => {
       setCountdown((prevCountdown) => prevCountdown - 1);
     }, 1000);
@@ -24,6 +24,8 @@ const TimeoutRedirect = ({ timeoutPeriod = 60000 }) => {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        height: '200px',
+        width: '400px',
       },
   };
 
@@ -65,7 +67,7 @@ const TimeoutRedirect = ({ timeoutPeriod = 60000 }) => {
     contentLabel="timeout-modal"
     >
         <div className="flex flex-col items-center justify-center h-40 w-80 text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900">Returning to the home page in {countdown} seconds due to inactivity...</h2>
+            <h2 className="text-3xl font-extrabold text-gray-900">Returning to the home page in {countdown} due to inactivity...</h2>
             <button onClick={resetActivity} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Close</button>
         </div>
     </Modal>
