@@ -149,9 +149,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
         method: 'post',
         url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
         data: { query: prompt },
-        headers: {
-          'Authorization': `Token ${localStorage.getItem('token')}`
-        }
       });
       const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
 
@@ -163,9 +160,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
           method: 'post',
           url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
           data: { business: multiBusinessResponse },
-          headers: {
-            'Authorization': `Token ${localStorage.getItem('token')}`
-          }
         });
       }
       else {
@@ -173,9 +167,6 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
           method: 'post',
           url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
           data: { business: businessesFromResponse },
-          headers: {
-            'Authorization': `Token ${localStorage.getItem('token')}`
-          }
         });
       }
       setDisplayBusinesses(businessDataResponse.data);

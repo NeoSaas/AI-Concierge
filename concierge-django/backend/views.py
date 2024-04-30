@@ -74,8 +74,7 @@ def logout_view(request):
 
 @api_view(['GET'])
 @parser_classes([JSONParser])
-@permission_classes([IsAuthenticated])
-@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
 def getBusinessData(request):
     businesses = Business.objects.all()
     serializer = BusinessSerializer(businesses, many=True)
@@ -92,8 +91,7 @@ def getUserBusinessData(request):
 @csrf_exempt
 @api_view(['POST'])
 @parser_classes([MultiPartParser])
-@permission_classes([IsAuthenticated])
-@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
 def addBusinessData(request):
     parser_classes = (MultiPartParser,FormParser,JSONParser)
     print(request.FILES)
@@ -159,8 +157,7 @@ def addBusinessData(request):
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
-@permission_classes([IsAuthenticated])
-@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
 def updateBusinessData(request):
     business = Business.objects.filter(author=request.user)
     for key, value in request.data.items():
@@ -171,8 +168,7 @@ def updateBusinessData(request):
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
-@permission_classes([IsAuthenticated])
-@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
 def OPAIEndpointCreate(request):
     client = OpenAI(organization='org-2oZsacQ1Ji3Xr0uveLpwg50m', api_key=settings.OPEN_AI_KEY)
     
@@ -187,7 +183,7 @@ def OPAIEndpointCreate(request):
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 @authentication_classes([TokenAuthentication])
 def querySpecifcBusinessData(request):
     businessesList = []

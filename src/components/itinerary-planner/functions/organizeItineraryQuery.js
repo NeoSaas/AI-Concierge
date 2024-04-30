@@ -5,9 +5,7 @@ export default async function organizeQuery(selectedActivities) {
     const userSelectedCategories = selectedActivities.join(', ');
 
     const response = await axios.get('https://rr3l1d2s-8000.use.devtunnels.ms/api/getBusiness/', {
-        headers: {
-            'Authorization': `Token ${localStorage.getItem('token')}`
-        }
+        
     });
     const businessTagsArray = response.data;
 
@@ -16,7 +14,6 @@ export default async function organizeQuery(selectedActivities) {
     for (let i = 0; i < businessTagsArray.length; i++) {
         const business = businessTagsArray[i];
         businessesList += `${business.business_name} [Tags: ${business.business_tags.join(', ')}]\n`;
-
     }
 
 
