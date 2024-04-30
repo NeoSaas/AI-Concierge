@@ -5,12 +5,22 @@ import TopBanner from '../../components/TopBanner';
 import BottomBanner from '../../components/BottomBanner';
 import WeatherWidget from '../../components/weatherComponents/WeatherWidget';
 import MyDialog from '../../components/QrDialog';
+import TimeoutRedirect from '../../components/Timeout';
 
 function AmenitiesSpa() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = ['https://na.spatime.com/tai32789/5228842/home', 'https://qrco.de/bebESs', 'https://tai32789.na.book4time.com/spagift/', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form', 'https://thealfondinn.com/meetings-events/event-inquiry-form'];
     const [qrCode, setQrCode] = useState(null);
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -31,6 +41,7 @@ function AmenitiesSpa() {
     return (
         <div className='h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover'>
             <Navbar />
+            {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>

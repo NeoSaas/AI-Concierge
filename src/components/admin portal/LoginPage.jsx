@@ -28,8 +28,8 @@ const LoginPage = ({ login, setRememberMe }) => {
             }
         })
         await login();
-        const { session_key } = response.data;
-        localStorage.setItem('session_key', session_key);
+        const { token } = response.data;
+        localStorage.setItem('token', token);
         // console.log(values['remember-me'])
         if(values.rememberMe){
             setRememberMe(true);

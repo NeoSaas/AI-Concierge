@@ -4,10 +4,19 @@ import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
 import { useState, useEffect } from 'react';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
+import TimeoutRedirect from '../components/Timeout';
 
 function HotelMap() {
-
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -23,6 +32,7 @@ function HotelMap() {
         <div className="h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover">
             <Navbar />
             <WeatherWidget/>
+            {isTimerComplete ? <TimeoutRedirect /> : null}
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>

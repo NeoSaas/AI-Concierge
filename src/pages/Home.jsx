@@ -7,6 +7,7 @@ import Form from '../components/Form';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import MyDialog from '../components/QrDialog';
 import HotelQrDialog from '../components/hotel specific/HotelQrDialog';
+import TimeoutRedirect from '../components/Timeout';
 
 const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -14,15 +15,21 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     const [restaurantLink, setRestaurantLink] = useState(null);
     const [isRestaurant, setIsRestaurant] = useState(true);
     const [clickedBusiness, setClickedBusiness] = useState([]);
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
     
-    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
         const timeout = setTimeout(() => {
             setIsLoaded(true);
         }, 300);
-
         //clean up the timeout
         return () => clearTimeout(timeout);
     }, []);
@@ -30,6 +37,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     return (
         <>
             <div className={`h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover`} >
+                {isTimerComplete ? <TimeoutRedirect /> : null}
                 <div className=''>
                     <WeatherWidget/>
                 </div>

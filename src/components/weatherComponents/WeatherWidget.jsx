@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const WeatherWidget = () => {
   const [weather, setWeather] = useState(null);
@@ -6,29 +7,31 @@ const WeatherWidget = () => {
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = '826bf9a7af34448fa62ce92e8ce71ae1'; // Replace with your actual API key
-      setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
-
-      const apiUrl = `https://api.weatherbit.io/v2.0/current?key=${apiKey}&lat=28.6000&lon=-81.3392&units=I`;
-
       try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (data.data && data.data.length > 0) {
-          const weatherData = data.data[0];
+        const response = await axios({
+          method: 'GET',
+          url: 'https://us-weather-by-zip-code.p.rapidapi.com/getweatherzipcode',
+          params: {zip: '32789'},
+          headers: {
+            'X-RapidAPI-Key': process.env.REACT_APP_X_API_KEY,
+            'X-RapidAPI-Host': process.env.REACT_APP_X_API_SECRET
+          }
+        });
+        console.log(response.data)
+        if (response.data) {
+          // const weatherData = data.data[0];
           setWeather({
-            temperature: weatherData.temp,
-            condition: weatherData.weather.code,
-            description: weatherData.weather.description,
-            conditionIcon: `https://www.weatherbit.io/static/img/icons/${weatherData.weather.icon}.png`,
-            locationName: weatherData.city_name,
-            date: weatherData.ob_time,
+            temperature: response.data.TempF,
+            description: response.data.Weather,
+            conditionIcon: weatherIcon(response.data.Weather),
+            locationName: response.data.City,
           });
+          setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
         } else {
-          console.error('Error fetching weather data:', data.error);
+          console.error('Error fetching weather data:');
         }
-      } catch (error) {
+      } 
+      catch (error) {
         console.error('Error fetching weather data:', error);
       }
     };
@@ -39,12 +42,14 @@ const WeatherWidget = () => {
   setTimeout(() => setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })), 60000);
 
   if (!weather) {
+    // console.log(time)
     return <div>Loading...</div>;
+    
   }
 
   const { temperature, condition, conditionIcon, locationName, date, description} = weather;
 
-  const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  const formattedDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
@@ -69,3 +74,19 @@ const WeatherWidget = () => {
 };
 
 export default WeatherWidget;
+
+function weatherIcon(weather) {
+  if (weather.includes('Clear') ) {
+    return '/weather-icons/icons8-sun.svg';
+  } else if (weather.includes('Cloud') || weather.includes('Cloudy')) {
+    return '/weather-icons/icons8-cloudy-80.png';
+  } else if (weather.includes('Rain')) {
+    return '/weather-icons/icons8-rainy.png';
+  } else if (weather.includes('Storm')) {
+    return '/weather-icons/icons8-storm.png';
+  } else if (weather.includes('Sunny')) {
+    return '/weather-icons/icons8-sun.png';
+  } else  {
+    return '/weather-icons/icons8-cloudy-80.png';
+  }
+}

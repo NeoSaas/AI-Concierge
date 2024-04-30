@@ -5,12 +5,22 @@ import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import MyDialog from '../components/QrDialog';
+import TimeoutRedirect from '../components/Timeout';
 
 function CheckInInfo() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = [`https://thealfondinn.com/the-hotel/rooms-suites#/booking/step-1?data=('hBhd!'alfond-inn'~ae706dt716fs.~rBat!2~cn!0~cg.~al9po5gp5rn.)Ary5rk5re.~rr*)Aax!0~cy5ds!('pe5ls5as5st*)~my9se5ce5ne*)*!null.8%5D5*~6%2F2024'~7!'03%2F18!%5B9!false~A%5D~Bs8('%01BA98765.*_`, 'https://thealfondinn.com/the-hotel/rooms-suites'];
     const [qrCode, setQrCode] = useState(null);
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -35,6 +45,7 @@ function CheckInInfo() {
     return (
         <div className='h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover'>
             <Navbar />
+            {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget/>
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>

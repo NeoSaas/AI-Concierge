@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -18,6 +18,9 @@ from openai import OpenAI
 import googlemaps
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.decorators import parser_classes
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.authtoken.models import Token
 
 def index(request):
     tag_to_monitor = 'your_tag_name'
@@ -27,6 +30,8 @@ def index(request):
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
+@permission_classes([AllowAny])
+@authentication_classes([TokenAuthentication])
 def signup(request):
     if request.method == 'POST':
         username = request.data.get('username')
@@ -37,12 +42,15 @@ def signup(request):
             return Response({'error': 'Please provide username, email, and password.'}, status=status.HTTP_400_BAD_REQUEST)
         try:
             user = User.objects.create_user(username=username, email=email, password=password, business=business)
-            return Response({'success': 'User created successfully.'}, status=status.HTTP_201_CREATED)
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
+@permission_classes([AllowAny])
+@authentication_classes([TokenAuthentication])
 def login_view(request):
     #login 
     username = request.data.get('username')
@@ -50,12 +58,15 @@ def login_view(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return JsonResponse({'session_key': request.session.session_key})
+        token, _ = Token.objects.get_or_create(user=user)
+        return JsonResponse({'token': token.key})
     else:
         return JsonResponse({'message': 'Login failed'}, status=401)
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
+@permission_classes([AllowAny])
+@authentication_classes([TokenAuthentication])
 def logout_view(request):
     #logout
     logout(request)
@@ -63,14 +74,26 @@ def logout_view(request):
 
 @api_view(['GET'])
 @parser_classes([JSONParser])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def getBusinessData(request):
     businesses = Business.objects.all()
     serializer = BusinessSerializer(businesses, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def getUserBusinessData(request):
+    businesses = Business.objects.filter(author=request.user)
+    serializer = BusinessSerializer(businesses)
+    return JsonResponse(serializer.data, safe=False)
+
 @csrf_exempt
 @api_view(['POST'])
 @parser_classes([MultiPartParser])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def addBusinessData(request):
     parser_classes = (MultiPartParser,FormParser,JSONParser)
     print(request.FILES)
@@ -126,7 +149,7 @@ def addBusinessData(request):
         transit_time=0,
         hours_of_operation=hours_dict,
         business_barcode_dates=new_business_data['business_barcode_date'],
-        # author=request.user
+        author=request.user
     )
     
     new_business.save()
@@ -134,14 +157,22 @@ def addBusinessData(request):
     serializer = BusinessSerializer(new_business)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-# def updateBusinessData(request):
-#     business = Business.objects.filter(author=request.user)
-#     serializer = BusinessSerializer(new_business)
-#     return Response(serializer.data, status=status.HTTP_201_CREATED)
+@api_view(['POST'])
+@parser_classes([JSONParser])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def updateBusinessData(request):
+    business = Business.objects.filter(author=request.user)
+    for key, value in request.data.items():
+        setattr(business, key, value)
+    business.save()
+    serializer = BusinessSerializer(business)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def OPAIEndpointCreate(request):
     client = OpenAI(organization='org-2oZsacQ1Ji3Xr0uveLpwg50m', api_key=settings.OPEN_AI_KEY)
     
@@ -156,6 +187,8 @@ def OPAIEndpointCreate(request):
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
 def querySpecifcBusinessData(request):
     businessesList = []
     api_key = settings.GOOGLE_API_KEY

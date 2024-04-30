@@ -14,6 +14,7 @@ import LoginPage from './components/admin portal/LoginPage';
 import AdminPortal from './components/admin portal/AdminPortal';
 import Signup from './components/admin portal/Signup';
 import { redirect } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
   const [isAuthenticated, setState] = React.useState(false);
@@ -29,8 +30,8 @@ function App() {
   };
 
   useEffect(() => {
-    const session_key = localStorage.getItem('session_key');
-    if (session_key) {
+    const token = localStorage.getItem('token');
+    if (token) {
       setState(true);
     }
     else {
@@ -45,6 +46,7 @@ function App() {
 
   const logout = () => {
     setState(false);
+    redirect('/login');
   };
 
   return (
@@ -61,7 +63,7 @@ function App() {
           <Route path="/rooms" element={<AmenitiesRooms/>} />
           <Route path="/login" element={<LoginPage login={login} setRememberMe={setRememberMe}/>}/>
           <Route path="/signup" element={<Signup/>} />
-          <Route path="/admin_portal" element={wrapPrivateRoute(<AdminPortal/>, isAuthenticated, '/admin_portal')} />
+          <Route path="/admin_portal" element={wrapPrivateRoute(<AdminPortal logout={logout}/>, isAuthenticated, '/login')} />
         </Routes>
     </BrowserRouter>
   );

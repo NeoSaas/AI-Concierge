@@ -6,18 +6,28 @@ import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
 import MyDialog from '../components/QrDialog';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
+import TimeoutRedirect from '../components/Timeout';
 
 function EventsInfo() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = ['easterbrunch.png', 'easterbrunch.png', 'sidewalkart.png'];
     const [qrCode, setQrCode] = useState(null);
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
 
     const handleButton = (index) => {
         // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -32,6 +42,7 @@ function EventsInfo() {
     return (
         <div className='h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover'>
             <Navbar />
+            {isTimerComplete ? <TimeoutRedirect /> : null}
             <div>
                 <WeatherWidget/>
             </div>
