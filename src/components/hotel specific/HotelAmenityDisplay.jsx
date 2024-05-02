@@ -50,29 +50,29 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOp
 const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <div className='max-w-[60rem] max-h-[95rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
-    <div className='w-[40rem] h-[40rem] mx-auto'>
+    <div className='w-[32rem] h-[32rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[420px] w-[420px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[512px] w-[512px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[420px] w-[420px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[512px] w-[512px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[420px] w-[420px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[512px] w-[512px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[420px] w-[420px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[512px] w-[512px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[420px] w-[420px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[512px] w-[512px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[420px] w-[420px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[512px] w-[512px]'/>
         </div>
       </Slide>
     </div>
-    <h2 className="text-3xl text-gray-800 mb-2 mt-12">Modern Southern Cuisine</h2>
+    <h2 className="text-3xl text-gray-800 mb-2 mt-2">Modern Southern Cuisine</h2>
     <div className="mb-6 text-3xl">
       <h3 className="text-md font-semibold text-gray-800 mb-2">BREAKFAST & LUNCH</h3>
       <p className="text-gray-600 mb-4 ">Monday - Friday: 7:00 AM to 2:00 PM</p>
