@@ -39,10 +39,11 @@ function AmenitiesInfo() {
     }
 
     return (
-        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Main%20Image%201.png)] bg-cover'>
-            <Navbar />
+        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Main%20Image%201.png)] mt-[-100px] bg-cover'>
+            
             {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget />
+            <Navbar />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>

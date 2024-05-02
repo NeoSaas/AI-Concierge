@@ -26,12 +26,10 @@ function Landing({ setIsHotelSpecific }) {
 
   return (
     <div>
-      <div className='relative'>
-      <Navbar/>
-      </div>
       <WeatherWidget />
+      <Navbar/>
       <BottomBanner/>
-      <div style={{'--image-url': `url(${fetchedUrl})`}} className='h-[100vh] w-full bg-[image:var(--image-url)] bg-cover flex justify-center items-center transition-all ease-in-out duration-500'>
+      <div style={{'--image-url': `url(${fetchedUrl})`}} className='h-[90vh] mt-[-100px] w-full bg-[image:var(--image-url)] bg-cover flex justify-center items-center transition-all ease-in-out duration-500'>
           <div className={'flex justify-center items-center mb-[672px]'}>
               <div className='absolute h-[29%] w-[70%] mx-auto rounded-xl bg-gradient-to-b from-black via-black to-black opacity-90'></div>
               {/* <div className='absolute h-[35%] w-[70%] mx-auto rounded-xl bg-gradient-to-t from-black via-transparent to-transparent'></div> */}

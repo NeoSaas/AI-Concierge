@@ -40,12 +40,13 @@ function EventsInfo() {
     }, []);
 
     return (
-        <div className='h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] bg-cover'>
-            <Navbar />
+        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] mt-[-100px] bg-cover'>
+            
             {isTimerComplete ? <TimeoutRedirect /> : null}
             <div>
                 <WeatherWidget/>
             </div>
+            <Navbar />
             {/* <p className='text-4xl font-bold text-center mt-[35rem] mx-auto w-screen absolute'>Events</p> */}
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>

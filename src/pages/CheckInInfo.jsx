@@ -43,10 +43,10 @@ function CheckInInfo() {
     }
 
     return (
-        <div className='h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] bg-cover'>
-            <Navbar />
+        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] mt-[-100px] bg-cover'>
             {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget/>
+            <Navbar />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
