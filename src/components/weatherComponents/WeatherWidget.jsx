@@ -56,7 +56,7 @@ const WeatherWidget = () => {
   });
 
   return (
-    <div className="bg-white text-black flex items-center justify-between px-10 py-2 h-32 absolute w-full z-10">
+    <div className="bg-white text-black flex items-center justify-between px-10 py-2 h-32 relative w-full z-10">
       <div className="flex items-center">
         <p className='font-quicksand text-2xl'>{description}</p>
         <img src={conditionIcon} alt="Weather Icon" className="h-20 w-20 mr-5" />

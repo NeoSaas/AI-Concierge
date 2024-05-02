@@ -38,7 +38,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
         <div>
             <WeatherWidget/>
             <Navbar />
-            <div className={`h-screen bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] bg-cover`} >
+            <div className={`h-screen bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] mt-[-100px] bg-cover`} >
                 {isTimerComplete ? <TimeoutRedirect /> : null}
                 {/* <div className='absolute gradient-top h-full w-full opacity-70'></div>
                 <div className='absolute gradient-bottom h-full w-full opacity-70'></div> */}
