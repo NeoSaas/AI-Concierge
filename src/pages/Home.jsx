@@ -35,7 +35,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     }, []);
 
     return (
-        <>
+        <div>
             <WeatherWidget/>
             <Navbar />
             <div className={`h-screen bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] bg-cover`} >
@@ -63,7 +63,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
                 </div>
                 <BottomBanner/>
             </div>
-        </>
+        </div>
   );
 };
 
