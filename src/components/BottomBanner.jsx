@@ -53,7 +53,7 @@ const BottomBanner = () => {
           <img
             src={image.src}
             alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fill"
           />
         </div>
       ))}
