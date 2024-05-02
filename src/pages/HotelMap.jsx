@@ -29,7 +29,7 @@ function HotelMap() {
     }, []);
 
     return (
-        <div className="h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png)] bg-cover">
+        <div className="h-[100vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] bg-cover">
             <Navbar />
             <WeatherWidget/>
             {isTimerComplete ? <TimeoutRedirect /> : null}

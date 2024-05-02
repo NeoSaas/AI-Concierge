@@ -14,6 +14,7 @@ import { typeOptions, subTypeOptions, dietaryOptions,
     awardOptions, budgetOptions, atmosphereOptions, 
     restaurantTypeOptions} from '../arrays/Arrays';
 import { DynamicFormDropdowns, DynamicFormDropdowns2, DynamicFormDropdowns3} from '../DynamicFormDropdowns';
+import organizeReviewQuery from '../../general functions/organizeReviewQuery';
 
 const AddBusiness = ({ logout }) => {
 
@@ -34,11 +35,21 @@ const AddBusiness = ({ logout }) => {
     };
 
     const handleSubmit = (values) => {
-        console.log('Form values:', values);
         setLoading(true);
+        let query = organizeReviewQuery(values.business_name, values.business_address);
+        let reviewResponse = axios({
+            method: 'POST',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
+            data: {query: query},
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            withCredentials: true,
+        })
         values?.business_type_tag1 == "Restaurant" ? (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_restaurant_sub_tag1 + ', ' + formData.business_restaurant_sub_tag2 + ', ' + formData.business_restaurant_sub_tag3 + ', ' + formData.business_restaurant_sub_tag4 + ', ' + formData.business_restaurant_sub_tag5 + ', ' + formData.business_restaurant_sub_tag6 + ', ' + formData.business_restaurant_sub_tag7 + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2) 
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_business_tags + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2)
-        // console.log('Form values:', values);
+        values.google_review_summary = reviewResponse.data['response-payload'].split(': ')[1].trim()
+        console.log('busines_tags:', values.business_tags);
         axios({
             method: 'POST',
             url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/',
@@ -60,7 +71,6 @@ const AddBusiness = ({ logout }) => {
             setFail(true);
         });
     };
-
 
     const handleCloseModal = () => {
         setLoading(false);
@@ -156,6 +166,7 @@ const AddBusiness = ({ logout }) => {
                                 business_type_tag2: '',
                                 business_type_tag3: '', 
                                 business_tags: '',
+                                google_review_summary: '',
                                 business_rating: 0.00,
                                 business_place_id: '',
                                 business_address: '',
@@ -168,8 +179,7 @@ const AddBusiness = ({ logout }) => {
                                 business_barcode: ''
                             }}
                             onSubmit={handleSubmit}
-                            // validator={() => ({})}
-                            validationSchema={validationSchema}
+                            validator={() => ({})}
                             >
                             {({ values }) => (
                             <Form className="mt-8 space-y-6" encType='multipart/form-data' onChange={() => handleFormChange(values)}>

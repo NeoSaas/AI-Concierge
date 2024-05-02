@@ -23,6 +23,7 @@ class Business(models.Model):
     business_description = models.TextField(default='', null=True, blank=True)
     business_phone_number = models.CharField(max_length=100, default='', null=True, blank=True)
     business_barcode_dates = models.CharField(max_length=100, default='', null=True, blank=True)
+    google_reviews_summary = models.CharField(max_length=500, default='', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.business_name  

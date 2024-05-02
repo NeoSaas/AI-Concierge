@@ -8,7 +8,7 @@ const BottomBanner = () => {
     { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKabooki-Sushi-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
     { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKai-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
     { src: 'https://aiconcierge.b-cdn.net/Banners/BannerMead%20Botanical%20Garden-gigapixel-standard-6x.png', text: 'Text for Image 1' },
-    // { src: 'https://aiconcierge.b-cdn.net/Banners/BannerOttos-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerOttos-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
     { src: 'https://aiconcierge.b-cdn.net/Banners/BannerTommy%20Bahama%20Marlin%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },
     { src: 'https://aiconcierge.b-cdn.net/Banners/BannerCasa%20Feliz-gigapixel-standard-6x.png', text: 'Text for Image 1' },
     { src: 'https://aiconcierge.b-cdn.net/Banners/BannerFlutes%20Champagne%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },

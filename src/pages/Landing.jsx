@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Landing({ setIsHotelSpecific }) {
 
-  const bgImages = ["https://aiconcierge.b-cdn.net/MainPage/Alfond%20Inn%20Collage%20Main%202.png"]
+  const bgImages = ["https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg"]
 
   const [fetchedUrl, setFetchedUrl] = React.useState(bgImages[0])
   const nav = useNavigate();

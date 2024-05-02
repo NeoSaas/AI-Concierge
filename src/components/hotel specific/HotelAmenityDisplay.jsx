@@ -8,25 +8,25 @@ import 'react-slideshow-image/dist/styles.css';
 const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE CAFÉ AT THE ALFOND INN</h1>
-    <div className='w-[54rem] h-[54rem]'>
+    <div className='w-[45rem] h-[45rem]'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondCafe/Banner1-gigapixel-standard-6x.png' alt="pic1" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondCafe/Banner3-gigapixel-standard-6x.png' alt="pic2" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondCafe/Banner5-gigapixel-standard-6x.png' alt="pic3" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondCafe/Banner2-gigapixel-standard-6x.png' alt="pic4" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondCafe/Banner4-gigapixel-standard-6x.png' alt="pic5" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondCafe/Banner6-gigapixel-standard-6x.png' alt="pic6" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Ajudted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[720px] w-[720px]'/>
         </div>
       </Slide>
     </div>
@@ -50,25 +50,25 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOp
 const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <div className='max-w-[60rem] max-h-[95rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
-    <div className='w-[54rem] h-[54rem] mx-auto'>
+    <div className='w-[40rem] h-[40rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamiltom-Kitchen-1-Chef.png' alt="pic1" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[640px] w-[640px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kichen-Food-2.png' alt="pic2" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[640px] w-[640px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-1-9-x-9-inch.png' alt="pic3" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[640px] w-[640px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-1.png' alt="pic4" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[640px] w-[640px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-4.png' alt="pic5" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[640px] w-[640px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamiton-Kichen-Food-3.png' alt="pic6" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[640px] w-[640px]'/>
         </div>
       </Slide>
     </div>
@@ -99,28 +99,25 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
 const LoungeContent = () => (
   <div className='max-w-[55rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE LOUNGE</h1>
-    <div className='w-[54rem] h-[54rem] mx-auto '>
+    <div className='w-[45rem] h-[45rem] mx-auto '>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondBar/Banner1-gigapixel-standard%20v2-6x.png' alt="pic1" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondBar/Banner3-gigapixel-standard-6x.png' alt="pic2" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondBar/Banner5-gigapixel-standard-6x.png' alt="pic3" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondBar/Banner2-gigapixel-standard-6x.png' alt="pic4" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondBar/Banner4-gigapixel-standard-6x.png' alt="pic5" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondBar/Banner6-gigapixel-standard-6x.png' alt="pic6" className='h-[864px] w-[864px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondLounge/BannerAlond%20Inn%20Lounge%201-gigapixel-cgi-6x.jpg' alt="pic6" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[720px] w-[720px]'/>
         </div>
       </Slide>
     </div>
@@ -138,25 +135,25 @@ const LoungeContent = () => (
 const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <div className='max-w-[55rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE SPA AT THE ALFOND INN</h1>
-    <div className='w-[54rem] h-[54rem] mx-auto'>
+    <div className='w-[45rem] h-[45rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondSpa/Banner1-gigapixel-standard-6x.png' alt="pic1" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner1-gigapixel-standard-v1-2x.jpg' alt="pic1" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondSpa/Banner3-gigapixel-standard-6x.png' alt="pic2" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner2-gigapixel-standard-v1-2x.jpg' alt="pic2" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondSpa/Banner5-gigapixel-standard-6x.png' alt="pic3" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner3-gigapixel-standard-v1-2x.jpg' alt="pic3" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondSpa/Banner2-gigapixel-standard-6x.png' alt="pic4" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner4-gigapixel-standard-v1-2x.jpg' alt="pic4" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondSpa/Banner4-gigapixel-standard-6x.png' alt="pic5" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner5-gigapixel-standard-v1-2x.jpg' alt="pic5" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondSpa/Banner6-gigapixel-standard-6x.png' alt="pic6" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner6-gigapixel-standard-v1-2x.jpg' alt="pic6" className='h-[720px] w-[720px]'/>
         </div>
       </Slide>
     </div>
@@ -185,25 +182,25 @@ const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestau
 const PoolContent = () => (
   <div className='max-w-[57rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE POOL AT THE ALFOND INN</h1>
-    <div className='w-[54rem] h-[54rem] mx-auto'>
+    <div className='w-[45rem] h-[45rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondPool/Banner1-gigapixel-standard-6x.png' alt="pic1" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/1.png' alt="pic1" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondPool/Banner3-gigapixel-standard-6x.png' alt="pic2" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/2.png' alt="pic2" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondPool/Banner5-gigapixel-standard-6x.png' alt="pic3" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/3.png' alt="pic3" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondPool/Banner2-gigapixel-standard-6x.png' alt="pic4" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/4.png' alt="pic4" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondPool/Banner4-gigapixel-standard-6x.png' alt="pic5" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/5.png' alt="pic5" className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/AlfondPool/Banner6-gigapixel-standard-6x.png' alt="pic6" className='h-[864px] w-[864px]'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/6.png' alt="pic6" className='h-[720px] w-[720px]'/>
         </div>
       </Slide>
     </div>
@@ -242,16 +239,31 @@ const FitnessCenterContent = () => (
   <div className='mt-12'>
     <h1 className="text-4xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
     <h2 className="text-3xl text-gray-800 mb-6">ELEVATE YOUR DAY, ENERGIZE YOUR STAY</h2>
-    <div className='w-[54rem] h-[54rem] mx-auto'>
+    <div className='w-[45rem] h-[45rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='hotel/gym1.png' className='h-96 w-auto'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/1.png' className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='hotel/gym2.png' className='h-96 w-auto'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/2.png' className='h-[720px] w-[720px]'/>
         </div>
         <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='hotel/gym3.jpg' className='h-96 w-auto'/>
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/3.png' className='h-[720px] w-[720px]'/>
+        </div>
+        <div className=' each-slide-effect flex justify-center items-center'> 
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/4.png' className='h-[720px] w-[720px]'/>
+        </div>
+        <div className=' each-slide-effect flex justify-center items-center'> 
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/5.png' className='h-[720px] w-[720px]'/>
+        </div>
+        <div className=' each-slide-effect flex justify-center items-center'> 
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/6.png' className='h-[720px] w-[720px]'/>
+        </div>
+        <div className=' each-slide-effect flex justify-center items-center'> 
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/7.png' className='h-[720px] w-[720px]'/>
+        </div>
+        <div className=' each-slide-effect flex justify-center items-center'> 
+          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/8.png' className='h-[720px] w-[720px]'/>
         </div>
       </Slide>
     </div>

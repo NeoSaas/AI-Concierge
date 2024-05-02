@@ -31,7 +31,6 @@ def index(request):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @permission_classes([AllowAny])
-@authentication_classes([TokenAuthentication])
 def signup(request):
     if request.method == 'POST':
         username = request.data.get('username')
@@ -50,7 +49,6 @@ def signup(request):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @permission_classes([AllowAny])
-@authentication_classes([TokenAuthentication])
 def login_view(request):
     #login 
     username = request.data.get('username')
@@ -66,7 +64,6 @@ def login_view(request):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @permission_classes([AllowAny])
-@authentication_classes([TokenAuthentication])
 def logout_view(request):
     #logout
     logout(request)
@@ -116,7 +113,8 @@ def addBusinessData(request):
         'f_hours_of_operation': request.data.get('f_hours_of_operation'),
         'sa_hours_of_operation': request.data.get('sa_hours_of_operation'),
         'su_hours_of_operation': request.data.get('su_hours_of_operation'),
-        'business_barcode_date': request.data.get('business_barcode_date')
+        'business_barcode_date': request.data.get('business_barcode_date'),
+        'google_review_summary': request.data.get('google_review_summary')
     }
     
     hours_dict = {
@@ -147,6 +145,7 @@ def addBusinessData(request):
         transit_time=0,
         hours_of_operation=hours_dict,
         business_barcode_dates=new_business_data['business_barcode_date'],
+        google_review_summary=new_business_data['google_review_summary'],
         author=request.user
     )
     
@@ -184,7 +183,6 @@ def OPAIEndpointCreate(request):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @permission_classes([AllowAny])
-@authentication_classes([TokenAuthentication])
 def querySpecifcBusinessData(request):
     businessesList = []
     api_key = settings.GOOGLE_API_KEY

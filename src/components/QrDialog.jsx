@@ -56,18 +56,18 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[162rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[152rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
                 >
                   {isRestaurant ? 
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col text-center'>
                   <div>
-                    <p className='text-4xl'>{clickedBusiness[0].business_name}</p>
-                    <p className='text-2xl'>{clickedBusiness[0].business_address}</p>
+                    <p className='text-5xl mb-6 mt-4'>{clickedBusiness[0].business_name}</p>
+                    <p className='text-2xl font-normal'>{clickedBusiness[0].business_address}</p>
                   </div>
-                  <div className='my-auto text-2xl pl-16 flex flex-col'>
+                  <div className='my-auto text-2xl pl-16 flex flex-col mt-4 mb-3'>
                     <p>Phone Number:</p>
                     <p>{clickedBusiness[0].business_phone_number}</p>
                   </div>
@@ -82,79 +82,82 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                   {isRestaurant ? 
                   <>
                     <div className='grid grid-cols-2 w-[98%] h-auto mx-auto'>
-                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[840px] h-[840px] max-h-[54rem] rounded-lg'/>
+                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[576px] h-[576px] max-h-[54rem] rounded-lg'/>
                       <div className='w-[130%] ml-5 pr-[12rem]'>
                         <div>
                           <p className='mt-4 text-3xl font-semibold'>Description</p>
                           <p className='text-xl'>{clickedBusiness[0].business_description}</p>
                         </div>
-                        
+                        <div className='text-center flex flex-row mt-9 w-full justify-center items-center'>
+                          <p className='text-2xl font-semibold'>Type: &nbsp;</p>
+                          <div className='flex flex-row '>
+                            {clickedBusiness[0].business_tags.map((tag) => {
+                              return <p className='text-2xl'>{tag}, &nbsp;</p>
+                            })}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className='grid grid-cols-[35%_65%] max-w-full mt-5 gap-0'>
+                    <div className='grid grid-cols-[35%_65%] max-w-full mt-5 gap-0 justify-center items-center'>
                       <div>
-                        <div className='text-left'>
-                          <p className='text-2xl font-semibold mt-4'>Type:</p>
-                          <div className='flex flex-row'>
-                            {clickedBusiness[0].business_tags.map((tag) => {
-                              return <p className='text-xl text-center'>{tag}, &nbsp;</p>
-                            })}
-                          </div>
-                        </div>
-                        <div className='text-left flex flex-col'>
-                          <p className='text-2xl font-semibold mt-4'>Rating:</p>
-                          <div className='flex flex-row'>
-                            <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
-                            <p className='text-xl ml-3'>{clickedBusiness[0].business_rating} stars </p>
-                          </div>
-                        </div>
-                        <div className='h-auto w-max shadow-md px-5 rounded-xl right-0'>
-                          <p className='text-2xl font-semibold mt-12 text-left'>Hours of Operation:</p>
+                        <div className='h-auto w-max shadow-md mt-12 px-5 rounded-xl right-0 border-2 border-black'>
+                          <p className='text-2xl font-semibold text-left'>Hours of Operation:</p>
                           <div className='flex flex-col'>
                             {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
-                              return <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-6'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-6 mb-3'>{value}</p></div>
+                              return <div className='flex-row flex'> <p className='text-2xl mt-6'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-6 mb-3'>{value}</p></div>
                             })}
                           </div>
                         </div>
-                        <div className='flex flex-col text-left pr-32 mt-4'>
-                          <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
-                          <QRCode value={otherLink} className='m-auto'/>
+                        <div className='text-center flex flex-row mt-12'>
+                          <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
+                          <div className='flex flex-row mt-2'>
+                            <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
+                            <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
+                          </div>
                         </div>
+                        
                       </div>
                       <div className='w-full flex justify-center mt-9'>
-                        <Carousel width={800} autoPlay={true} interval={5000} infiniteLoop={true}>
+                        <Carousel width={600} autoPlay={true} interval={5000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[950px] rounded-lg'/> 
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[600px] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-auto w-[950px] rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-auto w-[600px] rounded-lg'/>
                           </div>
                           <div className=' flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[950px] rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[600px] rounded-lg'/>
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[950px] rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[600px] rounded-lg'/>
                           </div>
                         </Carousel>
                       </div>
                     </div>
-                    <div className='flex-row flex justify-center items-center rounded-md p-3 pt-32'>
+                    <div className='flex-row flex justify-center items-center rounded-md p-1'>
                       {/* <div className='flex flex-col '>
                         <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         <QRCode value={otherLink} className='m-auto'/>
                       </div> */}
+                      <div className='flex flex-col text-center pr-32 mt-4'>
+                          <QRCode value={otherLink} className='m-auto'/>
+                          <p className='mt-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
+                        </div>
                       <div className='flex flex-col items-center justify-center'>
-                        <p className='mb-5 text-xl'>Take a picture of the barcode and present it at the restaurant for Perks!</p>
+                        <div className='mb-12 w-max'>
+                          <p className='text-2xl font-bold text-black '>Google Review Summary</p>
+                          <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
+                        </div>
                         {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ?
                         <>
-                        <p className='mb-5 text-xl'>{clickedBusiness[0].business_barcode}</p>
-                        <p className='mb-5 text-xl'>{clickedBusiness[0].busness_name}</p>
-                        <p className='mb-5 text-xl'>{"Promo code valid until: " + clickedBusiness[0].business_barcode_date}</p>
+                        <p className='mb-5 text-2xl font-bold'>{clickedBusiness[0]?.business_barcode}</p>
+                        <p className='mb-5 text-xl'>{clickedBusiness[0]?.busness_name}</p>
+                        <p className='mb-5 text-xl'>{"Promo code valid until: " + clickedBusiness[0]?.business_barcode_date}</p>
                         </>
                         :
-                        <p className='mb-5 text-xl'>No Promo Code available</p>
+                        <p className='mb-5 text-2xl font-bold'>No Promo Code available</p>
                         }
-                        
+                        <p className='text-xl'>Take a picture of the barcode and present it at the restaurant for Perks!</p>
                       </div>
                     </div>
                   </> : <QRCode value={otherLink} className='m-auto'/>}
