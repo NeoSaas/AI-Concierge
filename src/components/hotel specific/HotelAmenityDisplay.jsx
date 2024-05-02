@@ -49,7 +49,7 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOp
 
 const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
   <div className='max-w-[60rem] max-h-[95rem]'>
-    <h1 className="text-4xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
+    <h1 className="text-3xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
     <div className='w-[32rem] h-[32rem] mx-auto'>
       <Slide>
         <div className=' each-slide-effect flex justify-center items-center'> 
@@ -72,8 +72,8 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
         </div>
       </Slide>
     </div>
-    <h2 className="text-3xl text-gray-800 mb-2 mt-2">Modern Southern Cuisine</h2>
-    <div className="mb-6 text-3xl">
+    <h2 className="text-2xl text-gray-800 mb-2 mt-2">Modern Southern Cuisine</h2>
+    <div className="mb-6 text-2xl">
       <h3 className="text-md font-semibold text-gray-800 mb-2">BREAKFAST & LUNCH</h3>
       <p className="text-gray-600 mb-4 ">Monday - Friday: 7:00 AM to 2:00 PM</p>
       <p className="text-gray-600 mb-4 ">Saturday - Sunday: 8:00 AM to 2:00 PM</p>
@@ -81,13 +81,13 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
         Brunch Menu
       </button>
     </div>
-    <div className="mb-6 text-3xl">
+    <div className="mb-6 text-2xl">
       <h3 className="text-3xl font-semibold text-gray-800 mb-2">HAPPY HOUR</h3>
       <p className="text-gray-600 mb-4 ">Monday - Friday: 4:00 PM to 7:00 PM</p>
       <p className="text-gray-600 ">Draft Beers | House Chardonnay | House Cabernet | Well Cocktails</p>
     </div>
-    <div className="pt-4 border-t border-gray-200 text-3xl">
-      <h3 className="text-3xl font-semibold text-gray-800 mb-2">DINNER</h3>
+    <div className="pt-4 border-t border-gray-200 text-2xl">
+      <h3 className="text-2xl font-semibold text-gray-800 mb-2">DINNER</h3>
       <p className="text-gray-600 mb-4">Daily: 5:00 PM to 9:00 PM</p>
       <button onClick={() => {setIsOpen(true); setRestaurantLink(dinnerMenuLink)}} className="bg-[#5C0601] text-white font-bold py-2 px-4 w-[70%] rounded-[1.5rem]">
         Dinner Menu
@@ -236,7 +236,7 @@ const PoolContent = () => (
 );
 
 const FitnessCenterContent = () => (
-  <div className='mt-12'>
+  <div className='mt-9'>
     <h1 className="text-4xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
     <h2 className="text-3xl text-gray-800 mb-6">ELEVATE YOUR DAY, ENERGIZE YOUR STAY</h2>
     <div className='w-[45rem] h-[45rem] mx-auto'>

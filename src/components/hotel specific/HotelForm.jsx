@@ -61,7 +61,7 @@ const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen
       {toPage ? (
         <div className='flex flex-col justify-center w-full'>
           <HotelAmenityDisplay selectedActivityId={selectedActivityIds} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
-          <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold' href='/home'>Back to Start</a>
+          <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-[-2.5rem]' href='/home'>Back to Start</a>
         </div>
       ) : 
       <>
