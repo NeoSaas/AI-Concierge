@@ -3,20 +3,20 @@ import React, { useState, useEffect } from 'react';
 const BottomBanner = () => {
   // currently hardcoded, but will be fetched from django api
   const images = [
-    { src: 'https://aiconcierge.b-cdn.net/Banners/Banner7-gigapixel-standard-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerDomu-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKabooki-Sushi-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKai-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerMead%20Botanical%20Garden-gigapixel-standard-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerOttos-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerTommy%20Bahama%20Marlin%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerCasa%20Feliz-gigapixel-standard-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerFlutes%20Champagne%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKadence-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/BannerMaxines-Banners-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
-    { src: "https://aiconcierge.b-cdn.net/Banners/BannerMorse%20Museum-gigapixel-standard-6x.png", text: 'Text for Image 1' },
-    { src: "https://aiconcierge.b-cdn.net/Banners/BannerRuth's%20Chris-gigapixel-standard-6x.png", text: 'Text for Image 1' },
-    { src: 'https://aiconcierge.b-cdn.net/Banners/Peterbrook%20BannerPeterbrooke%20Banner-gigapixel-compression-6x.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Albin-Polaske-Musem-Banner-Design-v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Alfond-Cafe-Banner-Design--v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-John-Craig-Banner-Design-gigapixel-standard-v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Mead-Gardens-Banner-Design--v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Morse-Musem-Banner-Design-v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Prive-Banner-Design--v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Rollins-Art-Musem-Banner-Design-v1-6x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/Banner1080-x-550-Scenic-Boat-Tour-Banner-Design-v1-6x.jpg', text: 'Text for Image 1' },
+    // { src: 'https://aiconcierge.b-cdn.net/Banners/BannerFlutes%20Champagne%20Bar-gigapixel-standard-6x.png', text: 'Text for Image 1' },
+    // { src: 'https://aiconcierge.b-cdn.net/Banners/BannerKadence-Banner-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    // { src: 'https://aiconcierge.b-cdn.net/Banners/BannerMaxines-Banners-gigapixel-cgi-6x.png', text: 'Text for Image 1' },
+    // { src: "https://aiconcierge.b-cdn.net/Banners/BannerMorse%20Museum-gigapixel-standard-6x.png", text: 'Text for Image 1' },
+    // { src: "https://aiconcierge.b-cdn.net/Banners/BannerRuth's%20Chris-gigapixel-standard-6x.png", text: 'Text for Image 1' },
+    // { src: 'https://aiconcierge.b-cdn.net/Banners/Peterbrook%20BannerPeterbrooke%20Banner-gigapixel-compression-6x.png', text: 'Text for Image 1' },
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
