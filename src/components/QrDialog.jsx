@@ -56,7 +56,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[118rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[113rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
@@ -81,7 +81,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
         
                   {isRestaurant ? 
                   <>
-                    <div className='grid grid-cols-2 w-[98%] h-auto mx-auto'>
+                    <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
                       <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
                       <div className='w-[130%] ml-5 pr-[12rem]'>
                         <div>
@@ -99,23 +99,23 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                       </div>
                     </div>
                     <div className='grid grid-cols-2 max-w-full mt-[-20px] gap-0 justify-center items-center'>
-                      <div className='w-[75%] flex flex-col justify-center items-center'>
-                        <div className='mb-12 w-max'>
+                      <div className='w-[75%] flex flex-col justify-center items-center mt-[-200px]'>
+                        <div className='pb-32 w-max'>
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
                           <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
                         </div>
-                        <div className='text-center flex flex-row mt-1'>
+                        <div className='text-center flex flex-row mt-1 pt-20'>
                           <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
                           <div className='flex flex-row mt-2'>
                             <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
                             <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
                           </div>
                         </div>
-                        <div className='h-auto w-max shadow-md mt-12 px-5 rounded-xl right-0 border-2 border-black'>
+                        <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
                           <p className='text-2xl font-semibold text-center'>Hours of Operation:</p>
                           <div className='flex flex-col'>
                             {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
-                              return <div className='flex-row flex'> <p className='text-2xl mt-6'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-6 mb-3'>{value}</p></div>
+                              return <div className='flex-row flex'> <p className='text-2xl mt-3'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
                             })}
                           </div>
                         </div>
@@ -137,7 +137,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </Carousel>
                       </div>
                     </div>
-                    <div className='flex-row flex justify-center items-center rounded-md p-1'>
+                    <div className='flex-row flex justify-center items-center rounded-md p-1 mt-[-100px]'>
                       {/* <div className='flex flex-col '>
                         <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         <QRCode value={otherLink} className='m-auto'/>
