@@ -13,7 +13,7 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
   }
   // console.log(business[0].walk_time);
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 w-[1050px] mx-auto h-[59rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business); }} >
+    <div className="bg-white rounded-lg shadow-md p-4 w-[850px] mx-auto h-[45rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business); }} >
       <div className='w-full h-full flex justify-center items-center'>
         <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${business[0].business_image_1}`} alt={business[0].name} className="w-[600px] h-[600px] max-h-[54rem] rounded-lg mx-auto mt-6" />
       </div>
