@@ -232,7 +232,8 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                 : 
                 <div className='flex flex-col'>
                   
-                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-1'>Here are the best options for you! We Found {displayBusinesses.length} Please scroll to see them</p>
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-1'>Here are the best options for you!</p>
+                  <p className='text-3xl text-black mx-auto text-center mb-10 mt-1'>Here are the best options for you!</p>
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
                   <button className=' bg-[#5C0601] py-4 px-72 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' onClick={handleBackToForm}>Back to Form</button>
                   <a className=' bg-[#5C0601] py-4 px-72 mt-4 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/'>Back to Home</a>
