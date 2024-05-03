@@ -126,11 +126,11 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
   return(
   <div className='max-w-[60rem] max-h-[95rem]'>
     <h1 className="text-3xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
-    <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+    <div className='w-[40rem] h-[40rem] mx-auto flex justify-center items-center'>
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute w-[32rem] h-[32rem] ${
+          className={`absolute w-[40rem] h-[40rem] ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-500`}
         >
