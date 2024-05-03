@@ -56,7 +56,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[113rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[113rem] mt-32` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
