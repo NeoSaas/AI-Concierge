@@ -43,15 +43,17 @@ function CheckInInfo() {
     }
 
     return (
+        <>
+        <WeatherWidget/>
+            <Navbar />
         <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] mt-[-100px] bg-cover'>
             {isTimerComplete ? <TimeoutRedirect /> : null}
-            <WeatherWidget/>
-            <Navbar />
+            
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>
-            <div className={`w-full h-[93vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`w-full h-[70vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl' href="/home">Back To Home</a>
                 <div className="py-8">
                     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -88,6 +90,7 @@ function CheckInInfo() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

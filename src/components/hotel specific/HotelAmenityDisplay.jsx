@@ -4,31 +4,75 @@ import Modal from 'react-modal';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
+
+
 // Individual amenity components
-const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
+const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => {
+  const images = [
+    { src: 'https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Ajudted-6-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+  
+  return(
   <>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE CAFÉ AT THE ALFOND INN</h1>
-    <div className='w-[45rem] h-[45rem]'>
-      <Slide>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[720px] w-[720px]'/>
+    <div className='w-[45rem] h-[32rem]'>
+      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute w-[32rem] h-[32rem] ${
+            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+          } transition-opacity duration-500`}
+        >
+          <img
+            src={image.src}
+            alt={`Slide ${index + 1}`}
+            className="w-full h-full object-fill"
+          />
         </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Cafe%20Images%20%20to%20be%20used%20in%20Website/Ajudted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[720px] w-[720px]'/>
-        </div>
-      </Slide>
+      ))}
+      {/* Navigation Buttons */}
+      <div className='flex w-full justify-between'>
+        <button
+          onClick={prevSlide}
+          className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+        >
+          {'<'}
+        </button>
+        <button
+          onClick={nextSlide}
+          className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+        >
+          {'>'}
+        </button>
+      </div>
+    </div>
     </div>
     <div className="mb-6 mt-12 text-3xl">
       <h2 className="text-3xl font-semibold text-gray-800 mb-2">Morning Menu Daily:</h2>
@@ -45,32 +89,73 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, isOp
       </button>
     </div>
   </>
-);
+  );
+};
 
-const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => (
+const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, isOpen, setIsOpen  }) => {
+  const images = [
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+
+  return(
   <div className='max-w-[60rem] max-h-[95rem]'>
     <h1 className="text-3xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
-    <div className='w-[32rem] h-[32rem] mx-auto'>
-      <Slide>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[512px] w-[512px]'/>
+    <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute w-[32rem] h-[32rem] ${
+            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+          } transition-opacity duration-500`}
+        >
+          <img
+            src={image.src}
+            alt={`Slide ${index + 1}`}
+            className="w-full h-full object-fill"
+          />
         </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[512px] w-[512px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[512px] w-[512px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[512px] w-[512px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[512px] w-[512px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[512px] w-[512px]'/>
-        </div>
-      </Slide>
+      ))}
+      {/* Navigation Buttons */}
+      <div className='flex w-full justify-between'>
+        <button
+          onClick={prevSlide}
+          className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+        >
+          {'<'}
+        </button>
+        <button
+          onClick={nextSlide}
+          className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+        >
+          {'>'}
+        </button>
+      </div>
     </div>
     <h2 className="text-2xl text-gray-800 mb-2 mt-2">Modern Southern Cuisine</h2>
     <div className="mb-6 text-2xl">
@@ -94,32 +179,75 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
       </button>
     </div>
   </div>
-);
+  );
+};
 
-const LoungeContent = () => (
+const LoungeContent = () => {
+  const images = [
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg', text: 'Text for Image 1' },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+
+  return(
   <div className='max-w-[55rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE LOUNGE</h1>
-    <div className='w-[45rem] h-[45rem] mx-auto '>
-      <Slide>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' alt="pic1" className='h-[720px] w-[720px]'/>
+    <div className='w-full h-[32rem]'>
+      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute w-[32rem] h-[32rem] ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            } transition-opacity duration-500`}
+          >
+            <img
+              src={image.src}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-fill"
+            />
+          </div>
+        ))}
+        {/* Navigation Buttons */}
+        <div className='flex w-full justify-between'>
+          <button
+            onClick={prevSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'<'}
+          </button>
+          <button
+            onClick={nextSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'>'}
+          </button>
         </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' alt="pic2" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg' alt="pic3" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg' alt="pic4" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg' alt="pic5" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg' alt="pic6" className='h-[720px] w-[720px]'/>
-        </div>
-      </Slide>
+      </div>
     </div>
     <h2 className="text-3xl text-gray-800 mb-2 mt-12">At Hamilton's Kitchen</h2>
     <div className="mb-3 text-3xl flex flex-col justify-center ">
@@ -130,32 +258,75 @@ const LoungeContent = () => (
       <p className="text-gray-600 ">Please note that The Lounge offers a limited dining menu every day from 2 PM to 5 PM</p>
     </div>
   </div>
-);
+  );
+};
 
-const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestaurantLink, isOpen, setIsOpen  }) => (
+const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestaurantLink, isOpen, setIsOpen  }) => {
+  const images = [
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner1-gigapixel-standard-v1-2x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner2-gigapixel-standard-v1-2x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner3-gigapixel-standard-v1-2x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner4-gigapixel-standard-v1-2x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner5-gigapixel-standard-v1-2x.jpg', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner6-gigapixel-standard-v1-2x.jpg', text: 'Text for Image 1' },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+
+  return(
   <div className='max-w-[55rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE SPA AT THE ALFOND INN</h1>
-    <div className='w-[45rem] h-[45rem] mx-auto'>
-      <Slide>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner1-gigapixel-standard-v1-2x.jpg' alt="pic1" className='h-[720px] w-[720px]'/>
+    <div className='w-full h-[32rem]'>
+      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute w-[32rem] h-[32rem] ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            } transition-opacity duration-500`}
+          >
+            <img
+              src={image.src}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-fill"
+            />
+          </div>
+        ))}
+        {/* Navigation Buttons */}
+        <div className='flex w-full justify-between'>
+          <button
+            onClick={prevSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'<'}
+          </button>
+          <button
+            onClick={nextSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'>'}
+          </button>
         </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner2-gigapixel-standard-v1-2x.jpg' alt="pic2" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner3-gigapixel-standard-v1-2x.jpg' alt="pic3" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner4-gigapixel-standard-v1-2x.jpg' alt="pic4" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner5-gigapixel-standard-v1-2x.jpg' alt="pic5" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Spa%20images%20to%20be%20used%20in%20Website/Adjusted-Banner6-gigapixel-standard-v1-2x.jpg' alt="pic6" className='h-[720px] w-[720px]'/>
-        </div>
-      </Slide>
+      </div>
     </div>
     <h2 className="text-3xl text-gray-800 mb-2 mt-12 font-semibold">ELEVATED ELEGANCE</h2>
     <p className="text-gray-600 mb-4 text-3xl">
@@ -177,32 +348,75 @@ const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestau
       <p className="text-gray-600">6:00 AM to 2:00 PM</p>
     </div>
   </div>
-);
+  );
+};
 
-const PoolContent = () => (
+const PoolContent = () => {
+  const images = [
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/1.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/3.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/2.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/4.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/5.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/6.png', text: 'Text for Image 1' },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+
+  return(
   <div className='max-w-[57rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE POOL AT THE ALFOND INN</h1>
-    <div className='w-[45rem] h-[45rem] mx-auto'>
-      <Slide>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/1.png' alt="pic1" className='h-[720px] w-[720px]'/>
+    <div className='w-[45rem] h-[32rem]'>
+      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute w-[32rem] h-[32rem] ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            } transition-opacity duration-500`}
+          >
+            <img
+              src={image.src}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-fill"
+            />
+          </div>
+        ))}
+        {/* Navigation Buttons */}
+        <div className='flex w-full justify-between'>
+          <button
+            onClick={prevSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'<'}
+          </button>
+          <button
+            onClick={nextSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'>'}
+          </button>
         </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/2.png' alt="pic2" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/3.png' alt="pic3" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/4.png' alt="pic4" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/5.png' alt="pic5" className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/6.png' alt="pic6" className='h-[720px] w-[720px]'/>
-        </div>
-      </Slide>
+      </div>
     </div>
     <h2 className="text-3xl text-gray-800 mb-2 mt-12 font-semibold">DIVE INTO TRANQUILLITY</h2>
     <p className="text-gray-600 mb-4 text-3xl">
@@ -233,39 +447,76 @@ const PoolContent = () => (
       <p className="text-gray-600">8:00 AM to Dusk</p>
     </div>
   </div>
-);
+  );
+};
 
-const FitnessCenterContent = () => (
+const FitnessCenterContent = () => {
+  const images = [
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/1.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/2.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/3.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/4.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/5.png', text: 'Text for Image 1' },
+    { src: 'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/6.png', text: 'Text for Image 1' },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Change 5000 to the desired interval in milliseconds
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
+
+  return(
   <div className='mt-9'>
     <h1 className="text-4xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
     <h2 className="text-3xl text-gray-800 mb-6">ELEVATE YOUR DAY, ENERGIZE YOUR STAY</h2>
-    <div className='w-[45rem] h-[45rem] mx-auto'>
-      <Slide>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/1.png' className='h-[720px] w-[720px]'/>
+    <div className='w-[45rem] h-[32rem] flex justify-center items-center'>
+      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute w-[32rem] h-[32rem] ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            } transition-opacity duration-500`}
+          >
+            <img
+              src={image.src}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-fill"
+            />
+          </div>
+        ))}
+        {/* Navigation Buttons */}
+        <div className='flex w-full justify-between'>
+          <button
+            onClick={prevSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'<'}
+          </button>
+          <button
+            onClick={nextSlide}
+            className="mt-16 transform -translate-y-1/2 p-2 py-6 bg-black bg-opacity-50 text-white rounded-full focus:outline-none text-3xl"
+          >
+            {'>'}
+          </button>
         </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/2.png' className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/3.png' className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/4.png' className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/5.png' className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/6.png' className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/7.png' className='h-[720px] w-[720px]'/>
-        </div>
-        <div className=' each-slide-effect flex justify-center items-center'> 
-          <img src='https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/8.png' className='h-[720px] w-[720px]'/>
-        </div>
-      </Slide>
+      </div>
     </div>
     <p className="text-gray-600 mb-4 text-3xl mt-auto">
       Dive in to our Exclusive Fitness Experience
@@ -278,7 +529,8 @@ const FitnessCenterContent = () => (
       <p className="text-gray-600">6:00 AM to 10:00 PM</p>
     </div>
   </div>
-);
+  );
+};
 
 const renderSwitch = (selectedActivityId, setRestaurantLink, isOpen, setIsOpen) => {
   switch (selectedActivityId) {
