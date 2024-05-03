@@ -56,7 +56,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[113rem] mt-32` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[106rem] mt-32` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
@@ -104,7 +104,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
                           <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
                         </div>
-                        <div className='text-center flex flex-row mt-1 pt-20'>
+                        <div className='text-center flex flex-row mt-1 pt-0'>
                           <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
                           <div className='flex flex-row mt-2'>
                             <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
@@ -121,8 +121,8 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </div>
                       </div>
                       <div className='w-full flex justify-center mt-9'>
-                        <Carousel width={420} autoPlay={true} interval={5000} infiniteLoop={true}>
-                          <div className='flex justify-center items-center'> 
+                        <Carousel width={420} dynamicHeight={true} autoPlay={true} interval={5000} infiniteLoop={true}>
+                          {/* <div className='flex justify-center items-center'> 
                             <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
@@ -133,11 +133,23 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           </div>
                           <div className='flex justify-center items-center'>
                             <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div> */}
+                          <div className='flex justify-center items-center'> 
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
+                          </div>
+                          <div className='flex justify-center items-center'>
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div>
+                          <div className=' flex justify-center items-center'>
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div>
+                          <div className='flex justify-center items-center'>
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                         </Carousel>
                       </div>
                     </div>
-                    <div className='flex-row flex justify-center items-center rounded-md p-1 mt-[-100px]'>
+                    <div className='flex-row flex justify-center items-center rounded-md p-1 mt-[-50px]'>
                       {/* <div className='flex flex-col '>
                         <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         <QRCode value={otherLink} className='m-auto'/>
