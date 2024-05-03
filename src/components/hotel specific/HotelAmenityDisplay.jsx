@@ -216,12 +216,12 @@ const LoungeContent = () => {
   return(
   <div className='max-w-[55rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE LOUNGE</h1>
-    <div className='w-full h-[32rem]'>
-      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+    <div className='w-full h-[40rem]'>
+      <div className='w-[40rem] h-[40rem] mx-auto flex justify-center items-center'>
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-[32rem] h-[32rem] ${
+            className={`absolute w-[40rem] h-[40rem] ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             } transition-opacity duration-500`}
           >
@@ -295,12 +295,12 @@ const SpaContent = ({ spaMenuLink, bookTreatmentLink, buyGiftCardLink, setRestau
   return(
   <div className='max-w-[55rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE SPA AT THE ALFOND INN</h1>
-    <div className='w-full h-[32rem]'>
-      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+    <div className='w-full h-[40rem]'>
+      <div className='w-[40rem] h-[40rem] mx-auto flex justify-center items-center'>
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-[32rem] h-[32rem] ${
+            className={`absolute w-[40rem] h-[40rem] ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             } transition-opacity duration-500`}
           >
@@ -385,12 +385,12 @@ const PoolContent = () => {
   return(
   <div className='max-w-[57rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE POOL AT THE ALFOND INN</h1>
-    <div className='w-[45rem] h-[32rem]'>
-      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+    <div className='w-full h-[40rem]'>
+      <div className='w-[40rem] h-[40rem] mx-auto flex justify-center items-center'>
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-[32rem] h-[32rem] ${
+            className={`absolute w-[40rem] h-[40rem] ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             } transition-opacity duration-500`}
           >
@@ -485,12 +485,12 @@ const FitnessCenterContent = () => {
   <div className='mt-9'>
     <h1 className="text-4xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
     <h2 className="text-3xl text-gray-800 mb-6">ELEVATE YOUR DAY, ENERGIZE YOUR STAY</h2>
-    <div className='w-[45rem] h-[32rem] flex justify-center items-center'>
-      <div className='w-[32rem] h-[32rem] mx-auto flex justify-center items-center'>
+    <div className='w-full h-[40rem] flex justify-center items-center'>
+      <div className='w-[40rem] h-[40rem] mx-auto flex justify-center items-center'>
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-[32rem] h-[32rem] ${
+            className={`absolute w-[40rem] h-[40rem] ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             } transition-opacity duration-500`}
           >
