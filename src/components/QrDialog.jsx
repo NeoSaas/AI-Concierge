@@ -99,8 +99,8 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                       </div>
                     </div>
                     <div className='grid grid-cols-2 max-w-full mt-[-20px] gap-0 justify-center items-center'>
-                      <div className='w-[75%] flex flex-col justify-center items-center mt-[-200px]'>
-                        <div className='pb-32 w-max'>
+                      <div className='w-[75%] flex flex-col justify-center items-center mt-[-150px]'>
+                        <div className='pb-24 w-max'>
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
                           <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
                         </div>
