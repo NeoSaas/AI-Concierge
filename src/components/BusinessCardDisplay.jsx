@@ -32,12 +32,12 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
           {parseInt(business[0].walk_time.split(' ')[0]) >= 25 ? 
             null
           :
-            <div className='flex flex-row items-center mx-3'>
+            <div className='flex flex-row items-center mx-3 text-green-500'>
               <FaWalking className='mx-2' />
               {business[0].walk_time}
             </div>
           }
-          <div className='flex flex-row items-center mx-3'>
+          <div className='flex flex-row items-center mx-3 text-blue-500'>
             <FaCar className='mx-2' />
             {business[0].drive_time}
           </div>
