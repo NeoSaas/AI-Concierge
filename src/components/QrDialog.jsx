@@ -56,7 +56,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[152rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-left h-[125rem]` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title
                   as="h3"
                   className="font-medium leading-6 text-gray-900"
@@ -82,13 +82,13 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                   {isRestaurant ? 
                   <>
                     <div className='grid grid-cols-2 w-[98%] h-auto mx-auto'>
-                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[576px] h-[576px] max-h-[54rem] rounded-lg'/>
+                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
                       <div className='w-[130%] ml-5 pr-[12rem]'>
                         <div>
                           <p className='mt-4 text-3xl font-semibold'>Description</p>
                           <p className='text-xl'>{clickedBusiness[0].business_description}</p>
                         </div>
-                        <div className='text-center flex flex-row mt-9 w-full justify-center items-center'>
+                        <div className='text-center flex flex-row mt-1 w-full justify-center items-center'>
                           <p className='text-2xl font-semibold'>Type: &nbsp;</p>
                           <div className='flex flex-row '>
                             {clickedBusiness[0].business_tags.map((tag) => {
@@ -98,38 +98,41 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </div>
                       </div>
                     </div>
-                    <div className='grid grid-cols-[35%_65%] max-w-full mt-5 gap-0 justify-center items-center'>
-                      <div>
-                        <div className='h-auto w-max shadow-md mt-12 px-5 rounded-xl right-0 border-2 border-black'>
-                          <p className='text-2xl font-semibold text-left'>Hours of Operation:</p>
-                          <div className='flex flex-col'>
-                            {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
-                              return <div className='flex-row flex'> <p className='text-2xl mt-6'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-6 mb-3'>{value}</p></div>
-                            })}
-                          </div>
+                    <div className='grid grid-cols-2 max-w-full mt-[-20px] gap-0 justify-center items-center'>
+                      <div className='w-[75%] flex flex-col justify-center items-center'>
+                        <div className='mb-12 w-max'>
+                          <p className='text-2xl font-bold text-black '>Google Review Summary</p>
+                          <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
                         </div>
-                        <div className='text-center flex flex-row mt-12'>
+                        <div className='text-center flex flex-row mt-1'>
                           <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
                           <div className='flex flex-row mt-2'>
                             <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
                             <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
                           </div>
                         </div>
-                        
+                        <div className='h-auto w-max shadow-md mt-12 px-5 rounded-xl right-0 border-2 border-black'>
+                          <p className='text-2xl font-semibold text-center'>Hours of Operation:</p>
+                          <div className='flex flex-col'>
+                            {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
+                              return <div className='flex-row flex'> <p className='text-2xl mt-6'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-6 mb-3'>{value}</p></div>
+                            })}
+                          </div>
+                        </div>
                       </div>
                       <div className='w-full flex justify-center mt-9'>
-                        <Carousel width={600} autoPlay={true} interval={5000} infiniteLoop={true}>
+                        <Carousel width={420} autoPlay={true} interval={5000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[600px] rounded-lg'/> 
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-auto w-[600px] rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
                           </div>
                           <div className=' flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[600px] rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[600px] rounded-lg'/>
+                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                         </Carousel>
                       </div>
@@ -144,10 +147,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <p className='mt-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         </div>
                       <div className='flex flex-col items-center justify-center'>
-                        <div className='mb-12 w-max'>
-                          <p className='text-2xl font-bold text-black '>Google Review Summary</p>
-                          <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
-                        </div>
+                        
                         {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ?
                         <>
                         <p className='mb-5 text-2xl font-bold'>{clickedBusiness[0]?.business_barcode}</p>
