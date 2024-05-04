@@ -5,7 +5,7 @@ import BottomBanner from '../components/BottomBanner'
 import WeatherWidget from '../components/weatherComponents/WeatherWidget'
 import { useNavigate } from 'react-router-dom'
 
-function Landing({ setIsHotelSpecific, disabled, openFullscreen }) {
+function Landing({ setIsHotelSpecific, disabled }) {
 
   const bgImages = ["https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg"]
 

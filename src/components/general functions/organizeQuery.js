@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function organizeQuery(selectedActivities) {
     const userSelectedCategories = selectedActivities.join(', ');
 
-    const response = await axios.get('https://rr3l1d2s-8000.use.devtunnels.ms/api/getBusiness/');
+    const response = await axios.get('http://3.134.95.88/api/getBusiness/');
     const businessTagsArray = response.data;
 
     // Construct the list of businesses with their tags 

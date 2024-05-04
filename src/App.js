@@ -30,22 +30,6 @@ function App() {
     );
   };
 
-  function openFullscreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-        setDisabled(true);
-    } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
-        document.documentElement.mozRequestFullScreen();
-        setDisabled(true);
-    } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        document.documentElement.webkitRequestFullscreen();
-        setDisabled(true);
-    } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
-        document.documentElement.msRequestFullscreen();
-        setDisabled(true);
-    }
-  }
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -69,7 +53,7 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<Landing setIsHotelSpecific={setIsHotelSpecific} openFullscreen={openFullscreen} disabled={disabled}/>} />
+          <Route path="/" exact element={<Landing setIsHotelSpecific={setIsHotelSpecific} disabled={disabled}/>} />
           <Route path="/home" exact element={<Home setIsHotelSpecific={setIsHotelSpecific} isHotelSpecific={isHotelSpecific}/>} />
           <Route path="/property_map" element={<HotelMap/>} />
           <Route path="/events_info" element={<EventsInfo/>} />

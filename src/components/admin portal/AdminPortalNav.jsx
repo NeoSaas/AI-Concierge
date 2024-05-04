@@ -7,10 +7,9 @@ const AdminPortalNav = ({ setEditPage, logout, editPage, disabled, addDisabled }
   const handleLogout = () => {
     axios({
         method: 'post',
-        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/logout/',
+        url: 'http://3.134.95.88/api/logout/',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Token ${localStorage.getItem('token')}`
         },
     })
     localStorage.removeItem('token');
