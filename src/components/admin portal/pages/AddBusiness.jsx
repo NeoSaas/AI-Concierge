@@ -430,8 +430,8 @@ const AddBusiness = ({ logout }) => {
                     
                 </div>
             </div>
-            <div className='flex flex-col justify-center max-w-full'>
-                <h2 className="mt-6 text-center pr-36 text-3xl font-extrabold text-gray-900">Page Preview</h2>
+            <div className='flex flex-col justify-center items-center max-w-full'>
+                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Page Preview</h2>
                 <PreviewPage values={formData}/>
             </div>
             
