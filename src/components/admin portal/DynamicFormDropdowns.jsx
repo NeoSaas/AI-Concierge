@@ -433,8 +433,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'City Sightseeing Tour/Historical Sites Tour':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -447,8 +447,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Entertainment/Theater/Plays/Movies':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -461,8 +461,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Evening/Night Life':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -475,8 +475,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Food Tasting Tour':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -489,8 +489,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Museums / Museum Tours':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -503,8 +503,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Outdoor Adventures':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -517,8 +517,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Shopping':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -531,8 +531,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Spa/Fitness/Salons':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -545,8 +545,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Wine Tasting Tour':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -559,8 +559,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Wine':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -573,8 +573,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Specialty Food Shops':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -587,8 +587,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Cultural Experiences':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -601,8 +601,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Hair and Beauty Salons':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -615,8 +615,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Local Markets':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -629,8 +629,8 @@ export const DynamicFormDropdowns2 = ({ values }) => {
                   case 'Historical/Cultural Walking Tour':
                       return (
                           <div>
-                              <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                              <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                              <label htmlFor="sub_business_tags2" className="flex flex-row items-center">{values.business_type_tag2}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                              <Field as="select" name="sub_business_tags2" id="sub_business_tags2" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                   <option value="">Select...</option>
                                   {subTypeOptions[values.business_type_tag2].map(option => (
                                   <option key={option} value={option}>
@@ -726,8 +726,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Art Gallery':
                         return (
                             <div>
-                            <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                            <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                            <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                            <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                 <option value="">Select...</option>
                                 {subTypeOptions[values.business_type_tag3].map(option => (
                                 <option key={option} value={option}>
@@ -740,8 +740,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Attraction':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -754,8 +754,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'City Sightseeing Tour/Historical Sites Tour':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -768,8 +768,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Entertainment/Theater/Plays/Movies':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -782,8 +782,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Evening/Night Life':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -796,8 +796,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Food Tasting Tour':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -810,8 +810,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Museums / Museum Tours':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -824,8 +824,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Outdoor Adventures':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -838,8 +838,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Shopping':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -852,8 +852,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Spa/Fitness/Salons':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -866,8 +866,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Wine Tasting Tour':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -880,8 +880,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Wine':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -894,8 +894,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Specialty Food Shops':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -908,8 +908,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Cultural Experiences':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -922,8 +922,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Hair and Beauty Salons':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -936,8 +936,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Local Markets':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
@@ -950,8 +950,8 @@ export const DynamicFormDropdowns3 = ({ values }) => {
                     case 'Historical/Cultural Walking Tour':
                         return (
                             <div>
-                                <label htmlFor="sub_business_tags" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
-                                <Field as="select" name="sub_business_tags" id="sub_business_tags" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
+                                <label htmlFor="sub_business_tags3" className="flex flex-row items-center">{values.business_type_tag3}&nbsp;Sub Tags <FaInfoCircle className='mx-2' /></label>
+                                <Field as="select" name="sub_business_tags3" id="sub_business_tags3" className="appearance-none rounded-none relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Tags (comma-separated)" >
                                     <option value="">Select...</option>
                                     {subTypeOptions[values.business_type_tag3].map(option => (
                                     <option key={option} value={option}>
