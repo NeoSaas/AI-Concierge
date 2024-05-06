@@ -114,7 +114,7 @@ def addBusinessData(request):
         'sa_hours_of_operation': request.data.get('sa_hours_of_operation'),
         'su_hours_of_operation': request.data.get('su_hours_of_operation'),
         'business_barcode_date': request.data.get('business_barcode_date'),
-        'google_review_summary': request.data.get('google_review_summary')
+        'google_review_summary': request.data.get('google_reviews_summary')
     }
     
     hours_dict = {
