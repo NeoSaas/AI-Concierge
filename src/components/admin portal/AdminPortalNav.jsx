@@ -7,7 +7,7 @@ const AdminPortalNav = ({ setEditPage, logout, editPage, disabled, addDisabled }
   const handleLogout = () => {
     axios({
         method: 'post',
-        url: 'http://3.134.95.88/api/logout/',
+        url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/logout/',
         headers: {
             'Content-Type': 'application/json',
         },

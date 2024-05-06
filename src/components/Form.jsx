@@ -147,7 +147,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
       const prompt = await organizeQuery(selectedActivityIds);
       const response = await axios({
         method: 'post',
-        url: 'http://3.134.95.88/api/OPAICreateConvo/',
+        url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/OPAICreateConvo/',
         data: { query: prompt },
       });
       const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
@@ -158,14 +158,14 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
 
         businessDataResponse = await axios({
           method: 'post',
-          url: 'http://3.134.95.88/api/queryBusinessData/',
+          url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/queryBusinessData/',
           data: { business: multiBusinessResponse },
         });
       }
       else {
         businessDataResponse = await axios({
           method: 'post',
-          url: 'http://3.134.95.88/api/queryBusinessData/',
+          url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/queryBusinessData/',
           data: { business: businessesFromResponse },
         });
       }
