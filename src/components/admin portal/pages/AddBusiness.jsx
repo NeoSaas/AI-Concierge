@@ -48,7 +48,7 @@ const AddBusiness = ({ logout }) => {
         })
         .then(response => {
             console.log('Review response:', response.data['response-payload']);
-            values.google_review_summary = response.data['response-payload'].split(': ')[1]
+            values.google_reviews_summary = response.data['response-payload'].split(': ')[1]
         })
         values?.business_type_tag1 == "Restaurant" ? (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_restaurant_sub_tag1 + ', ' + formData.business_restaurant_sub_tag2 + ', ' + formData.business_restaurant_sub_tag3 + ', ' + formData.business_restaurant_sub_tag4 + ', ' + formData.business_restaurant_sub_tag5 + ', ' + formData.business_restaurant_sub_tag6 + ', ' + formData.business_restaurant_sub_tag7 + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2) 
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_business_tags + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2)
@@ -117,6 +117,7 @@ const AddBusiness = ({ logout }) => {
         business_restaurant_sub_tag7: Yup.string().required('Restaurant sub tag is required'),
         sub_business_tags1: Yup.string().required('Sub business tag is required'),
         sub_business_tags2: Yup.string().required('Sub business tag is required'),
+        google_reviews_summary: Yup.string(),
         business_tags: Yup.string()
     });
 
@@ -170,7 +171,7 @@ const AddBusiness = ({ logout }) => {
                                 business_type_tag2: '',
                                 business_type_tag3: '', 
                                 business_tags: '',
-                                google_review_summary: '',
+                                google_reviews_summary: '',
                                 business_rating: 0.00,
                                 business_place_id: '',
                                 business_address: '',
