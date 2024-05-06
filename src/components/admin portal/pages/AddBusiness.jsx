@@ -46,9 +46,13 @@ const AddBusiness = ({ logout }) => {
             },
             withCredentials: true,
         })
+        .then(response => {
+            console.log('Review response:', response.data['response-payload']);
+            values.google_review_summary = reviewResponse.data['response-payload'].split(': ')[1].trim()
+        })
         values?.business_type_tag1 == "Restaurant" ? (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_restaurant_sub_tag1 + ', ' + formData.business_restaurant_sub_tag2 + ', ' + formData.business_restaurant_sub_tag3 + ', ' + formData.business_restaurant_sub_tag4 + ', ' + formData.business_restaurant_sub_tag5 + ', ' + formData.business_restaurant_sub_tag6 + ', ' + formData.business_restaurant_sub_tag7 + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2) 
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_business_tags + ', ' + formData.sub_business_tags1 + ', ' + formData.sub_business_tags2)
-        values.google_review_summary = reviewResponse.data['response-payload'].split(': ')[1].trim()
+        
         console.log('busines_tags:', values.business_tags);
         axios({
             method: 'POST',

@@ -26,7 +26,7 @@ const AdminPortal = ({ logout }) => {
     React.useEffect(() => {
         axios({
             method: 'GET',
-            url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/getUserBusinessData/',
+            url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/getUserBusinessData/',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`
             },
