@@ -34,9 +34,9 @@ const AddBusiness = ({ logout }) => {
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + values.sub_business_tags + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
     };
 
-    const handleSubmit = (values) => {
+    const handleSubmit = async (values) => {
         setLoading(true);
-        const query = organizeReviewQuery(values.business_name, values.business_address);
+        const query = await organizeReviewQuery(values.business_name, values.business_address);
         axios({
             method: 'POST',
             url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/OPAICreateConvo/',
