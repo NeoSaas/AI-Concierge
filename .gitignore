@@ -37,3 +37,5 @@ yarn-error.log*
 /concierge-django/staticfiles
 /concierge-django/uploads
 /concierge-django/backend/__pycache__
+/concierge-django/backend/migrations/__pycache__
+/concierge-django/concierge/__pycache__

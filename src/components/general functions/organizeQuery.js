@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function organizeQuery(selectedActivities) {
     const userSelectedCategories = selectedActivities.join(', ');
 
-    const response = await axios.get('https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/getBusiness/');
+    const response = await axios.get('https://jfhknsrd-8000.euw.devtunnels.ms/api/getBusiness/');
     const businessTagsArray = response.data;
 
     // Construct the list of businesses with their tags 

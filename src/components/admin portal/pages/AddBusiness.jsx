@@ -39,7 +39,7 @@ const AddBusiness = ({ logout }) => {
         const query = await organizeReviewQuery(values.business_name, values.business_address);
         axios({
             method: 'POST',
-            url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/OPAICreateConvo/',
+            url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/OPAICreateConvo/',
             data: {query: query},
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`
@@ -56,7 +56,7 @@ const AddBusiness = ({ logout }) => {
         console.log('busines_tags:', values.business_tags);
         axios({
             method: 'POST',
-            url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/addBusiness/',
+            url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/addBusiness/',
             data: values,
             headers: {
                 'content-Type': 'multipart/form-data',
