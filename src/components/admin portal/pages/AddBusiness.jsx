@@ -31,7 +31,7 @@ const AddBusiness = ({ logout }) => {
         // console.log('Form values:', values);
         setFormData(values);
         values?.business_type_tag1 == "Restaurant" ? (values.business_tags = values.business_type_tag1 + ', ' + values.business_restaurant_sub_tag1 + ', ' + values.business_restaurant_sub_tag2 + ', ' + values.business_restaurant_sub_tag3 + ', ' + values.business_restaurant_sub_tag4 + ', ' + values.business_restaurant_sub_tag5 + ', ' + values.business_restaurant_sub_tag6 + ', ' + values.business_restaurant_sub_tag7 + ', ' + values.sub_type_business_tags2 + ', ' + values.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2) 
-        : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + values.sub_type_business_tags + ', ' + values.sub_type_business_tags2 + ', ' + values.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
+        : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_type_business_tags + ', ' + formData.sub_type_business_tags2 + ', ' + formData.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
     };
 
     const handleSubmit = async (values) => {
