@@ -19,7 +19,7 @@ const LoginPage = ({ login, setRememberMe }) => {
     const handleSubmit = async (values) => {
         const response = await axios({
             method: 'post',
-            url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/login/',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/login/',
             data: values,
             config: {
                 headers: {

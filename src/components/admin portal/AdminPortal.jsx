@@ -26,7 +26,7 @@ const AdminPortal = ({ logout }) => {
     React.useEffect(() => {
         axios({
             method: 'GET',
-            url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/getUserBusinessData/',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/getUserBusinessData/',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`
             },

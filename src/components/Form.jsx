@@ -147,7 +147,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
       const prompt = await organizeQuery(selectedActivityIds);
       const response = await axios({
         method: 'post',
-        url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/OPAICreateConvo/',
+        url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
         data: { query: prompt },
       });
       const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
@@ -158,14 +158,14 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
 
         businessDataResponse = await axios({
           method: 'post',
-          url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/queryBusinessData/',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
           data: { business: multiBusinessResponse },
         });
       }
       else {
         businessDataResponse = await axios({
           method: 'post',
-          url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/queryBusinessData/',
+          url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/queryBusinessData/',
           data: { business: businessesFromResponse },
         });
       }

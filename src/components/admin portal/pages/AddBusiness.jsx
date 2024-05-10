@@ -39,7 +39,7 @@ const AddBusiness = ({ logout }) => {
         const query = await organizeReviewQuery(values.business_name, values.business_address);
         axios({
             method: 'POST',
-            url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/OPAICreateConvo/',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
             data: {query: query},
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`
@@ -56,7 +56,7 @@ const AddBusiness = ({ logout }) => {
         console.log('busines_tags:', values.business_tags);
         axios({
             method: 'POST',
-            url: 'https://jfhknsrd-8000.euw.devtunnels.ms/api/addBusiness/',
+            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/',
             data: values,
             headers: {
                 'content-Type': 'multipart/form-data',

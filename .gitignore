@@ -39,3 +39,4 @@ yarn-error.log*
 /concierge-django/backend/__pycache__
 /concierge-django/backend/migrations/__pycache__
 /concierge-django/concierge/__pycache__
+/concierge-django/backend/__pycache__
