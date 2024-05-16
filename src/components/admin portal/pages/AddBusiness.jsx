@@ -37,7 +37,7 @@ const AddBusiness = ({ logout }) => {
     const handleSubmit = async (values) => {
         setLoading(true);
         const query = await organizeReviewQuery(values.business_name, values.business_address);
-        axios({
+        await axios({
             method: 'POST',
             url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/OPAICreateConvo/',
             data: {query: query},
@@ -54,7 +54,7 @@ const AddBusiness = ({ logout }) => {
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_type_business_tags + ', ' + formData.sub_type_business_tags2 + ', ' + formData.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
         
         console.log('busines_tags:', values.business_tags);
-        axios({
+        await axios({
             method: 'POST',
             url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/addBusiness/',
             data: values,
