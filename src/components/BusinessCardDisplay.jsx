@@ -11,6 +11,19 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
   if(business[0].business_tags.includes('Restaurant')){
     setIsRestaurant(true)
   }
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+  
+  const validTags = business[0].business_tags.filter(tag => tag && tag.toLowerCase() !== "none");
+  const randomTags = shuffleArray(validTags).slice(0, 3);
+
+
   // console.log(business[0].walk_time);
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-[900px] mx-auto h-[30rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business); }} >
@@ -20,10 +33,12 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
       <div className='w-full h-auto flex justify-center items-center flex-col pr-10'>
         <h3 className="text-2xl font-semibold mb-2">{business[0].business_name}</h3>
         <p className="text-gray-600 mb-6 text-xl font-semibold">{business[0].business_address}</p>
-        <div className='flex flex-row'>
-          {business[0].business_tags.map((tag) => {
-            return <p className="text-black mb-2 text-xl font-semibold">{tag}, &nbsp;</p>
-          })}
+        <div className='flex flex-col w-max'>
+          {randomTags.map((tag, index) => (
+            <p key={index} className="text-black mb-2 text-xl font-semibold">
+              {tag}{index < randomTags.length - 1 && ', '}&nbsp;
+            </p>
+          ))}
         </div>
         
         <p className='mt-2 text-xl font-semibold'>Todays Hours of Operation:</p>

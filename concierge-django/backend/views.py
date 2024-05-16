@@ -91,8 +91,9 @@ def getUserBusinessData(request):
 @permission_classes([AllowAny])
 def addBusinessData(request):
     parser_classes = (MultiPartParser,FormParser,JSONParser)
-    print(request.FILES)
-    print(request.user.id)
+    # print(request.FILES)
+    # print(request.user.id)
+    # print(request.data.get('google_reviews_summary'))
 
     new_business_data = {
         'business_name': request.data.get('business_name'),
