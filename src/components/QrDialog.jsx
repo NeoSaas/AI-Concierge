@@ -111,7 +111,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </div>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2 max-w-full mt-[100px] gap-0 justify-center items-center'>
+                    <div className='grid grid-cols-2 max-w-full mt-[20px] gap-0 justify-center items-center'>
                       <div className='w-[75%] flex flex-col justify-center items-center mt-[-150px]'>
                         <div className='pb-24 w-max'>
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
@@ -133,9 +133,9 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           </div>
                         </div>
                       </div>
-                      <div className='w-full flex justify-center mt-9'>
-                        <Carousel width={420} dynamicHeight={true} autoPlay={true} interval={5000} infiniteLoop={true}>
-                          {/* <div className='flex justify-center items-center'> 
+                      <div className='w-full flex justify-center mt-9 items-center'>
+                        <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true} centerMode={true} centerSlidePercentage={100}>
+                          <div className='flex justify-center items-center'> 
                             <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
@@ -146,8 +146,8 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           </div>
                           <div className='flex justify-center items-center'>
                             <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
-                          </div> */}
-                          <div className='flex justify-center items-center'> 
+                          </div>
+                          {/* <div className='flex justify-center items-center'> 
                             <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
@@ -158,7 +158,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           </div>
                           <div className='flex justify-center items-center'>
                             <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
-                          </div>
+                          </div> */}
                         </Carousel>
                       </div>
                     </div>

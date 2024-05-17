@@ -54,8 +54,8 @@ const PreviewPage = ({values}) => {
                     <div className='text-center flex flex-row mt-1 pt-0'>
                         <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
                         <div className='flex flex-row mt-2'>
-                        <p className='text-xl mr-3 '>{values.business_rating} </p>
-                        <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(values.business_rating)} precision={0.1} readOnly />
+                        <p className='text-xl mr-3 '>{values?.business_rating} </p>
+                        <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(values?.business_rating)} precision={0.1} readOnly />
                         </div>
                     </div>
                     <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
