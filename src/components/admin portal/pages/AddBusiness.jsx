@@ -99,26 +99,26 @@ const AddBusiness = ({ logout }) => {
         business_address: Yup.string().required('Business address is required'),
         business_description: Yup.string()
         .min(50, 'Description must be at least 50 characters long')
-        .max(500, 'Description must be less than 300 characters long')
-        .required('Business description is required'),
+        .max(75, 'Description must be less than 75 characters long'),
         business_phone_number: Yup.string().required('Business phone number is required'),
-        business_pictures: Yup.string().required('Business pictures are required'),
-        hours_of_operation: Yup.string().required('Hours of operation are required'),
         business_barcode: Yup.string().required('Business barcode is required'),
-        business_type_tag1: Yup.string(),
-        business_type_tag2: Yup.string(),
-        business_type_tag3: Yup.string(),
-        business_restaurant_sub_tag1: Yup.string().required('Restaurant sub tag is required'),
-        business_restaurant_sub_tag2: Yup.string().required('Restaurant sub tag is required'),
-        business_restaurant_sub_tag3: Yup.string().required('Restaurant sub tag is required'),
-        business_restaurant_sub_tag4: Yup.string().required('Restaurant sub tag is required'),
-        business_restaurant_sub_tag5: Yup.string().required('Restaurant sub tag is required'),
-        business_restaurant_sub_tag6: Yup.string().required('Restaurant sub tag is required'),
-        business_restaurant_sub_tag7: Yup.string().required('Restaurant sub tag is required'),
-        sub_business_tags1: Yup.string().required('Sub business tag is required'),
-        sub_business_tags2: Yup.string().required('Sub business tag is required'),
-        google_reviews_summary: Yup.string(),
-        business_tags: Yup.string()
+        business_type_tag1: Yup.string().optional(),
+        business_type_tag2: Yup.string().optional(),
+        business_type_tag3: Yup.string().optional(), 
+        business_tags: Yup.string().optional(),
+        google_reviews_summary: Yup.string().optional(),
+        sub_business_tags: Yup.string().optional(),
+        sub_business_tags2: Yup.string().optional(),
+        sub_business_tags3: Yup.string().optional(),
+        business_place_id: Yup.string().optional(),
+        business_address: Yup.string().optional(),
+        business_pictures: Yup.mixed().optional(),
+        walk_time: Yup.number().optional(),
+        drive_time: Yup.number().optional(),
+        transit_time: Yup.number().optional(),
+        directions_url: Yup.string().optional(),
+        hours_of_operation: Yup.array().of(Yup.string()).optional(),
+        business_barcode: Yup.string().optional()
     });
 
     return (
@@ -187,7 +187,8 @@ const AddBusiness = ({ logout }) => {
                                 business_barcode: ''
                             }}
                             onSubmit={handleSubmit}
-                            validator={() => ({})}
+                            // validator={() => ({})}
+                            validationSchema={validationSchema}
                             >
                             {({ values }) => (
                             <Form className="mt-8 space-y-6" encType='multipart/form-data' onChange={() => handleFormChange(values)}>
@@ -288,8 +289,8 @@ const AddBusiness = ({ logout }) => {
                                         <Field type="text" name="business_address" id="business_address" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Address" />
                                     </div>
                                     <div className=''>
-                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, Max number of characters is 500</h1>} placement="top-start" arrow>
-                                            <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' /><p className='ml-20'>Characters left: {500 - count}</p>
+                                        <Tooltip title={<h1 style={{fontSize: '1rem'}}>Enter a description for your business, Max number of characters is 75</h1>} placement="top-start" arrow>
+                                            <label htmlFor="business_description" className="flex flex-row items-center">Business Description<FaInfoCircle className='mx-2' /><p className='ml-20'>Characters left: {75 - count}</p>
                                             </label>
                                         </Tooltip>
                                         

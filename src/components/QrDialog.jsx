@@ -29,6 +29,17 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
     setIsOpen(true)
   }
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+  
+  const validTags = clickedBusiness[0].business_tags.filter(tag => tag && tag.toLowerCase() !== "none");
+  const randomTags = shuffleArray(validTags).slice(0, 3);
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -67,7 +78,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                     <p className='text-5xl mb-6 mt-4'>{clickedBusiness[0].business_name}</p>
                     <p className='text-2xl font-normal'>{clickedBusiness[0].business_address}</p>
                   </div>
-                  <div className='my-auto text-2xl pl-16 flex flex-col mt-4 mb-3'>
+                  <div className='my-auto text-2xl flex flex-col mt-4 mb-3'>
                     <p>Phone Number:</p>
                     <p>{clickedBusiness[0].business_phone_number}</p>
                   </div>
@@ -88,21 +99,23 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <p className='mt-4 text-3xl font-semibold'>Description</p>
                           <p className='text-xl'>{clickedBusiness[0].business_description}</p>
                         </div>
-                        <div className='text-center flex flex-row mt-1 w-full justify-center items-center'>
+                        <div className='text-center flex flex-row w-full justify-center items-center'>
                           <p className='text-2xl font-semibold'>Type: &nbsp;</p>
-                          <div className='flex flex-row '>
-                            {clickedBusiness[0].business_tags.map((tag) => {
-                              return <p className='text-2xl'>{tag}, &nbsp;</p>
-                            })}
+                          <div className='flex flex-row text-center'>
+                          {randomTags.map((tag, index) => (
+                            <p key={index} className="text-black text-center text-xl font-semibold w-max">
+                              {tag}{index < randomTags.length - 1 && ', '}&nbsp;
+                            </p>
+                          ))}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2 max-w-full mt-[-20px] gap-0 justify-center items-center'>
+                    <div className='grid grid-cols-2 max-w-full mt-[100px] gap-0 justify-center items-center'>
                       <div className='w-[75%] flex flex-col justify-center items-center mt-[-150px]'>
                         <div className='pb-24 w-max'>
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
-                          <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_review_summary}</p>
+                          <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_reviews_summary}</p>
                         </div>
                         <div className='text-center flex flex-row mt-1 pt-0'>
                           <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>

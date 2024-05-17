@@ -1,6 +1,8 @@
 import React from 'react'
 import { Slide } from 'react-slideshow-image';
 import Rating from '@mui/material/Rating';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const PreviewPage = ({values}) => {
     // values.business_tags && console.log(values.business_tags.split(','));
@@ -11,93 +13,92 @@ const PreviewPage = ({values}) => {
             as="h3"
             className="font-medium leading-6 text-gray-900"
         >
-            <div className='flex flex-row'>
-            <div>
-            <p className='text-4xl'>{values.business_name || 'Business Name'}</p>
-            <p className='text-2xl'>{values.business_address || 'Address'}</p>
+           <div className='flex flex-col text-center'>
+                <div>
+                    <p className='text-5xl mb-6 mt-4'>{values.business_name || "Name"}</p>
+                    <p className='text-2xl font-normal'>{values.business_address || "Address"}</p>
+                </div>
+                <div className='my-auto text-2xl  flex flex-col mt-4 mb-3'>
+                    <p>Phone Number:</p>
+                    <p>{values.business_phone_number || "xxx-xxx-xxxx"}</p>
+                </div>
             </div>
-            <div className='my-auto text-2xl pl-16 flex flex-col'>
-            <p>Phone Number:</p>
-            <p>{values.business_phone_number || 'xxx-xxx-xxx'}</p>
-            </div>
-            
-            </div>
-            
         </div>
         <div className="mt-20 flex-col justify-center items-center text-center">
             <>
-            <div className='grid grid-cols-2 w-[100%] h-auto mx-auto'>
-                <div className='flex flex-col'>
-                    <p>Main Image will appear here</p>
-                    <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='first-pic' className='max-h-[36rem] rounded-lg'/>
-                </div>
-                
-                <div className='w-[130%] pr-40'>
-                <div>
-                    <p className='mt-4 text-2xl font-semibold'>Description</p>
-                    <p className='text-lg'>{values.business_description || 'Description'}</p>
-                </div>
-                
+            <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
+                <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
+                <div className='w-[130%] ml-5 pr-[12rem]'>
+                    <div>
+                        <p className='mt-4 text-3xl font-semibold'>Description</p>
+                        <p className='text-xl'>{values?.business_description || 'Description'}</p>
+                    </div>
+                    <div className='text-center flex flex-row mt-1 w-full justify-center items-center'>
+                        <p className='text-2xl font-semibold'>Type: &nbsp;</p>
+                        <div className='flex flex-row '>
+                            {values.business_tags && values.business_tags.split(',').length > 1 && 
+                                values.business_tags.split(',').map((tag) => {
+                                    return <p className='text-xl text-center'>{tag + ","}&nbsp;</p>
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className='grid grid-cols-[40%_60%] max-w-full mt-12'>
-                <div>
-                <div className='text-left'>
-                    <p className='text-2xl font-semibold mt-4'>Type:</p>
-                    <div className='flex flex-row w-[36rem]'>
-                    {values.business_tags && values.business_tags.split(',').length > 1 && 
-                        values.business_tags.split(',').map((tag) => {
-                            return <p className='text-xl text-center'>{tag + ","}&nbsp;</p>
-                        })
-                    }
-                    {/* <p className='text-xl text-center'>{values.business_tags + " , "}</p>
-                    <p className='text-xl text-center'>{values.sub_business_tags + " ,"}</p>
-                    <p className='text-xl text-center'>{values.sub_business_tags2}</p> */}
-                    
+            <div className='grid grid-cols-2 max-w-full mt-[100px] gap-0 justify-center items-center'>
+                <div className='w-[75%] flex flex-col justify-center items-center mt-[-150px]'>
+                    <div className='pb-24 w-max'>
+                        <p className='text-2xl font-bold text-black '>Google Review Summary</p>
+                        <p className='text-lg font-normal text-wrap'> {values?.google_reviews_summary}</p>
+                    </div>
+                    <div className='text-center flex flex-row mt-1 pt-0'>
+                        <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
+                        <div className='flex flex-row mt-2'>
+                        <p className='text-xl mr-3 '>{values.business_rating} </p>
+                        <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(values.business_rating)} precision={0.1} readOnly />
+                        </div>
+                    </div>
+                    <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
+                        <p className='text-2xl font-semibold text-center'>Hours of Operation:</p>
+                        <div className='flex flex-col'>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Monday:</p> <p className='text-2xl mt-3 mb-1'>{values.m_hours_of_operation}</p></div>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Tuesday:</p> <p className='text-2xl mt-3 mb-1'>{values.tu_hours_of_operation}</p></div>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Wendsday:</p> <p className='text-2xl mt-3 mb-1'>{values.w_hours_of_operation}</p></div>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Thursday:</p> <p className='text-2xl mt-3 mb-1'>{values.th_hours_of_operation}</p></div>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Friday:</p> <p className='text-2xl mt-3 mb-1'>{values.f_hours_of_operation}</p></div>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Saturday:</p> <p className='text-2xl mt-3 mb-1'>{values.sa_hours_of_operation}</p></div>
+                            <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Sunday:</p> <p className='text-2xl mt-3 mb-1'>{values.sa_hours_of_operation}</p></div>
+                            
+                        </div>
                     </div>
                 </div>
-                <div className='text-left flex flex-col'>
-                    <p className='text-2xl font-semibold mt-4'>Rating:</p>
-                    <div className='flex flex-row'>
-                    <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(values?.business_rating)} precision={0.1} readOnly />
-                    <p className='text-xl ml-3'>{values.business_rating || ''} stars </p>
-                    </div>
-                </div>
-                <div className='h-auto w-max shadow-md px-5 rounded-xl right-0'>
-                    <p className='text-2xl font-semibold mt-12 text-left'>Hours of Operation:</p>
-                    <div className='flex flex-col'>
-                    {/* {values.hours_of_operation &&
-                        Object.entries(values.hours_of_operation).map(([key,value]) => {
-                            return <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>{key + ":"}</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
-                        })
-                    } */}
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Monday:</p> <p className='text-2xl mt-3 mb-1'>{values.m_hours_of_operation}</p></div>
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Tuesday:</p> <p className='text-2xl mt-3 mb-1'>{values.tu_hours_of_operation}</p></div>
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Wendsday:</p> <p className='text-2xl mt-3 mb-1'>{values.w_hours_of_operation}</p></div>
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Thursday:</p> <p className='text-2xl mt-3 mb-1'>{values.th_hours_of_operation}</p></div>
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Friday:</p> <p className='text-2xl mt-3 mb-1'>{values.f_hours_of_operation}</p></div>
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Saturday:</p> <p className='text-2xl mt-3 mb-1'>{values.sa_hours_of_operation}</p></div>
-                    <div className='flex-row flex border-b-2 border-gray-200'> <p className='text-2xl mt-3'>Sunday:</p> <p className='text-2xl mt-3 mb-1'>{values.sa_hours_of_operation}</p></div>
-                    
-                    </div>
-                </div>
-                </div>
-                <div className='flex-1 mt-32'>
-                    <p> Images for slide show will appear here</p>
-                    <Slide>
-                        <div className=' each-slide-effect flex justify-center items-center'> 
-                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='second-pic' className='rounded-lg h-full'/> 
+                <div className='w-full flex justify-center mt-9'>
+                    <Carousel width={420} dynamicHeight={true} autoPlay={true} interval={5000} infiniteLoop={true}>
+                        {/* <div className='flex justify-center items-center'> 
+                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                         </div>
-                        <div className=' each-slide-effect flex justify-center items-center'>
-                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='third-pic' className='rounded-lg'/>
+                        <div className='flex justify-center items-center'>
+                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
                         </div>
-                        <div className=' each-slide-effect flex justify-center items-center'>
-                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='second-pic' className='rounded-lg'/>
+                        <div className=' flex justify-center items-center'>
+                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
                         </div>
-                        <div className=' each-slide-effect flex justify-center items-center'>
-                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='third-pic' className='rounded-lg'/>
+                        <div className='flex justify-center items-center'>
+                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                        </div> */}
+                        <div className='flex justify-center items-center'> 
+                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                         </div>
-                    </Slide>
+                        <div className='flex justify-center items-center'>
+                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                        </div>
+                        <div className=' flex justify-center items-center'>
+                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
+                        </div>
+                        <div className='flex justify-center items-center'>
+                        <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                        </div>
+                    </Carousel>
                 </div>
             </div>
             <div className='mt-20 flex-row flex justify-center items-center rounded-md p-3'>
