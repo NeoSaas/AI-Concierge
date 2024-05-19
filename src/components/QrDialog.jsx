@@ -28,7 +28,8 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
   function openModal() {
     setIsOpen(true)
   }
-
+  
+  console.log(clickedBusiness[0].business_description)
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -111,9 +112,9 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </div>
                       </div>
                     </div>
-                    <div className='grid grid-cols-2 max-w-full mt-[20px] gap-0 justify-center items-center'>
-                      <div className='w-[75%] flex flex-col justify-center items-center mt-[-150px]'>
-                        <div className='pb-24 w-max'>
+                    <div className='grid grid-cols-2 max-w-full mt-[10px] gap-0 justify-center items-center'>
+                      <div className='w-[75%] flex flex-col justify-center items-center mt-[-10px]'>
+                        <div className='pb-4 w-[90%]'>
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
                           <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_reviews_summary}</p>
                         </div>
@@ -133,7 +134,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           </div>
                         </div>
                       </div>
-                      <div className='w-full flex justify-center mt-9 items-center'>
+                      <div className='w-full flex justify-center mt-9 items-center absolute ml-60'>
                         <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true} centerMode={true} centerSlidePercentage={100}>
                           <div className='flex justify-center items-center'> 
                             <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
@@ -167,7 +168,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         <QRCode value={otherLink} className='m-auto'/>
                       </div> */}
-                      <div className='flex flex-col text-center pr-32 mt-4'>
+                      <div className='flex flex-col text-center pr-32 mt-24'>
                           <QRCode value={otherLink} className='m-auto'/>
                           <p className='mt-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         </div>
