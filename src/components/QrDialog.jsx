@@ -38,7 +38,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
     return array;
   };
   
-  const validTags = [clickedBusiness[0].business_tags[1], buclickedBusinesssiness[0].business_tags[3], clickedBusiness[0].business_tags[4]];
+  const validTags = [clickedBusiness[0].business_tags[1], clickedBusinesssiness[0].business_tags[3], clickedBusiness[0].business_tags[4]];
   const randomTags = shuffleArray(validTags).slice(0, 3);
 
   return (
