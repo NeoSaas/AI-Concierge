@@ -5,7 +5,7 @@ import { FaWalking, FaCar, FaBus } from "react-icons/fa";
 
 function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness}) {
 
-  const weekday = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   const d = new Date();
   let day = weekday[d.getDay()];
   if(business[0].business_tags.includes('Restaurant')){
@@ -22,7 +22,9 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
   
   const validTags = [business[0].business_tags[1], business[0].business_tags[3], business[0].business_tags[4]];
   const randomTags = shuffleArray(validTags).slice(0, 3);
-  console.log(business[0].business_tags[0])
+  // console.log(validTags)
+  // console.log(business[0].hours_of_operation["Monday"])
+  // console.log(day.toString())
 
 
   // console.log(business[0].walk_time);
