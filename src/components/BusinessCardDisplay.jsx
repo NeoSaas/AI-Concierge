@@ -38,7 +38,7 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
         <p className="text-gray-600 mb-6 text-xl font-semibold">{business[0].business_address}</p>
         <div className='flex flex-col w-96'>
           {validTags.map((tag, index) => (
-            <p key={index} className="text-black mb-2 text-xl font-semibold">
+            <p className="text-black mb-2 text-xl font-semibold">
               {tag}{index < validTags.length - 1 && ', '}&nbsp;
             </p>
           ))}
