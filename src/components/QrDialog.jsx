@@ -38,7 +38,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
     return array;
   };
   
-  const validTags = clickedBusiness[0].business_tags.filter(tag => tag && tag.toLowerCase() !== "none");
+  const validTags = [business[0].business_tags[1], business[0].business_tags[3], business[0].business_tags[4]];
   const randomTags = shuffleArray(validTags).slice(0, 3);
 
   return (
@@ -103,9 +103,9 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         <div className='text-center flex flex-row w-full justify-center items-center'>
                           <p className='text-2xl font-semibold'>Type: &nbsp;</p>
                           <div className='flex flex-row text-center'>
-                          {randomTags.map((tag, index) => (
+                          {validTags.map((tag, index) => (
                             <p key={index} className="text-black text-center text-xl font-semibold w-max">
-                              {tag}{index < randomTags.length - 1 && ', '}&nbsp;
+                              {tag}{index < validTags.length - 1 && ', '}&nbsp;
                             </p>
                           ))}
                           </div>
