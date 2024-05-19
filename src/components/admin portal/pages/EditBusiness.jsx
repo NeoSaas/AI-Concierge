@@ -66,7 +66,7 @@ const EditBusiness = ({ logout, response }) => {
         // console.log('Form values:', values);
         axios({
             method: 'POST',
-            url: 'https://ai-concierge-backend-6f365d0c4dbf.herokuapp.com/api/updateBusinessData/',
+            url: 'https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/updateBusinessData/',
             data: values,
             headers: {
                 'content-Type': 'multipart/form-data',

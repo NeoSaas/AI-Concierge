@@ -19,7 +19,7 @@ const Signup = ({ login }) => {
     });
 
     const handleSubmit = async (values) => {
-        await axios.post('https://rr3l1d2s-8000.use.devtunnels.ms/api/signup/', values)
+        await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/signup/', values)
             .then(response => {
                
                 // Redirect to business creation page on successful login

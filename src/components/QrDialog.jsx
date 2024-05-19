@@ -93,7 +93,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                   {isRestaurant ? 
                   <>
                     <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
-                      <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
+                      <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
                       <div className='w-[130%] ml-5 pr-[12rem]'>
                         <div>
                           <p className='mt-4 text-3xl font-semibold'>Description</p>
@@ -136,16 +136,16 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                       <div className='w-full flex justify-center mt-9 items-center'>
                         <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true} centerMode={true} centerSlidePercentage={100}>
                           <div className='flex justify-center items-center'> 
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
                           </div>
                           <div className=' flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                           {/* <div className='flex justify-center items-center'> 
                             <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 

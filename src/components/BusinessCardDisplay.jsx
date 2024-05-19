@@ -28,7 +28,7 @@ function BusinessCardDisplay({ index, business, setIsOpen, setRestaurantLink, se
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-[900px] mx-auto h-[30rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={() => { setRestaurantLink(business[0].directions_url); setIsOpen(true); setClickedBusiness(business); }} >
       <div className='w-full h-full flex justify-center items-center'>
-        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms/${business[0].business_image_1}`} alt={business[0].name} className="w-[600px] h-[400px] max-h-[54rem] rounded-lg mx-auto mt-6" />
+        <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${business[0].business_image_1}`} alt={business[0].name} className="w-[600px] h-[400px] max-h-[54rem] rounded-lg mx-auto mt-6" />
       </div>
       <div className='w-full h-auto flex justify-center items-center flex-col pr-10'>
         <h3 className="text-2xl font-semibold mb-2">{business[0].business_name}</h3>
