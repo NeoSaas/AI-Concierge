@@ -228,12 +228,15 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                 <>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
                   <button className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' onClick={handleBackToForm}>Back to Form</button>
+                  <div className='absolute gradient-top h-full w-full'></div>
+                  <div className='absolute gradient-bottom h-full w-full'></div>
                 </>
                 : 
                 <div className='flex flex-col'>
                   
                   <p className='text-3xl text-black mx-auto text-center mb-4 mt-1'>Here are the best options for you!</p>
                   <p className='text-2xl text-black mx-auto text-center mb-1 mt-1'>We Found <p className=' text-green-500'>{displayBusinesses.length}</p>please scroll to see them.</p>
+                  
                   <DisplayedOptions businesses={displayBusinesses} setIsOpen={setIsOpen} isOpen={isOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness}/>
                   <button className=' bg-[#5C0601] py-4 px-72 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' onClick={handleBackToForm}>Back to Form</button>
                   <a className=' bg-[#5C0601] py-4 px-72 mt-4 rounded-full text-white hover:scale-105 duration-300 ease-in-out text-3xl font-semibold' href='/'>Back to Home</a>

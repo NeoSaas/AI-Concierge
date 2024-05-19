@@ -3,8 +3,8 @@ import Form from './Form';
 import Typewriter from 'typewriter-effect';
 import HotelForm from './hotel specific/HotelForm';
 
-function Header({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId, setIsHotelSpecific, isHotelSpecific}) {
-  const [suggestedDisplayed, setSuggestedDisplayed] = React.useState(false);
+function Header({ suggestedDisplayed, setSuggestedDisplayed, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setCardId, setIsHotelSpecific, isHotelSpecific}) {
+  
   const [loadingOptions, setLoadingOptions] = React.useState(false);
   const [toPage , setToPage] = React.useState(false);
   const [displayOptions, setDisplayOptions] = React.useState(false);

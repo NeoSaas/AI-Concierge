@@ -16,6 +16,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
     const [isRestaurant, setIsRestaurant] = useState(true);
     const [clickedBusiness, setClickedBusiness] = useState([]);
     const [isTimerComplete, setIsTimerComplete] = useState(false);
+    const [suggestedDisplayed, setSuggestedDisplayed] = useState(false);
     
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -40,6 +41,8 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
             <Navbar />
             <div className={`h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] mt-[-100px] bg-cover`} >
                 {isTimerComplete ? <TimeoutRedirect /> : null}
+                {suggestedDisplayed ? <><div className='absolute gradient-top h-[85%] w-full opacity-70'></div>
+                <div className='absolute gradient-bottom h-[85%] w-full opacity-70'></div></> : null }
                 {/* <div className='absolute gradient-top h-full w-full opacity-70'></div>
                 <div className='absolute gradient-bottom h-full w-full opacity-70'></div> */}
                 <div className={`h-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -56,7 +59,7 @@ const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
                     
                     <div className='w-full h-[88%] flex justify-center items-center'>
                         
-                        <Header isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
+                        <Header suggestedDisplayed={suggestedDisplayed} setSuggestedDisplayed={setSuggestedDisplayed} isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
                     </div>
                     
                     
