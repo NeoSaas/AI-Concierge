@@ -15,6 +15,9 @@ export default async function organizeQuery(selectedActivities) {
 
     }
 
+    console.log(businessesList)
+    console.log(userSelectedCategories)
+
 
     // Construct the prompt template
     const promptTemplate = `

@@ -154,21 +154,26 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
 
       var multiBusinessResponse = businessesFromResponse.split(', ');
       var businessDataResponse;
-      if (multiBusinessResponse.length > 1) {
+      try {
+        console.log(multiBusinessResponse);
 
         businessDataResponse = await axios({
           method: 'post',
           url: 'https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/',
           data: { business: multiBusinessResponse },
         });
+
+        // else {
+        //   businessDataResponse = await axios({
+        //     method: 'post',
+        //     url: 'https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/',
+        //     data: { business: businessesFromResponse },
+        //   });
+        // }
+      } catch (error) {
+        console.log(error);
       }
-      else {
-        businessDataResponse = await axios({
-          method: 'post',
-          url: 'https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/',
-          data: { business: businessesFromResponse },
-        });
-      }
+      console.log(businessDataResponse);
       setDisplayBusinesses(businessDataResponse.data);
       setLoading(false);
       setSuggestedDisplayed(true);
@@ -228,8 +233,7 @@ const Form = ({ isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClicke
                 <>
                   <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>No options found for your selection. Please try again!</p> 
                   <button className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' onClick={handleBackToForm}>Back to Form</button>
-                  <div className='absolute gradient-top h-full w-full'></div>
-                  <div className='absolute gradient-bottom h-full w-full'></div>
+                  
                 </>
                 : 
                 <div className='flex flex-col'>
