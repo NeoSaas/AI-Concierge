@@ -104,7 +104,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <p className='text-2xl font-semibold'>Type: &nbsp;</p>
                           <div className='flex flex-row text-center'>
                           {validTags.map((tag, index) => (
-                            <p key={index} className="text-black text-center text-xl font-semibold w-max">
+                            <p className="text-black text-center text-xl font-semibold w-max">
                               {tag}{index < validTags.length - 1 && ', '}&nbsp;
                             </p>
                           ))}
