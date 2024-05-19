@@ -113,8 +113,8 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                       </div>
                     </div>
                     <div className='grid grid-cols-2 max-w-full mt-[10px] gap-0 justify-center items-center'>
-                      <div className='w-[75%] flex flex-col justify-center items-center mt-[-10px]'>
-                        <div className='pb-4 w-[90%]'>
+                      <div className='w-[75%] flex flex-col justify-center items-center mt-[200px]'>
+                        <div className='pb-4 w-[90%] absolute mb-[750px]'>
                           <p className='text-2xl font-bold text-black '>Google Review Summary</p>
                           <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_reviews_summary}</p>
                         </div>
@@ -135,7 +135,7 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                         </div>
                       </div>
                       <div className='w-full flex justify-center mt-9 items-center absolute ml-60'>
-                        <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true} centerMode={true} centerSlidePercentage={100}>
+                        <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
                             <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
