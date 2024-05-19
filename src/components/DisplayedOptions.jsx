@@ -7,7 +7,7 @@ function DisplayedOptions({ businesses, isOpen, setIsOpen, setRestaurantLink, se
   
 
   return (
-    <div className="grid grid-cols-1 gap-4 overflow-scroll max-h-[72rem] no-scrollbar mb-10">
+    <div className="grid grid-cols-1 gap-4 overflow-scroll max-h-[55rem] no-scrollbar mb-10">
       <div className='flex flex-row justify-start text-xl'>
       <PiArrowBendLeftDownBold size={34} className='ml-1 mt-1'/><p classname=''>Click to see company profile </p>
       </div>
