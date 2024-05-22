@@ -3,8 +3,8 @@ import BusinessCardDisplay from './BusinessCardDisplay';
 import { PiArrowBendLeftDownBold } from "react-icons/pi";
 import { useAppContext } from '../AppContext';
 
-function DisplayedOptions() {
-  const { businesses, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
+function DisplayedOptions({ businesses }) {
+  const {setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
 
   const handleSetIsOpen = useCallback((value) => {
     setIsOpen(value);
@@ -28,7 +28,7 @@ function DisplayedOptions() {
         <PiArrowBendLeftDownBold size={34} className='ml-1 mt-1' />
         <p className='ml-1'>Click to see company profile</p>
       </div>
-      {businesses.map((business, index) => (
+      {businesses?.map((business, index) => (
         <BusinessCardDisplay
           key={index}
           business={business}
