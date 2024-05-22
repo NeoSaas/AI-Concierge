@@ -30,7 +30,7 @@ function HotelMap() {
   }, []);
 
   return (
-    <div className="h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover">
+    <div className="h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] bg-cover">
       <Suspense fallback={<div>Loading...</div>}>
         <WeatherWidget />
         <Navbar />
@@ -39,7 +39,7 @@ function HotelMap() {
         <div className='absolute gradient-bottom h-full w-full'></div>
         <BottomBanner />
       </Suspense>
-      <div className={`w-full h-screen flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div className={`w-full h-[80%] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl mb-12' href="/home">Back To Home</a>
         <img className='flex w-[90%] mx-auto' src='MapofAlfondInnProperty.png' alt='hotel-map' />
       </div>

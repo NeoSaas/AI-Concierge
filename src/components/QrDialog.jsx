@@ -21,7 +21,7 @@ export default function MyDialog() {
     setIsOpen(false);
   }, [setIsOpen]);
 
-  const validTags = [clickedBusiness[0].business_tags[1], clickedBusiness[0].business_tags[3], clickedBusiness[0].business_tags[4]];
+  const validTags = [clickedBusiness[0]?.business_tags[1], clickedBusiness[0]?.business_tags[3], clickedBusiness[0]?.business_tags[4]];
 
   const compressImage = (url, quality = 0.7) => {
     return new Promise((resolve, reject) => {
@@ -49,13 +49,6 @@ export default function MyDialog() {
   const [compressedImage2, setCompressedImage2] = useState(null);
   const [compressedImage3, setCompressedImage3] = useState(null);
   const [compressedImage4, setCompressedImage4] = useState(null);
-
-  useEffect(() => {
-    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_1}`).then(setCompressedImage1);
-    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`).then(setCompressedImage2);
-    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_3}`).then(setCompressedImage3);
-    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_4}`).then(setCompressedImage4);
-  }, [clickedBusiness]);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -88,12 +81,12 @@ export default function MyDialog() {
                   {isRestaurant ? 
                     <div className='flex flex-col text-center'>
                       <div>
-                        <p className='text-5xl mb-6 mt-4'>{clickedBusiness[0].business_name}</p>
-                        <p className='text-2xl font-normal'>{clickedBusiness[0].business_address}</p>
+                        <p className='text-5xl mb-6 mt-4'>{clickedBusiness[0]?.business_name}</p>
+                        <p className='text-2xl font-normal'>{clickedBusiness[0]?.business_address}</p>
                       </div>
                       <div className='my-auto text-2xl flex flex-col mt-4 mb-3'>
                         <p>Phone Number:</p>
-                        <p>{clickedBusiness[0].business_phone_number}</p>
+                        <p>{clickedBusiness[0]?.business_phone_number}</p>
                       </div>
                     </div>
                     : 
@@ -104,11 +97,11 @@ export default function MyDialog() {
                   {isRestaurant ? 
                   <>
                     <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
-                      <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
+                      <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
                       <div className='w-[130%] ml-5 pr-[12rem]'>
                         <div>
                           <p className='mt-4 text-3xl font-semibold'>Description</p>
-                          <p className='text-xl'>{clickedBusiness[0].business_description}</p>
+                          <p className='text-xl'>{clickedBusiness[0]?.business_description}</p>
                         </div>
                         <div className='text-center flex flex-row w-full justify-center items-center'>
                           <p className='text-2xl font-semibold'>Type: &nbsp;</p>
@@ -131,14 +124,14 @@ export default function MyDialog() {
                         <div className='text-center flex flex-row mt-1 pt-0'>
                           <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
                           <div className='flex flex-row mt-2'>
-                            <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
-                            <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
+                            <p className='text-xl mr-3 '>{clickedBusiness[0]?.business_rating} </p>
+                            <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0]?.business_rating)} precision={0.1} readOnly />
                           </div>
                         </div>
                         <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
                           <p className='text-2xl font-semibold text-center'>Hours of Operation:</p>
                           <div className='flex flex-col'>
-                            {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
+                            {clickedBusiness[0] && Object.entries(clickedBusiness[0]?.hours_of_operation).map(([key,value]) => {
                               return <div className='flex-row flex'> <p className='text-2xl mt-3'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
                             })}
                           </div>
@@ -147,16 +140,16 @@ export default function MyDialog() {
                       <div className='w-full flex justify-center mt-9 items-center absolute ml-60'>
                         <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true}>
                           <div className='flex justify-center items-center'> 
-                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
                           </div>
                           <div className=' flex justify-center items-center'>
-                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                           <div className='flex justify-center items-center'>
-                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
                           </div>
                           {/* <div className='flex justify-center items-center'> 
                             <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
