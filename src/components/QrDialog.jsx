@@ -1,49 +1,64 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-import ReactDOM from "react-dom";
-import QRCode from "react-qr-code";
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState, useCallback, useEffect } from 'react';
+import QRCode from 'react-qr-code';
 import Barcode from 'react-barcode';
-import { Slide } from 'react-slideshow-image';
+import { Carousel } from 'react-responsive-carousel';
 import Rating from '@mui/material/Rating';
 import 'react-slideshow-image/dist/styles.css';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useAppContext } from '../AppContext';
 
-
-
-export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestaurant, clickedBusiness}) {
-
-  let d = new Date();
-  let day = d.getDay();
-  let month = d.getMonth();
-  let dateString = `${month}/${day}`;
-  // console.log(clickedBusiness)
+export default function MyDialog() {
+  const { isOpen, setIsOpen, qrCode, otherLink, isRestaurant, clickedBusiness } = useAppContext();
+  const d = new Date();
+  const day = d.getDate();
+  const month = d.getMonth() + 1; // getMonth() returns 0-based month
+  const dateString = `${month}/${day}`;
 
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
 
-  function closeModal() {
-    setIsOpen(false)
-  }
+  const closeModal = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
-  function openModal() {
-    setIsOpen(true)
-  }
-  
-  console.log(clickedBusiness[0].business_description)
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
-  
   const validTags = [clickedBusiness[0].business_tags[1], clickedBusiness[0].business_tags[3], clickedBusiness[0].business_tags[4]];
-  const randomTags = shuffleArray(validTags).slice(0, 3);
+
+  const compressImage = (url, quality = 0.7) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(
+          (blob) => {
+            resolve(URL.createObjectURL(blob));
+          },
+          'image/jpeg',
+          quality
+        );
+      };
+      img.onerror = reject;
+    });
+  };
+
+  const [compressedImage1, setCompressedImage1] = useState(null);
+  const [compressedImage2, setCompressedImage2] = useState(null);
+  const [compressedImage3, setCompressedImage3] = useState(null);
+  const [compressedImage4, setCompressedImage4] = useState(null);
+
+  useEffect(() => {
+    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_1}`).then(setCompressedImage1);
+    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`).then(setCompressedImage2);
+    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_3}`).then(setCompressedImage3);
+    compressImage(`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_4}`).then(setCompressedImage4);
+  }, [clickedBusiness]);
 
   return (
-    <>
-      <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
@@ -69,28 +84,23 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className={isRestaurant ? `w-full transform overflow-auto overflow-x-hidden rounded-2xl bg-white p-2  align-middle shadow-xl transition-all text-left h-[106rem] mt-32` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
-                <Dialog.Title
-                  as="h3"
-                  className="font-medium leading-6 text-gray-900"
-                >
+                <Dialog.Title as="h3" className="font-medium leading-6 text-gray-900">
                   {isRestaurant ? 
-                  <div className='flex flex-col text-center'>
-                  <div>
-                    <p className='text-5xl mb-6 mt-4'>{clickedBusiness[0].business_name}</p>
-                    <p className='text-2xl font-normal'>{clickedBusiness[0].business_address}</p>
-                  </div>
-                  <div className='my-auto text-2xl flex flex-col mt-4 mb-3'>
-                    <p>Phone Number:</p>
-                    <p>{clickedBusiness[0].business_phone_number}</p>
-                  </div>
-                    
-                  </div>
-                  :
-                  <p className='text-xl mb-5'>Scan the Qr Code for Further Directions!</p>
+                    <div className='flex flex-col text-center'>
+                      <div>
+                        <p className='text-5xl mb-6 mt-4'>{clickedBusiness[0].business_name}</p>
+                        <p className='text-2xl font-normal'>{clickedBusiness[0].business_address}</p>
+                      </div>
+                      <div className='my-auto text-2xl flex flex-col mt-4 mb-3'>
+                        <p>Phone Number:</p>
+                        <p>{clickedBusiness[0].business_phone_number}</p>
+                      </div>
+                    </div>
+                    : 
+                    <p className='text-xl mb-5'>Scan the Qr Code for Further Directions!</p>
                   }
                 </Dialog.Title>
                 <div className="mt-2 flex-col justify-center items-center text-center">
-        
                   {isRestaurant ? 
                   <>
                     <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
@@ -172,21 +182,19 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
                           <QRCode value={otherLink} className='m-auto'/>
                           <p className='mt-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        
-                        {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ?
-                        <>
-                        <p className='mb-5 text-2xl font-bold'>{clickedBusiness[0]?.business_barcode}</p>
-                        <p className='mb-5 text-xl'>{clickedBusiness[0]?.busness_name}</p>
-                        <p className='mb-5 text-xl'>{"Promo code valid until: " + clickedBusiness[0]?.business_barcode_date}</p>
-                        </>
-                        :
-                        <p className='mb-5 text-2xl font-bold'>No Promo Code available</p>
-                        }
-                        <p className='text-xl'>Take a picture of the barcode and present it at the restaurant for Perks!</p>
+                        <div className='flex flex-col items-center justify-center'>
+                          {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ? 
+                            <>
+                              <p className='mb-5 text-2xl font-bold'>{clickedBusiness[0]?.business_barcode}</p>
+                              <p className='mb-5 text-xl'>{clickedBusiness[0]?.busness_name}</p>
+                              <p className='mb-5 text-xl'>{"Promo code valid until: " + clickedBusiness[0]?.business_barcode_date}</p>
+                            </> : 
+                            <p className='mb-5 text-2xl font-bold'>No Promo Code available</p>
+                          }
+                          <p className='text-xl'>Take a picture of the barcode and present it at the restaurant for Perks!</p>
+                        </div>
                       </div>
-                    </div>
-                  </> : <QRCode value={otherLink} className='m-auto'/>}
+                    </> : <QRCode value={otherLink} className='m-auto' />}
                 </div>
 
                 <div className="mt-4 w-full flex items-center justify-center">
@@ -204,8 +212,5 @@ export default function MyDialog({isOpen, setIsOpen, qrCode, otherLink, isRestau
         </div>
       </Dialog>
     </Transition>
-      
-      
-    </>
-  )
+  );
 }

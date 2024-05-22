@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import ActivityCard from '../ActivityCard';
 import HotelAmenityDisplay from './HotelAmenityDisplay';
+import { useAppContext } from '../../AppContext';
 
 const activities = ['Hamiltons Kitchen', 'The Lounge', 'The Spa', 'The Cafe', 'The Pool', 'Fitness Center'];
 
-const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen, setHotel, toPage, setToPage }) => {
+const HotelForm = ({ setHotel, toPage, setToPage }) => {
+  const { setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen } = useAppContext();
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;

@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import Form from './Form';
 import Typewriter from 'typewriter-effect';
-import HotelForm from './hotel specific/HotelForm';
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../../AppContext';
+import ItineraryPlannerForm from './ItineraryPlannerForm';
 
-function Header() {
+function ItineraryHeader() {
   const { suggestedDisplayed, setSuggestedDisplayed, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, isItinerary, setIsItinerary } = useAppContext();
   const [loadingOptions, setLoadingOptions] = useState(false);
   const [toPage, setToPage] = useState(false);
@@ -30,12 +29,12 @@ function Header() {
     'Pet Services'
   ], []);
 
-  const handleSetIsHotelSpecific = useCallback(() => {
-    setIsHotelSpecific(prev => !prev);
+  const handleSetIsItinerary = useCallback(() => {
+    setIsItinerary(prev => !prev);
   }, [setIsHotelSpecific]);
 
   return (
-    <div className={toPage || displayOptions ? "py-4 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-20" : "py-10 flex justify-center mb-[384px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
+    <div className={toPage || displayOptions ? "py-4 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-12" : "py-10 flex justify-center mb-[384px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
       <div className='z-40 text-center mx-16'>
         {!suggestedDisplayed && (
           <>
@@ -55,24 +54,14 @@ function Header() {
           </>
         )}
         <div className={suggestedDisplayed ? `flex` : `mt-6 flex`}>
-          {isHotelSpecific ? (
-            <div className='flex flex-col'>
-              <p className='text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Hotel Amenities"}</p>
-              <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed} setToPage={setToPage} toPage={toPage} />
-            </div>
-          ) : (
-            <div className='flex flex-col'>
-              <p className='text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Winter Park"}</p>
-              <Form isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} setSuggestedDisplayed={setSuggestedDisplayed} setLoadingOptions={setLoadingOptions} displayOptions={displayOptions} setDisplayOptions={setDisplayOptions} />
-            </div>
-          )}
+          <ItineraryPlannerForm />
         </div>
         {!suggestedDisplayed && (
-          <div className={isHotelSpecific ? 'w-full h-auto flex flex-row justify-center mt-[-86px]' : 'w-full h-auto flex flex-row justify-center mt-[9px]'}>
+          <div className={'w-full h-auto flex flex-row justify-center'}>
             {!loadingOptions && (
               <div className='w-full flex flex-row justify-between mx-4 pt-[1.6rem]'>
                 <a href="/" className={isHotelSpecific ? 'relative px-7 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white font-semibold rounded-full' : 'relative font-semibold px-16 py-3 border-[3px] border-[#5C0601] bg-[#5C0601] text-2xl text-white rounded-full'}>Back to Home</a>
-                <button onClick={handleSetIsHotelSpecific} className={isHotelSpecific ? "bg-[#5C0601] relative text-white font-semibold px-10 py-3 border-[3px] border-[#5C0601] rounded-full text-2xl" : "bg-[#5C0601] text-white font-semibold border-[3px] border-[#5C0601] px-8 py-1 rounded-full mt-0 text-2xl mx-"}>{isHotelSpecific ? "Winter Park" : "Alfond Inn Amenities"}</button>
+                <button onClick={handleSetIsItinerary} className={isHotelSpecific ? "bg-[#5C0601] relative text-white font-semibold px-10 py-3 border-[3px] border-[#5C0601] rounded-full text-2xl" : "bg-[#5C0601] text-white font-semibold border-[3px] border-[#5C0601] px-8 py-1 rounded-full mt-0 text-2xl mx-"}>Back To Suggestions</button>
               </div>
             )}
           </div>
@@ -82,4 +71,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default ItineraryHeader;

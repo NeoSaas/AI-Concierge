@@ -1,73 +1,87 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
-import BottomBanner from '../components/BottomBanner';
-import Form from '../components/Form';
-import WeatherWidget from '../components/weatherComponents/WeatherWidget';
-import MyDialog from '../components/QrDialog';
-import HotelQrDialog from '../components/hotel specific/HotelQrDialog';
-import TimeoutRedirect from '../components/Timeout';
+import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import { useAppContext } from '../AppContext';
 
-const Home = ({ setIsHotelSpecific, isHotelSpecific }) => {
+const ItineraryHeader = lazy(() => import('../components/itinerary-planner/ItineraryHeader'));
+const Navbar = lazy(() => import('../components/Navbar'));
+const Header = lazy(() => import('../components/Header'));
+const BottomBanner = lazy(() => import('../components/BottomBanner'));
+const Form = lazy(() => import('../components/Form'));
+const WeatherWidget = lazy(() => import('../components/weatherComponents/WeatherWidget'));
+const MyDialog = lazy(() => import('../components/QrDialog'));
+const HotelQrDialog = lazy(() => import('../components/hotel specific/HotelQrDialog'));
+const TimeoutRedirect = lazy(() => import('../components/Timeout'));
+
+
+const Home = () => {
+    const { setIsHotelSpecific, isHotelSpecific, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, restaurantLink, isRestaurant, clickedBusiness, suggestedDisplayed, setSuggestedDisplayed, isTimerComplete, setIsTimerComplete, setIsItinerary, isItinerary } = useAppContext();
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const [restaurantLink, setRestaurantLink] = useState(null);
-    const [isRestaurant, setIsRestaurant] = useState(true);
-    const [clickedBusiness, setClickedBusiness] = useState([]);
-    const [isTimerComplete, setIsTimerComplete] = useState(false);
-    const [suggestedDisplayed, setSuggestedDisplayed] = useState(false);
-    
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsTimerComplete(true);
-        }, 2 * 60 * 1000); // 4 minutes in milliseconds
-
-        return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
-        //simulating a delay before content fades in (you can adjust this timing)
+        // Simulating a delay before content fades in
         const timeout = setTimeout(() => {
             setIsLoaded(true);
         }, 300);
-        //clean up the timeout
         return () => clearTimeout(timeout);
     }, []);
 
     return (
         <div>
-            <WeatherWidget/>
-            <Navbar />
-            <div className={`h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/Main%20Page/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x.jpg)] mt-[-100px] bg-cover`} >
+            <Suspense fallback={<div>Loading...</div>}>
+                <WeatherWidget />
+                <Navbar />
+            </Suspense>
+            <div className={`h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover`} >
                 {isTimerComplete ? <TimeoutRedirect /> : null}
-                {suggestedDisplayed ? <><div className='absolute gradient-top h-[85%] w-full opacity-70'></div>
-                <div className='absolute gradient-bottom h-[85%] w-full opacity-70'></div></> : null }
-                {/* <div className='absolute gradient-top h-full w-full opacity-70'></div>
-                <div className='absolute gradient-bottom h-full w-full opacity-70'></div> */}
+                {suggestedDisplayed && (
+                    <>
+                        <div className='absolute gradient-top h-[85%] w-full opacity-70'></div>
+                        <div className='absolute gradient-bottom h-[85%] w-full opacity-70'></div>
+                    </>
+                )}
                 <div className={`h-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    {isOpen ? 
-                        isHotelSpecific ?
-                        <HotelQrDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} />
-                        :
-                        <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness}/> 
-                    : null}
-                    {/* <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness}/> */}
-                    {/* <img className='w-36 absolute h-[100%] mt-0 right-0' src='wave-side.png' alt='wave'/>
-                    <img className='w-36 absolute h-[100%] mt-0 left-0' src='wave-transparent-left.png' alt='wave'/> */}
-                    
-                    
+                    {isOpen && (
+                        isHotelSpecific ? (
+                            <HotelQrDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} />
+                        ) : (
+                            <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness} />
+                        )
+                    )}
                     <div className='w-full h-[88%] flex justify-center items-center'>
-                        
-                        <Header suggestedDisplayed={suggestedDisplayed} setSuggestedDisplayed={setSuggestedDisplayed} isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} isHotelSpecific={isHotelSpecific} setIsHotelSpecific={setIsHotelSpecific}/>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {isItinerary ? 
+                            <ItineraryHeader
+                                suggestedDisplayed={suggestedDisplayed}
+                                setSuggestedDisplayed={setSuggestedDisplayed}
+                                isOpen={isOpen}
+                                setIsOpen={setIsOpen}
+                                setRestaurantLink={setRestaurantLink}
+                                setIsRestaurant={setIsRestaurant}
+                                setClickedBusiness={setClickedBusiness}
+                                isHotelSpecific={isHotelSpecific}
+                                setIsHotelSpecific={setIsHotelSpecific}
+                            />
+                            : 
+                            <Header
+                                suggestedDisplayed={suggestedDisplayed}
+                                setSuggestedDisplayed={setSuggestedDisplayed}
+                                isOpen={isOpen}
+                                setIsOpen={setIsOpen}
+                                setRestaurantLink={setRestaurantLink}
+                                setIsRestaurant={setIsRestaurant}
+                                setClickedBusiness={setClickedBusiness}
+                                isHotelSpecific={isHotelSpecific}
+                                setIsHotelSpecific={setIsHotelSpecific}
+                            />}
+                            
+                        </Suspense>
                     </div>
-                    
-                    
                 </div>
-                <BottomBanner/>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <BottomBanner />
+                </Suspense>
             </div>
         </div>
-  );
+    );
 };
 
 export default Home;

@@ -1,23 +1,14 @@
-import React from "react";
 import axios from "axios";
 
 export default async function organizeQuery(selectedActivities) {
-    const userSelectedCategories = selectedActivities.join(', ');
+  const userSelectedCategories = selectedActivities.join(', ');
 
-    const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/');
-    const businessTagsArray = response.data;
+  try {
+    const { data: businessTagsArray } = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/');
 
-    // Construct the list of businesses with their tags 
-    let businessesList = '';
-    for (let i = 0; i < businessTagsArray.length; i++) {
-        const business = businessTagsArray[i];
-        businessesList += `${business.business_name} [Tags: ${business.business_tags.join(', ')}]\n`;
-
-    }
-
-    console.log(businessesList)
-    console.log(userSelectedCategories)
-
+    const businessesList = businessTagsArray.map(business => 
+      `${business.business_name} [Tags: ${business.business_tags.join(', ')}]`
+    ).join('\n');
 
     // Construct the prompt template
     const promptTemplate = `
@@ -43,4 +34,8 @@ export default async function organizeQuery(selectedActivities) {
     `;
 
     return promptTemplate;
+  } catch (error) {
+    console.error('Error fetching business data:', error);
+    throw error;
+  }
 }

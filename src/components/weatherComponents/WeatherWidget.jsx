@@ -1,59 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 
 const WeatherWidget = () => {
   const [weather, setWeather] = useState(null);
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState(() => new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }));
 
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        const response = await axios({
-          method: 'GET',
-          url: 'https://us-weather-by-zip-code.p.rapidapi.com/getweatherzipcode',
-          params: {zip: '32789'},
-          headers: {
-            'X-RapidAPI-Key': process.env.REACT_APP_X_API_KEY,
-            'X-RapidAPI-Host': process.env.REACT_APP_X_API_SECRET
-          }
+  const fetchWeatherData = useCallback(async () => {
+    try {
+      const response = await axios({
+        method: 'GET',
+        url: 'https://us-weather-by-zip-code.p.rapidapi.com/getweatherzipcode',
+        params: { zip: '32789' },
+        headers: {
+          'X-RapidAPI-Key': process.env.REACT_APP_X_API_KEY,
+          'X-RapidAPI-Host': process.env.REACT_APP_X_API_SECRET,
+        },
+      });
+
+      if (response.data) {
+        setWeather({
+          temperature: response.data.TempF,
+          description: response.data.Weather,
+          conditionIcon: weatherIcon(response.data.Weather),
+          locationName: response.data.City,
         });
-        console.log(response.data)
-        if (response.data) {
-          // const weatherData = data.data[0];
-          setWeather({
-            temperature: response.data.TempF,
-            description: response.data.Weather,
-            conditionIcon: weatherIcon(response.data.Weather),
-            locationName: response.data.City,
-          });
-          setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
-        } else {
-          console.error('Error fetching weather data:');
-        }
-      } 
-      catch (error) {
-        console.error('Error fetching weather data:', error);
+        setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }));
+      } else {
+        console.error('Error fetching weather data:');
       }
-    };
-
-    fetchWeatherData();
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
   }, []);
 
-  setTimeout(() => setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })), 60000);
+  useEffect(() => {
+    fetchWeatherData();
+    const intervalId = setInterval(() => {
+      setTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }));
+    }, 60000);
 
-  if (!weather) {
-    // console.log(time)
-    return <div>Loading...</div>;
-    
-  }
+    return () => clearInterval(intervalId);
+  }, [fetchWeatherData]);
 
-  const { temperature, condition, conditionIcon, locationName, date, description} = weather;
-
-  const formattedDate = new Date().toLocaleDateString('en-US', {
+  const formattedDate = useMemo(() => new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
-  });
+  }), []);
+
+  if (!weather) {
+    return <div>Loading...</div>;
+  }
+
+  const { temperature, description, conditionIcon, locationName } = weather;
 
   return (
     <div className="bg-white text-black flex items-center justify-between px-10 py-2 h-32 relative w-full z-10">
@@ -75,8 +74,8 @@ const WeatherWidget = () => {
 
 export default WeatherWidget;
 
-function weatherIcon(weather) {
-  if (weather.includes('Clear') ) {
+const weatherIcon = (weather) => {
+  if (weather.includes('Clear')) {
     return '/weather-icons/icons8-sun.svg';
   } else if (weather.includes('Cloud') || weather.includes('Cloudy')) {
     return '/weather-icons/icons8-cloudy-80.png';
@@ -86,7 +85,7 @@ function weatherIcon(weather) {
     return '/weather-icons/icons8-storm.png';
   } else if (weather.includes('Sunny')) {
     return '/weather-icons/icons8-sun.png';
-  } else  {
+  } else {
     return '/weather-icons/icons8-cloudy-80.png';
   }
-}
+};
