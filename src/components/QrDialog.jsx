@@ -102,68 +102,84 @@ export default function MyDialog() {
                 </Dialog.Title>
                 <div className="mt-2 flex-col justify-center items-center text-center">
                   {isRestaurant ? 
-                    <>
-                      <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
-                        {compressedImage1 && <img src={compressedImage1} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg' />}
-                        <div className='w-[130%] ml-5 pr-[12rem]'>
-                          <div>
-                            <p className='mt-4 text-3xl font-semibold'>Description</p>
-                            <p className='text-xl'>{clickedBusiness[0].business_description}</p>
-                          </div>
-                          <div className='text-center flex flex-row w-full justify-center items-center'>
-                            <p className='text-2xl font-semibold'>Type: &nbsp;</p>
-                            <div className='flex flex-row text-center'>
-                              {validTags.map((tag, index) => (
-                                <p key={index} className="text-black text-center text-xl font-semibold w-max">
-                                  {tag}{index < validTags.length - 1 && ', '}&nbsp;
-                                </p>
-                              ))}
-                            </div>
+                  <>
+                    <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
+                      <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
+                      <div className='w-[130%] ml-5 pr-[12rem]'>
+                        <div>
+                          <p className='mt-4 text-3xl font-semibold'>Description</p>
+                          <p className='text-xl'>{clickedBusiness[0].business_description}</p>
+                        </div>
+                        <div className='text-center flex flex-row w-full justify-center items-center'>
+                          <p className='text-2xl font-semibold'>Type: &nbsp;</p>
+                          <div className='flex flex-row text-center'>
+                          {validTags.map((tag, index) => (
+                            <p className="text-black text-center text-xl font-semibold w-max">
+                              {tag}{index < validTags.length - 1 && ', '}&nbsp;
+                            </p>
+                          ))}
                           </div>
                         </div>
                       </div>
-                      <div className='grid grid-cols-2 max-w-full mt-[10px] gap-0 justify-center items-center'>
-                        <div className='w-[75%] flex flex-col justify-center items-center mt-[200px]'>
-                          <div className='pb-4 w-[90%] absolute mb-[750px]'>
-                            <p className='text-2xl font-bold text-black '>Google Review Summary</p>
-                            <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_reviews_summary}</p>
-                          </div>
-                          <div className='text-center flex flex-row mt-1 pt-0'>
-                            <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
-                            <div className='flex flex-row mt-2'>
-                              <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
-                              <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
-                            </div>
-                          </div>
-                          <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
-                            <p className='text-2xl font-semibold text-center'>Hours of Operation:</p>
-                            <div className='flex flex-col'>
-                              {Object.entries(clickedBusiness[0].hours_of_operation).map(([key, value]) => (
-                                <div key={key} className='flex-row flex'> 
-                                  <p className='text-2xl mt-3'>{key + ":"} &nbsp;</p>
-                                  <p className='text-2xl mt-3 mb-1'>{value}</p>
-                                </div>
-                              ))}
-                            </div>
+                    </div>
+                    <div className='grid grid-cols-2 max-w-full mt-[10px] gap-0 justify-center items-center'>
+                      <div className='w-[75%] flex flex-col justify-center items-center mt-[200px]'>
+                        <div className='pb-4 w-[35%] absolute mb-[750px]'>
+                          <p className='text-2xl font-bold text-black '>Google Review Summary</p>
+                          <p className='text-lg font-normal text-wrap'> {clickedBusiness[0]?.google_reviews_summary}</p>
+                        </div>
+                        <div className='text-center flex flex-row mt-1 pt-0'>
+                          <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
+                          <div className='flex flex-row mt-2'>
+                            <p className='text-xl mr-3 '>{clickedBusiness[0].business_rating} </p>
+                            <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(clickedBusiness[0].business_rating)} precision={0.1} readOnly />
                           </div>
                         </div>
-                        <div className='w-full flex justify-center mt-9 items-center absolute ml-60'>
-                          <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true}>
-                            {compressedImage2 && <div className='flex justify-center items-center'>
-                              <img src={compressedImage2} alt='second-pic' className='h-auto w-[40rem] rounded-lg' />
-                            </div>}
-                            {compressedImage3 && <div className='flex justify-center items-center'>
-                              <img src={compressedImage3} alt='third-pic' className='h-autodd w-[40rem] rounded-lg' />
-                            </div>}
-                            {compressedImage4 && <div className='flex justify-center items-center'>
-                              <img src={compressedImage4} alt='fourth-pic' className='h-auto w-[40rem] rounded-lg' />
-                            </div>}
-                          </Carousel>
+                        <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
+                          <p className='text-2xl font-semibold text-center'>Hours of Operation:</p>
+                          <div className='flex flex-col'>
+                            {Object.entries(clickedBusiness[0].hours_of_operation).map(([key,value]) => {
+                              return <div className='flex-row flex'> <p className='text-2xl mt-3'>{key + ":"} &nbsp;</p> <p className='text-2xl mt-3 mb-1'>{value}</p></div>
+                            })}
+                          </div>
                         </div>
                       </div>
-                      <div className='flex-row flex justify-center items-center rounded-md p-1 mt-[-50px]'>
-                        <div className='flex flex-col text-center pr-32 mt-24'>
-                          <QRCode value={otherLink} className='m-auto' />
+                      <div className='w-full flex justify-center mt-9 items-center absolute ml-60'>
+                        <Carousel width={420} dynamicHeight={false} autoPlay={true} interval={5000} infiniteLoop={true}>
+                          <div className='flex justify-center items-center'> 
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
+                          </div>
+                          <div className='flex justify-center items-center'>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
+                          </div>
+                          <div className=' flex justify-center items-center'>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div>
+                          <div className='flex justify-center items-center'>
+                            <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div>
+                          {/* <div className='flex justify-center items-center'> 
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
+                          </div>
+                          <div className='flex justify-center items-center'>
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div>
+                          <div className=' flex justify-center items-center'>
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div>
+                          <div className='flex justify-center items-center'>
+                            <img src={`https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-3-gigapixel-high-fidelity-v2-4x.jpg`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
+                          </div> */}
+                        </Carousel>
+                      </div>
+                    </div>
+                    <div className='flex-row flex justify-center items-center rounded-md p-1 mt-[-50px]'>
+                      {/* <div className='flex flex-col '>
+                        <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
+                        <QRCode value={otherLink} className='m-auto'/>
+                      </div> */}
+                      <div className='flex flex-col text-center pr-32 mt-24'>
+                          <QRCode value={otherLink} className='m-auto'/>
                           <p className='mt-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
                         </div>
                         <div className='flex flex-col items-center justify-center'>
