@@ -1,73 +1,69 @@
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import Home from './pages/Home';
-import React, { useEffect } from 'react';
-import HotelMap from './pages/HotelMap';
-import EventsInfo from './pages/EventsInfo';
-import CheckInInfo from './pages/CheckInInfo';
+import { BrowserRouter, Route, Routes, redirect } from 'react-router-dom';
+import React, { useEffect, useCallback, useState, lazy, Suspense } from 'react';
 import ProtectedRoute from './components/protectected route/ProtectedRoute';
-import AmenitiesSpa from './pages/amenities sub pages/AmenitiesSpa';
-import AmenitiesDining from './pages/amenities sub pages/AmenitiesDining';
-import AmenitiesEventSpace from './pages/amenities sub pages/AmenitiesEventSpace';
-import AmenitiesRooms from './pages/amenities sub pages/AmenitiesRooms';
-import Landing from './pages/Landing';
-import LoginPage from './components/admin portal/LoginPage';
-import AdminPortal from './components/admin portal/AdminPortal';
-import Signup from './components/admin portal/Signup';
-import { redirect } from 'react-router-dom';
+import { AppProvider, useAppContext } from './AppContext';
 import axios from 'axios';
 
-function App() {
-  const [isAuthenticated, setState] = React.useState(false);
-  const [rememberMe, setRememberMe] = React.useState(false);
-  const [isHotelSpecific, setIsHotelSpecific] = React.useState(true);
-  const [disabled, setDisabled] = React.useState(false)
+const Home = lazy(() => import('./pages/Home'));
+const HotelMap = lazy(() => import('./pages/HotelMap'));
+const EventsInfo = lazy(() => import('./pages/EventsInfo'));
+const CheckInInfo = lazy(() => import('./pages/CheckInInfo'));
+const AmenitiesSpa = lazy(() => import('./pages/amenities sub pages/AmenitiesSpa'));
+const AmenitiesDining = lazy(() => import('./pages/amenities sub pages/AmenitiesDining'));
+const AmenitiesEventSpace = lazy(() => import('./pages/amenities sub pages/AmenitiesEventSpace'));
+const AmenitiesRooms = lazy(() => import('./pages/amenities sub pages/AmenitiesRooms'));
+const Landing = lazy(() => import('./pages/Landing'));
+const LoginPage = lazy(() => import('./components/admin portal/LoginPage'));
+const AdminPortal = lazy(() => import('./components/admin portal/AdminPortal'));
+const Signup = lazy(() => import('./components/admin portal/Signup'));
 
-  const wrapPrivateRoute = (element, user, redirect) => {
-    return (
-      <ProtectedRoute user={user} redirect={redirect}>
-        {element}
-      </ProtectedRoute>
-    );
-  };
+function App() {
+  const { isAuthenticated, login, logout, setIsAuthenticated, setIsTimerComplete, isTimerComplete } = useAppContext();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setState(true);
-    }
-    else {
-      setState(false);
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
       redirect('/login');
     }
-  }, [isAuthenticated]);
+  }, [setIsAuthenticated]);
 
-  const login = () => {
-    setState(true);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setIsTimerComplete(true);
+    }, 2 * 60 * 1000); // 2 minutes in milliseconds
 
-  const logout = () => {
-    setState(false);
-    redirect('/login');
-  };
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" exact element={<Landing setIsHotelSpecific={setIsHotelSpecific} disabled={disabled}/>} />
-          <Route path="/home" exact element={<Home setIsHotelSpecific={setIsHotelSpecific} isHotelSpecific={isHotelSpecific}/>} />
-          <Route path="/property_map" element={<HotelMap/>} />
-          <Route path="/events_info" element={<EventsInfo/>} />
-          <Route path="/checkInOut" element={<CheckInInfo/>} />
-          <Route path="/spa" element={<AmenitiesSpa/>} />
-          <Route path="/dining" element={<AmenitiesDining/>} />
-          <Route path="/event_spaces" element={<AmenitiesEventSpace/>} />
-          <Route path="/rooms" element={<AmenitiesRooms/>} />
-          <Route path="/login" element={<LoginPage login={login} setRememberMe={setRememberMe}/>}/>
-          <Route path="/signup" element={<Signup/>} />
-          <Route path="/admin_portal" element={wrapPrivateRoute(<AdminPortal logout={logout}/>, isAuthenticated, '/login')} />
+          <Route path="/" exact element={<Landing />} />
+          <Route path="/home" exact element={<Home />} />
+          <Route path="/property_map" element={<HotelMap />} />
+          <Route path="/events_info" element={<EventsInfo />} />
+          <Route path="/checkInOut" element={<CheckInInfo />} />
+          <Route path="/spa" element={<AmenitiesSpa />} />
+          <Route path="/dining" element={<AmenitiesDining />} />
+          <Route path="/event_spaces" element={<AmenitiesEventSpace />} />
+          <Route path="/rooms" element={<AmenitiesRooms />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/admin_portal" element={<ProtectedRoute user={isAuthenticated} redirect="/login"><AdminPortal /></ProtectedRoute>} />
         </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
 
-export default App;
+export default function AppWrapper() {
+  return (
+    <AppProvider>
+      <App />
+    </AppProvider>
+  );
+}

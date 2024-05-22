@@ -1,52 +1,46 @@
-import React from 'react'
+import React, { useCallback } from 'react';
 import { Checkbox, Label } from 'flowbite-react';
+import { useAppContext } from '../AppContext';
 
-const ActivityCard = (props) => {
-
-  const handleOptions = () => {
-    if(!props.showSubOptions && props.selectedDict.main <= 3)
-    {
-      if(!props.isSelected && props.selectedDict.main < 3){
-        props.setSelectedDict({...props.selectedDict, "main": props.selectedDict.main + 1})
-      }else if(props.selectedDict.main <= 3 && props.isSelected && props.selectedDict.main > 0){
-        props.setSelectedDict({...props.selectedDict, "main": props.selectedDict.main - 1})
+const ActivityCard = ({ id, activity, isSelected, showSubOptions, selectedDict, setSelectedDict, onSelect }) => {
+  const handleOptions = useCallback(() => {
+    if (!showSubOptions && selectedDict.main <= 3) {
+      if (!isSelected && selectedDict.main < 3) {
+        setSelectedDict((prevDict) => ({ ...prevDict, main: prevDict.main + 1 }));
+      } else if (selectedDict.main <= 3 && isSelected && selectedDict.main > 0) {
+        setSelectedDict((prevDict) => ({ ...prevDict, main: prevDict.main - 1 }));
+      }
+    } else if (selectedDict.main <= 3 && showSubOptions) {
+      if (!isSelected && selectedDict.sub < 3) {
+        setSelectedDict((prevDict) => ({ ...prevDict, sub: prevDict.sub + 1 }));
+      } else if (selectedDict.sub <= 3 && isSelected && selectedDict.sub > 0) {
+        setSelectedDict((prevDict) => ({ ...prevDict, sub: prevDict.sub - 1 }));
       }
     }
-    else if(props.selectedDict.main <= 3 && props.showSubOptions){
-      if(!props.isSelected && props.selectedDict.sub < 3){
-        props.setSelectedDict({...props.selectedDict, "sub": props.selectedDict.sub + 1})
-      }else if(props.selectedDict.sub <= 3 && props.isSelected && props.selectedDict.sub > 0){
-        props.setSelectedDict({...props.selectedDict, "sub": props.selectedDict.sub - 1})
-      }
-    }
-    props.onSelect();
-    
-  }
+    onSelect();
+  }, [showSubOptions, selectedDict, isSelected, setSelectedDict, onSelect]);
 
   return (
     <div>
-        <label
-        htmlFor={props.id}
-        className={`checkbox-label rounded-md bg-slate-50 text-black shadow-md shadow-[#5C0601] w-[220px] h-[200px] m-4 hover:scale-105 duration-300 ease-in-out flex text-3xl justify-center items-center ${
-          props.isSelected ? '' : ''
-        }`}
+      <label
+        htmlFor={id}
+        className={`checkbox-label rounded-md bg-slate-50 text-black shadow-md shadow-[#5C0601] w-[220px] h-[200px] m-4 hover:scale-105 duration-300 ease-in-out flex text-3xl justify-center items-center ${isSelected ? '' : ''}`}
       >
         <input
           type='checkbox'
-          id={props.id}
-          value={props.activity}
+          id={id}
+          value={activity}
           className='hidden peer'
           required=''
-          checked={props.isSelected}
-          onChange={() => handleOptions()}
+          checked={isSelected}
+          onChange={handleOptions}
         />
         <div className='block'>
-          <div className='w-full text-xl font-semibold px-5'>{props.activity}</div>
+          <div className='w-full text-xl font-semibold px-5'>{activity}</div>
         </div>
       </label>
-
     </div>
-  )
-}
+  );
+};
 
 export default ActivityCard;

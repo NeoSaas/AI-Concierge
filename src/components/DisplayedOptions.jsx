@@ -1,23 +1,46 @@
-import React from 'react'
-import BusinessCardDisplay from './BusinessCardDisplay'
+import React, { useCallback } from 'react';
+import BusinessCardDisplay from './BusinessCardDisplay';
 import { PiArrowBendLeftDownBold } from "react-icons/pi";
+import { useAppContext } from '../AppContext';
 
+function DisplayedOptions() {
+  const { businesses, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
 
-function DisplayedOptions({ businesses, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness }) {
-  
+  const handleSetIsOpen = useCallback((value) => {
+    setIsOpen(value);
+  }, [setIsOpen]);
+
+  const handleSetRestaurantLink = useCallback((link) => {
+    setRestaurantLink(link);
+  }, [setRestaurantLink]);
+
+  const handleSetIsRestaurant = useCallback((value) => {
+    setIsRestaurant(value);
+  }, [setIsRestaurant]);
+
+  const handleSetClickedBusiness = useCallback((business) => {
+    setClickedBusiness(business);
+  }, [setClickedBusiness]);
 
   return (
     <div className="grid grid-cols-1 gap-4 overflow-scroll max-h-[55rem] no-scrollbar mb-10">
       <div className='flex flex-row justify-start text-xl'>
-      <PiArrowBendLeftDownBold size={34} className='ml-1 mt-1'/><p classname=''>Click to see company profile </p>
+        <PiArrowBendLeftDownBold size={34} className='ml-1 mt-1' />
+        <p className='ml-1'>Click to see company profile</p>
       </div>
       {businesses.map((business, index) => (
-        <BusinessCardDisplay key={index} business={business} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setIsRestaurant={setIsRestaurant} setClickedBusiness={setClickedBusiness} index={index}/>
+        <BusinessCardDisplay
+          key={index}
+          business={business}
+          setIsOpen={handleSetIsOpen}
+          setRestaurantLink={handleSetRestaurantLink}
+          setIsRestaurant={handleSetIsRestaurant}
+          setClickedBusiness={handleSetClickedBusiness}
+          index={index}
+        />
       ))}
-     
-
-    </div >
+    </div>
   );
 }
 
-export default DisplayedOptions
+export default DisplayedOptions;
