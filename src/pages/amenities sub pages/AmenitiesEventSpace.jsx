@@ -39,16 +39,17 @@ function AmenitiesEventSpace() {
     }
 
     return (
-        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover'>
-            <Navbar />
+        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] bg-cover'>
+            
             {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget />
+            <Navbar />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner />
             <div
-                className={`w-full h-[95vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
+                className={`w-full h-[70vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >

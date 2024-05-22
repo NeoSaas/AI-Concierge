@@ -39,16 +39,17 @@ function AmenitiesDining() {
     }
 
     return (
-        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover'>
-            <Navbar />
+        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] bg-cover'>
+            
             {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget />
+            <Navbar />
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner />
             <div
-                className={`w-full h-[95vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
+                className={`w-full h-[70vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >
@@ -80,7 +81,7 @@ function AmenitiesDining() {
                             <div className="md:grid md:grid-cols-12 md:gap-6 items-center">
                                 {/* Image */}
                                 <div className="max-w-sm md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 rtl" data-aos="fade-up">
-                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamilton-Kitchen-Food-4.png' width={460} height={405} alt="Features 02" />
+                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-2-gigapixel-high-fidelity-v2-4x.jpg' width={460} height={405} alt="Features 02" />
                                 </div>
                                 {/* Content */}
                                 <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6" data-aos="fade-left">
@@ -110,7 +111,7 @@ function AmenitiesDining() {
                             <div className="md:grid md:grid-cols-12 md:gap-6 items-center">
                                 {/* Image */}
                                 <div className="max-w-sm md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 rtl" data-aos="fade-up">
-                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://aiconcierge.b-cdn.net/HamiltonsKitchen/smaller/Hamiltom-Kitchen-1-Chef.png' width={460} height={405} alt="Features 02" />
+                                    <img className="max-w-full mx-auto md:max-w-none h-auto rounded-lg" src='https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg' width={460} height={405} alt="Features 02" />
                                 </div>
                                 {/* Content */}
                                 <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6" data-aos="fade-left">
