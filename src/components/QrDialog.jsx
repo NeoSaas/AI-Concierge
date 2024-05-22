@@ -8,8 +8,8 @@ import 'react-slideshow-image/dist/styles.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useAppContext } from '../AppContext';
 
-export default function MyDialog() {
-  const { isOpen, setIsOpen, qrCode, otherLink, isRestaurant, clickedBusiness } = useAppContext();
+export default function MyDialog({otherLink}) {
+  const { isOpen, setIsOpen, qrCode, isRestaurant, clickedBusiness } = useAppContext();
   const d = new Date();
   const day = d.getDate();
   const month = d.getMonth() + 1; // getMonth() returns 0-based month
