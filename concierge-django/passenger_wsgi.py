@@ -1,0 +1,1 @@
+from concierge.wsgi import application

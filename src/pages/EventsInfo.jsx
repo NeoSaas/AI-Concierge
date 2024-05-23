@@ -6,18 +6,28 @@ import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
 import MyDialog from '../components/QrDialog';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
+import TimeoutRedirect from '../components/Timeout';
 
 function EventsInfo() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = ['easterbrunch.png', 'easterbrunch.png', 'sidewalkart.png'];
     const [qrCode, setQrCode] = useState(null);
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
 
     const handleButton = (index) => {
         // console.log(index);
         setQrCode(qrCodes[index]);
         setQrOpen(true);
     }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -30,17 +40,20 @@ function EventsInfo() {
     }, []);
 
     return (
-        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover'>
-            <Navbar />
-            <div>
-                <WeatherWidget/>
-            </div>
+        <>
+
+        <WeatherWidget/>
+        <Navbar />
+        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover'>
+            
+            {isTimerComplete ? <TimeoutRedirect /> : null}
+            
             {/* <p className='text-4xl font-bold text-center mt-[35rem] mx-auto w-screen absolute'>Events</p> */}
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>
             
-            <div className={`w-full h-[90vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`w-full h-[70vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl' href="/home">Back To Home</a>
                 <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={qrCode}/>
                 <ConferenceItem
@@ -72,6 +85,7 @@ function EventsInfo() {
                 />
             </div>
         </div>
+        </>
     )
 }
 

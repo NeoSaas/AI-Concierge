@@ -3,8 +3,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useAppContext } from '../../AppContext';
 
-const LoginPage = ({ login, setRememberMe }) => {
+const LoginPage = ({ setRememberMe }) => {
+    const { login, logout } = useAppContext();
     const nav = useNavigate();
     const initialValues = {
         username: '',
@@ -19,7 +21,7 @@ const LoginPage = ({ login, setRememberMe }) => {
     const handleSubmit = async (values) => {
         const response = await axios({
             method: 'post',
-            url: 'https://rr3l1d2s-8000.use.devtunnels.ms/api/login/',
+            url: 'https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/login/',
             data: values,
             config: {
                 headers: {
@@ -28,8 +30,8 @@ const LoginPage = ({ login, setRememberMe }) => {
             }
         })
         await login();
-        const { session_key } = response.data;
-        localStorage.setItem('session_key', session_key);
+        const { token } = response.data;
+        localStorage.setItem('token', token);
         // console.log(values['remember-me'])
         if(values.rememberMe){
             setRememberMe(true);

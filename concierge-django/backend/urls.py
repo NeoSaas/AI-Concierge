@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup, name='signup'),
     path('addBusiness/', views.addBusinessData, name='add business query'),
+    path('getUserBusinessData/', views.getUserBusinessData, name='get user business query'),
+    path('updateBusinessData/', views.updateBusinessData, name='update business query'),
 ]

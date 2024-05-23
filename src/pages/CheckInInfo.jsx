@@ -5,12 +5,22 @@ import TopBanner from '../components/TopBanner';
 import BottomBanner from '../components/BottomBanner';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import MyDialog from '../components/QrDialog';
+import TimeoutRedirect from '../components/Timeout';
 
 function CheckInInfo() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = [`https://thealfondinn.com/the-hotel/rooms-suites#/booking/step-1?data=('hBhd!'alfond-inn'~ae706dt716fs.~rBat!2~cn!0~cg.~al9po5gp5rn.)Ary5rk5re.~rr*)Aax!0~cy5ds!('pe5ls5as5st*)~my9se5ce5ne*)*!null.8%5D5*~6%2F2024'~7!'03%2F18!%5B9!false~A%5D~Bs8('%01BA98765.*_`, 'https://thealfondinn.com/the-hotel/rooms-suites'];
     const [qrCode, setQrCode] = useState(null);
+    const [isTimerComplete, setIsTimerComplete] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTimerComplete(true);
+        }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         //simulating a delay before content fades in (you can adjust this timing)
@@ -33,14 +43,17 @@ function CheckInInfo() {
     }
 
     return (
-        <div className='bg-[url(https://aiconcierge.b-cdn.net/MainPage/Alfond-Inn-Main-Image-26-x-48-Inches.png)] bg-cover'>
+        <>
+        <WeatherWidget/>
             <Navbar />
-            <WeatherWidget/>
+        <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover'>
+            {isTimerComplete ? <TimeoutRedirect /> : null}
+            
             <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>
-            <div className={`w-full h-[93vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`w-full h-[70vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl' href="/home">Back To Home</a>
                 <div className="py-8">
                     <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -77,6 +90,7 @@ function CheckInInfo() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

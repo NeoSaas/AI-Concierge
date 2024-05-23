@@ -25,6 +25,9 @@ yarn-error.log*
 # venv
 /venv
 
+#env
+# .env
+
 # local files
 /concierge-django/concierge/settings.py
 /concierge-django/concierge/concierge/__pycache__
@@ -33,3 +36,7 @@ yarn-error.log*
 /concierge-django/db.sqlite3
 /concierge-django/staticfiles
 /concierge-django/uploads
+/concierge-django/backend/__pycache__
+/concierge-django/backend/migrations/__pycache__
+/concierge-django/concierge/__pycache__
+/concierge-django/backend/__pycache__

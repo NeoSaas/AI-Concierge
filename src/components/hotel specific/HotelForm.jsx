@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import ActivityCard from '../ActivityCard';
 import HotelAmenityDisplay from './HotelAmenityDisplay';
+import { useAppContext } from '../../AppContext';
 
 const activities = ['Hamiltons Kitchen', 'The Lounge', 'The Spa', 'The Cafe', 'The Pool', 'Fitness Center'];
 
-const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen, setHotel }) => {
+const HotelForm = ({ setHotel, toPage, setToPage }) => {
+  const { setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen } = useAppContext();
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -17,7 +19,7 @@ const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen
   const [unselectedActivityNames, setUnselectedActivityNames] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
-  const [toPage , setToPage] = useState(false);
+  
 
   const handleActivitySelect = (
     activity,
@@ -61,7 +63,7 @@ const HotelForm = ({ setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen
       {toPage ? (
         <div className='flex flex-col justify-center w-full'>
           <HotelAmenityDisplay selectedActivityId={selectedActivityIds} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
-          <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold' href='/home'>Back to Start</a>
+          <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-[-2.5rem]' href='/home'>Back to Start</a>
         </div>
       ) : 
       <>
