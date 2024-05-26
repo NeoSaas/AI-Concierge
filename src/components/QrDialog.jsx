@@ -168,12 +168,12 @@ export default function MyDialog({otherLink}) {
                     </div>
                     <div className='flex-row flex justify-center items-center rounded-md p-1 mt-[-50px]'>
                       {/* <div className='flex flex-col '>
-                        <p className='mb-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
+                        <p className='mb-5 text-xl'>Scan the QR code for directions!</p>
                         <QRCode value={otherLink} className='m-auto'/>
                       </div> */}
                       <div className='flex flex-col text-center pr-32 mt-24'>
                           <QRCode value={otherLink} className='m-auto'/>
-                          <p className='mt-5 text-xl'>Scan the QR code for directions to the restaurant!</p>
+                          <p className='mt-5 text-xl'>Scan the QR code for directions!</p>
                         </div>
                         <div className='flex flex-col items-center justify-center'>
                           {parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[0]) <= parseInt(dateString.split('/')[0]) && parseInt(clickedBusiness[0]?.business_barcode_dates?.split('/')[1]) <= parseInt(dateString.split('/')[1]) ? 
