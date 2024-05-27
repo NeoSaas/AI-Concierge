@@ -5,7 +5,7 @@ export default async function organizeItineraryQuery(selectedActivities) {
     const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/', {});
 
     const businessDataArray = response.data;
-    console.log(businessDataArray);
+    // console.log(businessDataArray);
 
     // Construct the list of businesses with their detailed data
     let businessesList = '';

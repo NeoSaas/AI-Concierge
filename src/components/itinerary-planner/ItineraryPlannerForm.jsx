@@ -250,9 +250,9 @@ const ItineraryPlannerForm = () => {
       setLoadingOptions(true);
 
       const prompt = await organizeItineraryQuery(selectedOptions);
-      console.log(prompt);
+      // console.log(prompt);
       const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/OPAICreateConvo/', { query: prompt });
-      console.log(response.data['response-payload'])
+      // console.log(response.data['response-payload'])
       setLoading(false);
       // const itinerary = response.data['response-payload'].split('*')[0].trim();
       setItinerary(response.data['response-payload']);
