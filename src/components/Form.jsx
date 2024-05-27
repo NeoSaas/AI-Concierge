@@ -8,16 +8,17 @@ import { Circles } from 'react-loader-spinner';
 import ActivityCard from './ActivityCard';
 import { useAppContext } from '../AppContext';
 
-const activities = ['Bars and Nightlife', 'Local Restaurants', 'Local Attractions', 'Shopping Districts', 'Specialty Food Shops', 'Art Galleries', 'Day Tours', 'Spa and Wellness Centers', 'Outdoor Activities', 'Fitness Centers', 'Golf Courses', 'Wine Tastings and Tours', 'Boat Rentals or Cruises', 'Cultural Experiences', 'Bicycle Rentals', 'Cooking Classes', 'Photography Services', 'Hair and Beauty Salons', 'Local Markets', 'Event Ticketing', 'Childcare Services', 'Pet Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies', 'Transportation Services'];
+const activities = ['Bars and Nightlife', 'Local Restaurants', 'Local Attractions', 'Shopping Districts', 'Coffee', 'Ice Cream', 'Specialty Food Shops', 'Art Galleries', 'Museums', 'Day Tours', 'Spa and Wellness Centers', 'Outdoor Activities', 'Fitness Centers', 'Golf Courses', 'Wine Tastings and Tours', 'Boat Rentals or Cruises', 'Cultural Experiences', 'Bicycle Rentals', 'Cooking Classes', 'Photography Services', 'Hair and Beauty Salons', 'Local Markets', 'Event Ticketing', 'Childcare Services', 'Pet Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies', 'Transportation Services'];
 
 const subActivities = {
   'Bars and Nightlife': ['Clubs', 'Dive Bars', 'Piano Bars', 'Karaoke Bars', 'Sports Bars', 'Wine Bar', 'Up Scale Bar'],
   'Local Restaurants': ['Michelin Restaurants', 'Italian', 'Mexican', 'Chinese', 'Indian', 'Thai', 'Fancy', 'American', 'Argentinean', 'Australian', 'Belgian', 'Brazilian', 'British', 'Cajun/Creole', 'Caribbean', 'Chinese', 'Cuban', 'Ethiopian', 'Filipino', 'French', 'German', 'Greek', 'Hawaiian', 'Hungarian', 'Indian', 'Irish', 'Israeli', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese', 'Malaysian', 'Mediterranean', 'Mexican', 'Moroccan', 'New Zealand', 'Nigerian', 'Persian', 'Peruvian', 'Portuguese', 'Russian', 'Scandinavian', 'Spanish', 'Swiss', 'Thai', 'Turkish', 'Vietnamese'],
-  'Local Attractions': ['Museums', 'Historical Sites', 'Amusement Parks', 'Zoos', 'Gardens', 'Landmarks'],
+  'Local Attractions': ['Historical Sites', 'Amusement Parks', 'Zoos', 'Gardens', 'Landmarks'],
   'Specialty Food Shops': ['Bakeries', 'Delis', 'Cheese Shops', 'Chocolate Shops', 'Farmers Markets', 'Gourmet Groceries'],
   'Wine Tastings and Tours': ['Vineyards', 'Wineries', 'Wine Bars', 'Wine Festivals', 'Wine Courses', 'Wine-themed Tours'],
   'Shopping Districts': ['Boutiques', 'Malls', 'Flea Markets', 'Antique Shops', 'Local Crafts', 'Souvenir Stores'],
   'Art Galleries': ['Contemporary Art', 'Traditional Art', 'Photography Exhibits', 'Sculpture Gardens', 'Art Classes', 'Artist Studios'],
+  'Museums': ['History', 'Science', 'Aeronautical', 'Automotive'],
   'Spa and Wellness Centers': ['Massage Services', 'Facials', 'Body Treatments', 'Yoga Studios', 'Fitness Classes', 'Alternative Therapies'],
   'Outdoor Activities': ['Hiking Trails', 'Camping Sites', 'Water Sports', 'Cycling Paths', 'Rock Climbing', 'Fishing Spots'],
   'Fitness Centers': ['Gyms', 'Yoga Studios', 'Pilates Studios', 'Personal Trainers', 'Group Classes', 'Sports Facilities'],
@@ -36,6 +37,8 @@ const subActivities = {
   'Transportation Services': ['Airport Shuttles', 'Taxi Services', 'Ride-sharing Services', 'Car Rentals', 'Public Transportation', 'Private Charters'],
   'Cultural Experiences': ['Traditional Performances', 'Art Exhibitions', 'Food Tours', 'Language Classes', 'Cooking Classes', 'Cultural Festivals'],
   'Day Tours': ['City Tours', 'Nature Tours', 'Food Tours', 'Adventure Tours', 'Historical Tours', 'Group Tours'],
+  'Coffee': ['Local', 'Chain', 'Drip Coffee'],
+  'Ice Cream': ['Nitrogen Ice Cream', 'Rolled Ice Cream']
   // Define sub-activities for other main activities
 };
 

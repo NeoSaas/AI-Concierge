@@ -38,7 +38,7 @@ function DisplayedOptions({ businesses }) {
         <PiArrowBendLeftDownBold size={34} className='ml-1 mt-1' />
         <p className='ml-1'>Click to see company profile</p>
       </div>
-      {businesses.map((business, index) => (
+      {businesses?.map((business, index) => (
         <BusinessCardDisplay
           key={index}
           business={business}
