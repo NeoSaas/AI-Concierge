@@ -6,8 +6,10 @@ import BottomBanner from '../components/BottomBanner';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import MyDialog from '../components/QrDialog';
 import TimeoutRedirect from '../components/Timeout';
+import { useAppContext } from '../AppContext';
 
 function CheckInInfo() {
+    const { isOpen, setIsOpen} = useAppContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = [`https://thealfondinn.com/the-hotel/rooms-suites#/booking/step-1?data=('hBhd!'alfond-inn'~ae706dt716fs.~rBat!2~cn!0~cg.~al9po5gp5rn.)Ary5rk5re.~rr*)Aax!0~cy5ds!('pe5ls5as5st*)~my9se5ce5ne*)*!null.8%5D5*~6%2F2024'~7!'03%2F18!%5B9!false~A%5D~Bs8('%01BA98765.*_`, 'https://thealfondinn.com/the-hotel/rooms-suites'];
@@ -33,13 +35,14 @@ function CheckInInfo() {
     }, []);
 
     const handleCheckIn = () => {
+        console.log('check in');
         setQrCode(qrCodes[0]);
-        setQrOpen(true);
+        setIsOpen(true);
     }
 
     const handleCheckOut = () => {
         setQrCode(qrCodes[1]);
-        setQrOpen(true);
+        setIsOpen(true);
     }
 
     return (
@@ -49,7 +52,7 @@ function CheckInInfo() {
         <div className='h-[90vh] bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] mt-[-100px] bg-cover'>
             {isTimerComplete ? <TimeoutRedirect /> : null}
             
-            <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
+            <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner/>

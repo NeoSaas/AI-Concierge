@@ -24,7 +24,7 @@ const ActivityCard = ({ id, activity, isSelected, showSubOptions, selectedDict, 
     <div>
       <label
         htmlFor={id}
-        className={`checkbox-label rounded-md bg-slate-50 text-black shadow-md shadow-[#5C0601] w-[220px] h-[200px] m-4 hover:scale-105 duration-300 ease-in-out flex text-3xl justify-center items-center ${isSelected ? '' : ''}`}
+        className={`checkbox-label rounded-md bg-slate-50 text-black shadow-md shadow-[#5C0601] w-[220px] h-[200px] m-4 ease-in-out flex text-3xl justify-center items-center ${isSelected ? '' : ''}`}
       >
         <input
           type='checkbox'

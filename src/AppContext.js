@@ -16,6 +16,9 @@ export const AppProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTimerComplete, setIsTimerComplete] = useState(false);
   const [isItinerary, setIsItinerary] = useState(false);
+  const [imageBasedHotelAmenity, setImageBasedHotelAmenity] = useState(false);
+  const [hotelAmenity, setHotelAmenity] = useState('');
+  const [toPage, setToPage] = useState(false);
 
   const login = useCallback(() => {
     setIsAuthenticated(true);
@@ -29,6 +32,12 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        toPage,
+        setToPage,
+        hotelAmenity,
+        setHotelAmenity,
+        imageBasedHotelAmenity,
+        setImageBasedHotelAmenity,
         isAuthenticated,
         setIsAuthenticated,
         rememberMe,

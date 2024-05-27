@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import QRCode from "react-qr-code";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import { useAppContext } from '../../AppContext';
+import { useNavigate } from 'react-router-dom';
 
 // Define image arrays
 const imagesCafe = [
@@ -41,12 +43,12 @@ const imagesSpa = [
 ];
 
 const imagesPool = [
-  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/IMGCentury_compressed%20(1)/IMGCentury_compressed/1_1_IMGCentury.png',
-  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/IMGCentury_compressed%20(1)/IMGCentury_compressed/2_2_IMGCentury.png',
-  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/IMGCentury_compressed%20(1)/IMGCentury_compressed/3_3_IMGCentury.png',
-  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/IMGCentury_compressed%20(1)/IMGCentury_compressed/4_4_IMGCentury.png',
-  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/IMGCentury_compressed%20(1)/IMGCentury_compressed/5_5_IMGCentury.png',
-  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/IMGCentury_compressed%20(1)/IMGCentury_compressed/6_6_IMGCentury.png'
+  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/2.png',
+  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/1.png',
+  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/3.png',
+  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/4.png',
+  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/5.png',
+  'https://aiconcierge.b-cdn.net/12x12%20Updated%20Pool%20by%20Raine/6.png'
 ];
 
 const imagesFitnessCenter = [
@@ -58,6 +60,8 @@ const imagesFitnessCenter = [
   'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/compressed/6_6_IMGCentury.png',
   'https://aiconcierge.b-cdn.net/12x12%20Fitness%20Center/compressed/7_7_IMGCentury.png'
 ];
+
+
 
 const ImageSlider = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -117,7 +121,7 @@ const ImageSlider = ({ images }) => {
 };
 
 const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, setIsOpen }) => (
-  <>
+  <div className='mx-24'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE CAFÉ AT THE ALFOND INN</h1>
     <ImageSlider images={imagesCafe} />
     <div className="mb-6 mt-12 text-3xl">
@@ -134,11 +138,11 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, setI
         Café Evening Menu
       </button>
     </div>
-  </>
+  </div>
 );
 
 const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, setIsOpen }) => (
-  <div className='max-w-[60rem] max-h-[95rem]'>
+  <div className='max-w-[60rem] max-h-[80rem]'>
     <h1 className="text-3xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
     <ImageSlider images={imagesHamiltonsKitchen} />
     <h2 className="text-2xl text-gray-800 mb-2 mt-2">Modern Southern Cuisine</h2>
@@ -238,11 +242,11 @@ const PoolContent = () => (
 );
 
 const FitnessCenterContent = () => (
-  <div className='mt-9'>
+  <div className='mt-9 mx-16'>
     <h1 className="text-4xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
     <h2 className="text-3xl text-gray-800 mb-6">ELEVATE YOUR DAY, ENERGIZE YOUR STAY</h2>
     <ImageSlider images={imagesFitnessCenter} />
-    <p className="text-gray-600 mb-4 text-3xl mt-auto">
+    <p className="text-gray-600 mb-4 text-3xl mt-12">
       Dive in to our Exclusive Fitness Experience
     </p>
     <div className="flex items-center justify-center text-gray-800 mb-6">
@@ -255,12 +259,20 @@ const FitnessCenterContent = () => (
   </div>
 );
 
+const handleBack = ( setImageBasedHotelAmenity, navigate, setIsHotelSpecific, setToPage, setSuggestedDisplayed ) => {
+  setImageBasedHotelAmenity(false);
+  setToPage(false);
+  setSuggestedDisplayed(false);
+  setIsHotelSpecific(true);
+  navigate('/home');
+};
+
 const renderSwitch = (selectedActivityId, setRestaurantLink, setIsOpen) => {
   switch (selectedActivityId) {
     case 'The Cafe':
       return <CafeContent setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} morningMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu' eveningMenuLink="https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu" />;
     case 'Hamiltons Kitchen':
-      return <HamiltonsKitchenContent setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} brunchMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu' dinnerMenuLink='https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu' />;
+      return <HamiltonsKitchenContent setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} brunchMenuLink='https://thealfondinn.com/hamiltons-kitchen/brunch' dinnerMenuLink='https://thealfondinn.com/hamiltons-kitchen/dinner' />;
     case 'The Lounge':
       return <LoungeContent />;
     case 'The Spa':
@@ -280,11 +292,16 @@ const renderSwitch = (selectedActivityId, setRestaurantLink, setIsOpen) => {
   }
 };
 
-const HotelAmenityDisplay = ({ selectedActivityId, setRestaurantLink, setIsOpen}) => (
-  <div className="bg-white rounded-lg py-4 mb-10 font-quicksand">
-    {renderSwitch(selectedActivityId[0], setRestaurantLink, setIsOpen)}
-  </div>
-);
+const HotelAmenityDisplay = ({ selectedActivityId, setRestaurantLink, setIsOpen}) => {
+  const { imageBasedHotelAmenity, setImageBasedHotelAmenity, setIsHotelSpecific, setToPage, setSuggestedDisplayed } = useAppContext();
+  const navigate = useNavigate();
+  return(
+    <div className="bg-white rounded-lg py-4 mb-5 font-quicksand">
+      {imageBasedHotelAmenity ? renderSwitch(selectedActivityId, setRestaurantLink, setIsOpen) : renderSwitch(selectedActivityId[0], setRestaurantLink, setIsOpen)}
+      {imageBasedHotelAmenity ? <button className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-8' onClick={() => handleBack(setImageBasedHotelAmenity, navigate, setIsHotelSpecific, setToPage, setSuggestedDisplayed)}>Back to Start</button> : null}
+    </div>
+  );
+};
 
 export default HotelAmenityDisplay;
 

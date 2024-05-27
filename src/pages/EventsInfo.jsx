@@ -7,18 +7,20 @@ import BottomBanner from '../components/BottomBanner';
 import MyDialog from '../components/QrDialog';
 import WeatherWidget from '../components/weatherComponents/WeatherWidget';
 import TimeoutRedirect from '../components/Timeout';
+import { useAppContext } from '../AppContext';
 
 function EventsInfo() {
+    const { isOpen, setIsOpen} = useAppContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
-    const qrCodes = ['easterbrunch.png', 'easterbrunch.png', 'sidewalkart.png'];
+    const qrCodes = ['https://thealfondinn.com/the-hotel/upcoming-events', 'https://go.activecalendar.com/rollins/site/arts/event/alfond-inn-sunday-tour-1/', 'https://www.wpsaf.org/'];
     const [qrCode, setQrCode] = useState(null);
     const [isTimerComplete, setIsTimerComplete] = useState(false);
 
     const handleButton = (index) => {
         // console.log(index);
         setQrCode(qrCodes[index]);
-        setQrOpen(true);
+        setIsOpen(true);
     }
 
     useEffect(() => {
@@ -55,13 +57,13 @@ function EventsInfo() {
             
             <div className={`w-full h-[70vh] flex justify-center items-center flex-col transition-opacity duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl' href="/home">Back To Home</a>
-                <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={qrCode}/>
+                <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} otherLink={qrCode}/>
                 <ConferenceItem
-                    eventName="EASTER BRUNCH & EGG HUNT AT THE ALFOND INN"
-                    description="Hop on over to The Alfond Inn for our Annual Easter Brunch and Egg Hunt on Sunday, March 31st! Parents can sip on unlimited mimosas while the little ones enjoy Easter activities and a visit from the Easter Bunny. We have two seatings available, at 10 am and 1 pm. Join us for a day of family fun and a delicious feast! "
+                    eventName="WINE DOWN WEDNESDAYS AT THE CAFÉ"
+                    description="Enjoy our great wine deals starting at $5 per glass and $20 per bottle, indulge in elevated desserts at $9, live music, and more! A cash bar will also be available. No reservation required and no tickets needed. "
                     imageUrl="https://cdn.asdfinc.io/media/34650/processed-37984faf-c064-4cd1-a9df-96c7f74baa16.jpeg?center=0.5,0.5&mode=crop&width=600&height=320&quality=80"
-                    date="March 31st"
-                    time="10:00 am - 2:00 pm"
+                    date="May 15, 2024"
+                    time="4:00 PM"
                     handleButton={handleButton}
                     index='0'
                 />
