@@ -1,20 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import imageCompression from 'browser-image-compression';
+import axios from 'axios';
+import { useAppContext } from '../AppContext';
 
 const images = [
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Albin-Polaske-Musem-Banner-Design-v1-6x_3_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Alfond-Cafe-Banner-Design--v1-6x_4_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-John-Craig-Banner-Design-gigapixel-standard-v1-6x_5_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Mead-Gardens-Banner-Design--v1-6x_6_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Morse-Musem-Banner-Design-v1-6x_7_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Prive-Banner-Design--v1-6x_8_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Rollins-Art-Musem-Banner-Design-v1-6x_1_IMGCentury.jpg', text: 'Text for Image 1' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Scenic-Boat-Tour-Banner-Design-v1-6x_2_IMGCentury.jpg', text: 'Text for Image 1' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Albin-Polaske-Musem-Banner-Design-v1-6x_3_IMGCentury.jpg', text: 'Albin Polaske Musuem' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Alfond-Cafe-Banner-Design--v1-6x_4_IMGCentury.jpg', text: 'Hamiltons Kitchen' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-John-Craig-Banner-Design-gigapixel-standard-v1-6x_5_IMGCentury.jpg', text: 'John Craig' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Mead-Gardens-Banner-Design--v1-6x_6_IMGCentury.jpg', text: 'Mead Gardens' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Morse-Musem-Banner-Design-v1-6x_7_IMGCentury.jpg', text: 'Morse Musuem' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Prive-Banner-Design--v1-6x_8_IMGCentury.jpg', text: 'Prive Salon' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Rollins-Art-Musem-Banner-Design-v1-6x_1_IMGCentury.jpg', text: 'Rollins Art Museum' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Scenic-Boat-Tour-Banner-Design-v1-6x_2_IMGCentury.jpg', text: 'Scenic Boat Tour' },
 ];
 
 const BottomBanner = () => {
+  const { isOpen, setIsOpen, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, setImageBasedHotelAmenity, setHotelAmenity, setToPage, setSuggestedDisplayed, setRestaurantLink } = useAppContext();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [compressedImages, setCompressedImages] = useState([]);
+
+  const handleGetBusiness = async (index) => {
+    let business = images[index].text;
+    console.log(business);
+    if(business.includes('Alfond Inn') || business.includes('Hamiltons Kitchen')){
+      setIsHotelSpecific(true);
+      setToPage(true);
+      setImageBasedHotelAmenity(true);
+      setHotelAmenity(business);
+      setSuggestedDisplayed(true);
+    } else {
+      try {
+        const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/')
+        for(let i = 0; i < response.data.length; i++){
+          if(response.data[i].business_name === business){
+            setRestaurantLink(response.data[i].directions_url);
+            setIsOpen(true);
+            setClickedBusiness({0: response.data[i]});
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const nextSlide = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -35,36 +61,6 @@ const BottomBanner = () => {
     return () => clearInterval(interval);
   }, [currentImageIndex]);
 
-  // useEffect(() => {
-  //   const compressImages = async () => {
-  //     const promises = images.map(async (image) => {
-  //       try {
-  //         const response = await fetch(image.src, { mode: 'cors' });
-  //         const blob = await response.blob();
-  //         const compressedBlob = await imageCompression(blob, {
-  //           maxSizeMB: 0.5,
-  //           maxWidthOrHeight: 1080,
-  //           useWebWorker: true,
-  //         });
-  //         const compressedUrl = URL.createObjectURL(compressedBlob);
-  //         return { src: compressedUrl, text: image.text };
-  //       } catch (error) {
-  //         console.error('Error compressing image:', error);
-  //         return image; // Return the original image if compression fails
-  //       }
-  //     });
-
-  //     try {
-  //       const results = await Promise.all(promises);
-  //       setCompressedImages(results);
-  //     } catch (error) {
-  //       console.error('Error processing images:', error);
-  //     }
-  //   };
-
-  //   compressImages();
-  // }, []);
-
   return (
     <div className="absolute bottom-[-0px] w-full h-[525px] font-quicksand border-t-2 border-black">
       {/* Slides */}
@@ -74,11 +70,13 @@ const BottomBanner = () => {
           className={`absolute top-0 left-0 w-full h-full ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-700`}
+          
         >
           <img
             src={image.src}
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-fill"
+            onClick={() => handleGetBusiness(currentImageIndex)}
           />
         </div>
       ))}

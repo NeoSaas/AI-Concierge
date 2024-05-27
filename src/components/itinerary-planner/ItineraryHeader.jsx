@@ -53,7 +53,7 @@ function ItineraryHeader() {
             </h1>
           </>
         )}
-        <div className={suggestedDisplayed ? `flex` : `mt-6 flex`}>
+        <div className={suggestedDisplayed ? `flex` : `mt-6`}>
           <ItineraryPlannerForm />
         </div>
         {!suggestedDisplayed && (

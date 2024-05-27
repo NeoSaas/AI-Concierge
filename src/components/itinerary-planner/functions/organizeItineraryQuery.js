@@ -16,6 +16,7 @@ export default async function organizeItineraryQuery(selectedActivities) {
             Tags: ${business.business_tags.join(', ')}
             Address: ${business.business_address}
             Hours: ${business.hours_of_operation}
+            Contact: ${business.business_phone_number}
             Walking Distance: ${business.walk_time} minutes
             \n`;
     }
@@ -42,6 +43,8 @@ export default async function organizeItineraryQuery(selectedActivities) {
         8. **Special Considerations**: If any special accessibility or dietary requirements are mentioned, ensure that the recommended businesses can accommodate these needs.
 
         If no businesses in the list match the user's selection, please respond with an empty itinerary.
+
+        Format the text with headings and bold important information.
         
         Format your response as follows:
         "Itinerary:
@@ -50,11 +53,13 @@ export default async function organizeItineraryQuery(selectedActivities) {
            - Walking Distance: <walking distance> minutes from previous location
            - Average Visit Time: <average visit time> minutes
            - Contact: <contact>
+           - Description: <create a general description of the place from your knowledge>
         2. <business name>
            - Address: <address>
            - Walking Distance: <walking distance> minutes from previous location
            - Average Visit Time: <average visit time> minutes
            - Contact: <contact>
+           - Description: <create a general description of the place from your knowledge>
         3. ..."
         
         If no businesses in the list match the user's selection, please respond with an empty itinerary.

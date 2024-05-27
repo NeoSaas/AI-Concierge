@@ -1,15 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import 'react-loader-spinner';
 import { Circles } from 'react-loader-spinner';
-import ActivityCard from '../ActivityCard';
 import organizeItineraryQuery from './functions/organizeItineraryQuery';
 import ItineraryDisplay from './ItineraryDisplay';
 import { useAppContext } from '../../AppContext';
 
 const ItineraryPlannerForm = () => {
   const { isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions, displayOptions, setDisplayOptions } = useAppContext();
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [selectedActivityIds, setSelectedActivityIds] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -18,7 +17,7 @@ const ItineraryPlannerForm = () => {
   const [showSubOptions, setShowSubOptions] = useState(false);
   const [selectedDict, setSelectedDict] = useState({ main: 0, sub: 0 });
   const [itinerary, setItinerary] = useState('');
-  
+
   const questions = [
     {
       question: "How long of a duration do you have for your tour or itinerary?",
@@ -98,7 +97,8 @@ const ItineraryPlannerForm = () => {
     },
     {
       question: "Do want to select your type of Cuisine?",
-      options: ["No, you recommend from our local favorites", "Yes"]
+      options: ["No, you recommend from our local favorites", "Yes"],
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     },
     {
       question: "If Yes, show me my cuisine options. (Select 1)",
@@ -127,7 +127,8 @@ const ItineraryPlannerForm = () => {
         "Vegan",
         "Vegetarian"
       ],
-      multiple: true
+      multiple: true,
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     },
     {
       question: "What is your pricing range?",
@@ -139,7 +140,8 @@ const ItineraryPlannerForm = () => {
         "Value for Money",
         "Splurge-Worthy"
       ],
-      multiple: true
+      multiple: true,
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     },
     {
       question: "How would you describe your dining atmosphere?",
@@ -153,7 +155,8 @@ const ItineraryPlannerForm = () => {
         "Trendy/Modern",
         "Upscale/Cosmopolitan"
       ],
-      multiple: true
+      multiple: true,
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     },
     {
       question: "Are looking for any specialty dishes or features?",
@@ -167,7 +170,8 @@ const ItineraryPlannerForm = () => {
         "Steakhouse",
         "Vegetarian/Vegan Options"
       ],
-      multiple: true
+      multiple: true,
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     },
     {
       question: "Are you looking for any ambiance features?",
@@ -181,7 +185,8 @@ const ItineraryPlannerForm = () => {
         "Scenic Views/Waterfront",
         "Wine Cellar/Tasting Room"
       ],
-      multiple: true
+      multiple: true,
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     },
     {
       question: "Are you for independent cuisine special ratings?",
@@ -192,7 +197,8 @@ const ItineraryPlannerForm = () => {
         "James Beard Foundation Awards",
         "Listed as Favorites/Popular among locals by independent press."
       ],
-      multiple: true
+      multiple: true,
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
     }
   ];
 
@@ -221,8 +227,12 @@ const ItineraryPlannerForm = () => {
     });
   }, []);
 
-  const handleNextQuestion = () => {
-    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
   };
 
   const handleBackToForm = useCallback(() => {
@@ -240,16 +250,12 @@ const ItineraryPlannerForm = () => {
       setLoadingOptions(true);
 
       const prompt = await organizeItineraryQuery(selectedOptions);
+      console.log(prompt);
       const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/OPAICreateConvo/', { query: prompt });
       console.log(response.data['response-payload'])
-      // const businessesFromResponse = response.data['response-payload'].split('* ')[1].trim();
-
-      // const businessDataResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/', { business: businessesFromResponse.split(', ') });
-      
-      // setDisplayBusinesses(businessDataResponse.data);
       setLoading(false);
-      const itinerary = response.data['response-payload'].split('* ')[0].trim();
-      setItinerary(itinerary);
+      // const itinerary = response.data['response-payload'].split('*')[0].trim();
+      setItinerary(response.data['response-payload']);
     } catch (error) {
       console.log(error);
       setFailed(true);
@@ -258,8 +264,17 @@ const ItineraryPlannerForm = () => {
     }
   };
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const shouldShowCurrentQuestion = !currentQuestion.condition || currentQuestion.condition(selectedOptions);
+  // Filter questions based on conditions
+  const filteredQuestions = useMemo(() => {
+    return questions.filter(q => !q.condition || q.condition(selectedOptions));
+  }, [questions, selectedOptions]);
+
+  const questionsPerPage = 5; // Number of questions per page
+  const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
+
+  const startIndex = currentPage * questionsPerPage;
+  const endIndex = startIndex + questionsPerPage;
+  const currentQuestions = filteredQuestions.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -290,45 +305,42 @@ const ItineraryPlannerForm = () => {
           </>
           :
           <div className="w-full max-w-2xl mx-auto p-4">
-            {shouldShowCurrentQuestion && (
-              <div>
-                <p className="text-xl font-bold mb-2">{currentQuestion.question}</p>
-                <div className={`grid place-items-center grid-cols-3 transition-opacity duration-500 ease-in-out gap-x-24`}>
-                  {currentQuestion.options.map((option, oIndex) => (
-                    <ActivityCard
-                      key={oIndex}
-                      id={`activity_${currentQuestionIndex}_${oIndex}`}
-                      activity={option}
-                      isSelected={Array.isArray(selectedOptions[currentQuestion.question]) ? selectedOptions[currentQuestion.question].includes(option) : selectedOptions[currentQuestion.question] === option}
-                      onSelect={() => handleActivitySelect(option, currentQuestion.question)}
-                      showSubOptions={showSubOptions}
-                      selectedDict={selectedDict}
-                      setSelectedDict={setSelectedDict}
-                    />
-                  ))}
+            <div>
+              {currentQuestions.map((currentQuestion, qIndex) => (
+                <div key={qIndex} className="mb-4">
+                  <p className="text-xl font-bold mb-2">{currentQuestion.question}</p>
+                  <select
+                    className="w-full p-2 border rounded text-lg"
+                    onChange={(e) => handleActivitySelect(e.target.value, currentQuestion.question)}
+                  >
+                    <option value="">Select an option</option>
+                    {currentQuestion.options.map((option, oIndex) => (
+                      <option key={oIndex} value={option}>{option}</option>
+                    ))}
+                  </select>
                 </div>
-              </div>
-            )}
-            <div className={currentQuestionIndex > 0 ? "flex justify-between mt-4 font-bold" : "flex justify-end mt-4 font-bold"}>
-              {currentQuestionIndex > 0 && (
+              ))}
+            </div>
+            <div className={currentPage > 0 ? "flex justify-between mt-4 font-bold" : "flex justify-end mt-4 font-bold"}>
+              {currentPage > 0 && (
                 <button
-                  className="my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[3.5rem] py-3 text-white font-medium rounded-full transition duration-300 ease-in-out"
-                  onClick={() => setCurrentQuestionIndex((prev) => prev - 1)}
+                  className="my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[3.5rem] py-3 text-white font-bold rounded-full transition duration-300 ease-in-out"
+                  onClick={handlePrevPage}
                 >
                   Previous
                 </button>
               )}
-              {currentQuestionIndex < questions.length - 1 && (
+              {currentPage < totalPages - 1 && (
                 <button
-                  className="my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[4.7rem] py-3 text-white font-medium rounded-full transition duration-300 ease-in-out"
-                  onClick={handleNextQuestion}
+                  className="my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[4.7rem] py-3 text-white font-bold rounded-full transition duration-300 ease-in-out"
+                  onClick={handleNextPage}
                 >
                   Next
                 </button>
               )}
-              {currentQuestionIndex === questions.length - 1 && (
+              {currentPage === totalPages - 1 && (
                 <button
-                  className="bg-[#5C0601] text-white rounded px-6 py-2"
+                  className="my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[4.7rem] py-3 text-white font-bold rounded-full transition duration-300 ease-in-out"
                   onClick={handleToOptions}
                 >
                   Get Itinerary

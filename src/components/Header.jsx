@@ -5,9 +5,8 @@ import HotelForm from './hotel specific/HotelForm';
 import { useAppContext } from '../AppContext';
 
 function Header() {
-  const { suggestedDisplayed, setSuggestedDisplayed, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, isItinerary, setIsItinerary } = useAppContext();
+  const { suggestedDisplayed, setSuggestedDisplayed, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, isItinerary, setIsItinerary, toPage, setToPage} = useAppContext();
   const [loadingOptions, setLoadingOptions] = useState(false);
-  const [toPage, setToPage] = useState(false);
   const [displayOptions, setDisplayOptions] = useState(false);
 
   const words = useMemo(() => [
@@ -58,7 +57,7 @@ function Header() {
           {isHotelSpecific ? (
             <div className='flex flex-col'>
               <p className='text-3xl font-quicksand font-semibold'>{suggestedDisplayed ? "" : "Hotel Amenities"}</p>
-              <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed} setToPage={setToPage} toPage={toPage} />
+              <HotelForm isOpen={isOpen} setIsOpen={setIsOpen} setRestaurantLink={setRestaurantLink} setSuggestedDisplayed={setSuggestedDisplayed}/>
             </div>
           ) : (
             <div className='flex flex-col'>

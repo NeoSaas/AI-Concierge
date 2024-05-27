@@ -3,8 +3,18 @@ import BusinessCardDisplay from './BusinessCardDisplay';
 import { PiArrowBendLeftDownBold } from "react-icons/pi";
 import { useAppContext } from '../AppContext';
 
-function DisplayedOptions() {
-  const { businesses, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
+function DisplayedOptions({ businesses }) {
+  const { setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
+
+  const sortBusinessesByTravelTime = (businesses, travelType) => {
+    return businesses.sort((a, b) => {
+      const timeA = parseInt(a[0][`${travelType}_time`].split(' ')[0]);
+      const timeB = parseInt(b[0][`${travelType}_time`].split(' ')[0]);
+      return timeA - timeB;
+    });
+  };
+
+  sortBusinessesByTravelTime(businesses, 'walk');
 
   const handleSetIsOpen = useCallback((value) => {
     setIsOpen(value);

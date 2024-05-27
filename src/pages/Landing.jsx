@@ -39,6 +39,18 @@ function Landing() {
         <div className={'flex justify-center items-center mb-[672px]'}>
           <div className='absolute h-[32%] w-[80%] mx-auto rounded-xl bg-gradient-to-b from-black via-black to-black opacity-90'></div>
           <div className='absolute h-[32%] w-[80%] mx-auto rounded-xl bg-gradient-to-t from-black via-transparent to-transparent'></div>
+          <div className='absolute h-[6%] w-[80%] mx-auto rounded-xl bg-gradient-to-b from-black via-black to-black opacity-100 mt-[60rem]'>
+            <div className='flex flex-col justify-center items-center mt-3'>
+                <h1 className='text-white text-xl'>Or Build your Itinerary!</h1>
+                <button
+                  onClick={() => { setIsItinerary(true); nav("/home"); }}
+                  className=' text-black bg-white font-quicksand text-2xl px-8 py-3 rounded-lg mt-4 z-10 animate-pulse'
+                >
+                  Build Itinerary
+                </button>
+              </div>
+           </div>
+          {/* <div className='absolute h-[5%] w-[80%] mx-auto rounded-xl bg-gradient-to-t from-black via-transparent to-transparent mt-[60rem]'></div> */}
           <div className='flex justify-center items-center flex-col h-full w-[100%] text-center'>
             <h1 className='text-white font-quicksand z-10 text-7xl mb-10'>Explore</h1>
             <h1 className='text-white font-cursive z-10 text-9xl flex flex-row'> Winter Park</h1>
@@ -58,15 +70,7 @@ function Landing() {
                 </button>
                 <p className='text-3xl text-white'> Explore The Alfond Inn</p>
               </div>
-              <div className='flex flex-col justify-center items-center mt-10'>
-                <h1 className='text-white text-xl'>Or Build your Itinerary!</h1>
-                <button
-                  onClick={() => { setIsItinerary(true); nav("/home"); }}
-                  className=' text-black bg-white font-quicksand text-2xl px-8 py-3 rounded-lg mt-4 z-10'
-                >
-                  Build Itinerary
-                </button>
-              </div>
+              
               <div className='flex flex-col justify-center items-center mt-5'>
                 <button
                   onClick={() => { setIsHotelSpecific(false); nav("/home"); }}

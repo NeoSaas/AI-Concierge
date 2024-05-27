@@ -142,6 +142,7 @@ const Form = () => {
         temp.push(subActivities[selectedActivityIds[activity]]);
       }
       let merged = [].concat.apply([], temp);
+      
       setSubOptionConcat(merged);
       setCurrentPage(0);
     }
@@ -152,7 +153,7 @@ const Form = () => {
     setFormPage('main');
     if (selectedDict.sub > 0 && selectedDict.main > 0) {
       for (let i = selectedDict.sub + selectedDict.main; i >= selectedDict.main; i--) {
-        delete selectedActivityIds[i];
+        selectedActivityIds.splice(i, 1);
       }
       setSelectedDict({ ...selectedDict, sub: 0 });
     }
@@ -171,21 +172,29 @@ const Form = () => {
   return (
     <div>
       {showSubOptions ? (
-        <div className='mt-2 flex-wrap max-w-[55rem]'>
+        <div className='flex mt-2 flex-wrap max-w-[55rem] flex-col justify-center items-center'>
           <p className='font-quicksand text-2xl mb-1'>What specifically are you looking for?</p>
-          <div className='flex flex-row flex-wrap w-full justify-center'>
-            <p className='font-quicksand text-2xl mb-1 text-wrap '>Selected Items: &nbsp;</p>
+          <div className='font-quicksand text-xl'>
+            <p> {selectedActivityIds.length - selectedDict.main} / 3 selected </p>
+          </div>
+          <div className='flex flex-row flex-wrap'>
+            <p className='font-quicksand text-2xl mb-1'>Selected Items: &nbsp;</p>
             {selectedActivityIds?.map((activityId) => (
-              <p key={activityId} className='font-quicksand text-2xl mb-1'>{activityId + ","}&nbsp;</p>
+              <p key={activityId} className='font-quicksand text-2xl mb-1'>{" " + activityId + ','}&nbsp;</p>
             ))}
           </div>
         </div>
       ) : !loading && !displayOptions ? (
-        <div className='flex flex-row w-full justify-center mt-2 mx-auto flex-wrap'>
-          <p className='font-quicksand text-2xl mb-1'>Selected Items: &nbsp;</p>
-          {selectedActivityIds?.map((activityId) => (
-            <p key={activityId} className='font-quicksand text-2xl mb-1'>{" " + activityId + ','}&nbsp;</p>
-          ))}
+        <div className='flex w-full justify-center items-center mt-2 mx-auto flex-wrap flex-col'>
+          <div className='font-quicksand text-xl'>
+            <p> {selectedActivityIds.length} / 3 selected </p>
+          </div>
+          <div className='flex flex-row flex-wrap'>
+            <p className='font-quicksand text-2xl mb-1'>Selected Items: &nbsp;</p>
+            {selectedActivityIds?.map((activityId) => (
+              <p key={activityId} className='font-quicksand text-2xl mb-1'>{" " + activityId + ','}&nbsp;</p>
+            ))}
+          </div>
         </div>
       ) : null}
       <div className="flex justify-center font-quicksand">

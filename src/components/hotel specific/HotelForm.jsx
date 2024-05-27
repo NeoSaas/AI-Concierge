@@ -6,8 +6,8 @@ import { useAppContext } from '../../AppContext';
 
 const activities = ['Hamiltons Kitchen', 'The Lounge', 'The Spa', 'The Cafe', 'The Pool', 'Fitness Center'];
 
-const HotelForm = ({ setHotel, toPage, setToPage }) => {
-  const { setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen } = useAppContext();
+const HotelForm = ({ setHotel }) => {
+  const { setSuggestedDisplayed, setRestaurantLink, isOpen, setIsOpen, imageBasedHotelAmenity, hotelAmenity, setToPage, toPage } = useAppContext();
   const [currentPage, setCurrentPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
@@ -19,7 +19,6 @@ const HotelForm = ({ setHotel, toPage, setToPage }) => {
   const [unselectedActivityNames, setUnselectedActivityNames] = useState([]);
   const [selectedDict, setSelectedDict] = useState({"main" : 0, 'sub' : 0});
   const [formPage, setFormPage] = useState('main');
-  
 
   const handleActivitySelect = (
     activity,
@@ -51,6 +50,8 @@ const HotelForm = ({ setHotel, toPage, setToPage }) => {
     } else {
       setSelectedNames((prevNames) => [...prevNames, activity]);
     }
+    setToPage(true);
+    setSuggestedDisplayed(true);
   };
 
   const handleToPage = async () => {
@@ -59,11 +60,15 @@ const HotelForm = ({ setHotel, toPage, setToPage }) => {
   };
 
   return (
-    <div>
+    <div className='mb-24'>
       {toPage ? (
         <div className='flex flex-col justify-center w-full'>
-          <HotelAmenityDisplay selectedActivityId={selectedActivityIds} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
-          <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-[-2.5rem]' href='/home'>Back to Start</a>
+          {imageBasedHotelAmenity ? (
+            <HotelAmenityDisplay selectedActivityId={hotelAmenity} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
+          ) : (
+            <HotelAmenityDisplay selectedActivityId={selectedActivityIds} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
+          )}
+        {!imageBasedHotelAmenity ?  <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-[-2.5rem]' href='/home'>Back to Start</a> : null}
         </div>
       ) : 
       <>
@@ -95,9 +100,9 @@ const HotelForm = ({ setHotel, toPage, setToPage }) => {
             }
         </div>
       </div>
-      <div className='flex flex-row justify-center items-center mx-20'>
+      {/* <div className='flex flex-row justify-center items-center mx-20'>
         <button className='mt-16 border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-16 py-3 text-white font-medium rounded-full transition duration-300 ease-in-out z-10' disabled={selectedActivityIds.length == 0} onClick={() => handleToPage()}>Select</button>
-      </div>
+      </div> */}
     </>
     }
       

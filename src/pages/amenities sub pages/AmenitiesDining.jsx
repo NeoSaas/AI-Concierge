@@ -6,8 +6,10 @@ import BottomBanner from '../../components/BottomBanner';
 import WeatherWidget from '../../components/weatherComponents/WeatherWidget';
 import MyDialog from '../../components/QrDialog';
 import TimeoutRedirect from '../../components/Timeout';
+import { useAppContext } from '../../AppContext';
 
 function AmenitiesDining() {
+    const { isOpen, setIsOpen} = useAppContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const [qrOpen, setQrOpen] = useState(false);
     const qrCodes = ['https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-morning-menu', 'https://thealfondinn.com/hamiltons-kitchen/caf%C3%A9-evening-menu', 'https://resy.com/cities/orl/hamiltons-kitchen', 'https://resy.com/cities/orl/hamiltons-kitchen'];
@@ -35,7 +37,7 @@ function AmenitiesDining() {
     const handleButton = (index) => {
         // console.log(index);
         setQrCode(qrCodes[index]);
-        setQrOpen(true);
+        setIsOpen(true);
     }
 
     return (
@@ -44,7 +46,7 @@ function AmenitiesDining() {
             {isTimerComplete ? <TimeoutRedirect /> : null}
             <WeatherWidget />
             <Navbar />
-            <MyDialog isOpen={qrOpen} setIsOpen={setQrOpen} qrCode={null} otherLink={qrCode}/>
+            <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={qrCode}/>
             <div className='absolute gradient-top h-full w-full'></div>
             <div className='absolute gradient-bottom h-full w-full'></div>
             <BottomBanner />
