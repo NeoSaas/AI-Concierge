@@ -155,7 +155,7 @@ export default function MyDialog({ otherLink }) {
                         <p className="text-lg text-secondary">Take a Picture of the Barcode and Present It at the Restaurant for Perks!</p>
                       </div>
                     </div>
-                    </> : <QRCode value={otherLink} className='m-auto' />}
+                    </> : <QRCode value={otherLink || ''} className='m-auto' />}
                 </div>
 
                 <div className="mt-8 flex justify-center">

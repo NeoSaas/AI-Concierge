@@ -47,8 +47,8 @@ function AmenitiesEventSpace() {
             <WeatherWidget />
             <Navbar />
             <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={qrCode}/>
-            <div className='absolute gradient-top h-full w-full'></div>
-            <div className='absolute gradient-bottom h-full w-full'></div>
+            <div className='absolute gradient-top h-[85%] w-full'></div>
+            <div className='absolute gradient-bottom h-[85%] w-full'></div>
             <BottomBanner />
             <div
                 className={`w-full h-[70vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
