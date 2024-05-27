@@ -23,7 +23,6 @@ export default function MyDialog({ otherLink }) {
   }, [setIsOpen]);
 
   const validTags = [clickedBusiness[0]?.business_tags[1], clickedBusiness[0]?.business_tags[3], clickedBusiness[0]?.business_tags[4]];
-
   const compressImage = (url, quality = 0.7) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -147,10 +146,14 @@ export default function MyDialog({ otherLink }) {
                           <>
                             <p className="mb-5 text-2xl font-bold text-primary">{clickedBusiness[0]?.business_barcode}</p>
                             <p className="mb-5 text-xl text-secondary">{clickedBusiness[0]?.business_name}</p>
-                            <p className="mb-5 text-xl text-secondary">{"Promo Code Valid Until: " + clickedBusiness[0]?.business_barcode_date}</p>
+                            <p className="mb-5 text-xl text-secondary">{"Promo Code Valid Until: " + clickedBusiness[0]?.business_barcode_dates}</p>
                           </>
                         ) : (
-                          <p className="mb-5 text-2xl font-bold text-primary">No Promo Code Available</p>
+                          <>
+                          <p className="mb-5 text-2xl font-bold text-primary">{clickedBusiness[0]?.business_barcode}</p>
+                            <p className="mb-5 text-xl text-secondary">{clickedBusiness[0]?.business_name}</p>
+                            <p className="mb-5 text-xl text-secondary">{"Promo Code Valid Until: " + clickedBusiness[0]?.business_barcode_dates}</p>
+                           </>
                         )}
                         <p className="text-lg text-secondary">Take a Picture of the Barcode and Present It at the Restaurant for Perks!</p>
                       </div>
