@@ -72,9 +72,9 @@ export default function MyDialog({ otherLink }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className={!otherLink || clickedBusiness[0] ? `w-full max-w-4xl transform overflow-hidden rounded-3xl bg-white p-12 text-left align-middle shadow-2xl transition-all` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
+              <Dialog.Panel className={clickedBusiness[0] ? `w-full max-w-4xl transform overflow-hidden rounded-3xl bg-white p-12 text-left align-middle shadow-2xl transition-all` : `w-max transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all text-center`}>
                 <Dialog.Title as="h3" className="text-4xl font-wedding leading-6 text-primary mb-8 text-center">
-                  {!otherLink || clickedBusiness[0] ? (
+                  {clickedBusiness[0] ? (
                     <div>
                       <p className="text-5xl mb-6 font-wedding text-primary">{clickedBusiness[0]?.business_name}</p>
                       <p className="text-2xl font-quicksand text-secondary">{clickedBusiness[0]?.business_address}</p>
@@ -85,7 +85,7 @@ export default function MyDialog({ otherLink }) {
                   )}
                 </Dialog.Title>
                 <div className="mt-4">
-                  {!otherLink || clickedBusiness[0] ? 
+                  {clickedBusiness[0] ? 
                   <>
                     <div className='grid grid-cols-2 gap-8'>
                       <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] object-cover rounded-lg shadow-lg border-2 border-accent'/>

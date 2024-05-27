@@ -14,7 +14,7 @@ const images = [
 ];
 
 const BottomBanner = () => {
-  const { isOpen, setIsOpen, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, setImageBasedHotelAmenity, setHotelAmenity, setToPage, setSuggestedDisplayed, setRestaurantLink } = useAppContext();
+  const { isOpen, setIsOpen, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, setImageBasedHotelAmenity, setHotelAmenity, setToPage, setSuggestedDisplayed, setRestaurantLink, clickedBusiness } = useAppContext();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleGetBusiness = async (index) => {
@@ -33,7 +33,9 @@ const BottomBanner = () => {
           if(response.data[i].business_name === business){
             setRestaurantLink(response.data[i].directions_url);
             setIsOpen(true);
+            setIsHotelSpecific(false);
             setClickedBusiness({0: response.data[i]});
+            console.log(clickedBusiness);
           }
         }
       } catch (error) {
