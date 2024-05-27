@@ -68,7 +68,7 @@ const HotelForm = ({ setHotel }) => {
           ) : (
             <HotelAmenityDisplay selectedActivityId={selectedActivityIds} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
           )}
-        {!imageBasedHotelAmenity ?  <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-[-2.5rem]' href='/home'>Back to Start</a> : null}
+        {!imageBasedHotelAmenity ?  <a className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-[-0.5rem]' href='/home'>Back to Start</a> : null}
         </div>
       ) : 
       <>
