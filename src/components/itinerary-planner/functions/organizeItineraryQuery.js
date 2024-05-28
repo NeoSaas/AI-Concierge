@@ -23,50 +23,66 @@ export default async function organizeItineraryQuery(selectedActivities) {
 
     // Construct the prompt template
     const promptTemplate = `
-        User Input: ${selectedActivities}\n
+        Guest Preferences: ${selectedActivities}\n
         Businesses: ${businessesList}\n
-        Query: Please create a detailed and optimal itinerary for the user based on their selected categories. 
-        The itinerary should consider the following factors:
+        Itinerary Request for Guests at The Alfond Inn, Winter Park, Florida
+        Guest Itinerary Request
+        Please create a detailed itinerary for a guest staying at The Alfond Inn in Winter Park, Florida. The itinerary should contain walking or driving times and distances in miles or fractions of miles. The itinerary must be contained within the duration of time selected by the guest and cannot exceed this time by more than 15 minutes, including activities, dining, and any special events. Only select potential matches from our database that are a maximum of 20 minutes of walking or 20 minutes by car. If a Michelin Guide-rated restaurant is included, the maximum driving time can extend to 30 minutes. Follow these steps to generate the itinerary:
+
+        Database Check:
+
+        First, check the Business above which come from our databse for companies and recommendations that match the guest's preferences. The website URL and necessary access credentials should be included in the request.
+        If there are suitable matches in the database, use those recommendations to build the itinerary.
+        Additional Resources:
+
+        If the database does not contain sufficient recommendations or if certain preferences are not met, use external resources to complete the itinerary.
+        Ensure the activities and dining options reflect the preferences and interests of the guest.
+        Verify Distances and Times:
+
+        Use reliable mapping services (e.g., Google Maps) to calculate precise walking distances and times between locations. Verify these distances and times by cross-referencing multiple sources.
+        Check the official websites of the locations for any additional information on opening hours, tour durations, and special events.
+        Detailed Itinerary with Descriptions:
+
+        Include detailed descriptions for each stop, adding a touch of flair to make the itinerary appealing.
+        Indicate the opening times of locations and ensure the itinerary aligns with these times.
+        Preferred Recommendations:
+
+        When recommending breakfast options, include The Alfond Inn's café or Hamilton's Kitchen 75% of the time when the itinerary includes breakfast.
+        Guest Information and Preferences:
+        Duration of Tour:
+
+        Morning half-day tour (8 am to 1 pm)
+        Mode of transportation:
+
+        Walking
+        Type of Itinerary:
+
+        Museum visit, breakfast, Italian lunch, boat tour
+        Example Itinerary:
+        8:00 AM - Breakfast at Hamilton's Kitchen:
+
+        Start your day with a delightful breakfast at Hamilton's Kitchen, located within The Alfond Inn. Enjoy farm-to-table offerings like Eggs Benedict or Avocado Toast.
+        Distance from The Alfond Inn to the Morse Museum: Approximately 0.7 miles, about a 15-minute walk.
+        9:00 AM - Charles Hosmer Morse Museum of American Art:
+
+        Walk to the Charles Hosmer Morse Museum, where you can explore the comprehensive collection of works by Louis Comfort Tiffany.
+        Estimated Time: Spend about 1.5 hours here.
+        Distance to Scenic Boat Tour: Approximately 0.6 miles, about a 12-minute walk.
+        10:30 AM - Leisure Walk to Scenic Boat Tour:
+
+        Enjoy a leisurely walk to the Scenic Boat Tour dock. The tour starts at 11:00 AM and lasts for one hour.
+        Tour Duration: 1 hour.
+        12:15 PM - Lunch at Prato:
+
+        After the boat tour, head back towards Park Avenue for a delicious Italian lunch at Prato.
+        Distance from Scenic Boat Tour to Prato: Approximately 0.5 miles, about a 10-minute walk.
+        Opening Time: Prato opens for lunch at 11:30 AM.
+        Tips:
+        The Scenic Boat Tour operates daily with the first tour at 10:00 AM and the last at 4:00 PM. Make sure to bring cash for the boat tour, as they do not accept credit or debit cards.
+        Ensure the itinerary aligns with the opening times of the locations to provide a smooth experience for the guests.
+        By following these steps, you can ensure the distances and times in the itinerary are accurate and reliable, providing a delightful experience for the guests.
         
-        1. **Relevance**: Ensure that the businesses are closely aligned with the user's selected categories. For instance, a vineyard should not be recommended if the user is interested in restaurants, even if the vineyard serves food.
-        
-        2. **Walking Distance**: Optimize the itinerary to minimize walking distance between locations. Include the walking distance between consecutive locations in the itinerary.
-
-        3. **Business Hours**: Take into account the business hours to ensure that the user visits each location when it is open. Plan the sequence of visits accordingly.
-
-        4. **Visit Duration**: Consider the average visit time at each location. Ensure that the user has enough time to enjoy each visit before moving on to the next location.
-
-        5. **Logical Sequence**: Organize the itinerary in a logical order that maximizes the user's experience while minimizing travel time. Start from a central or convenient location and create a smooth flow from one visit to the next.
-
-        6. **Diversity**: Provide a mix of activities if possible, to create a varied and engaging experience. For example, if the user is interested in both food and art, try to alternate between food-related and art-related stops.
-
-        8. **Special Considerations**: If any special accessibility or dietary requirements are mentioned, ensure that the recommended businesses can accommodate these needs.
-
-        If no businesses in the list match the user's selection, please respond with an empty itinerary.
-
-        Format the text with headings and bold important information.
-        
-        Format your response as follows:
-        "Itinerary:
-        1. <business name>
-           - Address: <address>
-           - Walking Distance: <walking distance> minutes from previous location
-           - Average Visit Time: <average visit time> minutes
-           - Contact: <contact>
-           - Description: <create a general description of the place from your knowledge>
-        2. <business name>
-           - Address: <address>
-           - Walking Distance: <walking distance> minutes from previous location
-           - Average Visit Time: <average visit time> minutes
-           - Contact: <contact>
-           - Description: <create a general description of the place from your knowledge>
-        3. ..."
-        
-        If no businesses in the list match the user's selection, please respond with an empty itinerary.
-
-        At the very end of your response add a * and after the * the names of all the business you recommended as a comma sperated list.
-        
-        Thank you!\n
+        Please format bold text with **\n
     `;
 
     return promptTemplate;

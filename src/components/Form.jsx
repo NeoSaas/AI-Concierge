@@ -77,7 +77,7 @@ const Form = () => {
       ? selectedIds.filter((id) => id !== activity)
       : [...selectedIds, activity];
 
-    if ((formPage === 'main' && selectedDict.main > 2)) {
+    if ((formPage === 'main' && selectedDict.main > 0)) {
       if (isSelected) {
         setSelectedIds(updatedIds);
         setUnselectedNames((prevNames) => [...prevNames, activity]);

@@ -4,7 +4,7 @@ import { useAppContext } from '../AppContext';
 
 const images = [
   { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Albin-Polaske-Musem-Banner-Design-v1-6x_3_IMGCentury.jpg', text: 'Albin Polaske Musuem' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Alfond-Cafe-Banner-Design--v1-6x_4_IMGCentury.jpg', text: 'Hamiltons Kitchen' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Alfond-Cafe-Banner-Design--v1-6x_4_IMGCentury.jpg', text: 'The Cafe' },
   { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-John-Craig-Banner-Design-gigapixel-standard-v1-6x_5_IMGCentury.jpg', text: 'John Craig' },
   { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Mead-Gardens-Banner-Design--v1-6x_6_IMGCentury.jpg', text: 'Mead Gardens' },
   { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Morse-Musem-Banner-Design-v1-6x_7_IMGCentury.jpg', text: 'Morse Musuem' },
