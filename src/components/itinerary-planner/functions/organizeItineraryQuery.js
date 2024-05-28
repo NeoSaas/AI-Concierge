@@ -20,7 +20,7 @@ export default async function organizeItineraryQuery(selectedActivities) {
             Walking Distance: ${business.walk_time} minutes
             \n`;
     }
-
+    console.log(selectedActivities);
     // Construct the prompt template
     const promptTemplate = `
         Guest Preferences: ${selectedActivities}\n
