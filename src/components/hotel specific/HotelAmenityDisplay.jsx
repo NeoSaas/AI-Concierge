@@ -296,7 +296,7 @@ const HotelAmenityDisplay = ({ selectedActivityId, setRestaurantLink, setIsOpen}
   const { imageBasedHotelAmenity, setImageBasedHotelAmenity, setIsHotelSpecific, setToPage, setSuggestedDisplayed } = useAppContext();
   const navigate = useNavigate();
   return(
-    <div className="bg-white rounded-lg py-4 mb-5 font-quicksand">
+    <div className="bg-white rounded-lg py-4 mb-1 font-quicksand">
       {imageBasedHotelAmenity ? renderSwitch(selectedActivityId, setRestaurantLink, setIsOpen) : renderSwitch(selectedActivityId[0], setRestaurantLink, setIsOpen)}
       {imageBasedHotelAmenity ? <button className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-8' onClick={() => handleBack(setImageBasedHotelAmenity, navigate, setIsHotelSpecific, setToPage, setSuggestedDisplayed)}>Back to Start</button> : null}
     </div>
