@@ -26,8 +26,9 @@ export default async function organizeItineraryQuery(selectedActivities) {
     console.log(selectedActivities);
     // Construct the prompt template
     const promptTemplate = `
-        Get All Businesses from the internet, use a variety of businesses
+        Get All Businesses from the internet, use a variety of businesses make sure to keep in mind the walking distance and other factors
         Guest Preferences: {${objectToString(selectedActivities)}}\n
+        Make sure to keep in mind the walking distance and other factors related to the guests method of travel, keep walking distances within 15-20 minutes
         Itinerary Request for Guests at The Alfond Inn, Winter Park, Florida
         Guest Itinerary Request
         Please create a detailed itinerary for a guest staying at The Alfond Inn in Winter Park, Florida. The itinerary should contain walking or driving times and distances in miles or fractions of miles. The itinerary must be contained within the duration of time selected by the guest and cannot exceed this time by more than 15 minutes, including activities, dining, and any special events. Only select potential matches from our database that are a maximum of 20 minutes of walking or 20 minutes by car. If a Michelin Guide-rated restaurant is included, the maximum driving time can extend to 30 minutes. Follow these steps to generate the itinerary:
@@ -45,6 +46,8 @@ export default async function organizeItineraryQuery(selectedActivities) {
 
         Include detailed descriptions for each stop, adding a touch of flair to make the itinerary appealing.
         Indicate the opening times of locations and ensure the itinerary aligns with these times.
+
+        When recommending breakfast options, include The Alfond Inn's café or Hamilton's Kitchen 75% of the time when the itinerary includes breakfast.
 
         Example Itinerary:
         <time 1> - <item 1 text Example:"Italian Lunch at Prato">:
