@@ -81,6 +81,7 @@ const Form = () => {
       if (isSelected) {
         setSelectedIds(updatedIds);
         setUnselectedNames((prevNames) => [...prevNames, activity]);
+        
       }
       return;
     }
