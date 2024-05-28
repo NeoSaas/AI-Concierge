@@ -34,7 +34,7 @@ function Header() {
   }, [setIsHotelSpecific]);
 
   return (
-    <div className={toPage || displayOptions ? "py-1 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-10" : "py-10 flex justify-center mb-[334px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
+    <div className={toPage || displayOptions ? "py-1 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-24" : "py-10 flex justify-center mb-[344px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
       <div className='z-40 text-center mx-16'>
         {!suggestedDisplayed && (
           <>
