@@ -35,7 +35,7 @@ export default async function organizeItineraryQuery(selectedActivities) {
         If there are suitable matches in the database, use those recommendations to build the itinerary.
         Additional Resources:
 
-        If the database does not contain sufficient recommendations or if certain preferences are not met, use external resources to complete the itinerary.
+        If the database does not contain sufficient recommendations or if certain preferences are not met, use external resources to complete the itinerary for example if a user asks for shopping but there is only musuems in the database do not suggest musuems instead find places to shop in Winter Park, FL and suggest those.
         Ensure the activities and dining options reflect the preferences and interests of the guest.
         Verify Distances and Times:
 
@@ -48,16 +48,7 @@ export default async function organizeItineraryQuery(selectedActivities) {
         Preferred Recommendations:
 
         When recommending breakfast options, include The Alfond Inn's café or Hamilton's Kitchen 75% of the time when the itinerary includes breakfast.
-        Guest Information and Preferences:
-        Duration of Tour:
 
-        Morning half-day tour (8 am to 1 pm)
-        Mode of transportation:
-
-        Walking
-        Type of Itinerary:
-
-        Museum visit, breakfast, Italian lunch, boat tour
         Example Itinerary:
         8:00 AM - Breakfast at Hamilton's Kitchen:
 
@@ -82,7 +73,9 @@ export default async function organizeItineraryQuery(selectedActivities) {
         Ensure the itinerary aligns with the opening times of the locations to provide a smooth experience for the guests.
         By following these steps, you can ensure the distances and times in the itinerary are accurate and reliable, providing a delightful experience for the guests.
         
-        Please format bold text with **\n
+        Please format bold text with **
+        Only include the itinerary itself in your response do not include any additional text
+        \n
     `;
 
     return promptTemplate;
