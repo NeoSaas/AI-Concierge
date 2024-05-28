@@ -2,25 +2,25 @@ import axios from "axios";
 
 export default async function organizeItineraryQuery(selectedActivities) {
 
-    const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/', {});
+    // const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/', {});
 
-    const businessDataArray = response.data;
-    // console.log(businessDataArray);
+    // const businessDataArray = response.data;
+    // // console.log(businessDataArray);
 
-    // Construct the list of businesses with their detailed data
-    let businessesList = '';
-    for (let i = 0; i < businessDataArray.length; i++) {
-        const business = businessDataArray[i];
-        businessesList += `
-            Business Name: ${business.business_name}
-            Tags: ${business.business_tags.join(', ')}
-            Address: ${business.business_address}
-            Hours: ${business.hours_of_operation}
-            Contact: ${business.business_phone_number}
-            Walking Distance: ${business.walk_time} minutes
-            \n`;
-    }
-    console.log(selectedActivities);
+    // // Construct the list of businesses with their detailed data
+    // let businessesList = '';
+    // for (let i = 0; i < businessDataArray.length; i++) {
+    //     const business = businessDataArray[i];
+    //     businessesList += `
+    //         Business Name: ${business.business_name}
+    //         Tags: ${business.business_tags.join(', ')}
+    //         Address: ${business.business_address}
+    //         Hours: ${business.hours_of_operation}
+    //         Contact: ${business.business_phone_number}
+    //         Walking Distance: ${business.walk_time} minutes
+    //         \n`;
+    // }
+    // console.log(selectedActivities);
     // Construct the prompt template
     const promptTemplate = `
         Get All Businesses from the internet, keep them within / around Winter Park, Florida
@@ -73,7 +73,7 @@ export default async function organizeItineraryQuery(selectedActivities) {
         <Estimated time spent at location>
         
         ......And So on
-        
+
         Tips:
         <Some Tips you can provide to the guest>
         
