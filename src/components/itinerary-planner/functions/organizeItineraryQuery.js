@@ -23,19 +23,19 @@ export default async function organizeItineraryQuery(selectedActivities) {
     console.log(selectedActivities);
     // Construct the prompt template
     const promptTemplate = `
+        Get All Businesses from the internet, keep them within / around Winter Park, Florida
         Guest Preferences: ${selectedActivities}\n
-        Businesses: ${businessesList}\n
         Itinerary Request for Guests at The Alfond Inn, Winter Park, Florida
         Guest Itinerary Request
         Please create a detailed itinerary for a guest staying at The Alfond Inn in Winter Park, Florida. The itinerary should contain walking or driving times and distances in miles or fractions of miles. The itinerary must be contained within the duration of time selected by the guest and cannot exceed this time by more than 15 minutes, including activities, dining, and any special events. Only select potential matches from our database that are a maximum of 20 minutes of walking or 20 minutes by car. If a Michelin Guide-rated restaurant is included, the maximum driving time can extend to 30 minutes. Follow these steps to generate the itinerary:
 
         Database Check:
 
-        First, check the Business above which come from our databse for companies and recommendations that match the guest's preferences. The website URL and necessary access credentials should be included in the request.
+        First, check the Business above w and recommendations that match the guest's preferences. The website URL and necessary access credentials should be included in the request.
         If there are suitable matches in the database, use those recommendations to build the itinerary.
         Additional Resources:
 
-        If the database does not contain sufficient recommendations or if certain preferences are not met, use external resources to complete the itinerary for example if a user asks for shopping but there is only musuems in the database do not suggest musuems instead find places to shop in Winter Park, FL and suggest those.
+        Use external resources to complete the itinerary for example if a user asks for shopping but there is only musuems in the database do not suggest musuems instead find places to shop in Winter Park, FL and suggest those.
         Ensure the activities and dining options reflect the preferences and interests of the guest.
         Verify Distances and Times:
 
@@ -50,24 +50,30 @@ export default async function organizeItineraryQuery(selectedActivities) {
         When recommending breakfast options, include The Alfond Inn's café or Hamilton's Kitchen 75% of the time when the itinerary includes breakfast.
 
         Example Itinerary:
-        <time 1> - <item 1>:
+        <time 1> - <item 1 text Example:"Italian Lunch at Prato">:
 
         <Description 1>
 
         <Description of directions>
         <Distance to next place: Approximately x miles, about a x-minute walk.>
+        <Estimated time spent at location>
         <time 2> - <item 2>:
 
         <Description 2>
 
         <Description of directions>
         <Distance to next place: Approximately x miles, about a x-minute walk.>
+        <Estimated time spent at location>
         <time 3> - <item 3>:
 
         <Description 3>
 
         <Description of directions>
         <Distance to next place: Approximately x miles, about a x-minute walk.>
+        <Estimated time spent at location>
+        
+        ......And So on
+        
         Tips:
         <Some Tips you can provide to the guest>
         
