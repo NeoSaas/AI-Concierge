@@ -12,10 +12,7 @@ const ItineraryPlannerForm = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [selectedActivityIds, setSelectedActivityIds] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [displayBusinesses, setDisplayBusinesses] = useState([]);
   const [failed, setFailed] = useState(false);
-  const [showSubOptions, setShowSubOptions] = useState(false);
-  const [selectedDict, setSelectedDict] = useState({ main: 0, sub: 0 });
   const [itinerary, setItinerary] = useState('');
 
   const questions = [
@@ -197,7 +194,6 @@ const ItineraryPlannerForm = () => {
   ];
 
   const handleActivitySelect = useCallback((activity, question) => {
-    const selectionString = `${question}: ${activity}`;
     setSelectedOptions((prev) => {
       const newOptions = { ...prev };
       if (Array.isArray(newOptions[question])) {
@@ -210,14 +206,6 @@ const ItineraryPlannerForm = () => {
         newOptions[question] = activity;
       }
       return newOptions;
-    });
-
-    setSelectedActivityIds((prev) => {
-      if (prev.includes(selectionString)) {
-        return prev.filter((id) => id !== selectionString);
-      } else {
-        return [...prev, selectionString];
-      }
     });
   }, []);
 
@@ -244,11 +232,8 @@ const ItineraryPlannerForm = () => {
       setLoadingOptions(true);
 
       const prompt = await organizeItineraryQuery(selectedOptions);
-      // console.log(prompt);
       const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/OPAICreateConvo/', { query: prompt });
-      // console.log(response.data['response-payload'])
       setLoading(false);
-      // const itinerary = response.data['response-payload'].split('*')[0].trim();
       setItinerary(response.data['response-payload']);
     } catch (error) {
       console.log(error);
@@ -258,12 +243,11 @@ const ItineraryPlannerForm = () => {
     }
   };
 
-  // Filter questions based on conditions
   const filteredQuestions = useMemo(() => {
     return questions.filter(q => !q.condition || q.condition(selectedOptions));
   }, [questions, selectedOptions]);
 
-  const questionsPerPage = 5; // Number of questions per page
+  const questionsPerPage = 5;
   const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
 
   const startIndex = currentPage * questionsPerPage;
@@ -284,7 +268,7 @@ const ItineraryPlannerForm = () => {
               <div>
                 {failed ? 
                   <>
-                    <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Cant Build Itinerary. Please try again!</p> 
+                    <p className='text-3xl text-black mx-auto text-center mb-10 mt-9'>Can't Build Itinerary. Please try again!</p> 
                     <button className=' bg-[#5C0601] py-5 px-4 rounded-lg text-white hover:scale-105 duration-300 ease-in-out' onClick={handleBackToForm}>Back to Form</button>
                   </>
                   : 
@@ -305,6 +289,7 @@ const ItineraryPlannerForm = () => {
                   <p className="text-xl font-bold mb-2">{currentQuestion.question}</p>
                   <select
                     className="w-full p-2 border rounded text-lg"
+                    value={selectedOptions[currentQuestion.question] || ""}
                     onChange={(e) => handleActivitySelect(e.target.value, currentQuestion.question)}
                   >
                     <option value="">Select an option</option>
