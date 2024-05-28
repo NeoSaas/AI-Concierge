@@ -88,17 +88,13 @@ const ItineraryPlannerForm = () => {
       ]
     },
     {
-      question: "Guided Private Customized Tour: A personalized tour tailored to the guest's interests and preferences, allowing them to choose specific attractions, activities, and experiences.",
-      options: ["Yes", "No"]
-    },
-    {
       question: "Do you want to include food/drink recommendations within your itinerary?",
-      options: ["Yes", "No"]
+      options: ["Yes please pick all the recommendations for me Ai-Concierge i trust you!",  "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)", "No"]
     },
     {
       question: "Do want to select your type of Cuisine?",
       options: ["No, you recommend from our local favorites", "Yes"],
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "If Yes, show me my cuisine options. (Select 1)",
@@ -111,7 +107,7 @@ const ItineraryPlannerForm = () => {
         "Mediterranean",
         "Fusion/Contemporary"
       ],
-      condition: (answers) => answers["Do want to select your type of Cuisine?"] === "Yes"
+      condition: (answers) => answers["Do you want to select your type of Cuisine?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "Are there any dietary restrictions or preferences we should consider?",
@@ -128,20 +124,18 @@ const ItineraryPlannerForm = () => {
         "Vegetarian"
       ],
       multiple: true,
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "What is your pricing range?",
       options: [
+        "No Preference",
         "Budget-Friendly",
         "Moderate",
-        "Expensive",
-        "High-End",
-        "Value for Money",
         "Splurge-Worthy"
       ],
       multiple: true,
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "How would you describe your dining atmosphere?",
@@ -156,7 +150,7 @@ const ItineraryPlannerForm = () => {
         "Upscale/Cosmopolitan"
       ],
       multiple: true,
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "Are looking for any specialty dishes or features?",
@@ -171,7 +165,7 @@ const ItineraryPlannerForm = () => {
         "Vegetarian/Vegan Options"
       ],
       multiple: true,
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "Are you looking for any ambiance features?",
@@ -186,7 +180,7 @@ const ItineraryPlannerForm = () => {
         "Wine Cellar/Tasting Room"
       ],
       multiple: true,
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
     {
       question: "Are you for independent cuisine special ratings?",
@@ -198,7 +192,7 @@ const ItineraryPlannerForm = () => {
         "Listed as Favorites/Popular among locals by independent press."
       ],
       multiple: true,
-      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes"
+      condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     }
   ];
 
@@ -335,7 +329,7 @@ const ItineraryPlannerForm = () => {
                   className="my-auto border-[3px] border-[#5C0601] text-2xl bg-[#5C0601] disabled:border-gray-400 disabled:bg-gray-400 px-[4.7rem] py-3 text-white font-bold rounded-full transition duration-300 ease-in-out"
                   onClick={handleNextPage}
                 >
-                  Next
+                  Next Page
                 </button>
               )}
               {currentPage === totalPages - 1 && (

@@ -20,7 +20,7 @@ const BottomBanner = () => {
   const handleGetBusiness = async (index) => {
     let business = images[index].text;
     console.log(business);
-    if(business.includes('Alfond Inn') || business.includes('Hamiltons Kitchen')){
+    if(business.includes('Alfond Inn') || business.includes('Hamiltons Kitchen') || business.includes('The Lounge') || business.includes('The Spa') || business.includes('The Cafe') || business.includes('The Pool') || business.includes('Fitness Center')){
       setIsHotelSpecific(true);
       setToPage(true);
       setImageBasedHotelAmenity(true);
@@ -59,7 +59,7 @@ const BottomBanner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000); // Change 5000 to the desired interval in milliseconds
+    }, 10000); // Change 5000 to the desired interval in milliseconds
     return () => clearInterval(interval);
   }, [currentImageIndex]);
 

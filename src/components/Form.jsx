@@ -77,10 +77,11 @@ const Form = () => {
       ? selectedIds.filter((id) => id !== activity)
       : [...selectedIds, activity];
 
-    if ((formPage === 'main' && selectedDict.main > 0)) {
+    if ((formPage === 'main' && selectedDict.main > 2)) {
       if (isSelected) {
         setSelectedIds(updatedIds);
         setUnselectedNames((prevNames) => [...prevNames, activity]);
+        
       }
       return;
     }
@@ -254,10 +255,13 @@ const Form = () => {
                         unselectedActivityNames,
                         setUnselectedActivityNames
                       )
+
                     }
                     setSelectedDict={setSelectedDict}
                     showSubOptions={showSubOptions}
                     selectedDict={selectedDict}
+                    handleToOptions={handleToOptions}
+                    handleToSub={handleToSub}
                   />
                 ))
               ) : (
@@ -281,6 +285,7 @@ const Form = () => {
                     setSelectedDict={setSelectedDict}
                     showSubOptions={showSubOptions}
                     selectedDict={selectedDict}
+                    handleToSub={handleToSub}
                   />
                 ))
               )}

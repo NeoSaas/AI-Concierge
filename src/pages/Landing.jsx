@@ -8,7 +8,7 @@ const BottomBanner = lazy(() => import('../components/BottomBanner'));
 const WeatherWidget = lazy(() => import('../components/weatherComponents/WeatherWidget'));
 
 function Landing() {
-  const { setIsHotelSpecific, disabled, isItinerary, setIsItinerary } = useAppContext();
+  const { setIsHotelSpecific, isHotelSpecific, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, restaurantLink, isRestaurant, clickedBusiness, suggestedDisplayed, setSuggestedDisplayed, isTimerComplete, setIsTimerComplete, setIsItinerary, isItinerary } = useAppContext();
   const bgImages = ["https://aiconcierge.b-cdn.net/Main%20Page/compressed/Ajusted-2-Alfond-Inn-Collage-Main-2-gigapixel-high-fidelity-v2-6x%20(1)_IMGCentury.jpg"];
   const [fetchedUrl, setFetchedUrl] = useState(bgImages[0]);
   const nav = useNavigate();

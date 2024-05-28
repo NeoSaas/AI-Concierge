@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import { Checkbox, Label } from 'flowbite-react';
 import { useAppContext } from '../AppContext';
 
-const ActivityCard = ({ id, activity, isSelected, showSubOptions, selectedDict, setSelectedDict, onSelect }) => {
+const ActivityCard = ({ id, activity, isSelected, showSubOptions, selectedDict, setSelectedDict, onSelect, handleToSub}) => {
   const handleOptions = useCallback(() => {
-    if (!showSubOptions && selectedDict.main <= 1) {
-      if (!isSelected && selectedDict.main < 1) {
+    if (!showSubOptions && selectedDict.main <= 3) {
+      if (!isSelected && selectedDict.main < 3) {
         setSelectedDict((prevDict) => ({ ...prevDict, main: prevDict.main + 1 }));
-      } else if (selectedDict.main <= 1 && isSelected && selectedDict.main > 0) {
+      } else if (selectedDict.main <= 3 && isSelected && selectedDict.main > 0) {
         setSelectedDict((prevDict) => ({ ...prevDict, main: prevDict.main - 1 }));
       }
     } else if (selectedDict.main <= 3 && showSubOptions) {

@@ -19,7 +19,7 @@ const ItineraryDisplay = ({ itinerary }) => {
       }
     };
 
-    const interval = setInterval(type, 15); // Adjust the speed as needed
+    const interval = setInterval(type, 1); // Adjust the speed as needed
 
     return () => clearInterval(interval);
   }, [itinerary]);
