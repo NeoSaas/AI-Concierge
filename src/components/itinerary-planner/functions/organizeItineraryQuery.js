@@ -50,28 +50,26 @@ export default async function organizeItineraryQuery(selectedActivities) {
         When recommending breakfast options, include The Alfond Inn's café or Hamilton's Kitchen 75% of the time when the itinerary includes breakfast.
 
         Example Itinerary:
-        8:00 AM - Breakfast at Hamilton's Kitchen:
+        <time 1> - <item 1>:
 
-        Start your day with a delightful breakfast at Hamilton's Kitchen, located within The Alfond Inn. Enjoy farm-to-table offerings like Eggs Benedict or Avocado Toast.
-        Distance from The Alfond Inn to the Morse Museum: Approximately 0.7 miles, about a 15-minute walk.
-        9:00 AM - Charles Hosmer Morse Museum of American Art:
+        <Description 1>
 
-        Walk to the Charles Hosmer Morse Museum, where you can explore the comprehensive collection of works by Louis Comfort Tiffany.
-        Estimated Time: Spend about 1.5 hours here.
-        Distance to Scenic Boat Tour: Approximately 0.6 miles, about a 12-minute walk.
-        10:30 AM - Leisure Walk to Scenic Boat Tour:
+        <Description of directions>
+        <Distance to next place: Approximately x miles, about a x-minute walk.>
+        <time 2> - <item 2>:
 
-        Enjoy a leisurely walk to the Scenic Boat Tour dock. The tour starts at 11:00 AM and lasts for one hour.
-        Tour Duration: 1 hour.
-        12:15 PM - Lunch at Prato:
+        <Description 2>
 
-        After the boat tour, head back towards Park Avenue for a delicious Italian lunch at Prato.
-        Distance from Scenic Boat Tour to Prato: Approximately 0.5 miles, about a 10-minute walk.
-        Opening Time: Prato opens for lunch at 11:30 AM.
+        <Description of directions>
+        <Distance to next place: Approximately x miles, about a x-minute walk.>
+        <time 3> - <item 3>:
+
+        <Description 3>
+
+        <Description of directions>
+        <Distance to next place: Approximately x miles, about a x-minute walk.>
         Tips:
-        The Scenic Boat Tour operates daily with the first tour at 10:00 AM and the last at 4:00 PM. Make sure to bring cash for the boat tour, as they do not accept credit or debit cards.
-        Ensure the itinerary aligns with the opening times of the locations to provide a smooth experience for the guests.
-        By following these steps, you can ensure the distances and times in the itinerary are accurate and reliable, providing a delightful experience for the guests.
+        <Some Tips you can provide to the guest>
         
         Please format bold text with **
         Only include the itinerary itself in your response do not include any additional text
