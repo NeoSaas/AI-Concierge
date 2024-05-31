@@ -54,7 +54,7 @@ function BusinessCardDisplay({ index, business }) {
           </div>
         </div>
         <div className='mt-4 flex flex-row justify-center text-xl'>
-          <Rating name="half-rating-read" className="mx-2" defaultValue={parseInt(business[0].business_rating)} precision={0.1} readOnly />
+          <Rating name="half-rating-read" className="mx-2" defaultValue={parseFloat(business[0].business_rating)} precision={0.1} readOnly />
           <p>{business[0].business_rating} stars </p>
         </div>
       </div>
