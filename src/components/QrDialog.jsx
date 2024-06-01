@@ -87,7 +87,7 @@ export default function MyDialog({ otherLink }) {
                   {clickedBusiness[0] ? 
                   <>
                     <div className='grid grid-cols-2 gap-8'>
-                      <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${clickedBusiness[0]?.business_image_1}`} alt='first-pic' className='w-[390px] h-[390px] object-cover rounded-lg shadow-lg border-2 border-accent'/>
+                      <img src={clickedBusiness[0]?.business_image_1} alt='first-pic' className='w-[390px] h-[390px] object-cover rounded-lg shadow-lg border-2 border-accent'/>
                       <div>
                           <p className="text-3xl font-quicksand text-primary mb-4">Description</p>
                           <p className="text-lg text-secondary mb-8">{clickedBusiness[0]?.business_description}</p>
@@ -127,12 +127,22 @@ export default function MyDialog({ otherLink }) {
                       </div>
                       <div className="flex justify-center items-center">
                           <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay interval={3000} className="rounded-lg shadow-lg">
-                            {[clickedBusiness[0]?.business_image_2, clickedBusiness[0]?.business_image_3, clickedBusiness[0]?.business_image_4, clickedBusiness[0]?.business_video1].map((src, index) => (
-                              <div key={index} className="relative">
-                                <img src={`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/${src}`} alt={`Business image ${index + 1}`} className="w-full h-full object-cover rounded-lg shadow-lg border-2 border-accent" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
-                              </div>
-                            ))}
+                            <div key='1' className="relative">
+                              <img src={clickedBusiness[0].business_image_2} alt={`Business pic 2`} className="w-full h-full object-cover rounded-lg shadow-lg border-2 border-accent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
+                            </div>
+                            <div key='2' className="relative">
+                              <img src={clickedBusiness[0].business_image_3} alt={`Business pic 3`} className="w-full h-full object-cover rounded-lg shadow-lg border-2 border-accent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
+                            </div>
+                            <div key='3' className="relative">
+                              <img src={clickedBusiness[0].business_image_4} alt={`Business pic 4`} className="w-full h-full object-cover rounded-lg shadow-lg border-2 border-accent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
+                            </div>
+                            <div key='4' className="relative">
+                              <img src={clickedBusiness[0].business_video_1} alt={`Business pic 5`} className="w-full h-full object-cover rounded-lg shadow-lg border-2 border-accent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
+                            </div>
                           </Carousel>
                       </div>
                     </div>
