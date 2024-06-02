@@ -2,38 +2,35 @@ import axios from "axios";
 
 export default async function organizeItineraryQuery(selectedActivities) {
 
-    // const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/', {});
+    const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/', {});
 
-    // const businessDataArray = response.data;
-    // // console.log(businessDataArray);
+    const businessDataArray = response.data;
+    // console.log(businessDataArray);
 
-    // // Construct the list of businesses with their detailed data
-    // let businessesList = '';
-    // for (let i = 0; i < businessDataArray.length; i++) {
-    //     const business = businessDataArray[i];
-    //     businessesList += `
-    //         Business Name: ${business.business_name}
-    //         Tags: ${business.business_tags.join(', ')}
-    //         Address: ${business.business_address}
-    //         Hours: ${business.hours_of_operation}
-    //         Contact: ${business.business_phone_number}
-    //         Walking Distance: ${business.walk_time} minutes
-    //         \n`;
-    // }
+    // Construct the list of businesses with their detailed data
+    let businessesList = '';
+    for (let i = 0; i < businessDataArray.length; i++) {
+        const business = businessDataArray[i];
+        businessesList += `
+            Business Name: ${business.business_name}
+            Tags: ${business.business_tags.join(', ')}
+            Address: ${business.business_address}
+            Hours: ${business.hours_of_operation}
+            Contact: ${business.business_phone_number}
+            Walking Distance: ${business.walk_time} minutes
+            \n`;
+    }
     const objectToString = (obj) => {
         return Object.entries(obj).map(([key, value]) => `${key}: ${value}`).join(', ');
     }
     console.log(selectedActivities);
     // Construct the prompt template
     const promptTemplate = `
-        Get All Businesses from the internet, use a variety of businesses make sure to keep in mind the walking distance and other factors
-        Guest Preferences: {${objectToString(selectedActivities)}}\n
-        Make sure to keep in mind the walking distance and other factors related to the guests method of travel, keep walking distances within 15-20 minutes
-        Itinerary Request for Guests at The Alfond Inn, Winter Park, Florida
-        Guest Itinerary Request
-        Please create a detailed itinerary for a guest staying at The Alfond Inn in Winter Park, Florida. The itinerary should contain walking or driving times and distances in miles or fractions of miles. The itinerary must be contained within the duration of time selected by the guest and cannot exceed this time by more than 15 minutes, including activities, dining, and any special events. Only select potential matches from our database that are a maximum of 20 minutes of walking or 20 minutes by car. If a Michelin Guide-rated restaurant is included, the maximum driving time can extend to 30 minutes. Follow these steps to generate the itinerary:
+        Please create a detailed itinerary for a guest staying at The Alfond Inn in Winter Park, Florida. The itinerary should contain walking or driving times and distances in miles or fractions of miles. The itinerary must be contained within the duration of time selected by the guest and cannot exceed this time by more than 15 minutes, including activities, dining, and any special events. Only select potential matches that are a maximum of 20 minutes of walking or 20 minutes by car. If a Michelin Guide-rated restaurant is included, the maximum driving time can extend to 30 minutes. Follow these steps to generate the itinerary:
 
-        First, Find recommendations that match the guest's preferences. Search the web to find these businesses
+        Make sure the recommendations stick as closely as possible to the guests preferences.
+        Find recommendations that match the guest's preferences by searching the web / searching the internet.
+
         Additional Resources:
 
         Use external resources to complete the itinerary, such as Google Maps, Yelp, TripAdvisor, and the official websites of the locations.
@@ -48,6 +45,8 @@ export default async function organizeItineraryQuery(selectedActivities) {
         Indicate the opening times of locations and ensure the itinerary aligns with these times.
 
         When recommending breakfast options, include The Alfond Inn's café or Hamilton's Kitchen 75% of the time when the itinerary includes breakfast.
+        Please format bold text with **.
+        Only include the itinerary itself in your response do not include any additional text.
 
         Example Itinerary:
         <time 1> - <item 1 text Example:"Italian Lunch at Prato">:
@@ -76,9 +75,8 @@ export default async function organizeItineraryQuery(selectedActivities) {
 
         Tips:
         <Some Tips you can provide to the guest>
-        
-        Please format bold text with **
-        Only include the itinerary itself in your response do not include any additional text
+
+        Guest Preferences: {${objectToString(selectedActivities)}}\n
         \n
     `;
     console.log(promptTemplate);

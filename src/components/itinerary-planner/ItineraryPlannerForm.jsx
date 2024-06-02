@@ -81,7 +81,8 @@ const ItineraryPlannerForm = () => {
         "Outdoor Adventures Tours",
         "Shopping",
         "Spa/Fitness/Salons",
-        "Wine Tasting Tour"
+        "Wine Tasting Tour",
+        "Bars or Clubbing"
       ]
     },
     {
