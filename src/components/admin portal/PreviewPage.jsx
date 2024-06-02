@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const PreviewPage = ({values}) => {
     // values.business_tags && console.log(values.business_tags.split(','));
     // console.log(values)
+    const validTags = [values.business_tags[1], values.business_tags[3], values.business_tags[4]];
   return (
     <div className='bg-white w-[770px] ml-[-90px] h-auto rounded-xl p-3'>
         <div
@@ -26,7 +27,7 @@ const PreviewPage = ({values}) => {
         </div>
         <div className="mt-20 flex-col justify-center items-center text-center">
             <>
-            <div className='grid grid-cols-2 w-[95%] h-auto mx-auto'>
+            <div className='grid grid-cols-2 w-[100%] h-auto mx-auto'>
                 <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='first-pic' className='w-[390px] h-[390px] max-h-[54rem] rounded-lg'/>
                 <div className='w-[130%] ml-5 pr-[12rem]'>
                     <div>
@@ -36,18 +37,14 @@ const PreviewPage = ({values}) => {
                     <div className='text-center flex flex-row mt-1 w-full justify-center items-center'>
                         <p className='text-2xl font-semibold'>Type: &nbsp;</p>
                         <div className='flex flex-row '>
-                            {values.business_tags && values.business_tags.split(',').length > 1 && 
-                                values.business_tags.split(',').map((tag) => {
-                                    return <p className='text-xl text-center'>{tag + ","}&nbsp;</p>
-                                })
-                            }
+                            <p className="text-lg text-secondary">{validTags.join(', ')}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div className='grid grid-cols-2 max-w-full mt-[100px] gap-0 justify-center items-center'>
                 <div className='w-[75%] flex flex-col justify-center items-center mt-[-150px]'>
-                    <div className='pb-24 w-max'>
+                    <div className='pb-16 w-88 mt-12'>
                         <p className='text-2xl font-bold text-black '>Google Review Summary</p>
                         <p className='text-lg font-normal text-wrap'> {values?.google_reviews_summary}</p>
                     </div>
@@ -55,7 +52,7 @@ const PreviewPage = ({values}) => {
                         <p className='text-2xl font-semibold mt-1'>Rating: &nbsp;</p>
                         <div className='flex flex-row mt-2'>
                         <p className='text-xl mr-3 '>{values?.business_rating} </p>
-                        <Rating name="half-rating-read" className="" size="20" defaultValue={parseInt(values?.business_rating)} precision={0.1} readOnly />
+                        <Rating name="half-rating-read" className="" size="20" defaultValue={parseFloat(values?.business_rating)} precision={0.1} readOnly />
                         </div>
                     </div>
                     <div className='h-auto w-max shadow-md mt-1 px-5 rounded-xl right-0 border-2 border-black'>
@@ -74,18 +71,6 @@ const PreviewPage = ({values}) => {
                 </div>
                 <div className='w-full flex justify-center mt-9'>
                     <Carousel width={420} dynamicHeight={true} autoPlay={true} interval={5000} infiniteLoop={true}>
-                        {/* <div className='flex justify-center items-center'> 
-                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_2}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
-                        </div>
-                        <div className='flex justify-center items-center'>
-                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_3}`} alt='third-pic' className='h-autodd w-[40rem] rounded-lg'/>
-                        </div>
-                        <div className=' flex justify-center items-center'>
-                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_image_4}`} alt='second-pic' className='h-auto w-[40rem] rounded-lg'/>
-                        </div>
-                        <div className='flex justify-center items-center'>
-                        <img src={`https://rr3l1d2s-8000.use.devtunnels.ms${clickedBusiness[0].business_video_1}`} alt='third-pic' className='h-auto w-[40rem] rounded-lg'/>
-                        </div> */}
                         <div className='flex justify-center items-center'> 
                         <img src='https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg' alt='second-pic' className='h-auto w-[40rem] rounded-lg'/> 
                         </div>

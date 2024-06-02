@@ -97,7 +97,8 @@ const AddBusiness = ({ logout }) => {
         business_name: Yup.string().required('Business name is required'),
         business_rating: Yup.number().required('Business rating is required'),
         business_address: Yup.string().required('Business address is required'),
-        business_description: Yup.string().optional(),
+        business_description: Yup.string().min(50, 'Description must be at least 50 characters long')
+        .max(75, 'Description must be less than 75 characters long').optional(),
         business_phone_number: Yup.string().required('Business phone number is required'),
         business_barcode: Yup.string().required('Business barcode is required'),
         business_type_tag1: Yup.string().optional(),
@@ -293,7 +294,7 @@ const AddBusiness = ({ logout }) => {
                                             </label>
                                         </Tooltip>
                                         
-                                        <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" onChange={e => setCount(e.target.value.length)} />
+                                        <Field type="text" name="business_description" id="business_description" className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Business Description" />
                                     </div>
                                     <div >
                                         <Tooltip title={<h1 style={{fontSize: '1rem'}}>Upload up to 4 pictures and 1 video or 5 pictures</h1>} placement="top-start" arrow>
