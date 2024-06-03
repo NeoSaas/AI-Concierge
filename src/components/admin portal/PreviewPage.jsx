@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const PreviewPage = ({values}) => {
     // values.business_tags && console.log(values.business_tags.split(','));
     // console.log(values)
-    const validTags = [values.business_tags[1], values.business_tags[3], values.business_tags[4]];
+    //   const validTags = [values.business_tags[1], values.business_tags[3], values.business_tags[4]];
   return (
     <div className='bg-white w-[770px] ml-[-90px] h-auto rounded-xl p-3'>
         <div
@@ -37,7 +37,7 @@ const PreviewPage = ({values}) => {
                     <div className='text-center flex flex-row mt-1 w-full justify-center items-center'>
                         <p className='text-2xl font-semibold'>Type: &nbsp;</p>
                         <div className='flex flex-row '>
-                            <p className="text-lg text-secondary">{validTags.join(', ')}</p>
+                            <p className="text-lg text-secondary">{values?.business_tags}</p>
                         </div>
                     </div>
                 </div>
