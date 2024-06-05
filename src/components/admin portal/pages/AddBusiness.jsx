@@ -97,8 +97,8 @@ const AddBusiness = ({ logout }) => {
         business_name: Yup.string().required('Business name is required'),
         business_rating: Yup.number().required('Business rating is required'),
         business_address: Yup.string().required('Business address is required'),
-        business_description: Yup.string().min(50, 'Description must be at least 50 characters long')
-        .max(75, 'Description must be less than 75 characters long').optional(),
+        business_description: Yup.string().min(50, 'Description must be at least 50 words long')
+        .max(75, 'Description must be less than 100 words long').optional(),
         business_phone_number: Yup.string().required('Business phone number is required'),
         business_barcode: Yup.string().required('Business barcode is required'),
         business_type_tag1: Yup.string().optional(),
