@@ -27,17 +27,6 @@ const ItineraryPlannerForm = () => {
       ]
     },
     {
-      question: "Are there any accessibility considerations we should keep in mind when planning your itinerary?",
-      options: [
-        "No specific requirements needed",
-        "Hearing impairment assistance",
-        "Mobility assistance",
-        "Visual impairment assistance",
-        "Wheelchair accessibility"
-      ],
-      multiple: true
-    },
-    {
       question: "How many members are in your group?",
       options: [
         "Solo Traveler",
@@ -46,18 +35,6 @@ const ItineraryPlannerForm = () => {
         "Medium Group (7 to 15 members)",
         "Large Group (16 to 25 Members)"
       ]
-    },
-    {
-      question: "Group members’ description",
-      options: [
-        "Infants (0-1)",
-        "Toddlers/Preschoolers (2-4)",
-        "Children (5-12)",
-        "Teens (13-17)",
-        "Adult (18+)",
-        "Senior Citizens (65+)"
-      ],
-      multiple: true
     },
     {
       question: "What mode of transportation will you be needing or using for your itinerary?",
