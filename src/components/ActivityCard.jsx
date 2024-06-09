@@ -19,7 +19,7 @@ const ActivityCard = ({ id, activity, isSelected, showSubOptions, selectedDict, 
     }
     onSelect();
   }, [showSubOptions, selectedDict, isSelected, setSelectedDict, onSelect]);
-
+  
   return (
     <div>
       <label

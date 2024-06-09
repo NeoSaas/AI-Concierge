@@ -8,12 +8,12 @@ import { Circles } from 'react-loader-spinner';
 import ActivityCard from './ActivityCard';
 import { useAppContext } from '../AppContext';
 
-const activities = ['Bars and Nightlife', 'Local Restaurants', 'Local Attractions', 'Shopping Districts', 'Coffee', 'Ice Cream', 'Specialty Food Shops', 'Art Galleries', 'Museums', 'Day Tours', 'Spa and Wellness Centers', 'Outdoor Activities', 'Fitness Centers', 'Golf Courses', 'Wine Tastings and Tours', 'Boat Rentals or Cruises', 'Cultural Experiences', 'Bicycle Rentals', 'Cooking Classes', 'Photography Services', 'Hair and Beauty Salons', 'Local Markets', 'Event Ticketing', 'Childcare Services', 'Pet Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies', 'Transportation Services'];
+const activities = ['Local Restaurants', 'Shopping Districts', 'Local Attractions', 'Bars and Nightlife', 'Golf Courses', 'Transportation Services', 'Day Tours', 'Wine Tastings and Tours', 'Spa and Wellness Centers', 'Fitness Centers', 'Hair and Beauty Salons', 'Museums', 'Coffee', 'Ice Cream', 'Outdoor Activities', 'Specialty Food Shops', 'Event Ticketing', 'Local Markets', 'Bicycle Rentals', 'Childcare Services', 'Photography Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies', 'Art Galleries', 'Boat Rentals or Cruises', 'Cultural Experiences', 'Cooking Classes', 'Pet Services'];
 
 const subActivities = {
-  'Bars and Nightlife': ['Clubs', 'Dive Bars', 'Piano Bars', 'Karaoke Bars', 'Sports Bars', 'Wine Bar', 'Up Scale Bar'],
-  'Local Restaurants': ['Michelin Restaurants', 'Italian', 'Mexican', 'Chinese', 'Indian', 'Thai', 'Fancy', 'American', 'Argentinean', 'Australian', 'Belgian', 'Brazilian', 'British', 'Cajun/Creole', 'Caribbean', 'Chinese', 'Cuban', 'Ethiopian', 'Filipino', 'French', 'German', 'Greek', 'Hawaiian', 'Hungarian', 'Indian', 'Irish', 'Israeli', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese', 'Malaysian', 'Mediterranean', 'Mexican', 'Moroccan', 'New Zealand', 'Nigerian', 'Persian', 'Peruvian', 'Portuguese', 'Russian', 'Scandinavian', 'Spanish', 'Swiss', 'Thai', 'Turkish', 'Vietnamese'],
-  'Local Attractions': ['Historical Sites', 'Amusement Parks', 'Zoos', 'Gardens', 'Landmarks'],
+  'Local Restaurants': ['Michelin Restaurants', 'American', 'Italian', 'Mexican', 'Japanese', 'Mediterranean', 'Thai', 'Chinese', 'Greek', 'Indian', 'Argentinean', 'Australian', 'Belgian', 'Brazilian', 'British', 'Cajun/Creole', 'Caribbean', 'Chinese', 'Cuban', 'Ethiopian', 'Filipino', 'French', 'German', 'Hawaiian', 'Hungarian', 'Indian', 'Irish', 'Israeli', 'Italian', 'Jamaican', 'Korean', 'Lebanese', 'Malaysian', 'Mexican', 'Moroccan', 'New Zealand', 'Nigerian', 'Persian', 'Peruvian', 'Portuguese', 'Russian', 'Scandinavian', 'Spanish', 'Swiss', 'Thai', 'Turkish', 'Vietnamese'],
+  'Bars and Nightlife': ['Sports Bars', 'Up Scale Bar', 'Wine Bar', 'Karaoke Bars', 'Piano Bars', 'Clubs', 'Dive Bars'],
+  'Local Attractions': ['Theme Parks', 'Zoos and Amusement Parks', 'Cultural and Preforming Arts Venues', 'Beaches and Waterfronts', 'Sports Venues', 'Religious and Spiritual Sites'],
   'Specialty Food Shops': ['Bakeries', 'Delis', 'Cheese Shops', 'Chocolate Shops', 'Farmers Markets', 'Gourmet Groceries'],
   'Wine Tastings and Tours': ['Vineyards', 'Wineries', 'Wine Bars', 'Wine Festivals', 'Wine Courses', 'Wine-themed Tours'],
   'Shopping Districts': ['Boutiques', 'Malls', 'Flea Markets', 'Antique Shops', 'Local Crafts', 'Souvenir Stores'],
@@ -37,16 +37,15 @@ const subActivities = {
   'Transportation Services': ['Airport Shuttles', 'Taxi Services', 'Ride-sharing Services', 'Car Rentals', 'Public Transportation', 'Private Charters'],
   'Cultural Experiences': ['Traditional Performances', 'Art Exhibitions', 'Food Tours', 'Language Classes', 'Cooking Classes', 'Cultural Festivals'],
   'Day Tours': ['City Tours', 'Nature Tours', 'Food Tours', 'Adventure Tours', 'Historical Tours', 'Group Tours'],
-  'Coffee': ['Local', 'Chain', 'Drip Coffee'],
-  'Ice Cream': ['Nitrogen Ice Cream', 'Rolled Ice Cream']
-  // Define sub-activities for other main activities
+  'Ice Cream': ['Frozen Yogurt', 'Italian Ice Cream', 'Gelato', 'Rolled Ice Cream', 'Nitrogen Ice Cream', 'Soft Serve and Traditional Ice Cream'],
 };
 
-const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals'];
+const noSubActivities = ['Transportation Services', 'Boat Rentals or Cruises', 'Bicycle Rentals', 'Coffee'];
 
 const Form = () => {
   const { isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setSuggestedDisplayed, setLoadingOptions, displayOptions, setDisplayOptions } = useAppContext();
   const [currentPage, setCurrentPage] = useState(0);
+  const [previousPage, setPreviousPage] = useState(0);
   const [showSubOptions, setShowSubOptions] = useState(false);
   const itemsPerPage = 6;
   const startIndex = currentPage * itemsPerPage;
@@ -65,11 +64,50 @@ const Form = () => {
 
   const handlePrevPage = useCallback(() => {
     setCurrentPage((prevPage) => prevPage - 1);
+    setPreviousPage((prevPage) => prevPage - 1);
   }, []);
 
   const handleNextPage = useCallback(() => {
     setCurrentPage((prevPage) => prevPage + 1);
+    setPreviousPage((prevPage) => prevPage + 1);
   }, []);
+
+  console.log(currentActivities)
+
+  const handleToOptions = useCallback(async () => {
+    try {
+      setShowSubOptions(false);
+      setSuggestedDisplayed(true);
+      setDisplayOptions(true);
+      setLoading(true);
+      setLoadingOptions(true);
+      const prompt = await organizeQuery(selectedActivityIds);
+      const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/OPAICreateConvo/', { query: prompt });
+      const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
+
+      const multiBusinessResponse = businessesFromResponse.split(', ');
+      const businessDataResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/', { business: multiBusinessResponse });
+
+      console.log(businessDataResponse.data);
+
+      // Filter out empty collections
+      const filteredBusinessData = businessDataResponse.data.filter(business => Object.keys(business).length !== 0);
+
+      if (filteredBusinessData.length === 0) {
+        throw new Error('All collections are empty.');
+      }
+
+      setDisplayBusinesses(filteredBusinessData);
+      setLoading(false);
+      setSuggestedDisplayed(true);
+    } catch (error) {
+      console.log(error);
+      setFailed(true);
+      setLoading(false);
+      setDisplayOptions(true);
+      setShowSubOptions(false);
+    }
+  }, [selectedActivityIds, setDisplayOptions, setLoadingOptions, setSuggestedDisplayed]);
 
   const handleActivitySelect = useCallback((activity, selectedIds, setSelectedIds, selectedNames, setSelectedNames, unselectedNames, setUnselectedNames) => {
     const isSelected = selectedIds.includes(activity);
@@ -81,7 +119,7 @@ const Form = () => {
       if (isSelected) {
         setSelectedIds(updatedIds);
         setUnselectedNames((prevNames) => [...prevNames, activity]);
-        
+
       }
       return;
     }
@@ -100,33 +138,12 @@ const Form = () => {
     } else {
       setSelectedNames((prevNames) => [...prevNames, activity]);
     }
-  }, [formPage, selectedDict]);
-
-  const handleToOptions = useCallback(async () => {
-    try {
-      setShowSubOptions(false);
-      setSuggestedDisplayed(true);
-      setDisplayOptions(true);
-      setLoading(true);
-      setLoadingOptions(true);
-      const prompt = await organizeQuery(selectedActivityIds);
-      const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/OPAICreateConvo/', { query: prompt });
-      const businessesFromResponse = response.data['response-payload'].split(': ')[1].trim();
-
-      const multiBusinessResponse = businessesFromResponse.split(', ');
-      const businessDataResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/', { business: multiBusinessResponse });
-
-      setDisplayBusinesses(businessDataResponse.data);
-      setLoading(false);
-      setSuggestedDisplayed(true);
-    } catch (error) {
-      console.log(error);
-      setFailed(true);
-      setLoading(false);
-      setDisplayOptions(true);
-      setShowSubOptions(false);
+    console.log(activity)
+    if (noSubActivities.includes(activity) && isSelected) {
+      handleToOptions();
     }
-  }, [selectedActivityIds]);
+  }, [formPage, selectedDict, handleToOptions]);
+
 
   const handleToSub = useCallback(async () => {
     let count = 0;
@@ -146,7 +163,7 @@ const Form = () => {
         temp.push(subActivities[selectedActivityIds[activity]]);
       }
       let merged = [].concat.apply([], temp);
-      
+
       setSubOptionConcat(merged);
       setCurrentPage(0);
     }
@@ -154,22 +171,33 @@ const Form = () => {
 
   const handleBackButton = useCallback(() => {
     setShowSubOptions(false);
+    setCurrentPage(previousPage);
     setFormPage('main');
+    console.log(previousPage);
     if (selectedDict.sub > 0 && selectedDict.main > 0) {
       for (let i = selectedDict.sub + selectedDict.main; i >= selectedDict.main; i--) {
         selectedActivityIds.splice(i, 1);
       }
       setSelectedDict({ ...selectedDict, sub: 0 });
     }
-  }, [selectedDict, selectedActivityIds]);
+  }, [selectedDict, selectedActivityIds, previousPage]);
 
   const handleBackToForm = useCallback(() => {
-    setDisplayOptions(false);
-    setShowSubOptions(true);
-    setSuggestedDisplayed(false);
-    setFailed(false);
-    setLoadingOptions(false);
-  }, []);
+    console.log(selectedActivityIds[0])
+    if(noSubActivities.includes(selectedActivityIds[0])){
+      setDisplayOptions(false);
+      setShowSubOptions(false);
+      setSuggestedDisplayed(false);
+      setFailed(false);
+      setLoadingOptions(false);
+    }else{
+      setDisplayOptions(false);
+      setShowSubOptions(true);
+      setSuggestedDisplayed(false);
+      setFailed(false);
+      setLoadingOptions(false);
+    }
+  }, [selectedActivityIds, setDisplayOptions, setShowSubOptions, setSuggestedDisplayed, setFailed, setLoadingOptions]);
 
   const subTotalPages = Math.ceil(subOptionConcat.length / itemsPerPage);
 
@@ -183,7 +211,7 @@ const Form = () => {
           </div>
           <div className='flex flex-row flex-wrap'>
             <p className='font-quicksand text-2xl mb-1'>Selected Items: &nbsp;</p>
-            {selectedActivityIds?.map((activityId) => (
+            {selectedActivityIds && selectedActivityIds?.map((activityId) => (
               <p key={activityId} className='font-quicksand text-2xl mb-1'>{" " + activityId + ','}&nbsp;</p>
             ))}
           </div>

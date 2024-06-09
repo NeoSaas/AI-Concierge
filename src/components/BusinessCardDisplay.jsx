@@ -9,7 +9,6 @@ function BusinessCardDisplay({ index, business }) {
   const weekday = useMemo(() => ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], []);
   const d = useMemo(() => new Date(), []);
   let day = weekday[d.getDay()];
-  const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
     if (business[0].business_tags.includes('Restaurant')) {
@@ -18,14 +17,30 @@ function BusinessCardDisplay({ index, business }) {
 
   }, [business, setIsRestaurant]);
 
+  const parseTimeToMinutes = (timeStr) => {
+    let totalMinutes = 0;
+    const timeParts = timeStr.split(' ');
+
+    for (let i = 0; i < timeParts.length; i++) {
+      if (timeParts[i].includes('hour')) {
+        totalMinutes += parseInt(timeParts[i - 1]) * 60;
+      } else if (timeParts[i].includes('min')) {
+        totalMinutes += parseInt(timeParts[i - 1]);
+      }
+    }
+
+    return totalMinutes;
+  };
+
+  const walkTimeMinutes = parseTimeToMinutes(business[0]?.walk_time);
   const validTags = useMemo(() => [business[0].business_tags[1], business[0].business_tags[3], business[0].business_tags[4]], [business]);
-  
+
   const handleClick = useCallback(() => {
     setRestaurantLink(business[0].directions_url);
     setIsOpen(true);
     setClickedBusiness(business);
   }, [business, setRestaurantLink, setIsOpen, setClickedBusiness]);
-  console.log(business[0].business_image_2);
+
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-[900px] mx-auto h-[28rem] grid grid-cols-2 gap-10 border-2 border-black" onClick={handleClick}>
       <div className='w-full h-full flex justify-center items-center'>
@@ -44,7 +59,7 @@ function BusinessCardDisplay({ index, business }) {
         <p className='mt-2 text-xl font-semibold'>Today's Hours of Operation:</p>
         <div className='font-semibold text-xl'>{(business[0].hours_of_operation[day])}</div>
         <div className='flex flex-row justify-center text-xl mt-6'>
-          {parseInt(business[0].walk_time.split(' ')[0]) < 25 && (
+          {walkTimeMinutes < 25 && (
             <div className='flex flex-row items-center mx-3 text-green-500'>
               <FaWalking className='mx-2' />
               {business[0].walk_time}

@@ -17,6 +17,8 @@ export default async function organizeQuery(selectedActivities) {
     Businesses: ${businessesList}
     
     Query: Please recommend businesses that offer ${userSelectedCategories}. The businesses should closely match the user's preferences. For example, a restaurant does not relate to a vineyard even if they serve wine. Keep your recommendations relevant to the user's selection.
+
+    Please keep recommedations as closely related to the user's selection as possible. as mentioned above if the business doesnt have a tag that is extremely or very closley related to the user's selection, do not include it in the response.
     
     Consider the tags associated with each business individually. If there are three options selected and some businesses match the first two options, include those in your suggestion. If none match the third tag, still recommend the other businesses.
     

@@ -16,7 +16,7 @@ const imagesCafe = [
 ];
 
 const imagesHamiltonsKitchen = [
-  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/IMGCentury_compressed/Adjusted-1-gigapixel-high-fidelity-v2-4x_1_IMGCentury.jpg',
+  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/Adjusted-1-gigapixel-high-fidelity-v2-4x.jpg',
   'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/IMGCentury_compressed/Adjusted-2-gigapixel-high-fidelity-v2-4x_2_IMGCentury.jpg',
   'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/IMGCentury_compressed/Adjusted-3-gigapixel-high-fidelity-v2-4x_3_IMGCentury.jpg',
   'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Hamilton%20Kitchen%20images%20to%20be%20used%20in%20website/IMGCentury_compressed/Adjusted-4-gigapixel-high-fidelity-v2-4x_4_IMGCentury.jpg',
@@ -28,9 +28,9 @@ const imagesLounge = [
   'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/IMGCentury_compressed/Adjusted-1-gigapixel-high-fidelity-v2-4x_6_IMGCentury.jpg',
   'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/IMGCentury_compressed/Adjusted-2-gigapixel-high-fidelity-v2-4x_1_IMGCentury.jpg',
   'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/IMGCentury_compressed/Adjusted-3-gigapixel-high-fidelity-v2-4x_2_IMGCentury.jpg',
-  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/IMGCentury_compressed/Adjusted-4-gigapixel-high-fidelity-v2-4x_3_IMGCentury.jpg',
-  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/IMGCentury_compressed/Adjusted-5-gigapixel-high-fidelity-v2-4x_4_IMGCentury.jpg',
-  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/IMGCentury_compressed/Adjusted-6-gigapixel-high-fidelity-v2-4x_5_IMGCentury.jpg'
+  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-4-gigapixel-high-fidelity-v2-4x.jpg',
+  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-5-gigapixel-high-fidelity-v2-4x.jpg',
+  'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Lounge%20images%20used%20in%20website/Adjusted-6-gigapixel-high-fidelity-v2-4x.jpg'
 ];
 
 const imagesSpa = [
@@ -224,7 +224,7 @@ const PoolContent = () => (
           Rooftop Pool,
         </span>
         <span className="flex items-center text-gray-800 mb-2 mx-2">
-          Pool / Beach Towels,
+          Beach Towels,
         </span>
         <span className="flex items-center text-gray-800 mb-2 mx-2">
           Heated Pool,
@@ -278,7 +278,7 @@ const renderSwitch = (selectedActivityId, setRestaurantLink, setIsOpen) => {
     case 'The Spa':
       return <SpaContent 
                 spaMenuLink="'https://na.spatime.com/tai32789/5228842/home'" 
-                bookTreatmentLink='https://qrco.de/bebESs'
+                bookTreatmentLink='https://na.spatime.com/tai32789/5228842/home'
                 buyGiftCardLink='https://tai32789.na.book4time.com/spagift/' 
                 setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen} 
                 />;

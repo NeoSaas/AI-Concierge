@@ -6,15 +6,32 @@ import { useAppContext } from '../AppContext';
 function DisplayedOptions({ businesses }) {
   const { setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
 
-  const sortBusinessesByTravelTime = (businesses, travelType) => {
+  const parseTimeToMinutes = (timeStr) => {
+    let totalMinutes = 0;
+    console.log(timeStr)
+    const timeParts = timeStr.split(' ');
+
+    for (let i = 0; i < timeParts.length; i++) {
+      if (timeParts[i].includes('hour')) {
+        totalMinutes += parseInt(timeParts[i - 1]) * 60;
+      } else if (timeParts[i].includes('min')) {
+        totalMinutes += parseInt(timeParts[i - 1]);
+      }
+    }
+
+    return totalMinutes;
+  };
+  console.log(businesses);
+  const sortBusinessesByTravelTime = (businesses) => {
     return businesses.sort((a, b) => {
-      const timeA = parseInt(a[0][`${travelType}_time`].split(' ')[0]);
-      const timeB = parseInt(b[0][`${travelType}_time`].split(' ')[0]);
+      const timeA = parseTimeToMinutes(a[0][`walk_time`]);
+      const timeB = parseTimeToMinutes(b[0][`walk_time`]);
       return timeA - timeB;
     });
   };
 
   sortBusinessesByTravelTime(businesses, 'walk');
+  console.log(businesses);
 
   const handleSetIsOpen = useCallback((value) => {
     setIsOpen(value);
