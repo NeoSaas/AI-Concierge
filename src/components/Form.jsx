@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
-import organizeQuery from './general functions/organizeQuery';
+import organizeQuery from './utils/organizeQuery';
 import DisplayedOptions from './DisplayedOptions';
 import 'react-loader-spinner';
 import { Circles } from 'react-loader-spinner';
 import ActivityCard from './ActivityCard';
 import { useAppContext } from '../AppContext';
+import logEvent from './utils/logEvent';
 
 const activities = ['Local Restaurants', 'Shopping Districts', 'Local Attractions', 'Bars and Nightlife', 'Golf Courses', 'Transportation Services', 'Day Tours', 'Wine Tastings and Tours', 'Spa and Wellness Centers', 'Fitness Centers', 'Hair and Beauty Salons', 'Museums', 'Coffee', 'Ice Cream', 'Outdoor Activities', 'Specialty Food Shops', 'Event Ticketing', 'Local Markets', 'Bicycle Rentals', 'Childcare Services', 'Photography Services', 'Language Classes or Translators', 'Medical Clinics or Pharmacies', 'Art Galleries', 'Boat Rentals or Cruises', 'Cultural Experiences', 'Cooking Classes', 'Pet Services'];
 
@@ -90,8 +91,12 @@ const Form = () => {
 
       console.log(businessDataResponse.data);
 
-      // Filter out empty collections
+      //Filter out empty collections
       const filteredBusinessData = businessDataResponse.data.filter(business => Object.keys(business).length !== 0);
+
+      filteredBusinessData.forEach(business => {
+        logEvent(business.id, 'recommendation');
+      });
 
       if (filteredBusinessData.length === 0) {
         throw new Error('All collections are empty.');

@@ -14,7 +14,7 @@ import { typeOptions, subTypeOptions, dietaryOptions,
     awardOptions, budgetOptions, atmosphereOptions, 
     restaurantTypeOptions} from '../arrays/Arrays';
 import { DynamicFormDropdowns, DynamicFormDropdowns2, DynamicFormDropdowns3} from '../DynamicFormDropdowns';
-import organizeReviewQuery from '../../general functions/organizeReviewQuery';
+import organizeReviewQuery from '../../utils/organizeReviewQuery';
 
 const AddBusiness = ({ logout }) => {
 

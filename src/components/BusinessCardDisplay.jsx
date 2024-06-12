@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import Rating from '@mui/material/Rating';
 import { FaWalking, FaCar } from "react-icons/fa";
 import { useAppContext } from '../AppContext';
+import logEvent from './utils/logEvent';
 
 function BusinessCardDisplay({ index, business }) {
   const { setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness } = useAppContext();
@@ -39,6 +40,7 @@ function BusinessCardDisplay({ index, business }) {
     setRestaurantLink(business[0].directions_url);
     setIsOpen(true);
     setClickedBusiness(business);
+    logEvent(business[0].id, 'click');
   }, [business, setRestaurantLink, setIsOpen, setClickedBusiness]);
 
   return (
