@@ -73,7 +73,7 @@ const Form = () => {
     setPreviousPage((prevPage) => prevPage + 1);
   }, []);
 
-  console.log(currentActivities)
+  // console.log(currentActivities)
 
   const handleToOptions = useCallback(async () => {
     try {
