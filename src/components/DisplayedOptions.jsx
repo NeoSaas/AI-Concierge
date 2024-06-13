@@ -8,7 +8,6 @@ function DisplayedOptions({ businesses }) {
 
   const parseTimeToMinutes = (timeStr) => {
     let totalMinutes = 0;
-    console.log(timeStr)
     const timeParts = timeStr.split(' ');
 
     for (let i = 0; i < timeParts.length; i++) {
@@ -21,7 +20,7 @@ function DisplayedOptions({ businesses }) {
 
     return totalMinutes;
   };
-  console.log(businesses);
+
   const sortBusinessesByTravelTime = (businesses) => {
     return businesses.sort((a, b) => {
       const timeA = parseTimeToMinutes(a[0][`walk_time`]);
@@ -31,7 +30,6 @@ function DisplayedOptions({ businesses }) {
   };
 
   sortBusinessesByTravelTime(businesses, 'walk');
-  console.log(businesses);
 
   const handleSetIsOpen = useCallback((value) => {
     setIsOpen(value);
