@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useAppContext } from '../AppContext';
 
 const images = [
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Albin-Polaske-Musem-Banner-Design-v1-6x_3_IMGCentury.jpg', text: 'Albin Polaske Musuem' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Albin-Polaske-Musem-Banner-Design-v1-6x_3_IMGCentury.jpg', text: 'Albin Polasek Museum & Sculpture Gardens' },
   { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Alfond-Cafe-Banner-Design--v1-6x_4_IMGCentury.jpg', text: 'The Cafe' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-John-Craig-Banner-Design-gigapixel-standard-v1-6x_5_IMGCentury.jpg', text: 'John Craig' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Mead-Gardens-Banner-Design--v1-6x_6_IMGCentury.jpg', text: 'Mead Gardens' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Morse-Musem-Banner-Design-v1-6x_7_IMGCentury.jpg', text: 'Morse Musuem' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Prive-Banner-Design--v1-6x_8_IMGCentury.jpg', text: 'Prive Salon' },
-  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Rollins-Art-Musem-Banner-Design-v1-6x_1_IMGCentury.jpg', text: 'Rollins Art Museum' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-John-Craig-Banner-Design-gigapixel-standard-v1-6x_5_IMGCentury.jpg', text: 'John Craig Clothier' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Mead-Gardens-Banner-Design--v1-6x_6_IMGCentury.jpg', text: 'Mead Botanical Garden' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Morse-Musem-Banner-Design-v1-6x_7_IMGCentury.jpg', text: 'The Charles Hosmer Morse Museum of American Art' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Prive-Banner-Design--v1-6x_8_IMGCentury.jpg', text: 'Privé Salon' },
+  { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Rollins-Art-Musem-Banner-Design-v1-6x_1_IMGCentury.jpg', text: 'Rollins Museum of Art' },
   { src: 'https://aiconcierge.b-cdn.net/Alfond%20Inn%20Below%20Banner%201080%20x%20550%20used%20in%20Website/IMGCentury_compressed%20(6)/IMGCentury_compressed/Banner1080-x-550-Scenic-Boat-Tour-Banner-Design-v1-6x_2_IMGCentury.jpg', text: 'Scenic Boat Tour' },
 ];
 
@@ -31,6 +31,7 @@ const BottomBanner = () => {
         const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/')
         for(let i = 0; i < response.data.length; i++){
           if(response.data[i].business_name === business){
+            console.log("we in here")
             setRestaurantLink(response.data[i].directions_url);
             setIsOpen(true);
             setIsHotelSpecific(false);
