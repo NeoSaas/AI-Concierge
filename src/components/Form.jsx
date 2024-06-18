@@ -95,8 +95,9 @@ const Form = () => {
       const filteredBusinessData = businessDataResponse.data.filter(business => Object.keys(business).length !== 0);
 
       filteredBusinessData.forEach(business => {
-        logEvent(business.id, 'recommendation');
-        console.log('logging event')
+        // console.log(business)
+        logEvent(business[0].id, 'recommendation');
+        // console.log('logging event')
       });
 
       if (filteredBusinessData.length === 0) {
@@ -145,9 +146,9 @@ const Form = () => {
       setSelectedNames((prevNames) => [...prevNames, activity]);
     }
     console.log(activity)
-    if (noSubActivities.includes(activity) && isSelected) {
-      handleToOptions();
-    }
+    // if (noSubActivities.includes(activity) && isSelected) {
+    //   handleToOptions();
+    // }
   }, [formPage, selectedDict, handleToOptions]);
 
 
