@@ -6,6 +6,8 @@ import { useAppContext } from '../AppContext';
 const Navbar = lazy(() => import('./../components/Navbar'));
 const BottomBanner = lazy(() => import('../components/BottomBanner'));
 const WeatherWidget = lazy(() => import('../components/weatherComponents/WeatherWidget'));
+const MyDialog = lazy(() => import('../components/QrDialog'));
+const HotelQrDialog = lazy(() => import('../components/hotel specific/HotelQrDialog'));
 
 function Landing() {
   const { setIsHotelSpecific, isHotelSpecific, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, restaurantLink, isRestaurant, clickedBusiness, suggestedDisplayed, setSuggestedDisplayed, isTimerComplete, setIsTimerComplete, setIsItinerary, isItinerary } = useAppContext();
@@ -36,6 +38,13 @@ function Landing() {
         style={{ '--image-url': `url(${fetchedUrl})` }}
         className='h-[90vh] mt-[-100px] w-full bg-[url(https://aiconcierge.b-cdn.net/main/mainbg.jpg)] bg-cover flex justify-center items-center transition-all ease-in-out duration-500'
       >
+        {isOpen && (
+            isHotelSpecific ? (
+                <HotelQrDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} />
+            ) : (
+                <MyDialog isOpen={isOpen} setIsOpen={setIsOpen} qrCode={null} otherLink={restaurantLink} isRestaurant={isRestaurant} clickedBusiness={clickedBusiness} />
+            )
+        )}
         <div className={'flex justify-center items-center mb-[672px]'}>
           <div className='absolute h-[32%] w-[80%] mx-auto rounded-xl bg-gradient-to-b from-black via-black to-black opacity-90'></div>
           <div className='absolute h-[32%] w-[80%] mx-auto rounded-xl bg-gradient-to-t from-black via-transparent to-transparent'></div>
