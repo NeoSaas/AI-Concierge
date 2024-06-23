@@ -2,11 +2,16 @@ import React, { useState, useCallback, useMemo } from 'react';
 import Typewriter from 'typewriter-effect';
 import { useAppContext } from '../../AppContext';
 import ItineraryPlannerForm from './ItineraryPlannerForm';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+
 
 function ItineraryHeader() {
   const { suggestedDisplayed, setSuggestedDisplayed, isOpen, setIsOpen, setRestaurantLink, setIsRestaurant, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, isItinerary, setIsItinerary } = useAppContext();
   const [loadingOptions, setLoadingOptions] = useState(false);
   const [toPage, setToPage] = useState(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [fade, setFade] = useState('fade-in');
   const [displayOptions, setDisplayOptions] = useState(false);
 
   const words = useMemo(() => [
@@ -29,6 +34,18 @@ function ItineraryHeader() {
     'Pet Services'
   ], []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade('fade-out');
+      setTimeout(() => {
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+        setFade('fade-in');
+      }, 1000); // match the timeout with the fadeOut animation duration
+    }, 4000); // change word every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [words.length]);
+
   const handleSetIsItinerary = useCallback(() => {
     setIsItinerary(prev => !prev);
   }, [setIsHotelSpecific]);
@@ -40,15 +57,8 @@ function ItineraryHeader() {
           <>
             <p className="font-cursive font-thin text-5xl text-black my-1">Discover Winter Park, Florida</p>
             <h1 className="font-quicksand text-6xl font-thin text-black flex flex-col text-wrap">Let AI-Concierge find the
-              <span style={{ color: '#B60C03', marginLeft: '6px' }}>
-                <Typewriter
-                  options={{
-                    typeSpeed: 80,
-                    strings: words,
-                    autoStart: true,
-                    loop: true,
-                  }}
-                />
+              <span className={fade}>
+                {words[currentWordIndex]}
               </span> for you
             </h1>
           </>

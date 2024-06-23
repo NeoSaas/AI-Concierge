@@ -4,11 +4,14 @@ import QRCode from 'react-qr-code';
 import 'react-loader-spinner';
 import { Circles } from 'react-loader-spinner';
 import axios from 'axios';
+import logEvent from '../utils/logEvent';
 
 const ItineraryDisplay = ({ itinerary }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [documentUrl, setDocumentUrl] = useState('');
   const [loading, setLoading] = useState(true);
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
   const index = useRef(0);
 
   useEffect(() => {
@@ -37,7 +40,15 @@ const ItineraryDisplay = ({ itinerary }) => {
         setLoading(false);
       }
     };
-
+    const updateMakeVariables = async () => {
+      const response = await axios.post('http://127.0.0.1:8000/api/makeUpdateScenarioVariable/', {
+        itinerary: itinerary,
+      });
+      const triggerResponse = await axios.post('http://127.0.0.1:8000/api/makeTriggerScenario/');
+      setResponse(response.data);
+    };
+    
+    updateMakeVariables();
     createGoogleDoc();
   }, [itinerary]);
 
