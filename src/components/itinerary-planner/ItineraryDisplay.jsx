@@ -41,10 +41,10 @@ const ItineraryDisplay = ({ itinerary }) => {
       }
     };
     const updateMakeVariables = async () => {
-      const response = await axios.post('http://127.0.0.1:8000/api/makeUpdateScenarioVariable/', {
+      const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeUpdateScenarioVariable/', {
         itinerary: itinerary,
       });
-      const triggerResponse = await axios.post('http://127.0.0.1:8000/api/makeTriggerScenario/');
+      const triggerResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeTriggerScenario/');
       setResponse(response.data);
     };
     
