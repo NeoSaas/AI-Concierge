@@ -45,7 +45,9 @@ const ItineraryDisplay = ({ itinerary }) => {
         itinerary: itinerary,
       });
       const triggerResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeTriggerScenario/');
-      setResponse(response.data);
+      const variableResponse = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeGetScenarioVariables/');
+      console.log('Response:', variableResponse.data);
+      // setResponse(response.data);
     };
     
     updateMakeVariables();
