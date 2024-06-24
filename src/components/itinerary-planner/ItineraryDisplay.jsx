@@ -40,17 +40,29 @@ const ItineraryDisplay = ({ itinerary }) => {
         setLoading(false);
       }
     };
-    const updateMakeVariables = async () => {
+    const updateMakeAndLocalVariables = async () => {
       const response = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeUpdateScenarioVariable/', {
         itinerary: itinerary,
       });
       const triggerResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeTriggerScenario/');
-      const variableResponse = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeGetScenarioVariables/');
-      console.log('Response:', variableResponse.data);
+      const variableResponse = await axios.get('http://127.0.0.1:8000/api/makeGetScenarioVariables/');
+      console.log('Response:', variableResponse);
+      for (let i = 0; i < variableResponse.data.message.teamVariables[2].value.split(",").length; i++) {
+        let name = variableResponse.data.message.teamVariables[2].value.split(",")[i];
+        const businessResponse = await axios({
+          url:`http://127.0.0.1:8000/api/queryBusinessData/`, 
+          method: 'POST',
+          data: { business: [name] }
+        });
+        console.log(businessResponse);
+        logEvent(businessResponse.data[0]?.id, 'itinerary recommendation');
+        // logEvent(variableResponse.data[i].id, 'scenario');
+        // console.log(variableResponse.data.message.teamVariables[2].value.split(","))
+      }
       // setResponse(response.data);
     };
     
-    updateMakeVariables();
+    updateMakeAndLocalVariables();
     createGoogleDoc();
   }, [itinerary]);
 
