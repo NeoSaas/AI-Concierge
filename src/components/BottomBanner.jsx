@@ -19,7 +19,7 @@ const BottomBanner = () => {
 
   const handleGetBusiness = async (index) => {
     let business = images[index].text;
-    console.log(business);
+    // console.log(business);
     if(business.includes('Alfond Inn') || business.includes('Hamiltons Kitchen') || business.includes('The Lounge') || business.includes('The Spa') || business.includes('The Cafe') || business.includes('The Pool') || business.includes('Fitness Center')){
       setIsHotelSpecific(true);
       setToPage(true);
@@ -31,7 +31,7 @@ const BottomBanner = () => {
         const response = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/getBusiness/')
         for(let i = 0; i < response.data.length; i++){
           if(response.data[i].business_name === business){
-            console.log("we in here")
+            // console.log("we in here")
             setRestaurantLink(response.data[i].directions_url);
             setIsOpen(true);
             setIsHotelSpecific(false);
