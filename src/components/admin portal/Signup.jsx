@@ -26,7 +26,7 @@ const Signup = ({ login }) => {
                 nav('/login');
             })
             .catch(error => {
-                console.log(error);
+                //console.log(error);
             });
     }
 

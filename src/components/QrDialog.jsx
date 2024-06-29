@@ -9,7 +9,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useAppContext } from '../AppContext';
 
 export default function MyDialog({ otherLink }) {
-  // console.log('MyDialog')
+  // //console.log('MyDialog')
   const { isOpen, setIsOpen, isRestaurant, clickedBusiness } = useAppContext();
   const d = new Date();
   const day = d.getDate();

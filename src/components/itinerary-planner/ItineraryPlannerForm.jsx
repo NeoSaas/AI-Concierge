@@ -67,7 +67,7 @@ const ItineraryPlannerForm = () => {
       options: ["Yes please pick all the recommendations for me Ai-Concierge i trust you!",  "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)", "No"]
     },
     {
-      question: "Do want to select your type of Cuisine?",
+      question: "Do you want to select your type of Cuisine?",
       options: ["No, you recommend from our local favorites", "Yes"],
       condition: (answers) => answers["Do you want to include food/drink recommendations within your itinerary?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
     },
@@ -82,7 +82,7 @@ const ItineraryPlannerForm = () => {
         "Mediterranean",
         "Fusion/Contemporary"
       ],
-      condition: (answers) => answers["Do you want to select your type of Cuisine?"] === "Yes but ill spend 3 more minutes to pick out my own options because im a picky eater :)"
+      condition: (answers) => answers["Do you want to select your type of Cuisine?"] === "Yes"
     },
     {
       question: "Are there any dietary restrictions or preferences we should consider?",
@@ -214,7 +214,7 @@ const ItineraryPlannerForm = () => {
       setLoading(false);
       setItinerary(response.data['response-payload']);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       setFailed(true);
       setLoading(false);
       setDisplayOptions(true);

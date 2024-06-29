@@ -33,7 +33,7 @@ const AdminPortal = ({ logout }) => {
             withCredentials: true,
         }) 
         .then(response => {
-            // console.log('User business data:', response.data);
+            // //console.log('User business data:', response.data);
             if(response.data.author == null) {
                 setEditPage(false);
                 setDisabled(true);
@@ -50,7 +50,7 @@ const AdminPortal = ({ logout }) => {
         });
     }, []);
 
-    console.log('Response:', response);
+    //console.log('Response:', response);
 
     return (
         <>

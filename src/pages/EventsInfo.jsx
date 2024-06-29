@@ -18,7 +18,7 @@ function EventsInfo() {
     const [isTimerComplete, setIsTimerComplete] = useState(false);
 
     const handleButton = (index) => {
-        // console.log(index);
+        // //console.log(index);
         setQrCode(qrCodes[index]);
         setIsOpen(true);
     }

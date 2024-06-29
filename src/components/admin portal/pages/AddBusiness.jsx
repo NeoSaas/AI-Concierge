@@ -28,7 +28,7 @@ const AddBusiness = ({ logout }) => {
     const dates = ['3/1/24', '3/2/24', '3/3/24', '3/4/24', '3/5/24', '3/6/24', '3/7/24', '3/8/24', '3/9/24', '3/10/24', '3/11/24', '3/12/24', '3/13/24', '3/14/24', '3/15/24', '3/16/24', '3/17/24', '3/18/24', '3/19/24', '3/20/24', '3/21/24', '3/22/24', '3/23/24', '3/24/24', '3/25/24', '3/26/24', '3/27/24', '3/28/24', '3/29/24', '3/30/24', '4/1/24', '4/1/24', '4/2/24', '4/3/24', '4/4/24', '4/5/24', '4/6/24', '4/7/24', '4/8/24', '4/9/24', '4/10/24', '4/11/24', '4/12/24', '4/13/24', '4/14/24', '4/15/24', '4/16/24', '4/17/24', '4/18/24', '4/19/24', '4/20/24', '4/21/24', '4/22/24', '4/23/24', '4/24/24', '4/25/24', '4/26/24', '4/27/24', '4/28/24', '4/29/24', '4/30/24'];
 
     const handleFormChange = (values) => {
-        console.log('Form values:', values);
+        //console.log('Form values:', values);
         setFormData(values);
         values?.business_type_tag1 == "Restaurant" ? (values.business_tags = values.business_type_tag1 + ', ' + values.business_restaurant_sub_tag1 + ', ' + values.business_restaurant_sub_tag2 + ', ' + values.business_restaurant_sub_tag3 + ', ' + values.business_restaurant_sub_tag4 + ', ' + values.business_restaurant_sub_tag5 + ', ' + values.business_restaurant_sub_tag6 + ', ' + values.business_restaurant_sub_tag7 + ', ' + values.sub_type_business_tags2 + ', ' + values.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2) 
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_type_business_tags + ', ' + formData.sub_type_business_tags2 + ', ' + formData.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
@@ -47,13 +47,13 @@ const AddBusiness = ({ logout }) => {
             withCredentials: true,
         })
         .then(response => {
-            console.log('Review response:', response.data['response-payload']);
+            //console.log('Review response:', response.data['response-payload']);
             values.google_reviews_summary = response.data['response-payload'].split(': ')[1]
         })
         values?.business_type_tag1 == "Restaurant" ? (values.business_tags = values.business_type_tag1 + ', ' + values.business_restaurant_sub_tag1 + ', ' + values.business_restaurant_sub_tag2 + ', ' + values.business_restaurant_sub_tag3 + ', ' + values.business_restaurant_sub_tag4 + ', ' + values.business_restaurant_sub_tag5 + ', ' + values.business_restaurant_sub_tag6 + ', ' + values.business_restaurant_sub_tag7 + ', ' + values.sub_type_business_tags2 + ', ' + values.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2) 
         : (values.business_tags = formData.business_type_tag1 + ', ' + formData.business_type_tag2 + ', ' + formData.business_type_tag3 + ', ' + formData.sub_type_business_tags + ', ' + formData.sub_type_business_tags2 + ', ' + formData.sub_type_business_tags3 + ', ' + values.sub_business_tags1 + ', ' + values.sub_business_tags2)
         
-        console.log('busines_tags:', values.business_tags);
+        //console.log('busines_tags:', values.business_tags);
         await axios({
             method: 'POST',
             url: 'https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/addBusiness/',
@@ -65,7 +65,7 @@ const AddBusiness = ({ logout }) => {
             withCredentials: true,
         }) 
         .then(response => {
-            // console.log('Business added successfully:', response.data);
+            // //console.log('Business added successfully:', response.data);
             setLoading(false);
             setSuccess(true);
             values.business_tags = '';

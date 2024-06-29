@@ -9,6 +9,6 @@ export default async function organizeItineraryQuery(itinerary) {
         Itinerary:
         ${itinerary}
     `;
-    console.log(promptTemplate);
+    //console.log(promptTemplate);
     return promptTemplate;
 }

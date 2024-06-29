@@ -35,7 +35,7 @@ function CheckInInfo() {
     }, []);
 
     const handleCheckIn = () => {
-        console.log('check in');
+        //console.log('check in');
         setQrCode(qrCodes[0]);
         setIsOpen(true);
     }

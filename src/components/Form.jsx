@@ -73,7 +73,7 @@ const Form = () => {
     setPreviousPage((prevPage) => prevPage + 1);
   }, []);
 
-  // console.log(currentActivities)
+  // //console.log(currentActivities)
 
   const handleToOptions = useCallback(async () => {
     try {
@@ -89,15 +89,15 @@ const Form = () => {
       const multiBusinessResponse = businessesFromResponse.split(', ');
       const businessDataResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/', { business: multiBusinessResponse });
 
-      // console.log(businessDataResponse.data);
+      // //console.log(businessDataResponse.data);
 
       //Filter out empty collections
       const filteredBusinessData = businessDataResponse.data.filter(business => Object.keys(business).length !== 0);
 
       filteredBusinessData.forEach(business => {
-        // console.log(business)
+        // //console.log(business)
         logEvent(business[0].id, 'recommendation');
-        // console.log('logging event')
+        // //console.log('logging event')
       });
 
       if (filteredBusinessData.length === 0) {
@@ -108,7 +108,7 @@ const Form = () => {
       setLoading(false);
       setSuggestedDisplayed(true);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       setFailed(true);
       setLoading(false);
       setDisplayOptions(true);
@@ -145,7 +145,7 @@ const Form = () => {
     } else {
       setSelectedNames((prevNames) => [...prevNames, activity]);
     }
-    console.log(activity)
+    //console.log(activity)
     // if (noSubActivities.includes(activity) && isSelected) {
     //   handleToOptions();
     // }
@@ -180,7 +180,7 @@ const Form = () => {
     setShowSubOptions(false);
     setCurrentPage(previousPage);
     setFormPage('main');
-    console.log(previousPage);
+    //console.log(previousPage);
     if (selectedDict.sub > 0 && selectedDict.main > 0) {
       for (let i = selectedDict.sub + selectedDict.main; i >= selectedDict.main; i--) {
         selectedActivityIds.splice(i, 1);
@@ -190,7 +190,7 @@ const Form = () => {
   }, [selectedDict, selectedActivityIds, previousPage]);
 
   const handleBackToForm = useCallback(() => {
-    console.log(selectedActivityIds[0])
+    //console.log(selectedActivityIds[0])
     if(noSubActivities.includes(selectedActivityIds[0])){
       setDisplayOptions(false);
       setShowSubOptions(false);

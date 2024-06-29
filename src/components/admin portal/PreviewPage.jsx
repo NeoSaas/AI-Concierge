@@ -5,8 +5,8 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const PreviewPage = ({values}) => {
-    // values.business_tags && console.log(values.business_tags.split(','));
-    // console.log(values)
+    // values.business_tags && //console.log(values.business_tags.split(','));
+    // //console.log(values)
     //   const validTags = [values.business_tags[1], values.business_tags[3], values.business_tags[4]];
   return (
     <div className='bg-white w-[770px] ml-[-90px] h-auto rounded-xl p-3'>

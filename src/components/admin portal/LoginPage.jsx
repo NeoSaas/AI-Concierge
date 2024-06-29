@@ -32,7 +32,7 @@ const LoginPage = ({ setRememberMe }) => {
         await login();
         const { token } = response.data;
         localStorage.setItem('token', token);
-        // console.log(values['remember-me'])
+        // //console.log(values['remember-me'])
         if(values.rememberMe){
             setRememberMe(true);
         }
