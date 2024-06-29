@@ -45,26 +45,27 @@ const ItineraryDisplay = ({ itinerary }) => {
         itinerary: itinerary,
       });
       const triggerResponse = await axios.post('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeTriggerScenario/');
-      const variableResponse = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeGetScenarioVariables/');
-      console.log('Response:', variableResponse);
-      try {
-        for (let i = 0; i < variableResponse.data.message.teamVariables[3].value.split(",").length; i++) {
-          let name = variableResponse.data.message.teamVariables[3].value.split(",")[i];
-          const businessResponse = await axios({
-            url:`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/`, 
-            method: 'POST',
-            data: { business: [name] }
-          });
-          console.log(businessResponse);
-          logEvent(businessResponse.data[0]?.id, 'itinerary recommendation');
-          // logEvent(variableResponse.data[i].id, 'scenario');
-          // console.log(variableResponse.data.message.teamVariables[2].value.split(","))
+      //debounce by 5 seconds to let make scenario update the team variable
+      setTimeout(async () => {
+        const variableResponse = await axios.get('https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/makeGetScenarioVariables/');
+        console.log('Response:', variableResponse);
+        try {
+          for (let i = 0; i < variableResponse.data.message.teamVariables[3].value.split(",").length; i++) {
+            let name = variableResponse.data.message.teamVariables[3].value.split(",")[i];
+            const businessResponse = await axios({
+              url:`https://ai-concierge-main-0b4b3d25a902.herokuapp.com/api/queryBusinessData/`, 
+              method: 'POST',
+              data: { business: [name] }
+            });
+            console.log(businessResponse);
+            logEvent(businessResponse.data[0]?.id, 'itinerary recommendation');
+            // logEvent(variableResponse.data[i].id, 'scenario');
+            // console.log(variableResponse.data.message.teamVariables[2].value.split(","))
+          }
+        } catch (error) {
+          console.error('Error updating local variables:', error);
         }
-      } catch (error) {
-        console.error('Error updating local variables:', error);
-      }
-      
-      // setResponse(response.data);
+      }, 5000); //5 seconds debounce
     };
     
     updateMakeAndLocalVariables();
