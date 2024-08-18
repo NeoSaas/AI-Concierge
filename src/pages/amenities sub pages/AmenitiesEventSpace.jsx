@@ -51,13 +51,13 @@ function AmenitiesEventSpace() {
             <div className='absolute gradient-bottom h-[85%] w-full'></div>
             <BottomBanner />
             <div
-                className={`w-full h-[70vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
+                className={`w-full h-[60vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 ${
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >
                 <a className='py-2 px-6 bg-[#5C0601] rounded-lg text-white font-quicksand text-xl mb-2' href="/home">Back To Home</a>
                 <div className="py-8 font-quicksand flex-col overflow-auto bg-white p-8 rounded-lg shadow-md"> 
-                    <div className="max-w-4xl mx-auto max-h-[70rem]">
+                    <div className="max-w-4xl mx-auto max-h-[63rem]">
                         <p className="text-4xl text-center mb-2">Event Spaces</p>
                         
                         <div className="grid gap-10">

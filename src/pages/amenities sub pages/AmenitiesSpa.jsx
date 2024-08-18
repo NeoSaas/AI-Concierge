@@ -51,7 +51,7 @@ function AmenitiesSpa() {
             <div className='absolute gradient-bottom h-[85%] w-full'></div>
             <BottomBanner />
             <div
-                className={`w-full h-[70vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-[-10px] ${
+                className={`w-full h-[56vh] overflow-y-hidden flex justify-center items-center flex-col transition-opacity duration-1000 mt-12 ${
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
             >

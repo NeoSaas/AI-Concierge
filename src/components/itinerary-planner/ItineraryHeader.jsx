@@ -51,7 +51,7 @@ function ItineraryHeader() {
   }, [setIsHotelSpecific]);
 
   return (
-    <div className={toPage || displayOptions ? "py-4 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-12" : "py-10 flex justify-center mb-[384px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
+    <div className={toPage || displayOptions ? "py-4 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-12" : "py-10 flex justify-center mb-[180px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
       <div className='z-40 text-center mx-16'>
         {!suggestedDisplayed && (
           <>

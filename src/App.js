@@ -53,7 +53,7 @@ function App() {
           <Route path="/rooms" element={<AmenitiesRooms />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/admin_portal" element={<ProtectedRoute user={isAuthenticated} redirect="/login"><AdminPortal /></ProtectedRoute>} />
+          {/* <Route path="/admin_portal" element={<ProtectedRoute user={isAuthenticated} redirect="/login"><AdminPortal /></ProtectedRoute>} /> */}
         </Routes>
       </Suspense>
     </BrowserRouter>

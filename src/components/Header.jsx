@@ -48,11 +48,11 @@ function Header() {
   }, [setIsHotelSpecific]);
 
   return (
-    <div className={toPage || displayOptions ? "py-1 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-24" : "py-10 flex justify-center mb-[314px] items-center flex-col bg-white rounded-[2.5rem] absolute"}>
+    <div className={toPage || displayOptions ? "py-1 flex justify-center items-center flex-col bg-white rounded-[2.5rem] absolute mb-24" : "py-10 flex justify-center mb-[185px] items-center flex-col bg-white rounded-[2.5rem] absolute "}>
       <div className='z-40 text-center mx-16'>
         {!suggestedDisplayed && (
           <>
-            <p className="font-cursive font-thin text-5xl text-black my-1">Discover Winter Park, Florida</p>
+            <p className="font-cursive font-thin text-4xl text-black my-1">Discover Winter Park, Florida</p>
             <h1 className="font-quicksand text-6xl font-thin text-black flex flex-col text-wrap">Let AI-Concierge find the
               <span style={{ color: '#B60C03', marginLeft: '6px' }}>
                 <span className={fade}>

@@ -4,7 +4,7 @@ const ConferenceItem = ({ eventName, description, imageUrl, date, time, handleBu
  
 
   return (
-    <div className="flex items-center justify-center my-7">
+    <div className="flex items-center justify-center my-3">
       <div className="w-full bg-white shadow-lg rounded-lg overflow-hidden mx-16 ">
         <div className="md:flex">
           <div className="md:flex-shrink-0">
