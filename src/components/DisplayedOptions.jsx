@@ -48,7 +48,7 @@ function DisplayedOptions({ businesses }) {
   }, [setClickedBusiness]);
 
   return (
-    <div className="grid grid-cols-1 gap-4 overflow-scroll max-h-[55rem] no-scrollbar mb-10">
+    <div className="grid grid-cols-1 gap-4 overflow-scroll max-h-[48rem] no-scrollbar ">
       <div className='flex flex-row justify-start text-xl'>
         <PiArrowBendLeftDownBold size={34} className='ml-1 mt-1' />
         <p className='ml-1'>Click to see company profile</p>
