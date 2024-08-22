@@ -86,17 +86,17 @@ export default function MyDialog({ otherLink }) {
                 <div className="mt-4">
                   {clickedBusiness[0] ? 
                   <>
-                    <div className='grid grid-cols-2 gap-8'>
+                    <div className='grid grid-cols-2 gap-4'>
                       <img src={clickedBusiness[0]?.business_image_1} alt='first-pic' className='w-[390px] h-[390px] object-cover rounded-lg shadow-lg border-2 border-accent'/>
                       <div>
                           <p className="text-3xl font-quicksand text-primary mb-4">Description</p>
                           <p className="text-lg text-secondary mb-8">{clickedBusiness[0]?.business_description}</p>
-                          <p className="text-2xl font-quicksand text-primary mb-4">Type</p>
+                          <p className="text-2xl font-quicksand text-primary">Type</p>
                           <p className="text-lg text-secondary">{validTags.join(', ')}</p>
                       </div>
                     </div>
-                    <div className='mt-12 grid grid-cols-2 gap-8'>
-                      <div className='space-y-8'>
+                    <div className='grid grid-cols-2 gap-8'>
+                      <div className='space-y-3'>
                         <div>
                           <p className="text-2xl font-quicksand text-primary">Google Review Summary</p>
                           <p className="text-lg text-secondary">{clickedBusiness[0]?.google_reviews_summary}</p>
