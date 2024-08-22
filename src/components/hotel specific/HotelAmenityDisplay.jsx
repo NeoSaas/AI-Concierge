@@ -86,11 +86,11 @@ const ImageSlider = ({ images }) => {
   }, [nextSlide]);
 
   return (
-    <div className='w-full h-[40rem] mx-auto flex justify-center items-center'>
+    <div className='w-full h-[30rem] mx-auto flex justify-center items-center'>
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute w-[40rem] h-[40rem] ${
+          className={`absolute w-[30rem] h-[30rem] ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-500`}
         >
@@ -143,25 +143,25 @@ const CafeContent = ({ morningMenuLink, eveningMenuLink, setRestaurantLink, setI
 
 const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurantLink, setIsOpen }) => (
   <div className='max-w-[60rem] max-h-[80rem]'>
-    <h1 className="text-3xl font-bold text-gray-900 mb-4">HAMILTON'S KITCHEN</h1>
+    <h1 className="text-3xl font-bold text-gray-900 mb-1">HAMILTON'S KITCHEN</h1>
     <ImageSlider images={imagesHamiltonsKitchen} />
-    <h2 className="text-2xl text-gray-800 mb-2 mt-2">Modern Southern Cuisine</h2>
-    <div className="mb-6 text-2xl">
-      <h3 className="text-md font-semibold text-gray-800 mb-2">BREAKFAST & LUNCH</h3>
+    <h2 className="text-2xl text-gray-800 mb-1 mt-1">Modern Southern Cuisine</h2>
+    <div className="mb-1 text-2xl">
+      <h3 className="text-md font-semibold text-gray-800 mb-1">BREAKFAST & LUNCH</h3>
       <p className="text-gray-600 mb-4 ">Monday - Friday: 7:00 AM to 2:00 PM</p>
       <p className="text-gray-600 mb-4 ">Saturday - Sunday: 8:00 AM to 2:00 PM</p>
       <button onClick={() => { setIsOpen(true); setRestaurantLink(brunchMenuLink) }} className="bg-[#5C0601] text-white font-bold py-2 px-4 w-[70%] rounded-[1.5rem]">
         Brunch Menu
       </button>
     </div>
-    <div className="mb-6 text-2xl">
-      <h3 className="text-3xl font-semibold text-gray-800 mb-2">HAPPY HOUR</h3>
+    <div className="mb-2 text-2xl">
+      <h3 className="text-3xl font-semibold text-gray-800 mb-1">HAPPY HOUR</h3>
       <p className="text-gray-600 mb-4 ">Monday - Friday: 4:00 PM to 7:00 PM</p>
       <p className="text-gray-600 ">Draft Beers | House Chardonnay | House Cabernet | Well Cocktails</p>
     </div>
-    <div className="pt-4 border-t border-gray-200 text-2xl">
-      <h3 className="text-2xl font-semibold text-gray-800 mb-2">DINNER</h3>
-      <p className="text-gray-600 mb-4">Daily: 5:00 PM to 9:00 PM</p>
+    <div className="pt-2 border-t border-gray-200 text-2xl">
+      <h3 className="text-2xl font-semibold text-gray-800 mb-1">DINNER</h3>
+      <p className="text-gray-600 mb-2">Daily: 5:00 PM to 9:00 PM</p>
       <button onClick={() => { setIsOpen(true); setRestaurantLink(dinnerMenuLink) }} className="bg-[#5C0601] text-white font-bold py-2 px-4 w-[70%] rounded-[1.5rem]">
         Dinner Menu
       </button>
@@ -243,7 +243,7 @@ const PoolContent = () => (
 
 const FitnessCenterContent = () => (
   <div className='mt-9 mx-16'>
-    <h1 className="text-4xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
+    <h1 className="text-3xl font-bold text-gray-900 mb-6">THE ALFOND INN FITNESS CENTER</h1>
     <h2 className="text-3xl text-gray-800 mb-6">ELEVATE YOUR DAY, ENERGIZE YOUR STAY</h2>
     <ImageSlider images={imagesFitnessCenter} />
     <p className="text-gray-600 mb-4 text-3xl mt-12">
@@ -296,7 +296,7 @@ const HotelAmenityDisplay = ({ selectedActivityId, setRestaurantLink, setIsOpen}
   const { imageBasedHotelAmenity, setImageBasedHotelAmenity, setIsHotelSpecific, setToPage, setSuggestedDisplayed } = useAppContext();
   const navigate = useNavigate();
   return(
-    <div className="bg-white rounded-lg py-4 mb-1 font-quicksand">
+    <div className="bg-white rounded-lg py-1 mb-1 font-quicksand">
       {imageBasedHotelAmenity ? renderSwitch(selectedActivityId, setRestaurantLink, setIsOpen) : renderSwitch(selectedActivityId[0], setRestaurantLink, setIsOpen)}
       {imageBasedHotelAmenity ? <button className=' bg-[#5C0601] relative py-2 px-4 w-full rounded-full text-white mx-auto text-3xl font-semibold mt-8' onClick={() => handleBack(setImageBasedHotelAmenity, navigate, setIsHotelSpecific, setToPage, setSuggestedDisplayed)}>Back to Start</button> : null}
     </div>

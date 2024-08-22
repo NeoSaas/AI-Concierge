@@ -60,7 +60,7 @@ const HotelForm = ({ setHotel }) => {
   };
 
   return (
-    <div className={toPage ? 'mb-10' : 'mb-24'}>
+    <div className={toPage ? 'mb-2' : 'mb-24'}>
       {toPage ? (
         <div className='flex flex-col justify-center w-full'>
           {imageBasedHotelAmenity ? (
