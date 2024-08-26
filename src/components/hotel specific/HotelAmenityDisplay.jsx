@@ -170,7 +170,7 @@ const HamiltonsKitchenContent = ({ brunchMenuLink, dinnerMenuLink, setRestaurant
 );
 
 const LoungeContent = () => (
-  <div className='max-w-[55rem]'>
+  <div className='max-w-[40rem]'>
     <h1 className="text-4xl font-bold text-gray-900 mb-4">THE LOUNGE</h1>
     <ImageSlider images={imagesLounge} />
     <h2 className="text-3xl text-gray-800 mb-2 mt-12">At Hamilton's Kitchen</h2>

@@ -62,7 +62,7 @@ const HotelForm = ({ setHotel }) => {
   return (
     <div className={toPage ? 'mb-2' : 'mb-24'}>
       {toPage ? (
-        <div className='flex flex-col justify-center w-full'>
+        <div className='flex flex-col justify-center w-[100%]'>
           {imageBasedHotelAmenity ? (
             <HotelAmenityDisplay selectedActivityId={hotelAmenity} setRestaurantLink={setRestaurantLink} setIsOpen={setIsOpen}/>
           ) : (
