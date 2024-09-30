@@ -16,7 +16,6 @@ const BottomBanner = () => {
   const { isOpen, setIsOpen, setClickedBusiness, setIsHotelSpecific, isHotelSpecific, setImageBasedHotelAmenity, setHotelAmenity, setToPage, setSuggestedDisplayed, setRestaurantLink, clickedBusiness } = useAppContext();
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [bannerImages, setBannerImages] = useState([]);
 
   const handleGetBusiness = async (index) => {
     let business = images[index].text;
