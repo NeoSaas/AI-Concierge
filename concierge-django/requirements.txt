@@ -1,8 +1,0 @@
-Django==5.0.2
-googlemaps==4.10.0
-openai==1.25.2
-Requests==2.31.0
-channels==4.1.0
-django-rest-framework
-django-cors-headers
-gunicorn
